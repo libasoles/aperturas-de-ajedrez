@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+body {
+  margin: 0;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.85; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+
+.neon-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff2d78, #bf5fff, #00f5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px #ff2d7880) drop-shadow(0 0 20px #bf5fff60);
+  animation: flicker 8s infinite;
+}
+
+.neon-subtitle {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #00f5ff;
+  text-shadow: 0 0 8px #00f5ff, 0 0 20px #00f5ff80;
+  opacity: 0.8;
+}
