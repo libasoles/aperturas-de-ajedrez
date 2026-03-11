@@ -10,6 +10,65 @@ import ChessNode from './ChessNode';
 
 const nodeTypes = { chess: ChessNode };
 
+const INITIAL_EXPANDED = new Set(['root', 'e4', 'scan-1', 'span-1', 'span-2', 'span-3', 'sic-1']);
+
+// Collect all IDs that have children under a given node
+function collectAllIds(node, acc = new Set()) {
+  if (node.children && node.children.length > 0) {
+    acc.add(node.id);
+    node.children.forEach((c) => collectAllIds(c, acc));
+  }
+  return acc;
+}
+const ALL_IDS = collectAllIds(OPENING_TREE);
+
+// Build the full expansion set for one opening: all its descendant IDs + required path IDs
+function buildOpeningFullIds(nodeId, pathIds) {
+  const ids = new Set(['root', 'e4', ...pathIds]);
+  function findAndCollect(node) {
+    if (node.id === nodeId) {
+      collectAllIds(node, ids);
+      ids.add(node.id);
+      return true;
+    }
+    return (node.children || []).some(findAndCollect);
+  }
+  findAndCollect(OPENING_TREE);
+  return ids;
+}
+
+const PANEL_OPENINGS = [
+  {
+    label: 'Escandinava',
+    nodeId: 'scan-1',
+    pathIds: [],
+    color: '#16a34a', glow: '#22c55e', text: '#bbf7d0',
+  },
+  {
+    label: 'Española',
+    nodeId: 'span-4',
+    pathIds: ['span-1', 'span-2', 'span-3'],
+    color: '#2563eb', glow: '#3b82f6', text: '#bfdbfe',
+  },
+  {
+    label: 'Italiana',
+    nodeId: 'ital-1',
+    pathIds: ['span-1', 'span-2', 'span-3'],
+    color: '#ea580c', glow: '#f97316', text: '#fed7aa',
+  },
+  {
+    label: 'Siciliana',
+    nodeId: 'sic-1',
+    pathIds: [],
+    color: '#dc2626', glow: '#ef4444', text: '#fecdd3',
+  },
+];
+
+// Precompute full ID sets per opening
+const OPENING_FULL_IDS = Object.fromEntries(
+  PANEL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)])
+);
+
 export const OPENING_COLORS = {
   root: { node: '#f5f0e8', text: '#1a1a2e', border: '#d4c9b0', edge: '#aaa' },
   scandinavian: { node: '#14532d', text: '#bbf7d0', border: '#16a34a', edge: '#22c55e' },
@@ -71,7 +130,6 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
     }
 
     const totalHeight = childY - yOffset;
-    // Center the parent vertically over its children
     rfNode.position.y = yOffset + totalHeight / 2 - Y_STEP / 2;
 
     return { nodes, edges, height: Math.max(totalHeight, Y_STEP) };
@@ -81,11 +139,20 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
 }
 
 export default function OpeningTree() {
-  const [expandedIds, setExpandedIds] = useState(
-    () => new Set(['root', 'e4', 'scan-1', 'span-1', 'sic-1']),
-  );
+  const [expandedIds, setExpandedIds] = useState(() => new Set(INITIAL_EXPANDED));
+  // null = free mode, nodeId = that opening is exclusively shown
+  const [activeOpening, setActiveOpening] = useState(null);
+
+  const displayIds = activeOpening ? OPENING_FULL_IDS[activeOpening] : expandedIds;
+  const isAllExpanded = !activeOpening && expandedIds.size === ALL_IDS.size;
+
+  const toggleAll = useCallback(() => {
+    setActiveOpening(null);
+    setExpandedIds(isAllExpanded ? new Set(INITIAL_EXPANDED) : new Set(ALL_IDS));
+  }, [isAllExpanded]);
 
   const toggleNode = useCallback((id) => {
+    setActiveOpening(null); // exit exclusive mode on manual toggle
     setExpandedIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -94,9 +161,13 @@ export default function OpeningTree() {
     });
   }, []);
 
+  const toggleOpening = useCallback((nodeId) => {
+    setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
+  }, []);
+
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
-    () => buildGraph(OPENING_TREE, expandedIds),
-    [expandedIds],
+    () => buildGraph(OPENING_TREE, displayIds),
+    [displayIds],
   );
 
   const nodes = useMemo(
@@ -112,7 +183,7 @@ export default function OpeningTree() {
   return (
     <div className="w-screen h-screen bg-[#0f1117]">
       <ReactFlow
-        key={[...expandedIds].join(',')}
+        key={[...displayIds].join(',')}
         nodes={nodes}
         edges={rawEdges}
         nodeTypes={nodeTypes}
@@ -131,43 +202,82 @@ export default function OpeningTree() {
         />
       </ReactFlow>
 
-      {/* Title */}
-      <div className="absolute top-6 left-8 flex flex-col gap-0.5 pointer-events-none">
-        <div className="neon-title">Árbol de Aperturas</div>
-        <div className="neon-subtitle">Chess Opening Explorer</div>
-        <div
-          className="mt-1"
-          style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, #ff2d78, #bf5fff, #00f5ff, transparent)',
-            width: '280px',
-            boxShadow: '0 0 6px #bf5fff80',
-          }}
-        />
-      </div>
-
-      {/* Legend */}
-      <div className="absolute bottom-8 left-8 flex flex-col gap-2 bg-[#0a0a14]/80 backdrop-blur border border-[#bf5fff40] p-3"
-        style={{ boxShadow: '0 0 12px #bf5fff30, inset 0 0 12px #00000040' }}
+      {/* Top bar */}
+      <div
+        className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-10"
+        style={{
+          background: 'linear-gradient(180deg, #0a0a14f0 0%, #0a0a14b0 80%, transparent 100%)',
+          borderBottom: '1px solid #bf5fff25',
+        }}
       >
-        <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-[#bf5fff] mb-1"
-          style={{ textShadow: '0 0 6px #bf5fff' }}>
-          Aperturas
-        </span>
-        {[
-          { color: '#16a34a', glow: '#22c55e', text: '#bbf7d0', label: 'Escandinava' },
-          { color: '#2563eb', glow: '#3b82f6', text: '#bfdbfe', label: 'Española' },
-          { color: '#ea580c', glow: '#f97316', text: '#fed7aa', label: 'Italiana' },
-          { color: '#dc2626', glow: '#ef4444', text: '#fecdd3', label: 'Siciliana' },
-        ].map(({ color, glow, text, label }) => (
-          <span key={label} className="flex items-center gap-2">
-            <span
-              className="inline-block w-2 h-2"
-              style={{ backgroundColor: color, boxShadow: `0 0 6px ${glow}` }}
-            />
-            <span className="font-mono text-[11px]" style={{ color: text }}>{label}</span>
+        {/* Title */}
+        <div className="flex flex-col gap-0.5">
+          <div className="neon-title">Árbol de Aperturas</div>
+          <div className="neon-subtitle">Chess Opening Explorer</div>
+        </div>
+
+        {/* Openings + expand button */}
+        <div className="flex items-center gap-2">
+          <span
+            className="font-mono text-[9px] tracking-[0.35em] uppercase mr-2"
+            style={{ color: '#bf5fff60' }}
+          >
+            Aperturas
           </span>
-        ))}
+
+          {PANEL_OPENINGS.map((opening) => {
+            const isActive = activeOpening === opening.nodeId;
+            return (
+              <button
+                key={opening.label}
+                onClick={() => toggleOpening(opening.nodeId)}
+                className="flex items-center gap-2 px-3 py-1.5 border transition-all duration-150 active:scale-95"
+                style={{
+                  borderColor: isActive ? opening.glow : `${opening.color}40`,
+                  background: isActive ? `${opening.color}20` : 'transparent',
+                  boxShadow: isActive ? `0 0 12px ${opening.glow}40` : 'none',
+                }}
+              >
+                <span
+                  className="inline-block w-2 h-2 flex-shrink-0 transition-all duration-150"
+                  style={{
+                    backgroundColor: isActive ? opening.color : 'transparent',
+                    border: `1px solid ${opening.color}`,
+                    boxShadow: isActive ? `0 0 6px ${opening.glow}` : 'none',
+                  }}
+                />
+                <span
+                  className="font-mono text-[11px] tracking-wide"
+                  style={{
+                    color: isActive ? opening.text : `${opening.text}70`,
+                    textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
+                  }}
+                >
+                  {opening.label}
+                </span>
+              </button>
+            );
+          })}
+
+          <div
+            className="w-px h-5 mx-1"
+            style={{ background: '#bf5fff30' }}
+          />
+
+          <button
+            onClick={toggleAll}
+            className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border transition-all duration-150 active:scale-95"
+            style={{
+              color: isAllExpanded ? '#ff2d78' : '#00f5ff80',
+              borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff30',
+              background: isAllExpanded ? '#ff2d7810' : 'transparent',
+              boxShadow: isAllExpanded ? '0 0 8px #ff2d7840' : 'none',
+              textShadow: isAllExpanded ? '0 0 6px #ff2d78' : 'none',
+            }}
+          >
+            {isAllExpanded ? '[ colapsar ]' : '[ expandir todo ]'}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -28,11 +28,12 @@ function ChessNode({ id, data }) {
           backgroundColor: colors.node,
           color: colors.text,
           borderColor: colors.border,
+          boxShadow: `0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40`,
         }}
         className={[
           'flex items-center gap-1.5 px-4 py-2 rounded-full border-2 font-mono font-bold',
           'transition-all duration-150',
-          isRoot ? 'text-base ring-2 ring-white/20 shadow-lg' : 'text-sm',
+          isRoot ? 'text-base ring-2 ring-white/20' : 'text-sm',
           hasChildren ? 'hover:brightness-125 active:scale-95' : '',
         ].join(' ')}
       >
