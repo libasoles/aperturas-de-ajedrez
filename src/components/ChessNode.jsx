@@ -47,7 +47,15 @@ function ChessNode({ id, data }) {
 
   const pill = (
     <div
+      role="button"
+      tabIndex={0}
       onClick={() => onSelect?.(id)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect?.(id);
+        }
+      }}
       style={{
         backgroundColor: colors.node,
         color: colors.text,
@@ -59,6 +67,7 @@ function ChessNode({ id, data }) {
         'transition-all duration-150',
         isRoot ? 'text-base ring-2 ring-white/20' : 'text-sm',
         'hover:brightness-125 active:scale-95',
+        'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white/80',
       ].join(' ')}
     >
       {/* Piece icon */}
@@ -73,8 +82,17 @@ function ChessNode({ id, data }) {
       {/* Expand/collapse button — separate click area */}
       {hasChildren && (
         <span
+          role="button"
+          tabIndex={0}
           onClick={(e) => { e.stopPropagation(); onToggle?.(id); }}
-          className="flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggle?.(id);
+            }
+          }}
+          className="flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
           style={{
             background: `${colors.border}30`,
             border: `1px solid ${colors.border}60`,

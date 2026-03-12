@@ -86,6 +86,7 @@ export default function OpeningsPanel({
           Aperturas
         </span>
         <button
+          tabIndex={-1}
           onMouseDown={(e) => e.stopPropagation()}
           onClick={() => setCollapsed((c) => !c)}
           className="font-mono text-[14px] leading-none transition-all duration-150 hover:brightness-150 text-neon-purple/50"
@@ -109,7 +110,7 @@ export default function OpeningsPanel({
                     <button
                       key={opening.label}
                       onClick={() => onToggleOpening(opening.nodeId)}
-                      className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95"
+                      className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{
                         borderColor: isActive
                           ? opening.glow
@@ -120,6 +121,7 @@ export default function OpeningsPanel({
                         boxShadow: isActive
                           ? `0 0 12px ${opening.glow}40`
                           : "none",
+                        outlineColor: opening.glow,
                       }}
                     >
                       <span
@@ -158,7 +160,7 @@ export default function OpeningsPanel({
             onClick={onToggleAll}
             className={[
               "self-start font-mono text-[12px] tracking-widest uppercase px-3 py-2 border",
-              "transition-all duration-150 active:scale-95",
+              "transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan/70",
               isAllExpanded
                 ? "text-neon-pink border-neon-pink/38 bg-neon-pink/6"
                 : "text-neon-cyan/80 border-neon-cyan/38",

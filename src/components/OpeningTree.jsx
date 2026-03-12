@@ -314,6 +314,17 @@ export default function OpeningTree() {
 
   return (
     <div className="w-screen h-screen bg-app">
+      {/* Panels first in DOM so Tab reaches them before the ReactFlow canvas */}
+      <OpeningsPanel
+        openings={PANEL_OPENINGS}
+        activeOpening={activeOpening}
+        onToggleOpening={toggleOpening}
+        isAllExpanded={isAllExpanded}
+        onToggleAll={toggleAll}
+      />
+
+      <ChessPanel selectedNodeId={selectedNodeId} />
+
       <ReactFlow
         nodes={nodes}
         edges={rawEdges}
@@ -323,6 +334,7 @@ export default function OpeningTree() {
         maxZoom={2}
         nodesDraggable={false}
         nodesConnectable={false}
+        nodesFocusable={false}
       >
         <Background color="var(--color-grid)" gap={24} size={1} />
         <Controls showInteractive={false} />
@@ -341,16 +353,6 @@ export default function OpeningTree() {
           <div className="neon-subtitle">Explora variantes, compara</div>
         </div>
       </div>
-
-      <OpeningsPanel
-        openings={PANEL_OPENINGS}
-        activeOpening={activeOpening}
-        onToggleOpening={toggleOpening}
-        isAllExpanded={isAllExpanded}
-        onToggleAll={toggleAll}
-      />
-
-      <ChessPanel selectedNodeId={selectedNodeId} />
     </div>
   );
 }
