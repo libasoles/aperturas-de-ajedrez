@@ -323,8 +323,6 @@ export default function OpeningTree() {
         onToggleAll={toggleAll}
       />
 
-      <ChessPanel selectedNodeId={selectedNodeId} />
-
       <ReactFlow
         nodes={nodes}
         edges={rawEdges}
@@ -339,6 +337,8 @@ export default function OpeningTree() {
         <Background color="var(--color-grid)" gap={24} size={1} />
         <Controls showInteractive={false} />
       </ReactFlow>
+
+      <ChessPanel selectedNodeId={selectedNodeId} />
 
       {/* Top bar */}
       <div

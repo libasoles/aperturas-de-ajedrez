@@ -34,12 +34,20 @@ export default function ChessPanel({ selectedNodeId }) {
     [path],
   );
 
-  const [anim, setAnim] = useState({ nodeId: selectedNodeId, playedCount: moves.length, isPlaying: false });
+  const [anim, setAnim] = useState({
+    nodeId: selectedNodeId,
+    playedCount: moves.length,
+    isPlaying: false,
+  });
   const timeoutsRef = useRef([]);
 
   // Reset state during render when selection changes — no ref access here
   if (anim.nodeId !== selectedNodeId) {
-    setAnim({ nodeId: selectedNodeId, playedCount: moves.length, isPlaying: false });
+    setAnim({
+      nodeId: selectedNodeId,
+      playedCount: moves.length,
+      isPlaying: false,
+    });
   }
 
   // Clear pending timeouts when selection changes — side-effect only, no setState
@@ -211,7 +219,7 @@ export default function ChessPanel({ selectedNodeId }) {
       </div>
 
       {/* react-chessboard v5 uses a single `options` prop */}
-      <div style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
+      <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
         <Chessboard
           options={{
             position: fen,
