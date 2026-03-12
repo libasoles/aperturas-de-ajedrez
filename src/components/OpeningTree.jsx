@@ -7,12 +7,13 @@ import {
 } from '@xyflow/react';
 import { OPENING_TREE } from '../data/openings';
 import ChessNode from './ChessNode';
+import ChessPanel from './ChessPanel';
+import { getActivePathIds } from '../utils/chessPath';
 
 const nodeTypes = { chess: ChessNode };
 
 const INITIAL_EXPANDED = new Set(['root', 'e4', 'scan-1', 'span-1', 'span-2', 'span-3', 'sic-1']);
 
-// Collect all IDs that have children under a given node
 function collectAllIds(node, acc = new Set()) {
   if (node.children && node.children.length > 0) {
     acc.add(node.id);
@@ -22,7 +23,6 @@ function collectAllIds(node, acc = new Set()) {
 }
 const ALL_IDS = collectAllIds(OPENING_TREE);
 
-// Build the full expansion set for one opening: all its descendant IDs + required path IDs
 function buildOpeningFullIds(nodeId, pathIds) {
   const ids = new Set(['root', 'e4', ...pathIds]);
   function findAndCollect(node) {
@@ -64,7 +64,6 @@ const PANEL_OPENINGS = [
   },
 ];
 
-// Precompute full ID sets per opening
 const OPENING_FULL_IDS = Object.fromEntries(
   PANEL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)])
 );
@@ -140,11 +139,17 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
 
 export default function OpeningTree() {
   const [expandedIds, setExpandedIds] = useState(() => new Set(INITIAL_EXPANDED));
-  // null = free mode, nodeId = that opening is exclusively shown
   const [activeOpening, setActiveOpening] = useState(null);
+  const [selectedNodeId, setSelectedNodeId] = useState(null);
 
   const displayIds = activeOpening ? OPENING_FULL_IDS[activeOpening] : expandedIds;
   const isAllExpanded = !activeOpening && expandedIds.size === ALL_IDS.size;
+
+  // Compute the set of IDs on the active selection path for ring highlighting
+  const activePathIds = useMemo(
+    () => (selectedNodeId ? getActivePathIds(selectedNodeId) : new Set()),
+    [selectedNodeId],
+  );
 
   const toggleAll = useCallback(() => {
     setActiveOpening(null);
@@ -152,13 +157,17 @@ export default function OpeningTree() {
   }, [isAllExpanded]);
 
   const toggleNode = useCallback((id) => {
-    setActiveOpening(null); // exit exclusive mode on manual toggle
+    setActiveOpening(null);
     setExpandedIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
       return next;
     });
+  }, []);
+
+  const selectNode = useCallback((id) => {
+    setSelectedNodeId((prev) => (prev === id ? null : id));
   }, []);
 
   const toggleOpening = useCallback((nodeId) => {
@@ -171,13 +180,18 @@ export default function OpeningTree() {
   );
 
   const nodes = useMemo(
-    () => rawNodes.map((n) => ({ ...n, data: { ...n.data, onToggle: toggleNode } })),
-    [rawNodes, toggleNode],
-  );
-
-  const handleNodeClick = useCallback(
-    (_, node) => { if (node.data.hasChildren) toggleNode(node.id); },
-    [toggleNode],
+    () =>
+      rawNodes.map((n) => ({
+        ...n,
+        data: {
+          ...n.data,
+          onToggle: toggleNode,
+          onSelect: selectNode,
+          isSelected: n.id === selectedNodeId,
+          isInActivePath: activePathIds.has(n.id),
+        },
+      })),
+    [rawNodes, toggleNode, selectNode, selectedNodeId, activePathIds],
   );
 
   return (
@@ -187,7 +201,6 @@ export default function OpeningTree() {
         nodes={nodes}
         edges={rawEdges}
         nodeTypes={nodeTypes}
-        onNodeClick={handleNodeClick}
         fitView
         fitViewOptions={{ padding: 0.15 }}
         minZoom={0.2}
@@ -279,6 +292,8 @@ export default function OpeningTree() {
           </button>
         </div>
       </div>
+
+      <ChessPanel selectedNodeId={selectedNodeId} />
     </div>
   );
 }
