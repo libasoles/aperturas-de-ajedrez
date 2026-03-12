@@ -69,7 +69,7 @@ export default function ChessPanel({ selectedNodeId }) {
   const formattedMoves = useMemo(() => {
     const parts = [];
     for (let i = 0; i < moves.length; i++) {
-      if (i % 2 === 0) parts.push(`${Math.floor(i / 2) + 1}.`);
+      if (i % 2 === 0) parts.push(`<span style="color:#bf5fff">${Math.floor(i / 2) + 1}.</span>`);
       const move = toSpanishSAN(moves[i]);
       parts.push(
         i < playedCount
@@ -118,7 +118,7 @@ export default function ChessPanel({ selectedNodeId }) {
   return (
     <div
       ref={panelRef}
-      className="absolute z-20 flex flex-col gap-3 p-4"
+      className="absolute z-20 flex flex-col gap-3 pt-2 px-4 pb-4"
       style={{
         ...positionStyle,
         background: '#0a0a14f5',
@@ -128,7 +128,26 @@ export default function ChessPanel({ selectedNodeId }) {
         width: BOARD_SIZE + 32,
       }}
     >
-      {/* Header — drag handle */}
+      {/* Drag handle bar — centered at top */}
+      <div
+        className="flex justify-center py-1 -mx-4 cursor-grab"
+        onMouseDown={onMouseDown}
+        style={{ borderBottom: '1px solid #bf5fff15' }}
+      >
+        <span
+          className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity"
+        >
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <span
+              key={i}
+              className="inline-block w-1 h-1 rounded-full"
+              style={{ background: '#bf5fff' }}
+            />
+          ))}
+        </span>
+      </div>
+
+      {/* Header */}
       <div
         className="flex items-center justify-between"
         onMouseDown={onMouseDown}

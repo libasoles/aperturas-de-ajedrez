@@ -8,6 +8,7 @@ import {
 import { OPENING_TREE } from '../data/openings';
 import ChessNode from './ChessNode';
 import ChessPanel from './ChessPanel';
+import OpeningsPanel from './OpeningsPanel';
 import { getActivePathIds } from '../utils/chessPath';
 
 const nodeTypes = { chess: ChessNode };
@@ -213,81 +214,25 @@ export default function OpeningTree() {
 
       {/* Top bar */}
       <div
-        className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-10"
+        className="absolute top-0 left-0 right-0 flex items-center px-8 py-3 z-10"
         style={{
           background: 'linear-gradient(180deg, #0a0a14f0 0%, #0a0a14b0 80%, transparent 100%)',
           borderBottom: '1px solid #bf5fff25',
         }}
       >
-        {/* Title */}
         <div className="flex flex-col gap-0.5">
           <div className="neon-title">Árbol de Aperturas</div>
           <div className="neon-subtitle">Chess Opening Explorer</div>
         </div>
-
-        {/* Openings + expand button */}
-        <div className="flex items-center gap-2">
-          <span
-            className="font-mono text-[11px] tracking-[0.35em] uppercase mr-2"
-            style={{ color: '#bf5fffb0' }}
-          >
-            Aperturas
-          </span>
-
-          {PANEL_OPENINGS.map((opening) => {
-            const isActive = activeOpening === opening.nodeId;
-            return (
-              <button
-                key={opening.label}
-                onClick={() => toggleOpening(opening.nodeId)}
-                className="flex items-center gap-2 px-3 py-1.5 border transition-all duration-150 active:scale-95"
-                style={{
-                  borderColor: isActive ? opening.glow : `${opening.color}40`,
-                  background: isActive ? `${opening.color}20` : 'transparent',
-                  boxShadow: isActive ? `0 0 12px ${opening.glow}40` : 'none',
-                }}
-              >
-                <span
-                  className="inline-block w-2 h-2 flex-shrink-0 transition-all duration-150"
-                  style={{
-                    backgroundColor: isActive ? opening.color : 'transparent',
-                    border: `1px solid ${opening.color}`,
-                    boxShadow: isActive ? `0 0 6px ${opening.glow}` : 'none',
-                  }}
-                />
-                <span
-                  className="font-mono text-[13px] tracking-wide"
-                  style={{
-                    color: isActive ? opening.text : `${opening.text}cc`,
-                    textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
-                  }}
-                >
-                  {opening.label}
-                </span>
-              </button>
-            );
-          })}
-
-          <div
-            className="w-px h-5 mx-1"
-            style={{ background: '#bf5fff30' }}
-          />
-
-          <button
-            onClick={toggleAll}
-            className="font-mono text-[12px] tracking-widest uppercase px-3 py-1.5 border transition-all duration-150 active:scale-95"
-            style={{
-              color: isAllExpanded ? '#ff2d78' : '#00f5ffcc',
-              borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff60',
-              background: isAllExpanded ? '#ff2d7810' : 'transparent',
-              boxShadow: isAllExpanded ? '0 0 8px #ff2d7840' : 'none',
-              textShadow: isAllExpanded ? '0 0 6px #ff2d78' : 'none',
-            }}
-          >
-            {isAllExpanded ? '[ colapsar ]' : '[ expandir todo ]'}
-          </button>
-        </div>
       </div>
+
+      <OpeningsPanel
+        openings={PANEL_OPENINGS}
+        activeOpening={activeOpening}
+        onToggleOpening={toggleOpening}
+        isAllExpanded={isAllExpanded}
+        onToggleAll={toggleAll}
+      />
 
       <ChessPanel selectedNodeId={selectedNodeId} />
     </div>
