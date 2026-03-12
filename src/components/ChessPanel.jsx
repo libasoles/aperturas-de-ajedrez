@@ -3,7 +3,8 @@ import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
 import { findPathToNode } from '../utils/chessPath';
 
-const BOARD_SIZE = 260;
+const BOARD_SIZE = 360;
+const MOVES_HEIGHT = 48; // fixed height for move sequence area
 const MOVE_DELAY = 600; // ms between moves
 
 const CUSTOM_LIGHT = { backgroundColor: '#c8b89a' };
@@ -62,8 +63,6 @@ export default function ChessPanel({ selectedNodeId }) {
     return parts.join(' ');
   }, [moves, playedCount]);
 
-  if (!selectedNodeId) return null;
-
   return (
     <div
       className="absolute bottom-6 right-6 z-20 flex flex-col gap-3 p-4"
@@ -87,7 +86,7 @@ export default function ChessPanel({ selectedNodeId }) {
           className="font-mono text-[13px] font-bold tracking-wide"
           style={{ color: '#e0d8f0', textShadow: '0 0 8px #bf5fff60' }}
         >
-          {selectedNode?.name ?? selectedNode?.move ?? '—'}
+          {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
         </span>
       </div>
 
@@ -108,14 +107,12 @@ export default function ChessPanel({ selectedNodeId }) {
         />
       </div>
 
-      {/* Move sequence */}
-      {moves.length > 0 && (
-        <div
-          className="font-mono text-[11px] leading-relaxed break-words"
-          style={{ color: '#00f5ff80', maxWidth: BOARD_SIZE }}
-          dangerouslySetInnerHTML={{ __html: formattedMoves }}
-        />
-      )}
+      {/* Move sequence — fixed height so the panel never resizes */}
+      <div
+        className="font-mono text-[11px] leading-relaxed wrap-break-word overflow-hidden"
+        style={{ color: '#00f5ff80', width: BOARD_SIZE, height: MOVES_HEIGHT }}
+        dangerouslySetInnerHTML={{ __html: formattedMoves }}
+      />
     </div>
   );
 }

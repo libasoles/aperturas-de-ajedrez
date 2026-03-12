@@ -197,7 +197,6 @@ export default function OpeningTree() {
   return (
     <div className="w-screen h-screen bg-[#0f1117]">
       <ReactFlow
-        key={[...displayIds].join(',')}
         nodes={nodes}
         edges={rawEdges}
         nodeTypes={nodeTypes}
