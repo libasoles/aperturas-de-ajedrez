@@ -228,8 +228,8 @@ export default function OpeningTree() {
         {/* Openings + expand button */}
         <div className="flex items-center gap-2">
           <span
-            className="font-mono text-[9px] tracking-[0.35em] uppercase mr-2"
-            style={{ color: '#bf5fff60' }}
+            className="font-mono text-[11px] tracking-[0.35em] uppercase mr-2"
+            style={{ color: '#bf5fffb0' }}
           >
             Aperturas
           </span>
@@ -256,9 +256,9 @@ export default function OpeningTree() {
                   }}
                 />
                 <span
-                  className="font-mono text-[11px] tracking-wide"
+                  className="font-mono text-[13px] tracking-wide"
                   style={{
-                    color: isActive ? opening.text : `${opening.text}70`,
+                    color: isActive ? opening.text : `${opening.text}cc`,
                     textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
                   }}
                 >
@@ -275,10 +275,10 @@ export default function OpeningTree() {
 
           <button
             onClick={toggleAll}
-            className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border transition-all duration-150 active:scale-95"
+            className="font-mono text-[12px] tracking-widest uppercase px-3 py-1.5 border transition-all duration-150 active:scale-95"
             style={{
-              color: isAllExpanded ? '#ff2d78' : '#00f5ff80',
-              borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff30',
+              color: isAllExpanded ? '#ff2d78' : '#00f5ffcc',
+              borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff60',
               background: isAllExpanded ? '#ff2d7810' : 'transparent',
               boxShadow: isAllExpanded ? '0 0 8px #ff2d7840' : 'none',
               textShadow: isAllExpanded ? '0 0 6px #ff2d78' : 'none',

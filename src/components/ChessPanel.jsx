@@ -80,10 +80,47 @@ export default function ChessPanel({ selectedNodeId }) {
     return parts.join(' ');
   }, [moves, playedCount]);
 
+  // Drag logic
+  const [pos, setPos] = useState(null); // null = use default bottom-right CSS positioning
+  const dragRef = useRef({ dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 });
+  const panelRef = useRef(null);
+
+  const onMouseDown = useCallback((e) => {
+    // Only drag from the header bar, and only with left button
+    if (e.button !== 0) return;
+    e.preventDefault();
+    const rect = panelRef.current.getBoundingClientRect();
+    dragRef.current = { dragging: true, startX: e.clientX, startY: e.clientY, originX: rect.left, originY: rect.top };
+  }, []);
+
+  useEffect(() => {
+    function onMouseMove(e) {
+      if (!dragRef.current.dragging) return;
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+      setPos({ x: dragRef.current.originX + dx, y: dragRef.current.originY + dy });
+    }
+    function onMouseUp() {
+      dragRef.current.dragging = false;
+    }
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, []);
+
+  const positionStyle = pos
+    ? { left: pos.x, top: pos.y, bottom: 'auto', right: 'auto' }
+    : { bottom: 24, right: 24 };
+
   return (
     <div
-      className="absolute bottom-6 right-6 z-20 flex flex-col gap-3 p-4"
+      ref={panelRef}
+      className="absolute z-20 flex flex-col gap-3 p-4"
       style={{
+        ...positionStyle,
         background: '#0a0a14f5',
         border: '1px solid #bf5fff40',
         boxShadow: '0 0 24px #bf5fff20, 0 0 48px #00000080',
@@ -91,8 +128,12 @@ export default function ChessPanel({ selectedNodeId }) {
         width: BOARD_SIZE + 32,
       }}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Header — drag handle */}
+      <div
+        className="flex items-center justify-between"
+        onMouseDown={onMouseDown}
+        style={{ cursor: 'grab' }}
+      >
         <div className="flex flex-col gap-0.5">
           <span
             className="font-mono text-[9px] tracking-[0.35em] uppercase"
@@ -112,18 +153,18 @@ export default function ChessPanel({ selectedNodeId }) {
         {moves.length > 0 && (
           <button
             onClick={play}
+            onMouseDown={(e) => e.stopPropagation()}
             disabled={isPlaying}
             className="flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
+              cursor: 'pointer',
               color: isPlaying ? '#bf5fff80' : '#bf5fff',
               borderColor: isPlaying ? '#bf5fff30' : '#bf5fff60',
               background: isPlaying ? 'transparent' : '#bf5fff10',
               boxShadow: isPlaying ? 'none' : '0 0 8px #bf5fff20',
             }}
           >
-            <span style={{ fontSize: '16px', lineHeight: 1 }}>
-              {isPlaying ? '▶' : '▶'}
-            </span>
+            <span style={{ fontSize: '16px', lineHeight: 1 }}>▶</span>
             {isPlaying ? 'jugando...' : 'reproducir'}
           </button>
         )}
