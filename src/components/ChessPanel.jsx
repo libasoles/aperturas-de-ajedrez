@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
 import { findPathToNode } from '../utils/chessPath';
@@ -30,18 +30,34 @@ export default function ChessPanel({ selectedNodeId }) {
     [path],
   );
 
-  const [playedCount, setPlayedCount] = useState(0);
+  // Show all moves immediately on selection
+  const [playedCount, setPlayedCount] = useState(moves.length);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const timeoutsRef = useRef([]);
 
-  // When selection changes, replay moves one by one
+  // When selection changes, jump to final position immediately
   useEffect(() => {
-    setPlayedCount(0);
-    if (moves.length === 0) return;
+    setPlayedCount(moves.length);
+    setIsPlaying(false);
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+  }, [selectedNodeId, moves.length]);
 
-    const timeouts = moves.map((_, i) =>
-      setTimeout(() => setPlayedCount(i + 1), (i + 1) * MOVE_DELAY),
+  const play = useCallback(() => {
+    if (isPlaying) return;
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+    setPlayedCount(0);
+    setIsPlaying(true);
+
+    const ts = moves.map((_, i) =>
+      setTimeout(() => {
+        setPlayedCount(i + 1);
+        if (i === moves.length - 1) setIsPlaying(false);
+      }, (i + 1) * MOVE_DELAY),
     );
-    return () => timeouts.forEach(clearTimeout);
-  }, [selectedNodeId]); // eslint-disable-line react-hooks/exhaustive-deps
+    timeoutsRef.current = ts;
+  }, [isPlaying, moves]);
 
   const fen = useMemo(
     () => fenAfterMoves(moves, playedCount),
@@ -76,19 +92,41 @@ export default function ChessPanel({ selectedNodeId }) {
       }}
     >
       {/* Header */}
-      <div className="flex flex-col gap-0.5">
-        <span
-          className="font-mono text-[9px] tracking-[0.35em] uppercase"
-          style={{ color: '#bf5fff' }}
-        >
-          Posición
-        </span>
-        <span
-          className="font-mono text-[15px] font-bold tracking-wide"
-          style={{ color: '#f0ecff', textShadow: '0 0 8px #bf5fff60' }}
-        >
-          {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
-        </span>
+      <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-0.5">
+          <span
+            className="font-mono text-[9px] tracking-[0.35em] uppercase"
+            style={{ color: '#bf5fff' }}
+          >
+            Posición
+          </span>
+          <span
+            className="font-mono text-[15px] font-bold tracking-wide"
+            style={{ color: '#f0ecff', textShadow: '0 0 8px #bf5fff60' }}
+          >
+            {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
+          </span>
+        </div>
+
+        {/* Play button */}
+        {moves.length > 0 && (
+          <button
+            onClick={play}
+            disabled={isPlaying}
+            className="flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+            style={{
+              color: isPlaying ? '#bf5fff80' : '#bf5fff',
+              borderColor: isPlaying ? '#bf5fff30' : '#bf5fff60',
+              background: isPlaying ? 'transparent' : '#bf5fff10',
+              boxShadow: isPlaying ? 'none' : '0 0 8px #bf5fff20',
+            }}
+          >
+            <span style={{ fontSize: '16px', lineHeight: 1 }}>
+              {isPlaying ? '▶' : '▶'}
+            </span>
+            {isPlaying ? 'jugando...' : 'reproducir'}
+          </button>
+        )}
       </div>
 
       {/* react-chessboard v5 uses a single `options` prop */}

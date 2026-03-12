@@ -76,7 +76,7 @@ export const OPENING_COLORS = {
   sicilian: { node: '#4c1d2e', text: '#fecdd3', border: '#dc2626', edge: '#ef4444' },
 };
 
-const X_STEP = 230;
+const X_STEP = 160;
 const Y_STEP = 90;
 
 function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
@@ -120,7 +120,7 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
         id: `${treeNode.id}->${child.id}`,
         source: treeNode.id,
         target: child.id,
-        type: 'smoothstep',
+        type: 'straight',
         style: { stroke: colors.edge, strokeWidth: 2, opacity: 0.7 },
         markerEnd: { type: MarkerType.ArrowClosed, color: colors.edge, width: 16, height: 16 },
       });
