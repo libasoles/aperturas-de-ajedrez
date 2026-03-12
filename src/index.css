@@ -2,6 +2,17 @@
 @import "@xyflow/react/dist/style.css";
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
 
+/* ── Paleta del proyecto ─────────────────────────────────────────────────── */
+@theme {
+  --color-neon-purple: #bf5fff;
+  --color-neon-cyan:   #00f5ff;
+  --color-neon-pink:   #ff2d78;
+  --color-panel:       #0a0a14;
+  --color-app:         #0f1117;
+  --color-grid:        #2a2a3a;
+  --color-white-soft:  #f0ecff;
+}
+
 body {
   margin: 0;
 }
@@ -15,17 +26,42 @@ body {
   97% { opacity: 1; }
 }
 
+/* ── Componentes reutilizables ───────────────────────────────────────────── */
+@layer components {
+  /* Panel flotante (ChessPanel, OpeningsPanel) */
+  .panel {
+    background: color-mix(in srgb, var(--color-panel) 96%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-neon-purple) 25%, transparent);
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--color-neon-purple) 12%, transparent),
+      0 0 48px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Separador bajo el handle de arrastre */
+  .panel-divider {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-neon-purple) 8%, transparent);
+  }
+
+  /* Número de jugada en la secuencia de movimientos (dangerouslySetInnerHTML) */
+  .move-number {
+    color: var(--color-neon-purple);
+  }
+}
+
 .neon-title {
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
   font-size: 1.6rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #ff2d78, #bf5fff, #00f5ff);
+  background: linear-gradient(90deg, var(--color-neon-pink), var(--color-neon-purple), var(--color-neon-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 8px #ff2d7880) drop-shadow(0 0 20px #bf5fff60);
+  filter:
+    drop-shadow(0 0 8px color-mix(in srgb, var(--color-neon-pink) 50%, transparent))
+    drop-shadow(0 0 20px color-mix(in srgb, var(--color-neon-purple) 38%, transparent));
   animation: flicker 8s infinite;
 }
 
@@ -55,7 +91,7 @@ body {
   font-size: 0.55rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #00f5ff;
-  text-shadow: 0 0 8px #00f5ff, 0 0 20px #00f5ff80;
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 8px var(--color-neon-cyan), 0 0 20px color-mix(in srgb, var(--color-neon-cyan) 50%, transparent);
   opacity: 0.8;
 }

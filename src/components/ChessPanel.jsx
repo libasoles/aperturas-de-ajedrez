@@ -69,7 +69,7 @@ export default function ChessPanel({ selectedNodeId }) {
   const formattedMoves = useMemo(() => {
     const parts = [];
     for (let i = 0; i < moves.length; i++) {
-      if (i % 2 === 0) parts.push(`<span style="color:#bf5fff">${Math.floor(i / 2) + 1}.</span>`);
+      if (i % 2 === 0) parts.push(`<span class="move-number">${Math.floor(i / 2) + 1}.</span>`);
       const move = toSpanishSAN(moves[i]);
       parts.push(
         i < playedCount
@@ -86,7 +86,6 @@ export default function ChessPanel({ selectedNodeId }) {
   const panelRef = useRef(null);
 
   const onMouseDown = useCallback((e) => {
-    // Only drag from the header bar, and only with left button
     if (e.button !== 0) return;
     e.preventDefault();
     const rect = panelRef.current.getBoundingClientRect();
@@ -118,51 +117,33 @@ export default function ChessPanel({ selectedNodeId }) {
   return (
     <div
       ref={panelRef}
-      className="absolute z-20 flex flex-col gap-3 pt-2 px-4 pb-4"
-      style={{
-        ...positionStyle,
-        background: '#0a0a14f5',
-        border: '1px solid #bf5fff40',
-        boxShadow: '0 0 24px #bf5fff20, 0 0 48px #00000080',
-        backdropFilter: 'blur(8px)',
-        width: BOARD_SIZE + 32,
-      }}
+      className="panel absolute z-20 flex flex-col gap-3 pt-2 px-4 pb-4"
+      style={{ ...positionStyle, width: BOARD_SIZE + 32 }}
     >
       {/* Drag handle bar — centered at top */}
       <div
-        className="flex justify-center py-1 -mx-4 cursor-grab"
+        className="panel-divider flex justify-center py-1 -mx-4 cursor-grab"
         onMouseDown={onMouseDown}
-        style={{ borderBottom: '1px solid #bf5fff15' }}
       >
-        <span
-          className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity"
-        >
+        <span className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity">
           {[0, 1, 2, 3, 4, 5].map((i) => (
-            <span
-              key={i}
-              className="inline-block w-1 h-1 rounded-full"
-              style={{ background: '#bf5fff' }}
-            />
+            <span key={i} className="inline-block w-1 h-1 rounded-full bg-neon-purple" />
           ))}
         </span>
       </div>
 
       {/* Header */}
       <div
-        className="flex items-center justify-between"
+        className="flex items-center justify-between cursor-grab"
         onMouseDown={onMouseDown}
-        style={{ cursor: 'grab' }}
       >
         <div className="flex flex-col gap-0.5">
-          <span
-            className="font-mono text-[9px] tracking-[0.35em] uppercase"
-            style={{ color: '#bf5fff' }}
-          >
+          <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-neon-purple">
             Posición
           </span>
           <span
-            className="font-mono text-[15px] font-bold tracking-wide"
-            style={{ color: '#f0ecff', textShadow: '0 0 8px #bf5fff60' }}
+            className="font-mono text-[15px] font-bold tracking-wide text-white-soft"
+            style={{ textShadow: '0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)' }}
           >
             {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
           </span>
@@ -174,13 +155,17 @@ export default function ChessPanel({ selectedNodeId }) {
             onClick={play}
             onMouseDown={(e) => e.stopPropagation()}
             disabled={isPlaying}
-            className="flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+            className={[
+              'flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border',
+              'transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer',
+              isPlaying
+                ? 'text-neon-purple/50 border-neon-purple/19'
+                : 'text-neon-purple border-neon-purple/38 bg-neon-purple/6',
+            ].join(' ')}
             style={{
-              cursor: 'pointer',
-              color: isPlaying ? '#bf5fff80' : '#bf5fff',
-              borderColor: isPlaying ? '#bf5fff30' : '#bf5fff60',
-              background: isPlaying ? 'transparent' : '#bf5fff10',
-              boxShadow: isPlaying ? 'none' : '0 0 8px #bf5fff20',
+              boxShadow: isPlaying
+                ? 'none'
+                : '0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)',
             }}
           >
             <span style={{ fontSize: '16px', lineHeight: 1 }}>▶</span>
@@ -200,7 +185,7 @@ export default function ChessPanel({ selectedNodeId }) {
             lightSquareStyle: CUSTOM_LIGHT,
             boardStyle: {
               borderRadius: 0,
-              boxShadow: '0 0 16px #00000060',
+              boxShadow: '0 0 16px rgba(0,0,0,0.38)',
             },
           }}
         />
@@ -208,8 +193,8 @@ export default function ChessPanel({ selectedNodeId }) {
 
       {/* Move sequence — fixed height so the panel never resizes */}
       <div
-        className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden"
-        style={{ color: '#00f5ff80', width: BOARD_SIZE, height: MOVES_HEIGHT }}
+        className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
+        style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
         dangerouslySetInnerHTML={{ __html: formattedMoves }}
       />
     </div>

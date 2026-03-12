@@ -42,29 +42,17 @@ export default function OpeningsPanel({
   return (
     <div
       ref={panelRef}
-      className="absolute z-20 flex flex-col"
-      style={{
-        ...positionStyle,
-        background: '#0a0a14f5',
-        border: '1px solid #bf5fff40',
-        boxShadow: '0 0 24px #bf5fff20, 0 0 48px #00000080',
-        backdropFilter: 'blur(8px)',
-        width: 492,
-      }}
+      className="panel absolute z-20 flex flex-col"
+      style={{ ...positionStyle, width: 492 }}
     >
       {/* Drag handle bar */}
       <div
-        className="flex justify-center py-1 cursor-grab"
+        className="panel-divider flex justify-center py-1 cursor-grab"
         onMouseDown={onMouseDown}
-        style={{ borderBottom: '1px solid #bf5fff15' }}
       >
         <span className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity">
           {[0, 1, 2, 3, 4, 5].map((i) => (
-            <span
-              key={i}
-              className="inline-block w-1 h-1 rounded-full"
-              style={{ background: '#bf5fff' }}
-            />
+            <span key={i} className="inline-block w-1 h-1 rounded-full bg-neon-purple" />
           ))}
         </span>
       </div>
@@ -74,17 +62,13 @@ export default function OpeningsPanel({
         className="flex items-center justify-between px-4 py-2 cursor-grab"
         onMouseDown={onMouseDown}
       >
-        <span
-          className="font-mono text-[11px] tracking-[0.35em] uppercase"
-          style={{ color: '#bf5fffb0' }}
-        >
+        <span className="font-mono text-[11px] tracking-[0.35em] uppercase text-neon-purple/70">
           Aperturas
         </span>
         <button
           onMouseDown={(e) => e.stopPropagation()}
           onClick={() => setCollapsed((c) => !c)}
-          className="font-mono text-[14px] leading-none transition-all duration-150 hover:brightness-150"
-          style={{ color: '#bf5fff80' }}
+          className="font-mono text-[14px] leading-none transition-all duration-150 hover:brightness-150 text-neon-purple/50"
         >
           {collapsed ? '▸' : '▾'}
         </button>
@@ -95,10 +79,7 @@ export default function OpeningsPanel({
         <div className="flex flex-col gap-3 px-4 pb-4">
           {openings.map((group) => (
             <div key={group.group} className="flex flex-col gap-1.5">
-              <span
-                className="font-mono text-[10px] tracking-[0.3em] uppercase"
-                style={{ color: '#bf5fff60' }}
-              >
+              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-cyan/50">
                 {group.group}
               </span>
               <div className="flex flex-wrap items-center gap-2">
@@ -139,17 +120,20 @@ export default function OpeningsPanel({
             </div>
           ))}
 
-          <div className="w-full h-px" style={{ background: '#bf5fff20' }} />
+          <div className="w-full h-px bg-neon-purple/12" />
 
           <button
             onClick={onToggleAll}
-            className="self-start font-mono text-[12px] tracking-widest uppercase px-3 py-2 border transition-all duration-150 active:scale-95"
+            className={[
+              'self-start font-mono text-[12px] tracking-widest uppercase px-3 py-2 border',
+              'transition-all duration-150 active:scale-95',
+              isAllExpanded
+                ? 'text-neon-pink border-neon-pink/38 bg-neon-pink/6'
+                : 'text-neon-cyan/80 border-neon-cyan/38',
+            ].join(' ')}
             style={{
-              color: isAllExpanded ? '#ff2d78' : '#00f5ffcc',
-              borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff60',
-              background: isAllExpanded ? '#ff2d7810' : 'transparent',
-              boxShadow: isAllExpanded ? '0 0 8px #ff2d7840' : 'none',
-              textShadow: isAllExpanded ? '0 0 6px #ff2d78' : 'none',
+              boxShadow: isAllExpanded ? '0 0 8px color-mix(in srgb, var(--color-neon-pink) 25%, transparent)' : 'none',
+              textShadow: isAllExpanded ? '0 0 6px var(--color-neon-pink)' : 'none',
             }}
           >
             {isAllExpanded ? '[ colapsar ]' : '[ expandir todo ]'}
