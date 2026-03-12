@@ -208,10 +208,7 @@ export default function OpeningTree() {
         nodesConnectable={false}
       >
         <Background color="#2a2a3a" gap={24} size={1} />
-        <Controls
-          className="!bg-[#1a1a2e] !border-[#2a2a4a]"
-          showInteractive={false}
-        />
+        <Controls showInteractive={false} />
       </ReactFlow>
 
       {/* Top bar */}

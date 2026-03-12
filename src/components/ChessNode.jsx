@@ -76,7 +76,7 @@ function ChessNode({ id, data }) {
       {name && (
         <span
           style={{ color: colors.text }}
-          className="text-[10px] font-sans opacity-70 max-w-[120px] text-center leading-tight"
+          className="text-[13px] font-sans opacity-70 max-w-[120px] text-center leading-tight"
         >
           {name}
         </span>

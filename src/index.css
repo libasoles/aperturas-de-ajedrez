@@ -29,6 +29,26 @@ body {
   animation: flicker 8s infinite;
 }
 
+/* Dark theme for ReactFlow zoom controls */
+.react-flow__controls {
+  background: #1a1a2e !important;
+  border: 1px solid #2a2a4a !important;
+  box-shadow: 0 0 12px #00000080 !important;
+}
+.react-flow__controls-button {
+  background: #1a1a2e !important;
+  border-bottom: 1px solid #2a2a4a !important;
+}
+.react-flow__controls-button svg {
+  fill: #d0cce8 !important;
+}
+.react-flow__controls-button:hover {
+  background: #2a2a4a !important;
+}
+.react-flow__controls-button:hover svg {
+  fill: #ffffff !important;
+}
+
 .neon-subtitle {
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;

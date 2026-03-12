@@ -3,7 +3,7 @@ import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
 import { findPathToNode } from '../utils/chessPath';
 
-const BOARD_SIZE = 360;
+const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
 const MOVE_DELAY = 600; // ms between moves
 
@@ -78,13 +78,13 @@ export default function ChessPanel({ selectedNodeId }) {
       <div className="flex flex-col gap-0.5">
         <span
           className="font-mono text-[9px] tracking-[0.35em] uppercase"
-          style={{ color: '#bf5fff80' }}
+          style={{ color: '#bf5fff' }}
         >
           Posición
         </span>
         <span
-          className="font-mono text-[13px] font-bold tracking-wide"
-          style={{ color: '#e0d8f0', textShadow: '0 0 8px #bf5fff60' }}
+          className="font-mono text-[15px] font-bold tracking-wide"
+          style={{ color: '#f0ecff', textShadow: '0 0 8px #bf5fff60' }}
         >
           {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
         </span>
@@ -109,7 +109,7 @@ export default function ChessPanel({ selectedNodeId }) {
 
       {/* Move sequence — fixed height so the panel never resizes */}
       <div
-        className="font-mono text-[11px] leading-relaxed wrap-break-word overflow-hidden"
+        className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden"
         style={{ color: '#00f5ff80', width: BOARD_SIZE, height: MOVES_HEIGHT }}
         dangerouslySetInnerHTML={{ __html: formattedMoves }}
       />
