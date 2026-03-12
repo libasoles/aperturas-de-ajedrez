@@ -89,14 +89,22 @@ function ChessNode({ id, data }) {
 
   return (
     <div className="flex flex-col items-center gap-1 select-none">
-      {/* Target handle */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        style={{ background: 'transparent', border: 'none' }}
-      />
+      {/* Handles scoped to the pill so edges connect at pill center, not node center */}
+      <div className="relative flex items-center">
+        <Handle
+          type="target"
+          position={Position.Left}
+          style={{ background: 'transparent', border: 'none' }}
+        />
 
-      <Tooltip content={annotation}>{pill}</Tooltip>
+        <Tooltip content={annotation}>{pill}</Tooltip>
+
+        <Handle
+          type="source"
+          position={Position.Right}
+          style={{ background: 'transparent', border: 'none' }}
+        />
+      </div>
 
       {/* Opening name label */}
       {name && (
@@ -107,13 +115,6 @@ function ChessNode({ id, data }) {
           {name}
         </span>
       )}
-
-      {/* Source handle */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        style={{ background: 'transparent', border: 'none' }}
-      />
     </div>
   );
 }

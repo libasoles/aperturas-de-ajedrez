@@ -1,7 +1,7 @@
 // Árbol de aperturas de ajedrez
 export const OPENING_TREE = {
   id: "root",
-  move: "Partida",
+  move: "Inicial",
   name: null,
   annotation: null,
   color: "white",
@@ -1245,7 +1245,8 @@ export const OPENING_TREE = {
                   id: "qg-3a",
                   move: "dxc4",
                   name: "Gambito de Dama Aceptado",
-                  annotation: "Acepta el gambito; las blancas recuperan el peón",
+                  annotation:
+                    "Acepta el gambito; las blancas recuperan el peón",
                   color: "black",
                   opening: "queens_gambit",
                   children: [
@@ -1325,7 +1326,8 @@ export const OPENING_TREE = {
                                   id: "qg-7b1",
                                   move: "Be7",
                                   name: "GDD Ortodoxa",
-                                  annotation: "La continuación clásica y sólida",
+                                  annotation:
+                                    "La continuación clásica y sólida",
                                   color: "black",
                                   opening: "queens_gambit",
                                   children: [],
@@ -1383,7 +1385,8 @@ export const OPENING_TREE = {
                                   id: "qg-7c1",
                                   move: "dxc4",
                                   name: "Eslava Aceptada",
-                                  annotation: "Acepta el gambito con c6 de apoyo",
+                                  annotation:
+                                    "Acepta el gambito con c6 de apoyo",
                                   color: "black",
                                   opening: "queens_gambit",
                                   children: [],
@@ -1392,7 +1395,8 @@ export const OPENING_TREE = {
                                   id: "qg-7c2",
                                   move: "e6",
                                   name: "Semi-Eslava",
-                                  annotation: "Merano y Anti-Merano, muy agudas",
+                                  annotation:
+                                    "Merano y Anti-Merano, muy agudas",
                                   color: "black",
                                   opening: "queens_gambit",
                                   children: [],
@@ -1443,7 +1447,8 @@ export const OPENING_TREE = {
                               id: "lon-6",
                               move: "e3",
                               name: null,
-                              annotation: "Consolida el centro sin cambios bruscos",
+                              annotation:
+                                "Consolida el centro sin cambios bruscos",
                               color: "white",
                               opening: "london",
                               children: [
@@ -1451,7 +1456,8 @@ export const OPENING_TREE = {
                                   id: "lon-7a",
                                   move: "Be7",
                                   name: "Londres Clásico",
-                                  annotation: "Estructura sólida, juego posicional",
+                                  annotation:
+                                    "Estructura sólida, juego posicional",
                                   color: "black",
                                   opening: "london",
                                   children: [],
@@ -1460,7 +1466,8 @@ export const OPENING_TREE = {
                                   id: "lon-7b",
                                   move: "c5",
                                   name: "Londres vs c5",
-                                  annotation: "Desafía el centro inmediatamente",
+                                  annotation:
+                                    "Desafía el centro inmediatamente",
                                   color: "black",
                                   opening: "london",
                                   children: [],
@@ -1515,7 +1522,8 @@ export const OPENING_TREE = {
                           id: "ki-5a",
                           move: "Bg7",
                           name: null,
-                          annotation: "El poderoso alfil indio en la diagonal larga",
+                          annotation:
+                            "El poderoso alfil indio en la diagonal larga",
                           color: "black",
                           opening: "kings_indian",
                           children: [
@@ -1531,7 +1539,8 @@ export const OPENING_TREE = {
                                   id: "ki-7a",
                                   move: "d6",
                                   name: null,
-                                  annotation: "Prepara e5 para atacar el centro",
+                                  annotation:
+                                    "Prepara e5 para atacar el centro",
                                   color: "black",
                                   opening: "kings_indian",
                                   children: [
@@ -1555,7 +1564,8 @@ export const OPENING_TREE = {
                                               id: "ki-10a1",
                                               move: "Be2",
                                               name: "India de Rey Clásica",
-                                              annotation: "La variante más popular del torneo",
+                                              annotation:
+                                                "La variante más popular del torneo",
                                               color: "white",
                                               opening: "kings_indian",
                                               children: [
@@ -1563,7 +1573,8 @@ export const OPENING_TREE = {
                                                   id: "ki-11a1",
                                                   move: "e5",
                                                   name: null,
-                                                  annotation: "La típica ruptura india, genera juego dinámico",
+                                                  annotation:
+                                                    "La típica ruptura india, genera juego dinámico",
                                                   color: "black",
                                                   opening: "kings_indian",
                                                   children: [],
@@ -1578,7 +1589,8 @@ export const OPENING_TREE = {
                                       id: "ki-8a2",
                                       move: "f3",
                                       name: "Sämisch",
-                                      annotation: "Agresivo, prepara el avance g4",
+                                      annotation:
+                                        "Agresivo, prepara el avance g4",
                                       color: "white",
                                       opening: "kings_indian",
                                       children: [
@@ -1594,7 +1606,8 @@ export const OPENING_TREE = {
                                               id: "ki-10a2",
                                               move: "Be3",
                                               name: "Sämisch Principal",
-                                              annotation: "Apunta a las casillas negras del flanco de rey",
+                                              annotation:
+                                                "Apunta a las casillas negras del flanco de rey",
                                               color: "white",
                                               opening: "kings_indian",
                                               children: [],
@@ -1633,7 +1646,8 @@ export const OPENING_TREE = {
                           id: "nim-5b",
                           move: "Bb4",
                           name: "Nimzo-India",
-                          annotation: "La clavada central, creación de Nimzowitsch",
+                          annotation:
+                            "La clavada central, creación de Nimzowitsch",
                           color: "black",
                           opening: "nimzo",
                           children: [
@@ -1641,7 +1655,8 @@ export const OPENING_TREE = {
                               id: "nim-6b1",
                               move: "Qc2",
                               name: "Nimzo Clásica",
-                              annotation: "Evita doblar peones, presión sobre c4",
+                              annotation:
+                                "Evita doblar peones, presión sobre c4",
                               color: "white",
                               opening: "nimzo",
                               children: [
@@ -1660,7 +1675,8 @@ export const OPENING_TREE = {
                               id: "nim-6b2",
                               move: "e3",
                               name: "Nimzo Rubinstein",
-                              annotation: "Sólida y clásica, consolida el centro",
+                              annotation:
+                                "Sólida y clásica, consolida el centro",
                               color: "white",
                               opening: "nimzo",
                               children: [

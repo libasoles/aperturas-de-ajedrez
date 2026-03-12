@@ -1,20 +1,24 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { Chessboard } from 'react-chessboard';
-import { Chess } from 'chess.js';
-import { findPathToNode } from '../utils/chessPath';
-import { toSpanishSAN } from './ChessNode';
+import { Chess } from "chess.js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Chessboard } from "react-chessboard";
+import { findPathToNode } from "../utils/chessPath";
+import { toSpanishSAN } from "./ChessNode";
 
 const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
 const MOVE_DELAY = 600; // ms between moves
 
-const CUSTOM_LIGHT = { backgroundColor: '#c8b89a' };
-const CUSTOM_DARK  = { backgroundColor: '#6b4f3a' };
+const CUSTOM_LIGHT = { backgroundColor: "#c8b89a" };
+const CUSTOM_DARK = { backgroundColor: "#6b4f3a" };
 
 function fenAfterMoves(moves, count) {
   const chess = new Chess();
   for (let i = 0; i < count; i++) {
-    try { chess.move(moves[i]); } catch { break; }
+    try {
+      chess.move(moves[i]);
+    } catch {
+      break;
+    }
   }
   return chess.fen();
 }
@@ -26,35 +30,45 @@ export default function ChessPanel({ selectedNodeId }) {
   );
 
   const moves = useMemo(
-    () => path.map((n) => n.move).filter((m) => m && m !== 'Partida'),
+    () => path.map((n) => n.move).filter((m) => m && m !== "Inicial"),
     [path],
   );
 
-  // Show all moves immediately on selection
-  const [playedCount, setPlayedCount] = useState(moves.length);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [anim, setAnim] = useState({ nodeId: selectedNodeId, playedCount: moves.length, isPlaying: false });
   const timeoutsRef = useRef([]);
 
-  // When selection changes, jump to final position immediately
+  // Reset state during render when selection changes — no ref access here
+  if (anim.nodeId !== selectedNodeId) {
+    setAnim({ nodeId: selectedNodeId, playedCount: moves.length, isPlaying: false });
+  }
+
+  // Clear pending timeouts when selection changes — side-effect only, no setState
   useEffect(() => {
-    setPlayedCount(moves.length);
-    setIsPlaying(false);
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-  }, [selectedNodeId, moves.length]);
+    return () => {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
+  }, [selectedNodeId]);
+
+  const { playedCount, isPlaying } = anim;
 
   const play = useCallback(() => {
     if (isPlaying) return;
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
-    setPlayedCount(0);
-    setIsPlaying(true);
+    setAnim((prev) => ({ ...prev, playedCount: 0, isPlaying: true }));
 
     const ts = moves.map((_, i) =>
-      setTimeout(() => {
-        setPlayedCount(i + 1);
-        if (i === moves.length - 1) setIsPlaying(false);
-      }, (i + 1) * MOVE_DELAY),
+      setTimeout(
+        () => {
+          setAnim((prev) => ({
+            ...prev,
+            playedCount: i + 1,
+            isPlaying: i < moves.length - 1,
+          }));
+        },
+        (i + 1) * MOVE_DELAY,
+      ),
     );
     timeoutsRef.current = ts;
   }, [isPlaying, moves]);
@@ -69,27 +83,40 @@ export default function ChessPanel({ selectedNodeId }) {
   const formattedMoves = useMemo(() => {
     const parts = [];
     for (let i = 0; i < moves.length; i++) {
-      if (i % 2 === 0) parts.push(`<span class="move-number">${Math.floor(i / 2) + 1}.</span>`);
+      if (i % 2 === 0)
+        parts.push(
+          `<span class="move-number">${Math.floor(i / 2) + 1}.</span>`,
+        );
       const move = toSpanishSAN(moves[i]);
       parts.push(
-        i < playedCount
-          ? move
-          : `<span style="opacity:0.35">${move}</span>`,
+        i < playedCount ? move : `<span style="opacity:0.35">${move}</span>`,
       );
     }
-    return parts.join(' ');
+    return parts.join(" ");
   }, [moves, playedCount]);
 
   // Drag logic
   const [pos, setPos] = useState(null); // null = use default bottom-right CSS positioning
-  const dragRef = useRef({ dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 });
+  const dragRef = useRef({
+    dragging: false,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+  });
   const panelRef = useRef(null);
 
   const onMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
     e.preventDefault();
     const rect = panelRef.current.getBoundingClientRect();
-    dragRef.current = { dragging: true, startX: e.clientX, startY: e.clientY, originX: rect.left, originY: rect.top };
+    dragRef.current = {
+      dragging: true,
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: rect.left,
+      originY: rect.top,
+    };
   }, []);
 
   useEffect(() => {
@@ -97,21 +124,24 @@ export default function ChessPanel({ selectedNodeId }) {
       if (!dragRef.current.dragging) return;
       const dx = e.clientX - dragRef.current.startX;
       const dy = e.clientY - dragRef.current.startY;
-      setPos({ x: dragRef.current.originX + dx, y: dragRef.current.originY + dy });
+      setPos({
+        x: dragRef.current.originX + dx,
+        y: dragRef.current.originY + dy,
+      });
     }
     function onMouseUp() {
       dragRef.current.dragging = false;
     }
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
     return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
     };
   }, []);
 
   const positionStyle = pos
-    ? { left: pos.x, top: pos.y, bottom: 'auto', right: 'auto' }
+    ? { left: pos.x, top: pos.y, bottom: "auto", right: "auto" }
     : { bottom: 24, right: 24 };
 
   return (
@@ -127,7 +157,10 @@ export default function ChessPanel({ selectedNodeId }) {
       >
         <span className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity">
           {[0, 1, 2, 3, 4, 5].map((i) => (
-            <span key={i} className="inline-block w-1 h-1 rounded-full bg-neon-purple" />
+            <span
+              key={i}
+              className="inline-block w-1 h-1 rounded-full bg-neon-purple"
+            />
           ))}
         </span>
       </div>
@@ -143,9 +176,12 @@ export default function ChessPanel({ selectedNodeId }) {
           </span>
           <span
             className="font-mono text-[15px] font-bold tracking-wide text-white-soft"
-            style={{ textShadow: '0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)' }}
+            style={{
+              textShadow:
+                "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
+            }}
           >
-            {selectedNode?.name ?? selectedNode?.move ?? 'Inicial'}
+            {selectedNode?.name ?? selectedNode?.move ?? "Inicial"}
           </span>
         </div>
 
@@ -156,20 +192,20 @@ export default function ChessPanel({ selectedNodeId }) {
             onMouseDown={(e) => e.stopPropagation()}
             disabled={isPlaying}
             className={[
-              'flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border',
-              'transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer',
+              "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
+              "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
               isPlaying
-                ? 'text-neon-purple/50 border-neon-purple/19'
-                : 'text-neon-purple border-neon-purple/38 bg-neon-purple/6',
-            ].join(' ')}
+                ? "text-neon-purple/50 border-neon-purple/19"
+                : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
+            ].join(" ")}
             style={{
               boxShadow: isPlaying
-                ? 'none'
-                : '0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)',
+                ? "none"
+                : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
             }}
           >
-            <span style={{ fontSize: '16px', lineHeight: 1 }}>▶</span>
-            {isPlaying ? 'jugando...' : 'reproducir'}
+            <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
+            {isPlaying ? "jugando..." : "reproducir"}
           </button>
         )}
       </div>
@@ -185,7 +221,7 @@ export default function ChessPanel({ selectedNodeId }) {
             lightSquareStyle: CUSTOM_LIGHT,
             boardStyle: {
               borderRadius: 0,
-              boxShadow: '0 0 16px rgba(0,0,0,0.38)',
+              boxShadow: "0 0 16px rgba(0,0,0,0.38)",
             },
           }}
         />
