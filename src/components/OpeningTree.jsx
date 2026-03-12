@@ -1,7 +1,7 @@
 import { Background, Controls, MarkerType, ReactFlow } from "@xyflow/react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
-import { getActivePathIds } from "../utils/chessPath";
+import { findPathToNode, getActivePathIds } from "../utils/chessPath";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -249,12 +249,37 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   return { nodes, edges, height: Y_STEP };
 }
 
+function getInitialStateFromUrl() {
+  const nodeId = new URLSearchParams(window.location.search).get("node");
+  if (!nodeId) return { selectedNodeId: null, extraExpanded: new Set() };
+  const path = findPathToNode(nodeId);
+  if (!path.length) return { selectedNodeId: null, extraExpanded: new Set() };
+  // Expand all ancestors (all nodes in path except the leaf itself)
+  const ancestorIds = new Set(path.slice(0, -1).map((n) => n.id));
+  return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
+}
+
+const INITIAL_URL_STATE = getInitialStateFromUrl();
+
 export default function OpeningTree() {
   const [expandedIds, setExpandedIds] = useState(
-    () => new Set(INITIAL_EXPANDED),
+    () => new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]),
   );
   const [activeOpening, setActiveOpening] = useState(null);
-  const [selectedNodeId, setSelectedNodeId] = useState(null);
+  const [selectedNodeId, setSelectedNodeId] = useState(
+    INITIAL_URL_STATE.selectedNodeId,
+  );
+
+  // Sync selected node → URL
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (selectedNodeId) {
+      url.searchParams.set("node", selectedNodeId);
+    } else {
+      url.searchParams.delete("node");
+    }
+    history.replaceState(null, "", url);
+  }, [selectedNodeId]);
 
   const displayIds = activeOpening
     ? OPENING_FULL_IDS[activeOpening]

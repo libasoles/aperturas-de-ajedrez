@@ -156,26 +156,31 @@ export default function OpeningsPanel({
 
           <div className="w-full h-px bg-neon-purple/12" />
 
-          <button
-            onClick={onToggleAll}
-            className={[
-              "self-start font-mono text-[12px] tracking-widest uppercase px-3 py-2 border",
-              "transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan/70",
-              isAllExpanded
-                ? "text-neon-pink border-neon-pink/38 bg-neon-pink/6"
-                : "text-neon-cyan/80 border-neon-cyan/38",
-            ].join(" ")}
-            style={{
-              boxShadow: isAllExpanded
-                ? "0 0 8px color-mix(in srgb, var(--color-neon-pink) 25%, transparent)"
-                : "none",
-              textShadow: isAllExpanded
-                ? "0 0 6px var(--color-neon-pink)"
-                : "none",
-            }}
-          >
-            {isAllExpanded ? "[ colapsar ]" : "[ expandir todo ]"}
-          </button>
+          <div className="flex items-center justify-between gap-4">
+            <button
+              onClick={onToggleAll}
+              className={[
+                "font-mono text-[12px] tracking-widest uppercase px-3 py-2 border",
+                "transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan/70",
+                isAllExpanded
+                  ? "text-neon-pink border-neon-pink/38 bg-neon-pink/6"
+                  : "text-neon-cyan/80 border-neon-cyan/38",
+              ].join(" ")}
+              style={{
+                boxShadow: isAllExpanded
+                  ? "0 0 8px color-mix(in srgb, var(--color-neon-pink) 25%, transparent)"
+                  : "none",
+                textShadow: isAllExpanded
+                  ? "0 0 6px var(--color-neon-pink)"
+                  : "none",
+              }}
+            >
+              {isAllExpanded ? "[ colapsar ]" : "[ expandir todo ]"}
+            </button>
+            <span className="font-mono text-[10px] text-neon-purple/40 text-right leading-tight">
+              Habrá más aperturas<br />en próximas actualizaciones
+            </span>
+          </div>
         </div>
       )}
     </div>
