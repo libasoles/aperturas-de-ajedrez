@@ -69,7 +69,7 @@ const OPENING_FULL_IDS = Object.fromEntries(
 );
 
 export const OPENING_COLORS = {
-  root: { node: '#f5f0e8', text: '#1a1a2e', border: '#d4c9b0', edge: '#aaa' },
+  root: { node: '#3a2a1e', text: '#e8d5bc', border: '#6b4f3a', edge: '#8b6a50' },
   scandinavian: { node: '#14532d', text: '#bbf7d0', border: '#16a34a', edge: '#22c55e' },
   spanish: { node: '#1e3a5f', text: '#bfdbfe', border: '#2563eb', edge: '#3b82f6' },
   italian: { node: '#431407', text: '#fed7aa', border: '#ea580c', edge: '#f97316' },

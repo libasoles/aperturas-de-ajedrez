@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
 import { findPathToNode } from '../utils/chessPath';
+import { toSpanishSAN } from './ChessNode';
 
 const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
@@ -53,7 +54,7 @@ export default function ChessPanel({ selectedNodeId }) {
     const parts = [];
     for (let i = 0; i < moves.length; i++) {
       if (i % 2 === 0) parts.push(`${Math.floor(i / 2) + 1}.`);
-      const move = moves[i];
+      const move = toSpanishSAN(moves[i]);
       parts.push(
         i < playedCount
           ? move
