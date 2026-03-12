@@ -46,7 +46,7 @@ function buildOpeningFullIds(nodeId, pathIds) {
 
 const PANEL_OPENINGS = [
   {
-    group: "1. e4",
+    group: "e4",
     openings: [
       {
         label: "Escandinava",
@@ -83,7 +83,7 @@ const PANEL_OPENINGS = [
     ],
   },
   {
-    group: "1. d4",
+    group: "d4",
     openings: [
       {
         label: "Gambito de Dama",
