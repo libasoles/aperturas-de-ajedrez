@@ -186,6 +186,7 @@ export const OPENING_COLORS = {
 
 const X_STEP = 160;
 const Y_STEP = 90;
+const X_OFFSET = 260; // compensate for right-side panels so fitView centers on visible area
 
 function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   const colors = OPENING_COLORS[treeNode.opening] || OPENING_COLORS.root;
@@ -195,7 +196,7 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   const rfNode = {
     id: treeNode.id,
     type: "chess",
-    position: { x: depth * X_STEP, y: yOffset },
+    position: { x: X_OFFSET + depth * X_STEP, y: yOffset },
     data: {
       move: treeNode.move,
       name: treeNode.name,
