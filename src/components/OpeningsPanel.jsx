@@ -92,46 +92,58 @@ export default function OpeningsPanel({
 
       {/* Body */}
       {!collapsed && (
-        <div className="flex flex-wrap items-center gap-2 px-4 pb-4">
-          {openings.map((opening) => {
-            const isActive = activeOpening === opening.nodeId;
-            return (
-              <button
-                key={opening.label}
-                onClick={() => onToggleOpening(opening.nodeId)}
-                className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95"
-                style={{
-                  borderColor: isActive ? opening.glow : `${opening.color}40`,
-                  background: isActive ? `${opening.color}20` : 'transparent',
-                  boxShadow: isActive ? `0 0 12px ${opening.glow}40` : 'none',
-                }}
+        <div className="flex flex-col gap-3 px-4 pb-4">
+          {openings.map((group) => (
+            <div key={group.group} className="flex flex-col gap-1.5">
+              <span
+                className="font-mono text-[10px] tracking-[0.3em] uppercase"
+                style={{ color: '#bf5fff60' }}
               >
-                <span
-                  className="inline-block w-2 h-2 shrink-0 transition-all duration-150"
-                  style={{
-                    backgroundColor: isActive ? opening.color : 'transparent',
-                    border: `1px solid ${opening.color}`,
-                    boxShadow: isActive ? `0 0 6px ${opening.glow}` : 'none',
-                  }}
-                />
-                <span
-                  className="font-mono text-[13px] tracking-wide"
-                  style={{
-                    color: isActive ? opening.text : `${opening.text}cc`,
-                    textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
-                  }}
-                >
-                  {opening.label}
-                </span>
-              </button>
-            );
-          })}
+                {group.group}
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {group.openings.map((opening) => {
+                  const isActive = activeOpening === opening.nodeId;
+                  return (
+                    <button
+                      key={opening.label}
+                      onClick={() => onToggleOpening(opening.nodeId)}
+                      className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95"
+                      style={{
+                        borderColor: isActive ? opening.glow : `${opening.color}40`,
+                        background: isActive ? `${opening.color}20` : 'transparent',
+                        boxShadow: isActive ? `0 0 12px ${opening.glow}40` : 'none',
+                      }}
+                    >
+                      <span
+                        className="inline-block w-2 h-2 shrink-0 transition-all duration-150"
+                        style={{
+                          backgroundColor: isActive ? opening.color : 'transparent',
+                          border: `1px solid ${opening.color}`,
+                          boxShadow: isActive ? `0 0 6px ${opening.glow}` : 'none',
+                        }}
+                      />
+                      <span
+                        className="font-mono text-[13px] tracking-wide"
+                        style={{
+                          color: isActive ? opening.text : `${opening.text}cc`,
+                          textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
+                        }}
+                      >
+                        {opening.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
 
-          <div className="self-stretch w-px" style={{ background: '#bf5fff30' }} />
+          <div className="w-full h-px" style={{ background: '#bf5fff20' }} />
 
           <button
             onClick={onToggleAll}
-            className="font-mono text-[12px] tracking-widest uppercase px-3 py-2 border transition-all duration-150 active:scale-95"
+            className="self-start font-mono text-[12px] tracking-widest uppercase px-3 py-2 border transition-all duration-150 active:scale-95"
             style={{
               color: isAllExpanded ? '#ff2d78' : '#00f5ffcc',
               borderColor: isAllExpanded ? '#ff2d7860' : '#00f5ff60',

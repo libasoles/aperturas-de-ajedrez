@@ -13,7 +13,7 @@ import { getActivePathIds } from '../utils/chessPath';
 
 const nodeTypes = { chess: ChessNode };
 
-const INITIAL_EXPANDED = new Set(['root', 'e4', 'scan-1', 'span-1', 'span-2', 'span-3', 'sic-1']);
+const INITIAL_EXPANDED = new Set(['root', 'e4', 'scan-1', 'span-1', 'span-2', 'span-3', 'sic-1', 'd4', 'qg-1', 'ki-1']);
 
 function collectAllIds(node, acc = new Set()) {
   if (node.children && node.children.length > 0) {
@@ -25,7 +25,7 @@ function collectAllIds(node, acc = new Set()) {
 const ALL_IDS = collectAllIds(OPENING_TREE);
 
 function buildOpeningFullIds(nodeId, pathIds) {
-  const ids = new Set(['root', 'e4', ...pathIds]);
+  const ids = new Set(['root', ...pathIds]);
   function findAndCollect(node) {
     if (node.id === nodeId) {
       collectAllIds(node, ids);
@@ -40,33 +40,69 @@ function buildOpeningFullIds(nodeId, pathIds) {
 
 const PANEL_OPENINGS = [
   {
-    label: 'Escandinava',
-    nodeId: 'scan-1',
-    pathIds: [],
-    color: '#16a34a', glow: '#22c55e', text: '#bbf7d0',
+    group: '1. e4',
+    openings: [
+      {
+        label: 'Escandinava',
+        nodeId: 'scan-1',
+        pathIds: ['e4'],
+        color: '#16a34a', glow: '#22c55e', text: '#bbf7d0',
+      },
+      {
+        label: 'Española',
+        nodeId: 'span-4',
+        pathIds: ['e4', 'span-1', 'span-2', 'span-3'],
+        color: '#2563eb', glow: '#3b82f6', text: '#bfdbfe',
+      },
+      {
+        label: 'Italiana',
+        nodeId: 'ital-1',
+        pathIds: ['e4', 'span-1', 'span-2', 'span-3'],
+        color: '#ea580c', glow: '#f97316', text: '#fed7aa',
+      },
+      {
+        label: 'Siciliana',
+        nodeId: 'sic-1',
+        pathIds: ['e4'],
+        color: '#dc2626', glow: '#ef4444', text: '#fecdd3',
+      },
+    ],
   },
   {
-    label: 'Española',
-    nodeId: 'span-4',
-    pathIds: ['span-1', 'span-2', 'span-3'],
-    color: '#2563eb', glow: '#3b82f6', text: '#bfdbfe',
-  },
-  {
-    label: 'Italiana',
-    nodeId: 'ital-1',
-    pathIds: ['span-1', 'span-2', 'span-3'],
-    color: '#ea580c', glow: '#f97316', text: '#fed7aa',
-  },
-  {
-    label: 'Siciliana',
-    nodeId: 'sic-1',
-    pathIds: [],
-    color: '#dc2626', glow: '#ef4444', text: '#fecdd3',
+    group: '1. d4',
+    openings: [
+      {
+        label: 'Gambito de Dama',
+        nodeId: 'qg-2',
+        pathIds: ['d4', 'qg-1'],
+        color: '#7c3aed', glow: '#8b5cf6', text: '#ddd6fe',
+      },
+      {
+        label: 'Londres',
+        nodeId: 'lon-2',
+        pathIds: ['d4', 'qg-1'],
+        color: '#0891b2', glow: '#06b6d4', text: '#a5f3fc',
+      },
+      {
+        label: 'India de Rey',
+        nodeId: 'ki-3a',
+        pathIds: ['d4', 'ki-1', 'ki-2'],
+        color: '#d97706', glow: '#f59e0b', text: '#fde68a',
+      },
+      {
+        label: 'Nimzo-India',
+        nodeId: 'nim-3b',
+        pathIds: ['d4', 'ki-1', 'ki-2'],
+        color: '#a21caf', glow: '#c026d3', text: '#f5d0fe',
+      },
+    ],
   },
 ];
 
+const ALL_OPENINGS = PANEL_OPENINGS.flatMap((g) => g.openings);
+
 const OPENING_FULL_IDS = Object.fromEntries(
-  PANEL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)])
+  ALL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)])
 );
 
 export const OPENING_COLORS = {
@@ -75,6 +111,10 @@ export const OPENING_COLORS = {
   spanish: { node: '#1e3a5f', text: '#bfdbfe', border: '#2563eb', edge: '#3b82f6' },
   italian: { node: '#431407', text: '#fed7aa', border: '#ea580c', edge: '#f97316' },
   sicilian: { node: '#4c1d2e', text: '#fecdd3', border: '#dc2626', edge: '#ef4444' },
+  queens_gambit: { node: '#1e1a3a', text: '#ddd6fe', border: '#7c3aed', edge: '#8b5cf6' },
+  london: { node: '#1a2a2a', text: '#a5f3fc', border: '#0891b2', edge: '#06b6d4' },
+  kings_indian: { node: '#2a1a00', text: '#fde68a', border: '#d97706', edge: '#f59e0b' },
+  nimzo: { node: '#2a1a2a', text: '#f5d0fe', border: '#a21caf', edge: '#c026d3' },
 };
 
 const X_STEP = 160;
