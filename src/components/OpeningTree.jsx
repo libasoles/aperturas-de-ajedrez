@@ -338,7 +338,7 @@ export default function OpeningTree() {
       >
         <div className="flex flex-col gap-0.5">
           <div className="neon-title">Árbol de Aperturas</div>
-          <div className="neon-subtitle">Explora, compara</div>
+          <div className="neon-subtitle">Explora variantes, compara</div>
         </div>
       </div>
 
