@@ -6,18 +6,14 @@ Explorador interactivo de aperturas de ajedrez. Visualiza las principales línea
 
 **Demo:** [aperturas-de-ajedrez.netlify.app](https://aperturas-de-ajedrez.netlify.app/)
 
-![Vista general del árbol](docs/screenshot-overview.png)
+![Vista general del árbol](docs/screenshot-opening-filter.png)
 
 ## Funcionalidades
 
 - **Árbol navegable** — expande y colapsa ramas con los botones `+` / `−` de cada nodo
 - **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Francesa, Caro-Kann, Pirc, Alekhine, Gambito de Dama, Londres, India de Rey, Nimzo-India) muestran únicamente esa línea completa
 - **Tablero de visualización** — al hacer clic en un nodo se muestra la posición resultante en el panel lateral; el botón **▶ Reproducir** anima los movimientos uno a uno
-
-![Nodo seleccionado con tablero](docs/screenshot-selected-node.png)
-
-![Filtro de apertura Española activo](docs/screenshot-opening-filter.png)
-|
+  |
 
 ## Desarrollo
 
