@@ -7,7 +7,7 @@ Explorador interactivo de aperturas de ajedrez con estética retro-neón. Visual
 ## Funcionalidades
 
 - **Árbol navegable** — expande y colapsa ramas con los botones `+` / `−` de cada nodo
-- **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Gambito de Dama, Londres, India de Rey, Nimzo-India) muestran únicamente esa línea completa
+- **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Francesa, Caro-Kann, Pirc, Alekhine, Gambito de Dama, Londres, India de Rey, Nimzo-India) muestran únicamente esa línea completa
 - **Tablero interactivo** — al hacer clic en un nodo se muestra la posición resultante en el panel lateral; el botón **▶ Reproducir** anima los movimientos uno a uno
 - **Tooltips con anotaciones** — mantén el cursor sobre un nodo para ver la nota táctica/estratégica de ese movimiento
 - **Panel arrastrable** — el tablero puede moverse libremente por la pantalla
@@ -27,6 +27,10 @@ Explorador interactivo de aperturas de ajedrez con estética retro-neón. Visual
 | Española       | C60–C99 | Morphy / Cerrada, Berlín, Cambio, Marshall, Schliemann        |
 | Italiana       | C50–C59 | Giuoco Piano, Ataque Evans, Variante Húngara                  |
 | Siciliana      | B20–B99 | Najdorf, Dragón, Scheveningen, Clásica, Kan/Taimanov, Cerrada |
+| Francesa       | C00–C19 | Avance, Cambio, Winawer, Clásica, Tarrasch                    |
+| Caro-Kann      | B10–B19 | Clásica, Avance, Cambio, Fantasía                             |
+| Pirc           | B07–B09 | Ataque Austriaco, Sistema Clásico, Ataque 150                 |
+| Alekhine       | B02–B05 | Moderna, Cambio, Cuatro Peones                                |
 
 ### 1. d4
 

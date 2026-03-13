@@ -8,6 +8,15 @@ import OpeningsPanel from "./OpeningsPanel";
 
 const nodeTypes = { chess: ChessNode };
 
+function collectAllIds(node, acc = new Set()) {
+  if (node.children && node.children.length > 0) {
+    acc.add(node.id);
+    node.children.forEach((c) => collectAllIds(c, acc));
+  }
+  return acc;
+}
+const ALL_IDS = collectAllIds(OPENING_TREE);
+
 const INITIAL_EXPANDED = new Set([
   "root",
   "e4",
@@ -20,15 +29,6 @@ const INITIAL_EXPANDED = new Set([
   "qg-1",
   "ki-1",
 ]);
-
-function collectAllIds(node, acc = new Set()) {
-  if (node.children && node.children.length > 0) {
-    acc.add(node.id);
-    node.children.forEach((c) => collectAllIds(c, acc));
-  }
-  return acc;
-}
-const ALL_IDS = collectAllIds(OPENING_TREE);
 
 function buildOpeningFullIds(nodeId, pathIds) {
   const ids = new Set(["root", ...pathIds]);
@@ -79,6 +79,38 @@ const PANEL_OPENINGS = [
         color: "#dc2626",
         glow: "#ef4444",
         text: "#fecdd3",
+      },
+      {
+        label: "Francesa",
+        nodeId: "fr-1",
+        pathIds: ["e4"],
+        color: "#4f46e5",
+        glow: "#6366f1",
+        text: "#c7d2fe",
+      },
+      {
+        label: "Caro-Kann",
+        nodeId: "ck-1",
+        pathIds: ["e4"],
+        color: "#0d9488",
+        glow: "#14b8a6",
+        text: "#99f6e4",
+      },
+      {
+        label: "Pirc",
+        nodeId: "pirc-1",
+        pathIds: ["e4"],
+        color: "#9a3412",
+        glow: "#c2410c",
+        text: "#fde8d8",
+      },
+      {
+        label: "Alekhine",
+        nodeId: "al-1",
+        pathIds: ["e4"],
+        color: "#db2777",
+        glow: "#ec4899",
+        text: "#fda4c8",
       },
     ],
   },
@@ -181,6 +213,30 @@ export const OPENING_COLORS = {
     text: "#f5d0fe",
     border: "#a21caf",
     edge: "#c026d3",
+  },
+  french: {
+    node: "#1a1a3a",
+    text: "#c7d2fe",
+    border: "#4f46e5",
+    edge: "#6366f1",
+  },
+  caro_kann: {
+    node: "#042f2e",
+    text: "#99f6e4",
+    border: "#0d9488",
+    edge: "#14b8a6",
+  },
+  pirc: {
+    node: "#2a1515",
+    text: "#fde8d8",
+    border: "#9a3412",
+    edge: "#c2410c",
+  },
+  alekhine: {
+    node: "#2d0a1e",
+    text: "#fda4c8",
+    border: "#db2777",
+    edge: "#ec4899",
   },
 };
 
@@ -317,6 +373,11 @@ export default function OpeningTree() {
     setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
   }, []);
 
+  const onInit = useCallback((rf) => {
+    const { y, zoom } = rf.getViewport();
+    rf.setViewport({ x: 80, y, zoom });
+  }, []);
+
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
     () => buildGraph(OPENING_TREE, displayIds),
     [displayIds],
@@ -352,7 +413,9 @@ export default function OpeningTree() {
         nodes={nodes}
         edges={rawEdges}
         nodeTypes={nodeTypes}
-        defaultViewport={{ x: 100, y: 80, zoom: 0.9 }}
+        fitView
+        fitViewOptions={{ padding: 0.2 }}
+        onInit={onInit}
         minZoom={0.2}
         maxZoom={2}
         nodesDraggable={false}
