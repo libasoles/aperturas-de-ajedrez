@@ -1,48 +1,58 @@
-import { memo } from 'react';
-import { Handle, Position } from '@xyflow/react';
-import { Tooltip } from './ui/Tooltip';
-
-const WHITE_PIECES = { K: '♔', Q: '♕', R: '♖', B: '♗', N: '♘', P: '♙' };
-const BLACK_PIECES = { K: '♚', Q: '♛', R: '♜', B: '♝', N: '♞', P: '♟' };
+import { Handle, Position } from "@xyflow/react";
+import { memo } from "react";
+import { defaultPieces } from "react-chessboard";
+import { Tooltip } from "./ui/Tooltip";
 
 // SAN usa notación inglesa internamente; esto convierte para mostrar al usuario
 export function toSpanishSAN(move) {
   if (!move) return move;
   return move
-    .replace(/^K/, 'R')  // King → Rey
-    .replace(/^Q/, 'D')  // Queen → Dama
-    .replace(/^R/, 'T')  // Rook → Torre
-    .replace(/^B/, 'A')  // Bishop → Alfil
-    .replace(/^N/, 'C'); // Knight → Caballo
+    .replace(/^K/, "R") // King → Rey
+    .replace(/^Q/, "D") // Queen → Dama
+    .replace(/^R/, "T") // Rook → Torre
+    .replace(/^B/, "A") // Bishop → Alfil
+    .replace(/^N/, "C"); // Knight → Caballo
 }
 
-function getPieceIcon(move, isWhite) {
+function getPieceCode(move, isWhite) {
   if (!move) return null;
-  const san = move.replace(/[+#!=?]/g, '');
-  const set = isWhite ? WHITE_PIECES : BLACK_PIECES;
-  if (san.startsWith('K')) return set.K;
-  if (san.startsWith('Q')) return set.Q;
-  if (san.startsWith('R')) return set.R;
-  if (san.startsWith('B')) return set.B;
-  if (san.startsWith('N')) return set.N;
-  return set.P;
+  const san = move.replace(/[+#!=?]/g, "");
+  const prefix = isWhite ? "w" : "b";
+  if (san.startsWith("K")) return `${prefix}K`;
+  if (san.startsWith("Q")) return `${prefix}Q`;
+  if (san.startsWith("R")) return `${prefix}R`;
+  if (san.startsWith("B")) return `${prefix}B`;
+  if (san.startsWith("N")) return `${prefix}N`;
+  return `${prefix}P`;
 }
 
 function ChessNode({ id, data }) {
   const {
-    move, name, annotation, color, opening,
-    isExpanded, hasChildren, colors,
-    isSelected, isInActivePath,
-    onToggle, onSelect,
+    move,
+    name,
+    annotation,
+    color,
+    opening,
+    isExpanded,
+    hasChildren,
+    colors,
+    isSelected,
+    isInActivePath,
+    onToggle,
+    onSelect,
   } = data;
 
-  const isRoot = opening === 'root';
-  const isWhite = color === 'white';
+  const isRoot = opening === "root";
+  const isWhite = color === "white";
 
   const ringStyle = isSelected
-    ? { boxShadow: `0 0 0 2px #fff, 0 0 12px ${colors.border}, 0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40` }
+    ? {
+        boxShadow: `0 0 0 2px #fff, 0 0 12px ${colors.border}, 0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40`,
+      }
     : isInActivePath
-      ? { boxShadow: `0 0 0 2px ${colors.border}90, 0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40` }
+      ? {
+          boxShadow: `0 0 0 2px ${colors.border}90, 0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40`,
+        }
       : { boxShadow: `0 0 8px ${colors.border}90, 0 0 20px ${colors.edge}40` };
 
   const pill = (
@@ -51,7 +61,7 @@ function ChessNode({ id, data }) {
       tabIndex={0}
       onClick={() => onSelect?.(id)}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onSelect?.(id);
         }
@@ -59,23 +69,36 @@ function ChessNode({ id, data }) {
       style={{
         backgroundColor: colors.node,
         color: colors.text,
-        borderColor: isSelected ? '#fff' : colors.border,
+        borderColor: isSelected ? "#fff" : colors.border,
         ...ringStyle,
       }}
       className={[
-        'flex items-center gap-2 px-4 py-2 rounded-full border-2 font-mono font-bold cursor-pointer leading-none',
-        'transition-all duration-150',
-        isRoot ? 'text-base ring-2 ring-white/20' : 'text-sm',
-        'hover:brightness-125 active:scale-95',
-        'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white/80',
-      ].join(' ')}
+        "flex items-center gap-2 px-4 py-2 rounded-full border-2 font-mono font-bold cursor-pointer leading-none",
+        "transition-all duration-150",
+        isRoot ? "text-base ring-2 ring-white/20" : "text-sm",
+        "hover:brightness-125 active:scale-95",
+        "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white/80",
+      ].join(" ")}
     >
       {/* Piece icon */}
-      {!isRoot && (
-        <span className="shrink-0 text-xl leading-none flex items-center">
-          {getPieceIcon(move, isWhite)}
-        </span>
-      )}
+      {!isRoot &&
+        (() => {
+          const pieceCode = getPieceCode(move, isWhite);
+          const PieceSvg = pieceCode ? defaultPieces[pieceCode] : null;
+          return PieceSvg ? (
+            <span
+              className="shrink-0 flex items-center justify-center w-6 h-6 rounded-full border"
+              style={{
+                backgroundColor: !isWhite ? colors.text : `${colors.border}30`,
+                borderColor: !isWhite
+                  ? `${colors.border}60`
+                  : `${colors.border}60`,
+              }}
+            >
+              <PieceSvg svgStyle={{ width: "18px", height: "18px" }} />
+            </span>
+          ) : null;
+        })()}
 
       <span>{toSpanishSAN(move)}</span>
 
@@ -84,9 +107,12 @@ function ChessNode({ id, data }) {
         <span
           role="button"
           tabIndex={0}
-          onClick={(e) => { e.stopPropagation(); onToggle?.(id); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle?.(id);
+          }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               e.stopPropagation();
               onToggle?.(id);
@@ -99,7 +125,7 @@ function ChessNode({ id, data }) {
             color: colors.text,
           }}
         >
-          {isExpanded ? '−' : '+'}
+          {isExpanded ? "−" : "+"}
         </span>
       )}
     </div>
@@ -112,7 +138,7 @@ function ChessNode({ id, data }) {
         <Handle
           type="target"
           position={Position.Left}
-          style={{ background: 'transparent', border: 'none' }}
+          style={{ background: "transparent", border: "none" }}
         />
 
         <Tooltip content={annotation}>{pill}</Tooltip>
@@ -120,7 +146,7 @@ function ChessNode({ id, data }) {
         <Handle
           type="source"
           position={Position.Right}
-          style={{ background: 'transparent', border: 'none' }}
+          style={{ background: "transparent", border: "none" }}
         />
       </div>
 
