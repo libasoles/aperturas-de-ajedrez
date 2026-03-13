@@ -34,6 +34,8 @@ export default function ChessPanel({ selectedNodeId }) {
     [path],
   );
 
+  const [orientation, setOrientation] = useState("white");
+
   const [anim, setAnim] = useState({
     nodeId: selectedNodeId,
     playedCount: moves.length,
@@ -189,33 +191,48 @@ export default function ChessPanel({ selectedNodeId }) {
                 "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
             }}
           >
-            {selectedNode?.name ?? selectedNode?.move ?? "Inicial"}
+            {selectedNode?.name ?? (selectedNode?.move ? toSpanishSAN(selectedNode.move) : "Inicial")}
           </span>
         </div>
 
-        {/* Play button */}
-        {moves.length > 0 && (
+        {/* Controls */}
+        <div
+          className="flex items-center gap-2"
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          {/* Play button */}
+          {moves.length > 0 && (
+            <button
+              onClick={play}
+              onMouseDown={(e) => e.stopPropagation()}
+              disabled={isPlaying}
+              className={[
+                "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
+                "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
+                isPlaying
+                  ? "text-neon-purple/50 border-neon-purple/19"
+                  : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
+              ].join(" ")}
+              style={{
+                boxShadow: isPlaying
+                  ? "none"
+                  : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+              }}
+            >
+              <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
+              {isPlaying ? "jugando..." : "reproducir"}
+            </button>
+          )}
           <button
-            onClick={play}
-            onMouseDown={(e) => e.stopPropagation()}
-            disabled={isPlaying}
-            className={[
-              "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
-              "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
-              isPlaying
-                ? "text-neon-purple/50 border-neon-purple/19"
-                : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
-            ].join(" ")}
-            style={{
-              boxShadow: isPlaying
-                ? "none"
-                : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
-            }}
+            onClick={() =>
+              setOrientation((o) => (o === "white" ? "black" : "white"))
+            }
+            title="Girar tablero"
+            className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
           >
-            <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
-            {isPlaying ? "jugando..." : "reproducir"}
+            <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
           </button>
-        )}
+        </div>
       </div>
 
       {/* react-chessboard v5 uses a single `options` prop */}
@@ -223,6 +240,7 @@ export default function ChessPanel({ selectedNodeId }) {
         <Chessboard
           options={{
             position: fen,
+            boardOrientation: orientation,
             allowDragging: false,
             showAnimations: false,
             darkSquareStyle: CUSTOM_DARK,
