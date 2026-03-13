@@ -21,6 +21,14 @@ const INITIAL_EXPANDED = new Set([
   "ki-1",
 ]);
 
+function collectAllIds(node, acc = new Set()) {
+  if (node.children && node.children.length > 0) {
+    acc.add(node.id);
+    node.children.forEach((c) => collectAllIds(c, acc));
+  }
+  return acc;
+}
+
 function buildOpeningFullIds(nodeId, pathIds) {
   const ids = new Set(["root", ...pathIds]);
   function findAndCollect(node) {
