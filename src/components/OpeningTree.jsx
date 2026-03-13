@@ -8,15 +8,6 @@ import OpeningsPanel from "./OpeningsPanel";
 
 const nodeTypes = { chess: ChessNode };
 
-function collectAllIds(node, acc = new Set()) {
-  if (node.children && node.children.length > 0) {
-    acc.add(node.id);
-    node.children.forEach((c) => collectAllIds(c, acc));
-  }
-  return acc;
-}
-const ALL_IDS = collectAllIds(OPENING_TREE);
-
 const INITIAL_EXPANDED = new Set([
   "root",
   "e4",
@@ -340,20 +331,11 @@ export default function OpeningTree() {
   const displayIds = activeOpening
     ? OPENING_FULL_IDS[activeOpening]
     : expandedIds;
-  const isAllExpanded = !activeOpening && expandedIds.size === ALL_IDS.size;
-
   // Compute the set of IDs on the active selection path for ring highlighting
   const activePathIds = useMemo(
     () => (selectedNodeId ? getActivePathIds(selectedNodeId) : new Set()),
     [selectedNodeId],
   );
-
-  const toggleAll = useCallback(() => {
-    setActiveOpening(null);
-    setExpandedIds(
-      isAllExpanded ? new Set(INITIAL_EXPANDED) : new Set(ALL_IDS),
-    );
-  }, [isAllExpanded]);
 
   const toggleNode = useCallback((id) => {
     setActiveOpening(null);
@@ -405,8 +387,6 @@ export default function OpeningTree() {
         openings={PANEL_OPENINGS}
         activeOpening={activeOpening}
         onToggleOpening={toggleOpening}
-        isAllExpanded={isAllExpanded}
-        onToggleAll={toggleAll}
       />
 
       <ReactFlow

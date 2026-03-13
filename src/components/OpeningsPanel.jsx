@@ -4,8 +4,6 @@ export default function OpeningsPanel({
   openings,
   activeOpening,
   onToggleOpening,
-  isAllExpanded,
-  onToggleAll,
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const [pos, setPos] = useState(null);
@@ -89,27 +87,6 @@ export default function OpeningsPanel({
           className="flex items-center gap-3"
           onMouseDown={(e) => e.stopPropagation()}
         >
-          <button
-            tabIndex={-1}
-            onClick={onToggleAll}
-            className={[
-              "font-mono text-[11px] tracking-widest uppercase px-2 py-1 border",
-              "transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan/70",
-              isAllExpanded
-                ? "text-neon-pink border-neon-pink/38 bg-neon-pink/6"
-                : "text-neon-cyan/60 border-neon-cyan/25",
-            ].join(" ")}
-            style={{
-              boxShadow: isAllExpanded
-                ? "0 0 8px color-mix(in srgb, var(--color-neon-pink) 25%, transparent)"
-                : "none",
-              textShadow: isAllExpanded
-                ? "0 0 6px var(--color-neon-pink)"
-                : "none",
-            }}
-          >
-            {isAllExpanded ? "[ colapsar ]" : "[ expandir todo ]"}
-          </button>
           <button
             tabIndex={-1}
             onClick={() => setCollapsed((c) => !c)}
