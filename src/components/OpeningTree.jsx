@@ -365,7 +365,7 @@ export default function OpeningTree() {
 
   const onInit = useCallback((rf) => {
     const { y, zoom } = rf.getViewport();
-    rf.setViewport({ x: 80, y, zoom });
+    rf.setViewport({ x: 80, y: y + 40, zoom });
   }, []);
 
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
@@ -402,7 +402,7 @@ export default function OpeningTree() {
         edges={rawEdges}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{ padding: 0.2 }}
+        fitViewOptions={{ padding: 0.14 }}
         onInit={onInit}
         minZoom={0.2}
         maxZoom={2}
