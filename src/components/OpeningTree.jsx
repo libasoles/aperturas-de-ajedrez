@@ -370,6 +370,22 @@ export default function OpeningTree() {
     setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
   }, []);
 
+  // Space: expand to next fork (same as the → button).
+  // Capture phase + stopPropagation prevents the pill's onKeyDown from toggling selection.
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key !== " ") return;
+      if (!selectedNodeId) return;
+      const node = findPathToNode(selectedNodeId).at(-1);
+      if (!node?.children?.length) return;
+      e.preventDefault();
+      e.stopPropagation();
+      expandToNextFork(selectedNodeId);
+    }
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [selectedNodeId, expandToNextFork]);
+
   // Tab: advance selection to first child.
   // Uses capture phase + stopPropagation to prevent default Tab focus cycling
   // and skip the expand/collapse buttons inside each node.
