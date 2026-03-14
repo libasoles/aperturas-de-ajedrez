@@ -2,17 +2,7 @@ import { Handle, Position } from "@xyflow/react";
 import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { Tooltip } from "./ui/Tooltip";
-
-// SAN usa notación inglesa internamente; esto convierte para mostrar al usuario
-export function toSpanishSAN(move) {
-  if (!move) return move;
-  return move
-    .replace(/^K/, "R") // King → Rey
-    .replace(/^Q/, "D") // Queen → Dama
-    .replace(/^R/, "T") // Rook → Torre
-    .replace(/^B/, "A") // Bishop → Alfil
-    .replace(/^N/, "C"); // Knight → Caballo
-}
+import { toSpanishSAN } from "../utils/chessPath";
 
 function getPieceCode(move, isWhite) {
   if (!move) return null;
@@ -40,6 +30,7 @@ function ChessNode({ id, data }) {
     isInActivePath,
     onToggle,
     onSelect,
+    onExpandToFork,
   } = data;
 
   const isRoot = opening === "root";
@@ -132,9 +123,9 @@ function ChessNode({ id, data }) {
   );
 
   return (
-    <div className="flex flex-col items-center gap-1 select-none">
+    <div className="flex flex-col items-center gap-1 select-none" style={{ overflow: "visible" }}>
       {/* Handles scoped to the pill so edges connect at pill center, not node center */}
-      <div className="relative flex items-center">
+      <div className="relative flex items-center" style={{ overflow: "visible" }}>
         <Handle
           type="target"
           position={Position.Left}
@@ -148,6 +139,38 @@ function ChessNode({ id, data }) {
           position={Position.Right}
           style={{ background: "transparent", border: "none" }}
         />
+
+        {/* Expand-to-fork button — only on selected nodes with unexpanded children */}
+        {isSelected && hasChildren && !isExpanded && (
+          <span
+            role="button"
+            tabIndex={0}
+            title="Expandir hasta bifurcación"
+            onClick={(e) => {
+              e.stopPropagation();
+              onExpandToFork?.(id);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
+                onExpandToFork?.(id);
+              }
+            }}
+            className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer"
+            style={{
+              position: "absolute",
+              right: "-36px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: `${colors.border}30`,
+              border: `1px solid ${colors.border}60`,
+              color: colors.text,
+            }}
+          >
+            →
+          </span>
+        )}
       </div>
 
       {/* Opening name label */}

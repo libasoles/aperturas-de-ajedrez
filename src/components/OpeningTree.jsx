@@ -1,7 +1,7 @@
 import { Background, Controls, MarkerType, ReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
-import { findPathToNode, getActivePathIds } from "../utils/chessPath";
+import { findPathToNode, getActivePathIds, getPathToNextFork } from "../utils/chessPath";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -359,6 +359,13 @@ export default function OpeningTree() {
     setSelectedNodeId((prev) => (prev === id ? null : id));
   }, []);
 
+  const expandToNextFork = useCallback((id) => {
+    const idsToExpand = getPathToNextFork(id);
+    if (idsToExpand.length === 0) return;
+    setActiveOpening(null);
+    setExpandedIds((prev) => new Set([...prev, ...idsToExpand]));
+  }, []);
+
   const toggleOpening = useCallback((nodeId) => {
     setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
   }, []);
@@ -381,11 +388,12 @@ export default function OpeningTree() {
           ...n.data,
           onToggle: toggleNode,
           onSelect: selectNode,
+          onExpandToFork: expandToNextFork,
           isSelected: n.id === selectedNodeId,
           isInActivePath: activePathIds.has(n.id),
         },
       })),
-    [rawNodes, toggleNode, selectNode, selectedNodeId, activePathIds],
+    [rawNodes, toggleNode, selectNode, expandToNextFork, selectedNodeId, activePathIds],
   );
 
   return (

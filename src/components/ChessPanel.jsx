@@ -1,8 +1,7 @@
 import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
-import { findPathToNode } from "../utils/chessPath";
-import { toSpanishSAN } from "./ChessNode";
+import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
