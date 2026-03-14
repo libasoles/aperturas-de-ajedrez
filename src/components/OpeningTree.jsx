@@ -1,5 +1,5 @@
 import { Background, Controls, MarkerType, ReactFlow } from "@xyflow/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
 import {
   findPathToNode,
@@ -329,6 +329,7 @@ export default function OpeningTree() {
   const [selectedNodeId, setSelectedNodeId] = useState(
     INITIAL_URL_STATE.selectedNodeId,
   );
+  const firstOpeningBtnRef = useRef(null);
 
   // Sync selected node → URL
   useEffect(() => {
@@ -391,7 +392,7 @@ export default function OpeningTree() {
     return () => window.removeEventListener("keydown", handleKeyDown, true);
   }, [selectedNodeId, expandToNextFork]);
 
-  // Tab: advance selection to first child.
+  // Tab: advance selection to first child, or focus first opening button if leaf.
   // Uses capture phase + stopPropagation to prevent default Tab focus cycling
   // and skip the expand/collapse buttons inside each node.
   useEffect(() => {
@@ -399,7 +400,13 @@ export default function OpeningTree() {
       if (e.key !== "Tab") return;
       if (!selectedNodeId) return;
       const node = findPathToNode(selectedNodeId).at(-1);
-      if (!node?.children?.length) return;
+      if (!node?.children?.length) {
+        e.preventDefault();
+        e.stopPropagation();
+        setSelectedNodeId(null);
+        firstOpeningBtnRef.current?.focus();
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
       const firstChild = node.children[0];
@@ -451,6 +458,7 @@ export default function OpeningTree() {
         openings={PANEL_OPENINGS}
         activeOpening={activeOpening}
         onToggleOpening={toggleOpening}
+        firstButtonRef={firstOpeningBtnRef}
       />
 
       <ReactFlow
