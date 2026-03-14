@@ -1,10 +1,15 @@
 import { Background, Controls, MarkerType, ReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
-import { findPathToNode, getActivePathIds, getPathToNextFork } from "../utils/chessPath";
+import {
+  findPathToNode,
+  getActivePathIds,
+  getPathToNextFork,
+} from "../utils/chessPath";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
+import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
@@ -429,7 +434,14 @@ export default function OpeningTree() {
           isInActivePath: activePathIds.has(n.id),
         },
       })),
-    [rawNodes, toggleNode, selectNode, expandToNextFork, selectedNodeId, activePathIds],
+    [
+      rawNodes,
+      toggleNode,
+      selectNode,
+      expandToNextFork,
+      selectedNodeId,
+      activePathIds,
+    ],
   );
 
   return (
@@ -462,7 +474,7 @@ export default function OpeningTree() {
 
       {/* Top bar */}
       <div
-        className="absolute top-0 left-0 right-0 flex items-center px-8 py-3 z-10 border-b border-neon-purple/[0.14]"
+        className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-10 border-b border-neon-purple/[0.14]"
         style={{
           background:
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
@@ -472,6 +484,11 @@ export default function OpeningTree() {
           <div className="neon-title">Árbol de Aperturas</div>
           <div className="neon-subtitle">Explora variantes, compara</div>
         </div>
+      </div>
+
+      {/* Help button — fixed bottom-right */}
+      <div className="absolute bottom-28 left-4 z-10">
+        <HelpDialog />
       </div>
     </div>
   );
