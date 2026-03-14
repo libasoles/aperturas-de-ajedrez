@@ -157,7 +157,7 @@ function ChessNode({ id, data }) {
                 onExpandToFork?.(id);
               }
             }}
-            className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer"
+            className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer animate-[delayed-appear_0.15s_ease_20ms_both]"
             style={{
               position: "absolute",
               right: "-36px",

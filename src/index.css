@@ -17,6 +17,11 @@ body {
   margin: 0;
 }
 
+@keyframes delayed-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @keyframes flicker {
   0%, 100% { opacity: 1; }
   92% { opacity: 1; }
