@@ -97,7 +97,7 @@ function ChessNode({ id, data }) {
       {hasChildren && (
         <span
           role="button"
-          tabIndex={0}
+          tabIndex={-1}
           onClick={(e) => {
             e.stopPropagation();
             onToggle?.(id);
@@ -144,7 +144,7 @@ function ChessNode({ id, data }) {
         {isSelected && hasChildren && !isExpanded && (
           <span
             role="button"
-            tabIndex={0}
+            tabIndex={-1}
             title="Expandir hasta bifurcación"
             onClick={(e) => {
               e.stopPropagation();

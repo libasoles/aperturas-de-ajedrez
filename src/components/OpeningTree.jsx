@@ -370,12 +370,12 @@ export default function OpeningTree() {
     setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
   }, []);
 
-  // Spacebar: advance selection to first child.
-  // Uses capture phase + stopPropagation so the focused pill's onKeyDown doesn't
-  // also fire (which would conflict by toggling selection on/off).
+  // Tab: advance selection to first child.
+  // Uses capture phase + stopPropagation to prevent default Tab focus cycling
+  // and skip the expand/collapse buttons inside each node.
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.key !== " ") return;
+      if (e.key !== "Tab") return;
       if (!selectedNodeId) return;
       const node = findPathToNode(selectedNodeId).at(-1);
       if (!node?.children?.length) return;
