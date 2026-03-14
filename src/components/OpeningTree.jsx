@@ -370,6 +370,26 @@ export default function OpeningTree() {
     setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
   }, []);
 
+  // Spacebar: advance selection to first child.
+  // Uses capture phase + stopPropagation so the focused pill's onKeyDown doesn't
+  // also fire (which would conflict by toggling selection on/off).
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key !== " ") return;
+      if (!selectedNodeId) return;
+      const node = findPathToNode(selectedNodeId).at(-1);
+      if (!node?.children?.length) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const firstChild = node.children[0];
+      setActiveOpening(null);
+      setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
+      setSelectedNodeId(firstChild.id);
+    }
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [selectedNodeId]);
+
   const onInit = useCallback((rf) => {
     const { y, zoom } = rf.getViewport();
     rf.setViewport({ x: 80, y: y + 40, zoom });
