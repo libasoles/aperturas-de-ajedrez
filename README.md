@@ -30,4 +30,4 @@ npm run lint
 - [chess.js](https://github.com/jhlywa/chess.js) — validación de movimientos y generación de FEN
 - [react-chessboard](https://github.com/Clariity/react-chessboard) v5 — visualización del tablero
 - [Tailwind CSS v4](https://tailwindcss.com)
-- [@radix-ui/react-tooltip](https://www.radix-ui.com/primitives/docs/components/tooltip) — tooltips accesibles
+- [@radix-ui](https://www.radix-ui.com) — componentes accesibles
