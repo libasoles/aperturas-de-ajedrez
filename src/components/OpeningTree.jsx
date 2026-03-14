@@ -488,10 +488,10 @@ export default function OpeningTree() {
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
         }}
       >
-        <div className="flex flex-col gap-0.5">
+        <a href="/" className="flex flex-col gap-0.5 no-underline">
           <div className="neon-title">Árbol de Aperturas</div>
           <div className="neon-subtitle">Explora variantes, compara</div>
-        </div>
+        </a>
       </div>
 
       {/* Help button — fixed bottom-right */}
