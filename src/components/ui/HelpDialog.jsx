@@ -8,8 +8,8 @@ const rows = [
   },
   {
     key: "tab",
-    label: "Tab",
-    desc: "Avanza al proximo nodo",
+    label: "Tab / Shift+Tab",
+    desc: "Avanza al próximo nodo / retrocede al nodo anterior",
   },
   {
     key: "flecha",
@@ -19,7 +19,7 @@ const rows = [
   {
     key: "space",
     label: "Espacio",
-    desc: "Si hay un nodo seleccionado, despliega los nodos hasta la próxima bifurcación (igual que →)",
+    desc: "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación (igual que →)",
   },
 
   {

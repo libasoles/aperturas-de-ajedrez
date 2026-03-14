@@ -392,23 +392,33 @@ export default function OpeningTree() {
     return () => window.removeEventListener("keydown", handleKeyDown, true);
   }, [selectedNodeId, expandToNextFork]);
 
-  // Tab: advance selection to first child, or focus first opening button if leaf.
+  // Tab / Shift+Tab: advance to first child / go back to parent.
   // Uses capture phase + stopPropagation to prevent default Tab focus cycling
   // and skip the expand/collapse buttons inside each node.
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key !== "Tab") return;
       if (!selectedNodeId) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.shiftKey) {
+        // Shift+Tab: go to parent
+        const path = findPathToNode(selectedNodeId);
+        const parent = path.at(-2);
+        if (parent) {
+          setSelectedNodeId(parent.id);
+        }
+        return;
+      }
+
+      // Tab: advance to first child
       const node = findPathToNode(selectedNodeId).at(-1);
       if (!node?.children?.length) {
-        e.preventDefault();
-        e.stopPropagation();
         setSelectedNodeId(null);
         firstOpeningBtnRef.current?.focus();
         return;
       }
-      e.preventDefault();
-      e.stopPropagation();
       const firstChild = node.children[0];
       setActiveOpening(null);
       setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
