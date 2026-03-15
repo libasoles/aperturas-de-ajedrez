@@ -226,7 +226,7 @@ export const OPENING_TREE = {
                           children: [
                             {
                               id: "scan-6b1",
-                              move: "Nf3",
+                              move: "Nc3",
                               name: null,
                               annotation: null,
                               color: "white",
@@ -242,7 +242,7 @@ export const OPENING_TREE = {
                                   children: [
                                     {
                                       id: "scan-8b1a",
-                                      move: "c4",
+                                      move: "Bc4",
                                       name: null,
                                       annotation: "Expulsa el caballo",
                                       color: "white",
@@ -256,7 +256,7 @@ export const OPENING_TREE = {
                                           color: "black",
                                           opening: "scandinavian",
                                           children: [
-                                            { id: "scan-10b1a", move: "Nc3", name: null, annotation: null, color: "white", opening: "scandinavian", children: [
+                                            { id: "scan-10b1a", move: "Nf3", name: null, annotation: null, color: "white", opening: "scandinavian", children: [
                                               { id: "scan-11b1a", move: "Bg7", name: null, annotation: null, color: "black", opening: "scandinavian", children: [
                                                 { id: "scan-12b1a", move: "Be3", name: "Sistema Moderno", annotation: "Control del centro", color: "white", opening: "scandinavian", children: [] }
                                               ]}
@@ -285,16 +285,16 @@ export const OPENING_TREE = {
                                       children: [
                                         {
                                           id: "scan-9b1b",
-                                          move: "Bg7",
+                                          move: "g6",
                                           name: null,
                                           annotation: "Fianchetto del alfil",
                                           color: "black",
                                           opening: "scandinavian",
                                           children: [
                                             { id: "scan-10b1b", move: "Bd3", name: null, annotation: null, color: "white", opening: "scandinavian", children: [
-                                              { id: "scan-11b1b", move: "O-O", name: null, annotation: null, color: "black", opening: "scandinavian", children: [
-                                                { id: "scan-12b1b", move: "O-O", name: null, annotation: null, color: "white", opening: "scandinavian", children: [
-                                                  { id: "scan-13b1b", move: "Nd7", name: "Moderna con b pawn", annotation: null, color: "black", opening: "scandinavian", children: [] }
+                                              { id: "scan-11b1b", move: "Bg7", name: null, annotation: null, color: "black", opening: "scandinavian", children: [
+                                                { id: "scan-12b1b", move: "Nf3", name: null, annotation: null, color: "white", opening: "scandinavian", children: [
+                                                  { id: "scan-13b1b", move: "c5", name: "Moderna con b pawn", annotation: null, color: "black", opening: "scandinavian", children: [] }
                                                 ]}
                                               ]}
                                             ]}
@@ -471,13 +471,13 @@ export const OPENING_TREE = {
                                           color: "black",
                                           opening: "spanish",
                                           children: [
-                                            { id: "span-10a1b", move: "Ba3", name: null, annotation: "Retira el alfil", color: "white", opening: "spanish", children: [
-                                              { id: "span-11a1b", move: "O-O", name: null, annotation: null, color: "black", opening: "spanish", children: [
+                                            { id: "span-10a1b", move: "Bb3", name: null, annotation: "Retira el alfil", color: "white", opening: "spanish", children: [
+                                              { id: "span-11a1b", move: "Be7", name: null, annotation: null, color: "black", opening: "spanish", children: [
                                                 { id: "span-12a1b", move: "d4", name: null, annotation: null, color: "white", opening: "spanish", children: [
                                                   { id: "span-13a1b", move: "exd4", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                    { id: "span-14a1b", move: "cxd4", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                    { id: "span-14a1b", move: "Nxd4", name: null, annotation: null, color: "white", opening: "spanish", children: [
                                                       { id: "span-15a1b", move: "Nxe4", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                        { id: "span-16a1b", move: "d5", name: "Española Abierta principal", annotation: null, color: "white", opening: "spanish", children: [] }
+                                                        { id: "span-16a1b", move: "Re1", name: "Española Abierta principal", annotation: null, color: "white", opening: "spanish", children: [] }
                                                       ]}
                                                     ]}
                                                   ]}
@@ -585,9 +585,9 @@ export const OPENING_TREE = {
                                           children: [
                                             { id: "span-10b1", move: "Nxe5", name: null, annotation: "Captura el peón", color: "white", opening: "spanish", children: [
                                               { id: "span-11b1", move: "Nxe5", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                { id: "span-12b1", move: "Rxe5+", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                { id: "span-12b1", move: "Re1", name: null, annotation: null, color: "white", opening: "spanish", children: [
                                                   { id: "span-13b1", move: "Be7", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                    { id: "span-14b1", move: "d4", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                    { id: "span-14b1", move: "Rxe5", name: null, annotation: null, color: "white", opening: "spanish", children: [
                                                       { id: "span-15b1", move: "O-O", name: null, annotation: null, color: "black", opening: "spanish", children: [
                                                         { id: "span-16b1", move: "Bd3", name: "Final de Berlín", annotation: "El final más analizado del mundo", color: "white", opening: "spanish", children: [] }
                                                       ]}
@@ -600,18 +600,18 @@ export const OPENING_TREE = {
                                         },
                                         {
                                           id: "span-9b2",
-                                          move: "exd4",
+                                          move: "Be7",
                                           name: "Río de Janeiro",
                                           annotation: "Variante aguda",
                                           color: "black",
                                           opening: "spanish",
                                           children: [
-                                            { id: "span-10b2", move: "Nxd4", name: null, annotation: null, color: "white", opening: "spanish", children: [
-                                              { id: "span-11b2", move: "Nxe4", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                { id: "span-12b2", move: "Rxe4", name: null, annotation: null, color: "white", opening: "spanish", children: [
-                                                  { id: "span-13b2", move: "Be7", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                    { id: "span-14b2", move: "Nf5", name: null, annotation: null, color: "white", opening: "spanish", children: [
-                                                      { id: "span-15b2", move: "O-O", name: "Río de Janeiro completo", annotation: null, color: "black", opening: "spanish", children: [] }
+                                            { id: "span-10b2", move: "Qe2", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                              { id: "span-11b2", move: "Nd6", name: null, annotation: null, color: "black", opening: "spanish", children: [
+                                                { id: "span-12b2", move: "Bxc6", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                  { id: "span-13b2", move: "bxc6", name: null, annotation: null, color: "black", opening: "spanish", children: [
+                                                    { id: "span-14b2", move: "dxe5", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                      { id: "span-15b2", move: "Nb7", name: "Río de Janeiro completo", annotation: null, color: "black", opening: "spanish", children: [] }
                                                     ]}
                                                   ]}
                                                 ]}
@@ -667,9 +667,9 @@ export const OPENING_TREE = {
                                           color: "black",
                                           opening: "spanish",
                                           children: [
-                                            { id: "span-10c", move: "Ng5", name: null, annotation: "Ataca el peón f7", color: "white", opening: "spanish", children: [
+                                            { id: "span-10c", move: "Nfg5", name: null, annotation: "Ataca el peón f7", color: "white", opening: "spanish", children: [
                                               { id: "span-11c", move: "d4", name: null, annotation: null, color: "black", opening: "spanish", children: [
-                                                { id: "span-12c", move: "exd6", name: null, annotation: null, color: "white", opening: "spanish", children: [
+                                                { id: "span-12c", move: "Nd6+", name: null, annotation: null, color: "white", opening: "spanish", children: [
                                                   { id: "span-13c", move: "Qxd6", name: null, annotation: null, color: "black", opening: "spanish", children: [
                                                     { id: "span-14c", move: "Nf3", name: "Schliemann activo", annotation: null, color: "white", opening: "spanish", children: [] }
                                                   ]}
@@ -827,7 +827,7 @@ export const OPENING_TREE = {
                                                 { id: "ital-9b1", move: "dxc6", name: null, annotation: null, color: "white", opening: "italian", children: [
                                                   { id: "ital-10b1", move: "bxc6", name: null, annotation: null, color: "black", opening: "italian", children: [
                                                     { id: "ital-11b1", move: "Bd3", name: null, annotation: null, color: "white", opening: "italian", children: [
-                                                      { id: "ital-12b1", move: "d5", name: "Knorre completo", annotation: null, color: "black", opening: "italian", children: [] }
+                                                      { id: "ital-12b1", move: "Nd5", name: "Knorre completo", annotation: null, color: "black", opening: "italian", children: [] }
                                                     ]}
                                                   ]}
                                                 ]}
@@ -894,11 +894,11 @@ export const OPENING_TREE = {
                                           color: "black",
                                           opening: "italian",
                                           children: [
-                                            { id: "ital-7b3", move: "exd5", name: null, annotation: null, color: "white", opening: "italian", children: [
-                                              { id: "ital-8b3", move: "Nxd5", name: null, annotation: null, color: "black", opening: "italian", children: [
-                                                { id: "ital-9b3", move: "Nxd5", name: null, annotation: null, color: "white", opening: "italian", children: [
-                                                  { id: "ital-10b3", move: "Qxd5", name: null, annotation: null, color: "black", opening: "italian", children: [
-                                                    { id: "ital-11b3", move: "Re1+", name: null, annotation: null, color: "white", opening: "italian", children: [
+                                            { id: "ital-7b3", move: "Bxd5", name: null, annotation: null, color: "white", opening: "italian", children: [
+                                              { id: "ital-8b3", move: "Qxd5", name: null, annotation: null, color: "black", opening: "italian", children: [
+                                                { id: "ital-9b3", move: "Nc3", name: null, annotation: null, color: "white", opening: "italian", children: [
+                                                  { id: "ital-10b3", move: "Qa5", name: null, annotation: null, color: "black", opening: "italian", children: [
+                                                    { id: "ital-11b3", move: "Nxe4", name: null, annotation: null, color: "white", opening: "italian", children: [
                                                       { id: "ital-12b3", move: "Be6", name: "Italiana dos caballos completa", annotation: null, color: "black", opening: "italian", children: [] }
                                                     ]}
                                                   ]}
@@ -1056,7 +1056,7 @@ export const OPENING_TREE = {
                                               color: "white",
                                               opening: "sicilian",
                                               children: [
-                                                { id: "sic-11a3", move: "O-O", name: null, annotation: null, color: "black", opening: "sicilian", children: [
+                                                { id: "sic-11a3", move: "Bg7", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                   { id: "sic-12a3", move: "Qd2", name: null, annotation: null, color: "white", opening: "sicilian", children: [
                                                     { id: "sic-13a3", move: "Nc6", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                       { id: "sic-14a3", move: "O-O-O", name: null, annotation: null, color: "white", opening: "sicilian", children: [
@@ -1424,7 +1424,7 @@ export const OPENING_TREE = {
                                           opening: "sicilian",
                                           children: [
                                             { id: "sic-10c2a", move: "Be2", name: null, annotation: null, color: "white", opening: "sicilian", children: [
-                                              { id: "sic-11c2a", move: "Nf6", name: null, annotation: null, color: "black", opening: "sicilian", children: [
+                                              { id: "sic-11c2a", move: "a6", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                 { id: "sic-12c2a", move: "O-O", name: null, annotation: null, color: "white", opening: "sicilian", children: [
                                                   { id: "sic-13c2a", move: "Be7", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                     { id: "sic-14c2a", move: "f4", name: null, annotation: null, color: "white", opening: "sicilian", children: [
@@ -1447,7 +1447,7 @@ export const OPENING_TREE = {
                                             { id: "sic-10c2b", move: "Bd3", name: null, annotation: null, color: "white", opening: "sicilian", children: [
                                               { id: "sic-11c2b", move: "Bxc3+", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                 { id: "sic-12c2b", move: "bxc3", name: null, annotation: null, color: "white", opening: "sicilian", children: [
-                                                  { id: "sic-13c2b", move: "Nf6", name: null, annotation: null, color: "black", opening: "sicilian", children: [
+                                                  { id: "sic-13c2b", move: "O-O", name: null, annotation: null, color: "black", opening: "sicilian", children: [
                                                     { id: "sic-14c2b", move: "O-O", name: null, annotation: null, color: "white", opening: "sicilian", children: [
                                                       { id: "sic-15c2b", move: "d6", name: "Nimzovich completa", annotation: null, color: "black", opening: "sicilian", children: [] }
                                                     ]}
@@ -2053,7 +2053,7 @@ export const OPENING_TREE = {
                                                       children: [
                                                         {
                                                           id: "fr-13d1",
-                                                          move: "O-O",
+                                                          move: "Nf6",
                                                           name: "Tarrasch Abierta completa",
                                                           annotation: null,
                                                           color: "black",
@@ -2402,7 +2402,7 @@ export const OPENING_TREE = {
                                                       children: [
                                                         {
                                                           id: "ck-13b",
-                                                          move: "Nf5",
+                                                          move: "Ng6",
                                                           name: "Avance Caro-Kann completo",
                                                           annotation: null,
                                                           color: "black",
@@ -2566,7 +2566,7 @@ export const OPENING_TREE = {
                                           children: [
                                             {
                                               id: "ck-10d",
-                                              move: "O-O-O",
+                                              move: "Qd2",
                                               name: null,
                                               annotation: null,
                                               color: "white",
@@ -3296,7 +3296,7 @@ export const OPENING_TREE = {
                                   { id: "qg-8a2", move: "e4", name: null, annotation: "Centro poderoso", color: "white", opening: "queens_gambit", children: [
                                     { id: "qg-9a2", move: "c5", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
                                       { id: "qg-10a2", move: "e5", name: null, annotation: null, color: "white", opening: "queens_gambit", children: [
-                                        { id: "qg-11a2", move: "d5", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
+                                        { id: "qg-11a2", move: "Nd5", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
                                           { id: "qg-12a2", move: "Nb5", name: "GDA Moderno agresivo", annotation: null, color: "white", opening: "queens_gambit", children: [] }
                                         ]}
                                       ]}
@@ -3376,7 +3376,7 @@ export const OPENING_TREE = {
                                   opening: "queens_gambit",
                                   children: [
                                     { id: "qg-8b2", move: "Nf3", name: null, annotation: null, color: "white", opening: "queens_gambit", children: [
-                                      { id: "qg-9b2", move: "Qa5", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
+                                      { id: "qg-9b2", move: "c6", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
                                         { id: "qg-10b2", move: "cxd5", name: null, annotation: null, color: "white", opening: "queens_gambit", children: [
                                           { id: "qg-11b2", move: "Nxd5", name: null, annotation: null, color: "black", opening: "queens_gambit", children: [
                                             { id: "qg-12b2", move: "Bd2", name: null, annotation: null, color: "white", opening: "queens_gambit", children: [
@@ -3532,7 +3532,7 @@ export const OPENING_TREE = {
                                   color: "black",
                                   opening: "london",
                                   children: [
-                                    { id: "lon-8a", move: "O-O", name: null, annotation: null, color: "white", opening: "london", children: [
+                                    { id: "lon-8a", move: "Bd3", name: null, annotation: null, color: "white", opening: "london", children: [
                                       { id: "lon-9a", move: "O-O", name: null, annotation: null, color: "black", opening: "london", children: [
                                         { id: "lon-10a", move: "c3", name: null, annotation: null, color: "white", opening: "london", children: [
                                           { id: "lon-11a", move: "c5", name: null, annotation: null, color: "black", opening: "london", children: [
@@ -3675,7 +3675,7 @@ export const OPENING_TREE = {
                                                       { id: "ki-13a1", move: "Nh5", name: null, annotation: "El caballo va a f4", color: "black", opening: "kings_indian", children: [
                                                         { id: "ki-14a1", move: "g3", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
                                                           { id: "ki-15a1", move: "Nf4", name: null, annotation: null, color: "black", opening: "kings_indian", children: [
-                                                            { id: "ki-16a1", move: "Ne1", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
+                                                            { id: "ki-16a1", move: "O-O", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
                                                               { id: "ki-17a1", move: "g5", name: "India de Rey Clásica principal", annotation: "Ataque en flanco de rey", color: "black", opening: "kings_indian", children: [] }
                                                             ]}
                                                           ]}
@@ -3721,8 +3721,8 @@ export const OPENING_TREE = {
                                                     { id: "ki-13a2", move: "c5", name: null, annotation: null, color: "black", opening: "kings_indian", children: [
                                                       { id: "ki-14a2", move: "d5", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
                                                         { id: "ki-15a2", move: "Ne5", name: null, annotation: null, color: "black", opening: "kings_indian", children: [
-                                                          { id: "ki-16a2", move: "Nxe5", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
-                                                            { id: "ki-17a2", move: "fxe5", name: "Sämisch completo", annotation: null, color: "black", opening: "kings_indian", children: [] }
+                                                          { id: "ki-16a2", move: "f4", name: null, annotation: null, color: "white", opening: "kings_indian", children: [
+                                                            { id: "ki-17a2", move: "Neg4", name: "Sämisch completo", annotation: null, color: "black", opening: "kings_indian", children: [] }
                                                           ]}
                                                         ]}
                                                       ]}
