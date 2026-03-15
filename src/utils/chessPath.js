@@ -70,3 +70,62 @@ export function getPathToNextFork(startId) {
 
   return ids;
 }
+
+/**
+ * Returns the target node ID for vertical (up/down) navigation between branches.
+ *
+ * Finds the nearest fork ancestor (node with ≥2 children), then picks the
+ * prev/next sibling branch. Navigates as deep as the selected node's relative
+ * depth by following first children, stopping at the last expanded/visible node
+ * if the branch is shorter.
+ *
+ * @param {string} selectedId
+ * @param {'up'|'down'} direction
+ * @param {Set<string>} displayIds - IDs of currently expanded nodes (children visible)
+ * @returns {string|null} target node ID, or null if no navigation is possible
+ */
+export function getVerticalNavigationTarget(selectedId, direction, displayIds) {
+  const path = findPathToNode(selectedId);
+  if (path.length <= 1) return null;
+
+  // Walk up all fork ancestors from nearest to farthest.
+  // At each fork, check whether there is a sibling branch in the desired direction.
+  // If not, continue up (handles cousins, second-cousins, etc.).
+  for (let i = path.length - 2; i >= 0; i--) {
+    const node = path[i];
+    if (!node.children || node.children.length <= 1) continue; // not a fork
+
+    const nextNode = path[i + 1];
+    const currentBranchIndex = node.children.findIndex(
+      (c) => c.id === nextNode.id,
+    );
+    const targetBranchIndex =
+      direction === "up" ? currentBranchIndex - 1 : currentBranchIndex + 1;
+
+    if (targetBranchIndex < 0 || targetBranchIndex >= node.children.length) {
+      continue; // no sibling in this direction — try the next ancestor fork
+    }
+
+    const targetBranchRoot = node.children[targetBranchIndex];
+
+    // Steps from this fork's direct child down to the selected node
+    const relativeDepth = path.length - 1 - i - 1;
+
+    // Walk down relativeDepth steps, only through expanded nodes.
+    // ↑: follow last child at each step (bottom of branch = visually closest to selected)
+    // ↓: follow first child at each step (top of branch = visually closest to selected)
+    let current = targetBranchRoot;
+    for (let j = 0; j < relativeDepth; j++) {
+      if (!displayIds.has(current.id)) break; // not expanded — stop here
+      if (!current.children?.length) break; // leaf — stop here
+      current =
+        direction === "up"
+          ? current.children[current.children.length - 1]
+          : current.children[0];
+    }
+
+    return current.id;
+  }
+
+  return null;
+}

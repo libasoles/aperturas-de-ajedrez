@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 const rows = [
   {
     key: "click",
-    label: "Clic en nodo",
+    label: "Click en nodo",
     desc: "Selecciona el nodo y muestra las jugadas en el tablero",
   },
   {
@@ -12,16 +12,10 @@ const rows = [
     desc: "Avanza al próximo nodo / retrocede al nodo anterior",
   },
   {
-    key: "flecha",
-    label: "→ (flecha)",
-    desc: "Despliega los nodos hasta la próxima bifurcación",
-  },
-  {
     key: "space",
     label: "Espacio",
-    desc: "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación (igual que →)",
+    desc: "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación, igual que el icono →",
   },
-
   {
     key: "flip",
     label: "↻ Girar tablero",
@@ -31,6 +25,21 @@ const rows = [
     key: "play",
     label: "▶ Reproducir",
     desc: "Anima las jugadas una por una",
+  },
+  {
+    key: "arrows-lr",
+    label: "← / →",
+    desc: "Igual que Shift+Tab / Tab, si hay un nodo seleccionado",
+  },
+  {
+    key: "arrows-ud",
+    label: "↑ / ↓",
+    desc: "Navega entre ramas adyacentes",
+  },
+  {
+    key: "flecha",
+    label: "Icono de flecha",
+    desc: "Despliega los nodos hasta la próxima bifurcación",
   },
 ];
 

@@ -5,6 +5,7 @@ import {
   findPathToNode,
   getActivePathIds,
   getPathToNextFork,
+  getVerticalNavigationTarget,
 } from "../utils/chessPath";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
@@ -427,6 +428,68 @@ export default function OpeningTree() {
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
   }, [selectedNodeId]);
+
+  // Arrow keys: ←/→ same as Shift+Tab/Tab; ↑/↓ navigate between sibling branches.
+  // Only active when a node is selected. Prevents default browser scroll.
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (
+        e.key !== "ArrowLeft" &&
+        e.key !== "ArrowRight" &&
+        e.key !== "ArrowUp" &&
+        e.key !== "ArrowDown"
+      )
+        return;
+      if (!selectedNodeId) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.key === "ArrowRight") {
+        // Same as Tab: advance to first child
+        const node = findPathToNode(selectedNodeId).at(-1);
+        if (!node?.children?.length) {
+          setSelectedNodeId(null);
+          firstOpeningBtnRef.current?.focus();
+          return;
+        }
+        const firstChild = node.children[0];
+        setActiveOpening(null);
+        setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
+        setSelectedNodeId(firstChild.id);
+        return;
+      }
+
+      if (e.key === "ArrowLeft") {
+        // Same as Shift+Tab: go to parent
+        const path = findPathToNode(selectedNodeId);
+        const parent = path.at(-2);
+        if (parent) setSelectedNodeId(parent.id);
+        return;
+      }
+
+      // ArrowUp / ArrowDown: navigate between sibling branches
+      const currentDisplayIds = activeOpening
+        ? OPENING_FULL_IDS[activeOpening]
+        : expandedIds;
+      const direction = e.key === "ArrowUp" ? "up" : "down";
+      const targetId = getVerticalNavigationTarget(
+        selectedNodeId,
+        direction,
+        currentDisplayIds,
+      );
+      if (!targetId) return;
+
+      // Ensure all ancestors of the target are in expandedIds so it stays visible
+      const ancestorIds = findPathToNode(targetId)
+        .slice(0, -1)
+        .map((n) => n.id);
+      setExpandedIds((prev) => new Set([...prev, ...ancestorIds]));
+      setActiveOpening(null);
+      setSelectedNodeId(targetId);
+    }
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [selectedNodeId, activeOpening, expandedIds]);
 
   const onInit = useCallback((rf) => {
     const { y, zoom } = rf.getViewport();
