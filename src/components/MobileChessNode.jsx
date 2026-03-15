@@ -130,7 +130,7 @@ function MobileChessNode({ id, data }) {
   return (
     <div
       className="relative flex items-center select-none"
-      style={{ overflow: "visible" }}
+      style={{ overflow: "visible", touchAction: "none" }}
     >
       <Handle
         type="target"

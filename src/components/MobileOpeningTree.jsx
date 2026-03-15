@@ -46,7 +46,14 @@ export default function MobileOpeningTree() {
         <MobileChessBoard selectedNodeId={selectedNodeId} />
       </div>
 
-      <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          position: "relative",
+          touchAction: "none",
+        }}
+      >
         <ReactFlow
           nodes={mobileNodes}
           edges={edges}
@@ -58,9 +65,10 @@ export default function MobileOpeningTree() {
           nodesDraggable={false}
           nodesConnectable={false}
           nodesFocusable={false}
-          panOnDrag={false}
+          panOnDrag
+          zoomOnPinch
           zoomOnScroll={false}
-          panOnScroll={false}
+          panOnScroll
         >
           <Background color="var(--color-grid)" gap={24} size={1} />
         </ReactFlow>
