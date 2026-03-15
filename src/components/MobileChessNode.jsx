@@ -171,6 +171,8 @@ function MobileChessNode({ id, data }) {
             background: `${colors.border}30`,
             border: `1px solid ${colors.border}60`,
             color: colors.text,
+            fontSize: "14px",
+            fontWeight: 500,
           }}
         >
           ↑
