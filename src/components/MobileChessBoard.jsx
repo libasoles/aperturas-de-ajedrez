@@ -4,7 +4,6 @@ import { Chessboard } from "react-chessboard";
 import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 272;
-const MOVES_HEIGHT = 48;
 const MOVE_DELAY = 600;
 const ROTATED_FRAME_WIDTH = 320;
 const ROTATED_FRAME_HEIGHT = 310;
@@ -25,6 +24,12 @@ function fenAfterMoves(moves, count) {
 }
 
 export default function MobileChessBoard({ selectedNodeId }) {
+  const frameRef = useRef(null);
+  const [frameSize, setFrameSize] = useState({
+    width: ROTATED_FRAME_WIDTH,
+    height: ROTATED_FRAME_HEIGHT,
+  });
+
   const path = useMemo(
     () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),
     [selectedNodeId],
@@ -58,6 +63,21 @@ export default function MobileChessBoard({ selectedNodeId }) {
       timeoutsRef.current = [];
     };
   }, [selectedNodeId]);
+
+  useEffect(() => {
+    if (!frameRef.current) return;
+    const element = frameRef.current;
+    const updateSize = () =>
+      setFrameSize({
+        width: element.clientWidth || ROTATED_FRAME_WIDTH,
+        height: element.clientHeight || ROTATED_FRAME_HEIGHT,
+      });
+
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   const { playedCount, isPlaying } = anim;
 
@@ -105,11 +125,12 @@ export default function MobileChessBoard({ selectedNodeId }) {
   }, [moves, playedCount]);
 
   return (
-    <div className="h-full w-full flex items-center justify-center overflow-hidden">
+    <div className="h-full w-full flex items-start justify-start overflow-hidden">
       <div
+        ref={frameRef}
         style={{
-          width: ROTATED_FRAME_WIDTH,
-          height: ROTATED_FRAME_HEIGHT,
+          width: "100%",
+          height: "100%",
           position: "relative",
         }}
       >
@@ -121,16 +142,15 @@ export default function MobileChessBoard({ selectedNodeId }) {
             left: "50%",
             transform: "translate(-50%, -50%) rotate(-90deg)",
             transformOrigin: "center",
+            width: `${frameSize.height}px`,
+            height: `${frameSize.width}px`,
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col gap-0.5">
-              <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-neon-purple">
-                Posición
-              </span>
+          <div className="flex items-start justify-between shrink-0 min-h-[58.5px]">
+            <div className="flex flex-col">
               <span
-                className="font-mono text-[15px] font-bold tracking-wide text-white-soft"
+                className="font-mono text-[13px] font-bold tracking-wide text-white-soft"
                 style={{
                   textShadow:
                     "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
@@ -177,36 +197,47 @@ export default function MobileChessBoard({ selectedNodeId }) {
             </div>
           </div>
 
-          {/* Board */}
           <div
-            inert
-            style={{
-              width: BOARD_SIZE,
-              height: BOARD_SIZE,
-            }}
+            className="flex-1 min-h-0 overflow-auto"
+            style={{ touchAction: "pan-x pan-y" }}
           >
-            <Chessboard
-              options={{
-                position: fen,
-                boardOrientation: orientation,
-                allowDragging: false,
-                showAnimations: false,
-                darkSquareStyle: CUSTOM_DARK,
-                lightSquareStyle: CUSTOM_LIGHT,
-                boardStyle: {
-                  borderRadius: 0,
-                  boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-                },
-              }}
-            />
-          </div>
+            <div className="flex flex-col gap-2 min-h-full">
+              {/* Board */}
+              <div
+                inert
+                style={{
+                  width: BOARD_SIZE,
+                  height: BOARD_SIZE,
+                }}
+              >
+                <Chessboard
+                  options={{
+                    position: fen,
+                    boardOrientation: orientation,
+                    allowDragging: false,
+                    showAnimations: false,
+                    darkSquareStyle: CUSTOM_DARK,
+                    lightSquareStyle: CUSTOM_LIGHT,
+                    boardStyle: {
+                      borderRadius: 0,
+                      boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+                    },
+                  }}
+                />
+              </div>
 
-          {/* Move sequence */}
-          <div
-            className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
-            style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
-            dangerouslySetInnerHTML={{ __html: formattedMoves }}
-          />
+              {/* Move sequence */}
+              <div
+                className="font-mono text-[14px] leading-relaxed wrap-break-word text-neon-cyan/50 flex-1"
+                style={{
+                  width: BOARD_SIZE,
+                  minHeight: 48,
+                  paddingBottom: "6px",
+                }}
+                dangerouslySetInnerHTML={{ __html: formattedMoves }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
