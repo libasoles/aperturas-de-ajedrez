@@ -198,8 +198,8 @@ export default function MobileChessBoard({ selectedNodeId }) {
           </div>
 
           <div
-            className="flex-1 min-h-0 overflow-auto"
-            style={{ touchAction: "pan-x pan-y" }}
+            className="mobile-board-scroll flex-1 min-h-0 overflow-y-auto overflow-x-hidden"
+            style={{ touchAction: "pan-y" }}
           >
             <div className="flex flex-col gap-2 min-h-full">
               {/* Board */}
