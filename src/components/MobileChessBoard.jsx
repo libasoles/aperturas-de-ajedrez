@@ -135,7 +135,7 @@ export default function MobileChessBoard({ selectedNodeId }) {
         }}
       >
         <div
-          className="flex flex-col gap-2 pt-2 px-3 pb-3"
+          className="flex flex-col gap-1 pt-2 px-3 pb-3"
           style={{
             position: "absolute",
             top: "50%",
@@ -147,23 +147,8 @@ export default function MobileChessBoard({ selectedNodeId }) {
           }}
         >
           {/* Header */}
-          <div className="flex items-start justify-between shrink-0 min-h-[58.5px]">
-            <div className="flex flex-col">
-              <span
-                className="font-mono text-[13px] font-bold tracking-wide text-white-soft"
-                style={{
-                  textShadow:
-                    "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
-                }}
-              >
-                {selectedNode?.name ??
-                  (selectedNode?.move
-                    ? toSpanishSAN(selectedNode.move)
-                    : "Inicial")}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-2 shrink-0">
+            <div className="flex items-center justify-end gap-2">
               {moves.length > 0 && (
                 <button
                   onClick={play}
@@ -195,13 +180,24 @@ export default function MobileChessBoard({ selectedNodeId }) {
                 <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
               </button>
             </div>
+
+            <span
+              className="font-mono text-[13px] font-bold tracking-wide text-white-soft"
+              style={{
+                textShadow:
+                  "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
+              }}
+            >
+              {selectedNode?.name ??
+                (selectedNode?.move ? toSpanishSAN(selectedNode.move) : "Inicial")}
+            </span>
           </div>
 
           <div
             className="mobile-board-scroll flex-1 min-h-0 overflow-y-auto overflow-x-hidden"
             style={{ touchAction: "pan-y" }}
           >
-            <div className="flex flex-col gap-2 min-h-full">
+            <div className="flex flex-col gap-1 min-h-full">
               {/* Board */}
               <div
                 inert
