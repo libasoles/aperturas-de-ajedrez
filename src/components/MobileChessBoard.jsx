@@ -6,6 +6,8 @@ import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
 const BOARD_SIZE = 272;
 const MOVES_HEIGHT = 48;
 const MOVE_DELAY = 600;
+const ROTATED_FRAME_WIDTH = 320;
+const ROTATED_FRAME_HEIGHT = 310;
 
 const CUSTOM_LIGHT = { backgroundColor: "#c8b89a" };
 const CUSTOM_DARK = { backgroundColor: "#6b4f3a" };
@@ -103,85 +105,110 @@ export default function MobileChessBoard({ selectedNodeId }) {
   }, [moves, playedCount]);
 
   return (
-    <div className="flex flex-col gap-2 pt-2 px-3 pb-3 h-full justify-center">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-0.5">
-          <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-neon-purple">
-            Posición
-          </span>
-          <span
-            className="font-mono text-[15px] font-bold tracking-wide text-white-soft"
+    <div className="h-full w-full flex items-center justify-center overflow-hidden">
+      <div
+        style={{
+          width: ROTATED_FRAME_WIDTH,
+          height: ROTATED_FRAME_HEIGHT,
+          position: "relative",
+        }}
+      >
+        <div
+          className="flex flex-col gap-2 pt-2 px-3 pb-3"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%) rotate(-90deg)",
+            transformOrigin: "center",
+          }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-0.5">
+              <span className="font-mono text-[9px] tracking-[0.35em] uppercase text-neon-purple">
+                Posición
+              </span>
+              <span
+                className="font-mono text-[15px] font-bold tracking-wide text-white-soft"
+                style={{
+                  textShadow:
+                    "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
+                }}
+              >
+                {selectedNode?.name ??
+                  (selectedNode?.move
+                    ? toSpanishSAN(selectedNode.move)
+                    : "Inicial")}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {moves.length > 0 && (
+                <button
+                  onClick={play}
+                  disabled={isPlaying}
+                  className={[
+                    "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
+                    "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
+                    isPlaying
+                      ? "text-neon-purple/50 border-neon-purple/19"
+                      : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
+                  ].join(" ")}
+                  style={{
+                    boxShadow: isPlaying
+                      ? "none"
+                      : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+                  }}
+                >
+                  <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
+                  {isPlaying ? "jugando..." : "reproducir"}
+                </button>
+              )}
+              <button
+                onClick={() =>
+                  setOrientation((o) => (o === "white" ? "black" : "white"))
+                }
+                title="Girar tablero"
+                className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+              >
+                <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Board */}
+          <div
+            inert
             style={{
-              textShadow:
-                "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
+              width: BOARD_SIZE,
+              height: BOARD_SIZE,
             }}
           >
-            {selectedNode?.name ??
-              (selectedNode?.move
-                ? toSpanishSAN(selectedNode.move)
-                : "Inicial")}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {moves.length > 0 && (
-            <button
-              onClick={play}
-              disabled={isPlaying}
-              className={[
-                "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
-                "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
-                isPlaying
-                  ? "text-neon-purple/50 border-neon-purple/19"
-                  : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
-              ].join(" ")}
-              style={{
-                boxShadow: isPlaying
-                  ? "none"
-                  : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+            <Chessboard
+              options={{
+                position: fen,
+                boardOrientation: orientation,
+                allowDragging: false,
+                showAnimations: false,
+                darkSquareStyle: CUSTOM_DARK,
+                lightSquareStyle: CUSTOM_LIGHT,
+                boardStyle: {
+                  borderRadius: 0,
+                  boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+                },
               }}
-            >
-              <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
-              {isPlaying ? "jugando..." : "reproducir"}
-            </button>
-          )}
-          <button
-            onClick={() =>
-              setOrientation((o) => (o === "white" ? "black" : "white"))
-            }
-            title="Girar tablero"
-            className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
-          >
-            <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
-          </button>
+            />
+          </div>
+
+          {/* Move sequence */}
+          <div
+            className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
+            style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
+            dangerouslySetInnerHTML={{ __html: formattedMoves }}
+          />
         </div>
       </div>
-
-      {/* Board */}
-      <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
-        <Chessboard
-          options={{
-            position: fen,
-            boardOrientation: orientation,
-            allowDragging: false,
-            showAnimations: false,
-            darkSquareStyle: CUSTOM_DARK,
-            lightSquareStyle: CUSTOM_LIGHT,
-            boardStyle: {
-              borderRadius: 0,
-              boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-            },
-          }}
-        />
-      </div>
-
-      {/* Move sequence */}
-      <div
-        className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
-        style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
-        dangerouslySetInnerHTML={{ __html: formattedMoves }}
-      />
     </div>
   );
 }

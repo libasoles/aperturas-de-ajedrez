@@ -1,38 +1,58 @@
 import { Background, ReactFlow } from "@xyflow/react";
+import { useMemo } from "react";
 import { useOpeningTreeState } from "../hooks/useOpeningTreeState";
-import ChessNode from "./ChessNode";
 import MobileChessBoard from "./MobileChessBoard";
+import MobileChessNode from "./MobileChessNode";
 
-const nodeTypes = { chess: ChessNode };
+const nodeTypes = { chess: MobileChessNode };
 
-const BOARD_COLUMN_WIDTH = 308; // board (272) + px-3 padding on each side
+const BOARD_PANEL_HEIGHT = 310;
 
 export default function MobileOpeningTree() {
   const { nodes, edges, selectedNodeId } = useOpeningTreeState();
+  const mobileNodes = useMemo(
+    () =>
+      nodes.map((node) => ({
+        ...node,
+        // Rotate logical layout: from left->right to bottom->top.
+        position: {
+          x: node.position.y,
+          y: -node.position.x,
+        },
+      })),
+    [nodes],
+  );
 
   return (
     <div
       style={{
         position: "fixed",
-        width: "100vh",
-        height: "100vw",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%) rotate(-90deg)",
+        inset: 0,
         overflow: "hidden",
         background: "var(--color-app)",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
       }}
     >
-      {/* Left: ReactFlow tree */}
-      <div style={{ flex: 1, position: "relative" }}>
+      <div
+        className="panel"
+        style={{
+          height: BOARD_PANEL_HEIGHT,
+          borderBottom:
+            "1px solid color-mix(in srgb, var(--color-grid) 60%, transparent)",
+          flexShrink: 0,
+        }}
+      >
+        <MobileChessBoard selectedNodeId={selectedNodeId} />
+      </div>
+
+      <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
         <ReactFlow
-          nodes={nodes}
+          nodes={mobileNodes}
           edges={edges}
           nodeTypes={nodeTypes}
           fitView
-          fitViewOptions={{ padding: 0.1 }}
+          fitViewOptions={{ padding: 0.12 }}
           minZoom={0.2}
           maxZoom={2}
           nodesDraggable={false}
@@ -44,18 +64,6 @@ export default function MobileOpeningTree() {
         >
           <Background color="var(--color-grid)" gap={24} size={1} />
         </ReactFlow>
-      </div>
-
-      {/* Right: compact board column */}
-      <div
-        className="panel"
-        style={{
-          width: BOARD_COLUMN_WIDTH,
-          borderLeft: "1px solid color-mix(in srgb, var(--color-grid) 60%, transparent)",
-          flexShrink: 0,
-        }}
-      >
-        <MobileChessBoard selectedNodeId={selectedNodeId} />
       </div>
     </div>
   );
