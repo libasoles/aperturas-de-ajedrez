@@ -7,6 +7,11 @@ const rows = [
     desc: "Selecciona el nodo y muestra las jugadas en el tablero",
   },
   {
+    key: "flecha",
+    label: "Icono de flecha",
+    desc: "Despliega los nodos hasta la próxima bifurcación",
+  },
+  {
     key: "tab",
     label: "Tab / Shift+Tab",
     desc: "Avanza al próximo nodo / retrocede al nodo anterior",
@@ -15,16 +20,6 @@ const rows = [
     key: "space",
     label: "Espacio",
     desc: "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación, igual que el icono →",
-  },
-  {
-    key: "flip",
-    label: "↻ Girar tablero",
-    desc: "Invierte la perspectiva del tablero",
-  },
-  {
-    key: "play",
-    label: "▶ Reproducir",
-    desc: "Anima las jugadas una por una",
   },
   {
     key: "arrows-lr",
@@ -37,9 +32,14 @@ const rows = [
     desc: "Navega entre ramas adyacentes",
   },
   {
-    key: "flecha",
-    label: "Icono de flecha",
-    desc: "Despliega los nodos hasta la próxima bifurcación",
+    key: "flip",
+    label: "↻ Girar tablero",
+    desc: "Invierte la perspectiva del tablero",
+  },
+  {
+    key: "play",
+    label: "▶ Reproducir",
+    desc: "Anima las jugadas una por una",
   },
 ];
 

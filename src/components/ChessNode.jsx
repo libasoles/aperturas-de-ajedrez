@@ -123,60 +123,68 @@ function ChessNode({ id, data }) {
   );
 
   return (
-    <div className="flex flex-col items-center gap-1 select-none" style={{ overflow: "visible" }}>
-      {/* Handles scoped to the pill so edges connect at pill center, not node center */}
-      <div className="relative flex items-center" style={{ overflow: "visible" }}>
-        <Handle
-          type="target"
-          position={Position.Left}
-          style={{ background: "transparent", border: "none" }}
-        />
+    // The outer div's height = pill height only (label is absolutely positioned).
+    // This keeps the ReactFlow node bounds flush with the pill, so edge handles
+    // connect at the visual pill center instead of an offset below it.
+    <div className="relative flex items-center select-none" style={{ overflow: "visible" }}>
+      <Handle
+        type="target"
+        position={Position.Left}
+        style={{ background: "transparent", border: "none" }}
+      />
 
-        <Tooltip content={annotation}>{pill}</Tooltip>
+      <Tooltip content={annotation}>{pill}</Tooltip>
 
-        <Handle
-          type="source"
-          position={Position.Right}
-          style={{ background: "transparent", border: "none" }}
-        />
+      <Handle
+        type="source"
+        position={Position.Right}
+        style={{ background: "transparent", border: "none" }}
+      />
 
-        {/* Expand-to-fork button — only on selected nodes with unexpanded children */}
-        {isSelected && hasChildren && !isExpanded && (
-          <span
-            role="button"
-            tabIndex={-1}
-            title="Expandir hasta bifurcación"
-            onClick={(e) => {
+      {/* Expand-to-fork button — only on selected nodes with unexpanded children */}
+      {isSelected && hasChildren && !isExpanded && (
+        <span
+          role="button"
+          tabIndex={-1}
+          title="Expandir hasta bifurcación"
+          onClick={(e) => {
+            e.stopPropagation();
+            onExpandToFork?.(id);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
               e.stopPropagation();
               onExpandToFork?.(id);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                e.stopPropagation();
-                onExpandToFork?.(id);
-              }
-            }}
-            className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer animate-[delayed-appear_0.15s_ease_20ms_both]"
-            style={{
-              position: "absolute",
-              right: "-36px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: `${colors.border}30`,
-              border: `1px solid ${colors.border}60`,
-              color: colors.text,
-            }}
-          >
-            →
-          </span>
-        )}
-      </div>
+            }
+          }}
+          className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer animate-[delayed-appear_0.15s_ease_20ms_both]"
+          style={{
+            position: "absolute",
+            right: "-36px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            background: `${colors.border}30`,
+            border: `1px solid ${colors.border}60`,
+            color: colors.text,
+          }}
+        >
+          →
+        </span>
+      )}
 
-      {/* Opening name label */}
+      {/* Opening name label — absolutely positioned below pill, outside node bounds */}
       {name && (
         <span
-          style={{ color: colors.text }}
+          style={{
+            color: colors.text,
+            position: "absolute",
+            top: "100%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            marginTop: "4px",
+            whiteSpace: "nowrap",
+          }}
           className="text-[13px] font-sans opacity-70 max-w-30 text-center leading-tight"
         >
           {name}
