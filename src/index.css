@@ -13,6 +13,10 @@
   --color-white-soft:  #f0ecff;
 }
 
+:root {
+  color-scheme: light dark;
+}
+
 body {
   margin: 0;
 }
