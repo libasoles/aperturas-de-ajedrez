@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function MobileGate({ children }) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [accepted, setAccepted] = useState(false);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  if (!isMobile) return children;
+  if (accepted) return children;
 
   return (
     <div className="w-screen h-screen bg-app flex items-center justify-center px-8">
@@ -21,17 +14,30 @@ export default function MobileGate({ children }) {
           <h1 className="neon-title" style={{ fontSize: "1.1rem" }}>
             Árbol de Aperturas
           </h1>
-          <p className="neon-subtitle">Solo versión escritorio</p>
+          <p className="neon-subtitle">Advertencia</p>
         </div>
 
-        <p className="font-mono text-[13px] leading-relaxed text-neon-cyan/60">
-          Esta app requiere una pantalla más grande para mostrar el árbol
-          interactivo.
+        <p className="font-mono text-[14px] leading-relaxed text-neon-cyan/60">
+          Esta app está diseñada para pantallas grandes.
           <br />
-          Ábrela desde tu computadora.
+          <br />
+          La versión móvil está en{" "}
+          <span className="text-neon-purple/80">beta</span>, y algunos elementos
+          pueden no verse bien.
         </p>
 
         <div className="w-full h-px bg-neon-purple/12" />
+
+        <button
+          onClick={() => setAccepted(true)}
+          className="w-full py-3 font-mono text-[13px] tracking-widest uppercase border border-neon-purple/38 text-neon-purple bg-neon-purple/6 transition-all duration-150 hover:bg-neon-purple/12 hover:border-neon-purple/60 active:scale-95 cursor-pointer"
+          style={{
+            boxShadow:
+              "0 0 12px color-mix(in srgb, var(--color-neon-purple) 14%, transparent)",
+          }}
+        >
+          Continuar
+        </button>
       </div>
     </div>
   );
