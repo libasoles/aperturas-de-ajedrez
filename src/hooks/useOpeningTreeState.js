@@ -1,6 +1,7 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
+import { OPENING_ROUTES, ROUTE_BY_NODE_ID, ROUTE_BY_SLUG } from "../data/routes";
 import {
   findPathToNode,
   getActivePathIds,
@@ -304,6 +305,14 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   return { nodes, edges, height: Y_STEP };
 }
 
+function getOpeningFromPathname() {
+  if (typeof window === "undefined") return null;
+  const slug = window.location.pathname.replace(/^\/|\/$/, "");
+  if (!slug) return null;
+  const route = ROUTE_BY_SLUG[slug];
+  return route ? route.nodeId : null;
+}
+
 function getInitialStateFromUrl() {
   if (typeof window === "undefined") {
     return { selectedNodeId: null, extraExpanded: new Set() };
@@ -316,13 +325,14 @@ function getInitialStateFromUrl() {
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
 }
 
+const INITIAL_OPENING_FROM_URL = getOpeningFromPathname();
 const INITIAL_URL_STATE = getInitialStateFromUrl();
 
 export function useOpeningTreeState() {
   const [expandedIds, setExpandedIds] = useState(
     () => new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]),
   );
-  const [activeOpening, setActiveOpening] = useState(null);
+  const [activeOpening, setActiveOpening] = useState(INITIAL_OPENING_FROM_URL);
   const [selectedNodeId, setSelectedNodeId] = useState(
     INITIAL_URL_STATE.selectedNodeId,
   );
@@ -370,7 +380,15 @@ export function useOpeningTreeState() {
   }, []);
 
   const toggleOpening = useCallback((nodeId) => {
-    setActiveOpening((prev) => (prev === nodeId ? null : nodeId));
+    setActiveOpening((prev) => {
+      const next = prev === nodeId ? null : nodeId;
+      if (typeof window !== "undefined") {
+        const route = next ? ROUTE_BY_NODE_ID[next] : null;
+        const url = route ? `/${route.slug}` : "/";
+        history.pushState(null, "", url);
+      }
+      return next;
+    });
   }, []);
 
   // Space: expand to next fork
