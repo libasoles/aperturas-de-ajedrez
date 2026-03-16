@@ -33,7 +33,7 @@ const rows = [
   },
   {
     key: "flip",
-    label: "↻ Girar tablero",
+    label: "Enter o botón ↻",
     desc: "Invierte la perspectiva del tablero",
   },
   {

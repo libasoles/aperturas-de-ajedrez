@@ -104,6 +104,17 @@ export default function ChessPanel({ selectedNodeId }) {
     return parts.join(" ");
   }, [moves, playedCount]);
 
+  // Flip board on Enter key
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (e.key === "Enter") {
+        setOrientation((o) => (o === "white" ? "black" : "white"));
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   // Drag logic
   const [pos, setPos] = useState(null); // null = use default bottom-right CSS positioning
   const dragRef = useRef({
