@@ -305,6 +305,9 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
 }
 
 function getInitialStateFromUrl() {
+  if (typeof window === "undefined") {
+    return { selectedNodeId: null, extraExpanded: new Set() };
+  }
   const nodeId = new URLSearchParams(window.location.search).get("node");
   if (!nodeId) return { selectedNodeId: null, extraExpanded: new Set() };
   const path = findPathToNode(nodeId);

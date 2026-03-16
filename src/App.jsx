@@ -6,14 +6,16 @@ import OpeningTree from "./components/OpeningTree";
 const MOBILE_BREAKPOINT = 768;
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(
-    () => window.innerWidth < MOBILE_BREAKPOINT,
-  );
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    if (typeof window === "undefined") return undefined;
     const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
   return isMobile;
 }
 
