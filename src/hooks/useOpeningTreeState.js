@@ -1,7 +1,12 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
-import { OPENING_ROUTES, ROUTE_BY_NODE_ID, ROUTE_BY_SLUG } from "../data/routes";
+import {
+  ROUTE_BY_NODE_ID,
+  ROUTE_BY_SLUG,
+  VARIANT_ROUTES,
+  VARIANT_ROUTE_BY_SLUG,
+} from "../data/routes";
 import {
   findPathToNode,
   getActivePathIds,
@@ -159,6 +164,19 @@ const OPENING_FULL_IDS = Object.fromEntries(
   ALL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)]),
 );
 
+function buildVariantFullIds(variantNodeId) {
+  const path = findPathToNode(variantNodeId);
+  if (!path.length) return new Set(["root"]);
+  const ids = new Set(path.map((n) => n.id));
+  const variantNode = path.at(-1);
+  collectAllIds(variantNode, ids);
+  return ids;
+}
+
+const VARIANT_FULL_IDS = Object.fromEntries(
+  VARIANT_ROUTES.map((r) => [r.variantNodeId, buildVariantFullIds(r.variantNodeId)]),
+);
+
 export const OPENING_COLORS = {
   root: {
     node: "#3a2a1e",
@@ -305,12 +323,19 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   return { nodes, edges, height: Y_STEP };
 }
 
-function getOpeningFromPathname() {
-  if (typeof window === "undefined") return null;
+function getRouteFromPathname() {
+  if (typeof window === "undefined") return { opening: null, variant: null };
   const slug = window.location.pathname.replace(/^\/|\/$/, "");
-  if (!slug) return null;
-  const route = ROUTE_BY_SLUG[slug];
-  return route ? route.nodeId : null;
+  if (!slug) return { opening: null, variant: null };
+  const variantRoute = VARIANT_ROUTE_BY_SLUG[slug];
+  if (variantRoute) {
+    return { opening: variantRoute.parentNodeId, variant: variantRoute.variantNodeId };
+  }
+  const openingRoute = ROUTE_BY_SLUG[slug];
+  if (openingRoute) {
+    return { opening: openingRoute.nodeId, variant: null };
+  }
+  return { opening: null, variant: null };
 }
 
 function getInitialStateFromUrl() {
@@ -325,14 +350,15 @@ function getInitialStateFromUrl() {
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
 }
 
-const INITIAL_OPENING_FROM_URL = getOpeningFromPathname();
+const INITIAL_ROUTE = getRouteFromPathname();
 const INITIAL_URL_STATE = getInitialStateFromUrl();
 
 export function useOpeningTreeState() {
   const [expandedIds, setExpandedIds] = useState(
     () => new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]),
   );
-  const [activeOpening, setActiveOpening] = useState(INITIAL_OPENING_FROM_URL);
+  const [activeOpening, setActiveOpening] = useState(INITIAL_ROUTE.opening);
+  const [activeVariant, setActiveVariant] = useState(INITIAL_ROUTE.variant);
   const [selectedNodeId, setSelectedNodeId] = useState(
     INITIAL_URL_STATE.selectedNodeId,
   );
@@ -349,9 +375,11 @@ export function useOpeningTreeState() {
     history.replaceState(null, "", url);
   }, [selectedNodeId]);
 
-  const displayIds = activeOpening
-    ? OPENING_FULL_IDS[activeOpening]
-    : expandedIds;
+  const displayIds = activeVariant
+    ? VARIANT_FULL_IDS[activeVariant]
+    : activeOpening
+      ? OPENING_FULL_IDS[activeOpening]
+      : expandedIds;
 
   const activePathIds = useMemo(
     () => (selectedNodeId ? getActivePathIds(selectedNodeId) : new Set()),
@@ -360,6 +388,7 @@ export function useOpeningTreeState() {
 
   const toggleNode = useCallback((id) => {
     setActiveOpening(null);
+    setActiveVariant(null);
     setExpandedIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -376,10 +405,12 @@ export function useOpeningTreeState() {
     const idsToExpand = getPathToNextFork(id);
     if (idsToExpand.length === 0) return;
     setActiveOpening(null);
+    setActiveVariant(null);
     setExpandedIds((prev) => new Set([...prev, ...idsToExpand]));
   }, []);
 
   const toggleOpening = useCallback((nodeId) => {
+    setActiveVariant(null);
     setActiveOpening((prev) => {
       const next = prev === nodeId ? null : nodeId;
       if (typeof window !== "undefined") {
@@ -431,6 +462,7 @@ export function useOpeningTreeState() {
       }
       const firstChild = node.children[0];
       setActiveOpening(null);
+      setActiveVariant(null);
       setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
       setSelectedNodeId(firstChild.id);
     }
@@ -461,6 +493,7 @@ export function useOpeningTreeState() {
         }
         const firstChild = node.children[0];
         setActiveOpening(null);
+        setActiveVariant(null);
         setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
         setSelectedNodeId(firstChild.id);
         return;
@@ -473,9 +506,11 @@ export function useOpeningTreeState() {
         return;
       }
 
-      const currentDisplayIds = activeOpening
-        ? OPENING_FULL_IDS[activeOpening]
-        : expandedIds;
+      const currentDisplayIds = activeVariant
+        ? VARIANT_FULL_IDS[activeVariant]
+        : activeOpening
+          ? OPENING_FULL_IDS[activeOpening]
+          : expandedIds;
       const direction = e.key === "ArrowUp" ? "up" : "down";
       const targetId = getVerticalNavigationTarget(
         selectedNodeId,
@@ -489,11 +524,12 @@ export function useOpeningTreeState() {
         .map((n) => n.id);
       setExpandedIds((prev) => new Set([...prev, ...ancestorIds]));
       setActiveOpening(null);
+      setActiveVariant(null);
       setSelectedNodeId(targetId);
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, activeOpening, expandedIds]);
+  }, [selectedNodeId, activeOpening, activeVariant, expandedIds]);
 
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
     () => buildGraph(OPENING_TREE, displayIds),
