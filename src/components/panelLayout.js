@@ -1,0 +1,11 @@
+export const DESKTOP_PANEL_RIGHT = 24;
+export const DESKTOP_CHESS_PANEL_BOTTOM = 12;
+export const DESKTOP_PANEL_STACK_GAP = 16;
+
+// Approximate rendered panel height used to stack OpeningsPanel above ChessPanel.
+export const DESKTOP_CHESS_PANEL_ESTIMATED_HEIGHT = 620;
+
+export const DESKTOP_OPENINGS_PANEL_BOTTOM =
+  DESKTOP_CHESS_PANEL_BOTTOM +
+  DESKTOP_CHESS_PANEL_ESTIMATED_HEIGHT +
+  DESKTOP_PANEL_STACK_GAP;

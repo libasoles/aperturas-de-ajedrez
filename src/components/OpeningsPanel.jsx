@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DESKTOP_OPENINGS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 export default function OpeningsPanel({
   openings,
@@ -53,7 +54,7 @@ export default function OpeningsPanel({
 
   const positionStyle = pos
     ? { left: pos.x, top: pos.y }
-    : { top: 36, right: 24 };
+    : { bottom: DESKTOP_OPENINGS_PANEL_BOTTOM, right: DESKTOP_PANEL_RIGHT };
 
   return (
     <div
@@ -112,7 +113,11 @@ export default function OpeningsPanel({
                   return (
                     <button
                       key={opening.label}
-                      ref={groupIndex === 0 && openingIndex === 0 ? firstButtonRef : undefined}
+                      ref={
+                        groupIndex === 0 && openingIndex === 0
+                          ? firstButtonRef
+                          : undefined
+                      }
                       onClick={() => onToggleOpening(opening.nodeId)}
                       className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{

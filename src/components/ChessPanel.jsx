@@ -2,6 +2,7 @@ import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
+import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
@@ -162,7 +163,7 @@ export default function ChessPanel({ selectedNodeId }) {
 
   const positionStyle = pos
     ? { left: pos.x, top: pos.y, bottom: "auto", right: "auto" }
-    : { bottom: 24, right: 24 };
+    : { bottom: DESKTOP_CHESS_PANEL_BOTTOM, right: DESKTOP_PANEL_RIGHT };
 
   return (
     <div
