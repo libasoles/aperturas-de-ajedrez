@@ -3,10 +3,14 @@ import MobileGate from "./components/MobileGate";
 import MobileOpeningTree from "./components/MobileOpeningTree";
 import OpeningTree from "./components/OpeningTree";
 
+const MOBILE_BREAKPOINT = 768;
+
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
+  const [isMobile, setIsMobile] = useState(
+    () => window.innerWidth < MOBILE_BREAKPOINT,
+  );
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
+    const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
