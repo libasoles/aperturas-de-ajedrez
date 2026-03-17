@@ -1,5 +1,6 @@
 import { Background, Controls, ReactFlow } from "@xyflow/react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { HELP_ROUTE } from "../data/routes";
 import { PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
@@ -7,10 +8,51 @@ import OpeningsPanel from "./OpeningsPanel";
 import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
+const HELP_PATH = `/${HELP_ROUTE.slug}`;
+
+function isHelpPath(pathname) {
+  return pathname.replace(/\/$/, "") === HELP_PATH;
+}
 
 export default function OpeningTree() {
   const { nodes, edges, selectedNodeId, activeOpening, toggleOpening, firstOpeningBtnRef } =
     useOpeningTreeState();
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const previousPathRef = useRef("/");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const syncFromLocation = () => {
+      setIsHelpOpen(isHelpPath(window.location.pathname));
+    };
+    syncFromLocation();
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
+  }, []);
+
+  const onHelpOpenChange = useCallback((nextOpen) => {
+    if (typeof window === "undefined") return;
+
+    const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    const currentlyOnHelp = isHelpPath(window.location.pathname);
+
+    if (nextOpen) {
+      if (!currentlyOnHelp) {
+        previousPathRef.current = currentPath || "/";
+        history.pushState(null, "", HELP_PATH);
+      }
+      setIsHelpOpen(true);
+      return;
+    }
+
+    if (currentlyOnHelp) {
+      const fallbackPath = previousPathRef.current && !isHelpPath(previousPathRef.current)
+        ? previousPathRef.current
+        : "/";
+      history.pushState(null, "", fallbackPath);
+    }
+    setIsHelpOpen(false);
+  }, []);
 
   const onInit = useCallback((rf) => {
     const { y, zoom } = rf.getViewport();
@@ -62,7 +104,7 @@ export default function OpeningTree() {
 
       {/* Help button — fixed bottom-left */}
       <div className="absolute bottom-28 left-4 z-10">
-        <HelpDialog />
+        <HelpDialog open={isHelpOpen} onOpenChange={onHelpOpenChange} />
       </div>
     </div>
   );

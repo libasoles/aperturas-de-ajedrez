@@ -61,7 +61,7 @@ async function run() {
   ]);
 
   // Dynamic import of routes from source (ESM)
-  const { OPENING_ROUTES, VARIANT_ROUTES } = await import(
+  const { HELP_ROUTE, OPENING_ROUTES, VARIANT_ROUTES } = await import(
     pathToFileURL(path.resolve(rootDir, "src", "data", "routes.js")).href
   );
 
@@ -84,7 +84,18 @@ async function run() {
   await fs.writeFile(path.join(distDir, "index.html"), homeHtml, "utf8");
   process.stdout.write("Prerendered /\n");
 
-  // 2. Opening pages
+  // 2. Help page
+  const helpDir = path.join(distDir, HELP_ROUTE.slug);
+  await fs.mkdir(helpDir, { recursive: true });
+  const helpHtml = injectMeta(rendered, {
+    title: HELP_ROUTE.title,
+    description: HELP_ROUTE.description,
+    canonical: `${BASE_URL}/${HELP_ROUTE.slug}`,
+  });
+  await fs.writeFile(path.join(helpDir, "index.html"), helpHtml, "utf8");
+  process.stdout.write(`Prerendered /${HELP_ROUTE.slug}\n`);
+
+  // 3. Opening pages
   for (const route of OPENING_ROUTES) {
     const dir = path.join(distDir, route.slug);
     await fs.mkdir(dir, { recursive: true });
@@ -98,7 +109,7 @@ async function run() {
     process.stdout.write(`Prerendered /${route.slug}\n`);
   }
 
-  // 3. Variant pages
+  // 4. Variant pages
   for (const route of VARIANT_ROUTES) {
     const dir = path.join(distDir, route.slug);
     await fs.mkdir(dir, { recursive: true });
@@ -112,9 +123,10 @@ async function run() {
     process.stdout.write(`Prerendered /${route.slug}\n`);
   }
 
-  // 4. Generate sitemap.xml from route definitions
+  // 5. Generate sitemap.xml from route definitions
   const sitemapEntries = [
     `  <url>\n    <loc>${BASE_URL}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
+    `  <url>\n    <loc>${BASE_URL}/${HELP_ROUTE.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>`,
     ...OPENING_ROUTES.map(
       (r) =>
         `  <url>\n    <loc>${BASE_URL}/${r.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
@@ -126,7 +138,7 @@ async function run() {
   ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`;
   await fs.writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
-  process.stdout.write(`Generated sitemap.xml (${1 + OPENING_ROUTES.length + VARIANT_ROUTES.length} URLs)\n`);
+  process.stdout.write(`Generated sitemap.xml (${2 + OPENING_ROUTES.length + VARIANT_ROUTES.length} URLs)\n`);
 }
 
 run().catch((err) => {

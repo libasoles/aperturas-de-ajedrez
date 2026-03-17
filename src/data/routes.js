@@ -3,6 +3,13 @@
  * Each entry maps a URL slug to an opening/variant nodeId
  * plus unique SEO metadata for SSG.
  */
+export const HELP_ROUTE = {
+  slug: "ayuda",
+  title: "Ayuda de Navegación | Árbol de Aperturas de Ajedrez",
+  description:
+    "Consulta los atajos y controles del Árbol de Aperturas de Ajedrez para navegar nodos, expandir variantes y usar el tablero interactivo.",
+};
+
 export const OPENING_ROUTES = [
   {
     slug: "defensa-escandinava",

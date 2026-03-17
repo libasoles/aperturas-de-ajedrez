@@ -43,9 +43,11 @@ const rows = [
   },
 ];
 
-export default function HelpDialog() {
+export default function HelpDialog({ open, onOpenChange }) {
+  const isControlled = typeof open === "boolean";
+
   return (
-    <Dialog.Root>
+    <Dialog.Root {...(isControlled ? { open, onOpenChange } : {})}>
       <Dialog.Trigger asChild>
         <button
           tabIndex={-1}
