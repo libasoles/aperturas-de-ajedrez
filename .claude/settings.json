@@ -7,6 +7,10 @@
           {
             "type": "command",
             "command": "node scripts/audit-openings.js --hook"
+          },
+          {
+            "type": "command",
+            "command": "node -e \"const d=JSON.parse(require('fs').readFileSync(0,'utf8'));const fp=(d.tool_input||{}).file_path||'';if(fp.endsWith('openings.js')){console.log('openings.js fue modificado \\u2192 DEBES ejecutar el skill sync-opening-routes ahora: actualiza routes.js, PANEL_OPENINGS (si es apertura nueva) y la lista de aperturas en README.md. El sitemap se regenera automaticamente en el build.');process.exit(2);}\""
           }
         ]
       }

@@ -12,6 +12,14 @@ npm run lint     # ESLint
 
 No test suite exists in this project.
 
+## Skills
+
+Skills are in `.claude/skills/`. They are invoked **automatically** — read the skill instructions whenever the trigger conditions apply, without waiting to be asked.
+
+| Skill | Trigger |
+|-------|---------|
+| [`sync-opening-routes`](.claude/skills/sync-opening-routes/SKILL.md) | Any edit to `src/data/openings.js` that adds a new opening node or variant node |
+
 ## Architecture
 
 Single-page React app that renders an interactive chess opening tree using ReactFlow.
