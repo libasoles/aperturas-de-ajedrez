@@ -1,7 +1,7 @@
 import { Background, Controls, ReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { HELP_ROUTE } from "../data/routes";
-import { PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -19,6 +19,7 @@ export default function OpeningTree() {
     useOpeningTreeState();
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const previousPathRef = useRef("/");
+  const didFocusRootRef = useRef(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -54,10 +55,40 @@ export default function OpeningTree() {
     setIsHelpOpen(false);
   }, []);
 
-  const onInit = useCallback((rf) => {
-    const { y, zoom } = rf.getViewport();
-    rf.setViewport({ x: 80, y: y + 40, zoom });
-  }, []);
+  useEffect(() => {
+    if (didFocusRootRef.current) return;
+    let retryTimeoutId = null;
+    let confirmTimeoutId = null;
+    let attempts = 0;
+
+    const tryFocusRoot = () => {
+      attempts += 1;
+      const rootPill = document.querySelector('[data-node-pill-id="root"]');
+      if (!rootPill) {
+        if (attempts < 20) {
+          retryTimeoutId = window.setTimeout(tryFocusRoot, 50);
+        }
+        return;
+      }
+
+      rootPill.focus({ preventScroll: true });
+      didFocusRootRef.current = true;
+
+      // ReactFlow can steal focus right after mount; re-assert once.
+      confirmTimeoutId = window.setTimeout(() => {
+        if (document.activeElement !== rootPill) {
+          rootPill.focus({ preventScroll: true });
+        }
+      }, 80);
+    };
+
+    tryFocusRoot();
+
+    return () => {
+      if (retryTimeoutId) window.clearTimeout(retryTimeoutId);
+      if (confirmTimeoutId) window.clearTimeout(confirmTimeoutId);
+    };
+  }, [nodes]);
 
   return (
     <div className="w-screen h-screen bg-app">
@@ -69,22 +100,22 @@ export default function OpeningTree() {
         firstButtonRef={firstOpeningBtnRef}
       />
 
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        fitView
-        fitViewOptions={{ padding: 0.14 }}
-        onInit={onInit}
-        minZoom={0.2}
-        maxZoom={2}
-        nodesDraggable={false}
-        nodesConnectable={false}
-        nodesFocusable={false}
-      >
-        <Background color="var(--color-grid)" gap={24} size={1} />
-        <Controls showInteractive={false} />
-      </ReactFlow>
+      <div className="absolute inset-0">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          defaultViewport={INITIAL_VIEWPORT}
+          minZoom={0.2}
+          maxZoom={2}
+          nodesDraggable={false}
+          nodesConnectable={false}
+          nodesFocusable={false}
+        >
+          <Background color="var(--color-grid)" gap={24} size={1} />
+          <Controls showInteractive={false} />
+        </ReactFlow>
+      </div>
 
       <ChessPanel selectedNodeId={selectedNodeId} />
 

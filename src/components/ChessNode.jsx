@@ -50,6 +50,7 @@ function ChessNode({ id, data }) {
     <div
       role="button"
       tabIndex={0}
+      data-node-pill-id={id}
       onClick={() => onSelect?.(id)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -68,6 +69,7 @@ function ChessNode({ id, data }) {
         "transition-all duration-150",
         isRoot ? "text-base ring-2 ring-white/20" : "text-sm",
         "hover:brightness-125 active:scale-95",
+        "focus:outline-2 focus:outline-offset-3 focus:outline-white/80",
         "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white/80",
       ].join(" ")}
     >

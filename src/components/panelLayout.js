@@ -1,6 +1,7 @@
 export const DESKTOP_PANEL_RIGHT = 24;
 export const DESKTOP_CHESS_PANEL_BOTTOM = 12;
 export const DESKTOP_PANEL_STACK_GAP = 16;
+export const MOBILE_BOARD_PANEL_HEIGHT = 310;
 
 // Approximate rendered panel height used to stack OpeningsPanel above ChessPanel.
 export const DESKTOP_CHESS_PANEL_ESTIMATED_HEIGHT = 620;

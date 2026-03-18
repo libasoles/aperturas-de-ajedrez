@@ -1,6 +1,7 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { OPENING_TREE } from "../data/openings";
+import { MOBILE_BOARD_PANEL_HEIGHT } from "../components/panelLayout";
 import {
   ROUTE_BY_NODE_ID,
   ROUTE_BY_SLUG,
@@ -174,7 +175,10 @@ function buildVariantFullIds(variantNodeId) {
 }
 
 const VARIANT_FULL_IDS = Object.fromEntries(
-  VARIANT_ROUTES.map((r) => [r.variantNodeId, buildVariantFullIds(r.variantNodeId)]),
+  VARIANT_ROUTES.map((r) => [
+    r.variantNodeId,
+    buildVariantFullIds(r.variantNodeId),
+  ]),
 );
 
 export const OPENING_COLORS = {
@@ -329,7 +333,10 @@ function getRouteFromPathname() {
   if (!slug) return { opening: null, variant: null };
   const variantRoute = VARIANT_ROUTE_BY_SLUG[slug];
   if (variantRoute) {
-    return { opening: variantRoute.parentNodeId, variant: variantRoute.variantNodeId };
+    return {
+      opening: variantRoute.parentNodeId,
+      variant: variantRoute.variantNodeId,
+    };
   }
   const openingRoute = ROUTE_BY_SLUG[slug];
   if (openingRoute) {
@@ -340,18 +347,64 @@ function getRouteFromPathname() {
 
 function getInitialStateFromUrl() {
   if (typeof window === "undefined") {
-    return { selectedNodeId: null, extraExpanded: new Set() };
+    return { selectedNodeId: "root", extraExpanded: new Set() };
   }
   const nodeId = new URLSearchParams(window.location.search).get("node");
-  if (!nodeId) return { selectedNodeId: null, extraExpanded: new Set() };
+  if (!nodeId) return { selectedNodeId: "root", extraExpanded: new Set() };
   const path = findPathToNode(nodeId);
-  if (!path.length) return { selectedNodeId: null, extraExpanded: new Set() };
+  if (!path.length) return { selectedNodeId: "root", extraExpanded: new Set() };
   const ancestorIds = new Set(path.slice(0, -1).map((n) => n.id));
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
 }
 
 const INITIAL_ROUTE = getRouteFromPathname();
 const INITIAL_URL_STATE = getInitialStateFromUrl();
+
+function getInitialDisplayIds() {
+  if (INITIAL_ROUTE.variant && VARIANT_FULL_IDS[INITIAL_ROUTE.variant]) {
+    return VARIANT_FULL_IDS[INITIAL_ROUTE.variant];
+  }
+  if (INITIAL_ROUTE.opening && OPENING_FULL_IDS[INITIAL_ROUTE.opening]) {
+    return OPENING_FULL_IDS[INITIAL_ROUTE.opening];
+  }
+  return new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]);
+}
+
+const { nodes: _INIT_NODES, height: _INIT_HEIGHT } = buildGraph(
+  OPENING_TREE,
+  getInitialDisplayIds(),
+);
+const _INIT_ROOT_Y = _INIT_NODES.find((n) => n.id === "root")?.position.y ?? 0;
+
+function computeInitialViewport() {
+  if (typeof window === "undefined") return { x: 24, y: 0, zoom: 0.85 };
+  const zoom = Math.min(
+    1,
+    Math.max(0.35, (window.innerHeight * 0.88) / _INIT_HEIGHT),
+  );
+  return {
+    x: 36,
+    y: window.innerHeight / 2 - _INIT_ROOT_Y * zoom,
+    zoom,
+  };
+}
+
+export const INITIAL_VIEWPORT = computeInitialViewport();
+
+function computeInitialMobileViewport() {
+  if (typeof window === "undefined") return { x: 0, y: 200, zoom: 0.7 };
+  const zoom = Math.min(1, Math.max(0.3, (window.innerWidth * 0.88) / _INIT_HEIGHT));
+  const treeAreaHeight = window.innerHeight - MOBILE_BOARD_PANEL_HEIGHT;
+  return {
+    // Center the root node (canvas x = _INIT_ROOT_Y) horizontally
+    x: window.innerWidth / 2 - _INIT_ROOT_Y * zoom,
+    // Root node is at canvas y = 0; place it at 88% down the tree area
+    y: treeAreaHeight * 0.88,
+    zoom,
+  };
+}
+
+export const INITIAL_MOBILE_VIEWPORT = computeInitialMobileViewport();
 
 export function useOpeningTreeState() {
   const [expandedIds, setExpandedIds] = useState(
@@ -367,7 +420,7 @@ export function useOpeningTreeState() {
   // Sync selected node → URL
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (selectedNodeId) {
+    if (selectedNodeId && selectedNodeId !== "root") {
       url.searchParams.set("node", selectedNodeId);
     } else {
       url.searchParams.delete("node");

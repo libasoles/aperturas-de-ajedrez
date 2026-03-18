@@ -1,12 +1,12 @@
 import { Background, ReactFlow } from "@xyflow/react";
 import { useMemo } from "react";
-import { useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { INITIAL_MOBILE_VIEWPORT, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 
 const nodeTypes = { chess: MobileChessNode };
 
-const BOARD_PANEL_HEIGHT = 310;
+import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 export default function MobileOpeningTree() {
   const { nodes, edges, selectedNodeId } = useOpeningTreeState();
@@ -37,7 +37,7 @@ export default function MobileOpeningTree() {
       <div
         className="panel"
         style={{
-          height: BOARD_PANEL_HEIGHT,
+          height: MOBILE_BOARD_PANEL_HEIGHT,
           borderBottom:
             "1px solid color-mix(in srgb, var(--color-grid) 60%, transparent)",
           flexShrink: 0,
@@ -58,8 +58,7 @@ export default function MobileOpeningTree() {
           nodes={mobileNodes}
           edges={edges}
           nodeTypes={nodeTypes}
-          fitView
-          fitViewOptions={{ padding: 0.12 }}
+          defaultViewport={INITIAL_MOBILE_VIEWPORT}
           minZoom={0.2}
           maxZoom={2}
           nodesDraggable={false}
