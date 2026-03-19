@@ -1,8 +1,9 @@
 import { Handle, Position } from "@xyflow/react";
 import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
-import { Tooltip } from "./ui/Tooltip";
+import { useTranslation } from "react-i18next";
 import { toSpanishSAN } from "../utils/chessPath";
+import { Tooltip } from "./ui/Tooltip";
 
 function getPieceCode(move, isWhite) {
   if (!move) return null;
@@ -17,10 +18,11 @@ function getPieceCode(move, isWhite) {
 }
 
 function ChessNode({ id, data }) {
+  const { t, i18n } = useTranslation();
+  const san = (move) => i18n.language === "en" ? move : toSpanishSAN(move);
+
   const {
     move,
-    name,
-    annotation,
     color,
     opening,
     isExpanded,
@@ -33,7 +35,10 @@ function ChessNode({ id, data }) {
     onExpandToFork,
   } = data;
 
-  const isRoot = opening === "root";
+  const name = t(`openings:${id}.name`, { defaultValue: "" }) || null;
+  const annotation = t(`openings:${id}.annotation`, { defaultValue: "" }) || null;
+
+  const isRoot = id === "root";
   const isWhite = color === "white";
 
   const ringStyle = isSelected
@@ -93,7 +98,7 @@ function ChessNode({ id, data }) {
           ) : null;
         })()}
 
-      <span>{toSpanishSAN(move)}</span>
+      <span>{isRoot ? t("chess_panel.initial") : san(move)}</span>
 
       {/* Expand/collapse button — separate click area */}
       {hasChildren && (
@@ -148,7 +153,7 @@ function ChessNode({ id, data }) {
         <span
           role="button"
           tabIndex={-1}
-          title="Expandir hasta bifurcación"
+          title={t("node.expand_to_fork")}
           onClick={(e) => {
             e.stopPropagation();
             onExpandToFork?.(id);

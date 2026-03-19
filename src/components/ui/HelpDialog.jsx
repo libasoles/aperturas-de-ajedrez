@@ -1,49 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useTranslation } from "react-i18next";
 
-const rows = [
-  {
-    key: "click",
-    label: "Click en nodo",
-    desc: "Selecciona el nodo y muestra las jugadas en el tablero",
-  },
-  {
-    key: "flecha",
-    label: "Icono de flecha",
-    desc: "Despliega los nodos hasta la próxima bifurcación",
-  },
-  {
-    key: "tab",
-    label: "Tab / Shift+Tab",
-    desc: "Avanza al próximo nodo / retrocede al nodo anterior",
-  },
-  {
-    key: "space",
-    label: "Espacio",
-    desc: "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación, igual que el icono →",
-  },
-  {
-    key: "arrows-lr",
-    label: "← / →",
-    desc: "Igual que Shift+Tab / Tab, si hay un nodo seleccionado",
-  },
-  {
-    key: "arrows-ud",
-    label: "↑ / ↓",
-    desc: "Navega entre ramas adyacentes",
-  },
-  {
-    key: "flip",
-    label: "Enter o botón ↻",
-    desc: "Invierte la perspectiva del tablero",
-  },
-  {
-    key: "play",
-    label: "▶ Reproducir",
-    desc: "Anima las jugadas una por una",
-  },
-];
+const ROW_KEYS = ["click", "flecha", "tab", "space", "arrows-lr", "arrows-ud", "flip", "play"];
 
 export default function HelpDialog({ open, onOpenChange }) {
+  const { t } = useTranslation();
   const isControlled = typeof open === "boolean";
 
   return (
@@ -51,7 +12,7 @@ export default function HelpDialog({ open, onOpenChange }) {
       <Dialog.Trigger asChild>
         <button
           tabIndex={-1}
-          title="Ayuda"
+          title={t("help.title")}
           className="flex items-center justify-center w-7 h-7 rounded-full border font-mono font-bold text-[15px] leading-none transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer"
           style={{
             color: "var(--color-neon-purple)",
@@ -77,7 +38,7 @@ export default function HelpDialog({ open, onOpenChange }) {
               className="font-mono text-[11px] tracking-[0.35em] uppercase"
               style={{ color: "var(--color-neon-purple)" }}
             >
-              Ayuda
+              {t("help.title")}
             </Dialog.Title>
             <Dialog.Close asChild>
               <button
@@ -95,28 +56,25 @@ export default function HelpDialog({ open, onOpenChange }) {
 
           {/* Table */}
           <div className="flex flex-col">
-            {rows.map((row, i) => (
+            {ROW_KEYS.map((key) => (
               <div
-                key={row.key}
+                key={key}
                 className="flex items-start gap-4 py-3"
                 style={{
-                  borderTop:
-                    i === 0
-                      ? "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)"
-                      : "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+                  borderTop: "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                 }}
               >
                 <span
                   className="font-mono text-[14px] font-bold shrink-0 w-36"
                   style={{ color: "var(--color-neon-purple)" }}
                 >
-                  {row.label}
+                  {t(`help.rows.${key}.label`)}
                 </span>
                 <span
                   className="font-sans text-[14px] leading-snug"
                   style={{ color: "#c8bfe0" }}
                 >
-                  {row.desc}
+                  {t(`help.rows.${key}.desc`)}
                 </span>
               </div>
             ))}

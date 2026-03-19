@@ -1,20 +1,26 @@
 import { Background, Controls, ReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { HELP_ROUTE } from "../data/routes";
-import { INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { useTranslation } from "react-i18next";
+import { buildHelpUrl, detectLocale, INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
 import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
-const HELP_PATH = `/${HELP_ROUTE.slug}`;
+
+function getHelpPath() {
+  return buildHelpUrl(detectLocale());
+}
 
 function isHelpPath(pathname) {
-  return pathname.replace(/\/$/, "") === HELP_PATH;
+  // Help path can be either /ayuda or /en/help
+  const p = pathname.replace(/\/$/, "");
+  return p === "/ayuda" || p === "/en/help";
 }
 
 export default function OpeningTree() {
+  const { t, i18n } = useTranslation();
   const { nodes, edges, selectedNodeId, activeOpening, toggleOpening, firstOpeningBtnRef } =
     useOpeningTreeState();
   const [isHelpOpen, setIsHelpOpen] = useState(false);
@@ -40,16 +46,17 @@ export default function OpeningTree() {
     if (nextOpen) {
       if (!currentlyOnHelp) {
         previousPathRef.current = currentPath || "/";
-        history.pushState(null, "", HELP_PATH);
+        history.pushState(null, "", getHelpPath());
       }
       setIsHelpOpen(true);
       return;
     }
 
     if (currentlyOnHelp) {
+      const locale = detectLocale();
       const fallbackPath = previousPathRef.current && !isHelpPath(previousPathRef.current)
         ? previousPathRef.current
-        : "/";
+        : (locale === "en" ? "/en/" : "/");
       history.pushState(null, "", fallbackPath);
     }
     setIsHelpOpen(false);
@@ -127,9 +134,9 @@ export default function OpeningTree() {
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
         }}
       >
-        <a href="/" className="flex flex-col gap-0.5 no-underline">
-          <div className="neon-title">Árbol de Aperturas</div>
-          <div className="neon-subtitle">Explora variantes, compara</div>
+        <a href={i18n.language === "en" ? "/en" : "/"} className="flex flex-col gap-0.5 no-underline">
+          <div className="neon-title">{t("title")}</div>
+          <div className="neon-subtitle">{t("subtitle")}</div>
         </a>
       </div>
 

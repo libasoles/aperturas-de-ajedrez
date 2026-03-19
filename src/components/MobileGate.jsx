@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function MobileGate({ children }) {
+  const { t } = useTranslation();
   const [accepted, setAccepted] = useState(false);
 
   if (accepted) return children;
@@ -12,18 +14,17 @@ export default function MobileGate({ children }) {
 
         <div className="flex flex-col gap-2">
           <h1 className="neon-title" style={{ fontSize: "1.1rem" }}>
-            Árbol de Aperturas
+            {t("title")}
           </h1>
-          <p className="neon-subtitle">Advertencia</p>
+          <p className="neon-subtitle">{t("mobile_gate.warning")}</p>
         </div>
 
         <p className="font-mono text-[14px] leading-relaxed text-neon-cyan/60">
-          Esta app está diseñada para pantallas grandes.
+          {t("mobile_gate.designed_for_large")}
           <br />
           <br />
-          La versión móvil está en{" "}
-          <span className="text-neon-purple/80">beta</span>, y algunos elementos
-          pueden no verse bien.
+          {t("mobile_gate.mobile_version")}{" "}
+          <span className="text-neon-purple/80">{t("mobile_gate.beta")}</span>{t("mobile_gate.may_not_look_good")}
         </p>
 
         <div className="w-full h-px bg-neon-purple/12" />
@@ -36,7 +37,7 @@ export default function MobileGate({ children }) {
               "0 0 12px color-mix(in srgb, var(--color-neon-purple) 14%, transparent)",
           }}
         >
-          Continuar
+          {t("mobile_gate.continue")}
         </button>
       </div>
     </div>

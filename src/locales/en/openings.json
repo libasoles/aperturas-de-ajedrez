@@ -1,0 +1,859 @@
+{
+  "e4": {
+    "name": "King's Pawn",
+    "annotation": "Controls the center"
+  },
+  "scan-1": {
+    "name": "Scandinavian",
+    "annotation": "Immediate challenge to the center"
+  },
+  "scan-2": {
+    "annotation": "Accepts the pawn"
+  },
+  "scan-3a": {
+    "name": "Queen's recapture",
+    "annotation": "Main line"
+  },
+  "scan-4a": {
+    "annotation": "Attacks the queen"
+  },
+  "scan-5a1": {
+    "name": "Mieses-Kotroc",
+    "annotation": "Main modern line"
+  },
+  "scan-6a1": {
+    "annotation": "Consolidates the center"
+  },
+  "scan-7a1": {
+    "annotation": "Natural development"
+  },
+  "scan-8a1": {
+    "annotation": "Active development"
+  },
+  "scan-9a1a": {
+    "name": "Fianchetto",
+    "annotation": "Bishop to g7"
+  },
+  "scan-10a1a": {
+    "annotation": "Prevents Bg4"
+  },
+  "scan-13a1a": {
+    "name": "Complete Fianchetto",
+    "annotation": "Solid position for Black"
+  },
+  "scan-9a1b": {
+    "annotation": "Pins the knight"
+  },
+  "scan-11a1b": {
+    "annotation": "Doubles White's pawns"
+  },
+  "scan-13a1b": {
+    "name": "Solid Structure"
+  },
+  "scan-5a2": {
+    "name": "Classical",
+    "annotation": "Queen to a5, flank pressure"
+  },
+  "scan-9a2a": {
+    "annotation": "Active pin"
+  },
+  "scan-13a2a": {
+    "name": "Classical Qa5",
+    "annotation": "Black completes development"
+  },
+  "scan-9a2b": {
+    "annotation": "Solid"
+  },
+  "scan-10a2b": {
+    "annotation": "Active development"
+  },
+  "scan-13a2b": {
+    "name": "Scandinavian Classical",
+    "annotation": "Black castles kingside"
+  },
+  "scan-3b": {
+    "name": "Modern (knight)",
+    "annotation": "Avoids early queen development"
+  },
+  "scan-5b1": {
+    "annotation": "Knight recapture"
+  },
+  "scan-7b1a": {
+    "name": "Fianchetto",
+    "annotation": "Bishop to g7"
+  },
+  "scan-8b1a": {
+    "annotation": "Drives away the knight"
+  },
+  "scan-9b1a": {
+    "annotation": "Forced retreat"
+  },
+  "scan-12b1a": {
+    "name": "Modern System",
+    "annotation": "Center control"
+  },
+  "scan-7b1b": {
+    "annotation": "Immediate exchange"
+  },
+  "scan-9b1b": {
+    "annotation": "Bishop fianchetto"
+  },
+  "scan-13b1b": {
+    "name": "Modern with b-pawn"
+  },
+  "scan-5b2": {
+    "name": "Icelandic Gambit",
+    "annotation": "Pawn sacrifice for activity"
+  },
+  "scan-7b2": {
+    "annotation": "Positional compensation"
+  },
+  "scan-9b2": {
+    "annotation": "Development with attack"
+  },
+  "scan-13b2": {
+    "name": "Complete Icelandic Gambit"
+  },
+  "span-1": {
+    "name": "Open Games",
+    "annotation": "Symmetric center"
+  },
+  "span-2": {
+    "annotation": "Attacks e5"
+  },
+  "span-3": {
+    "annotation": "Defends e5"
+  },
+  "span-4": {
+    "name": "Ruy López",
+    "annotation": "Pins the knight defending e5"
+  },
+  "span-5a": {
+    "name": "Morphy Defense",
+    "annotation": "Most common response"
+  },
+  "span-6a": {
+    "annotation": "Maintains the pressure"
+  },
+  "span-7a1": {
+    "name": "Closed Variation",
+    "annotation": "The most solid"
+  },
+  "span-8a1": {
+    "annotation": "Castles and prepares d4"
+  },
+  "span-9a1a": {
+    "name": "Closed Spanish",
+    "annotation": "Solid and positional"
+  },
+  "span-10a1a": {
+    "annotation": "The key central advance"
+  },
+  "span-11a1a": {
+    "annotation": "Closes the center"
+  },
+  "span-15a1a": {
+    "annotation": "Rerouting the knight"
+  },
+  "span-16a1a": {
+    "name": "Main Closed Spanish",
+    "annotation": "Characteristic position"
+  },
+  "span-9a1b": {
+    "name": "Open Spanish",
+    "annotation": "Active and tactical"
+  },
+  "span-10a1b": {
+    "annotation": "Bishop retreats"
+  },
+  "span-16a1b": {
+    "name": "Main Open Spanish"
+  },
+  "span-6ae": {
+    "name": "Exchange Variation",
+    "annotation": "Doubles Black's pawns"
+  },
+  "span-7ae": {
+    "annotation": "Pawn recapture"
+  },
+  "span-9ae": {
+    "annotation": "Defends e5"
+  },
+  "span-14ae": {
+    "name": "Exchange with queens",
+    "annotation": "White's structural advantage"
+  },
+  "span-5b": {
+    "name": "Berlin Defense",
+    "annotation": "The drawing weapon"
+  },
+  "span-7b": {
+    "name": "Berlin Endgame",
+    "annotation": "Kramnik's favorite"
+  },
+  "span-8b": {
+    "annotation": "Claims the center"
+  },
+  "span-9b1": {
+    "name": "Main Berlin",
+    "annotation": "Most played line"
+  },
+  "span-10b1": {
+    "annotation": "Captures the pawn"
+  },
+  "span-16b1": {
+    "name": "Berlin Endgame",
+    "annotation": "The most analyzed endgame in the world"
+  },
+  "span-9b2": {
+    "name": "Río de Janeiro",
+    "annotation": "Sharp variation"
+  },
+  "span-15b2": {
+    "name": "Complete Río de Janeiro"
+  },
+  "span-5c": {
+    "name": "Schliemann Gambit",
+    "annotation": "Aggressive and irregular"
+  },
+  "span-9c": {
+    "annotation": "Counter-attacks the center"
+  },
+  "span-10c": {
+    "annotation": "Attacks the f7 pawn"
+  },
+  "span-14c": {
+    "name": "Active Schliemann"
+  },
+  "ital-1": {
+    "name": "Italian Game",
+    "annotation": "Targets f7"
+  },
+  "ital-2a": {
+    "name": "Giuoco Piano",
+    "annotation": "Quiet game"
+  },
+  "ital-3a": {
+    "annotation": "Prepares d4"
+  },
+  "ital-4a": {
+    "annotation": "Attacks e4"
+  },
+  "ital-5a": {
+    "annotation": "Opens the center"
+  },
+  "ital-6a1": {
+    "name": "Modern Giuoco",
+    "annotation": "Accepts the exchange"
+  },
+  "ital-13a1": {
+    "name": "Main Modern Giuoco"
+  },
+  "ital-6a2": {
+    "annotation": "Preserves the bishop"
+  },
+  "ital-7a2": {
+    "annotation": "Aggressive central advance"
+  },
+  "ital-12a2": {
+    "name": "Italian with d5"
+  },
+  "ital-2b": {
+    "name": "Two Knights",
+    "annotation": "Aggressive, ignores the threat"
+  },
+  "ital-3b": {
+    "annotation": "Threatens Nxf7"
+  },
+  "ital-4b": {
+    "annotation": "Only defense"
+  },
+  "ital-6b1": {
+    "name": "Knorre Variation",
+    "annotation": "Attacks the bishop"
+  },
+  "ital-12b1": {
+    "name": "Complete Knorre"
+  },
+  "ital-6b2": {
+    "name": "Fried Liver",
+    "annotation": "Very sharp tactics"
+  },
+  "ital-7b2": {
+    "annotation": "The Fried Liver sacrifice"
+  },
+  "ital-12b2": {
+    "name": "Main Fried Liver",
+    "annotation": "Solidest defense"
+  },
+  "ital-3b2": {
+    "annotation": "Castles first"
+  },
+  "ital-4b2": {
+    "annotation": "Wins the pawn"
+  },
+  "ital-5b2": {
+    "annotation": "Pressures the knight"
+  },
+  "ital-6b3": {
+    "annotation": "Counter-attacks"
+  },
+  "ital-12b3": {
+    "name": "Complete Two Knights Italian"
+  },
+  "sic-1": {
+    "name": "Sicilian Defense",
+    "annotation": "Most popular response to 1.e4"
+  },
+  "sic-3a": {
+    "name": "Najdorf/Dragon setup"
+  },
+  "sic-4a": {
+    "annotation": "Open Sicilian"
+  },
+  "sic-9a1": {
+    "name": "Najdorf",
+    "annotation": "The most played in the world"
+  },
+  "sic-10a1": {
+    "name": "Fischer Attack",
+    "annotation": "Fischer's classic"
+  },
+  "sic-15a1": {
+    "name": "Fischer-Sozin Najdorf",
+    "annotation": "Typical sharp position"
+  },
+  "sic-10a2": {
+    "name": "English Attack",
+    "annotation": "Very popular today"
+  },
+  "sic-16a2": {
+    "name": "Aggressive English",
+    "annotation": "Pawn attack"
+  },
+  "sic-9a2": {
+    "name": "Dragon",
+    "annotation": "Bishop on g7, very sharp"
+  },
+  "sic-10a3": {
+    "name": "Yugoslav Attack",
+    "annotation": "The most aggressive continuation"
+  },
+  "sic-16a3": {
+    "name": "Main Yugoslav",
+    "annotation": "Kingside pawn attack"
+  },
+  "sic-10a4": {
+    "name": "Classical Dragon",
+    "annotation": "More positional"
+  },
+  "sic-15a4": {
+    "name": "Main Classical Dragon line"
+  },
+  "sic-9a3": {
+    "name": "Scheveningen",
+    "annotation": "Flexible e6+d6 structure"
+  },
+  "sic-10a5": {
+    "name": "Keres Attack",
+    "annotation": "Very aggressive"
+  },
+  "sic-11a5": {
+    "annotation": "Stops g5"
+  },
+  "sic-15a5": {
+    "name": "Keres counterattack"
+  },
+  "sic-10a6": {
+    "name": "Classical Line",
+    "annotation": "Solid and flexible"
+  },
+  "sic-15a6": {
+    "name": "Complete Classical Scheveningen"
+  },
+  "sic-3b": {
+    "name": "Classical/Taimanov setup"
+  },
+  "sic-7b1": {
+    "name": "Classical"
+  },
+  "sic-9b1a": {
+    "annotation": "Solid position"
+  },
+  "sic-14b1a": {
+    "name": "Classical with d6"
+  },
+  "sic-9b1b": {
+    "name": "Sveshnikov",
+    "annotation": "Aggressive, weakens d5"
+  },
+  "sic-15b1b": {
+    "name": "Main Sveshnikov",
+    "annotation": "The knight reroutes"
+  },
+  "sic-7b2": {
+    "name": "Taimanov",
+    "annotation": "Flexible and solid"
+  },
+  "sic-9b2a": {
+    "annotation": "Normal development"
+  },
+  "sic-14b2a": {
+    "name": "Taimanov-Kan mix"
+  },
+  "sic-9b2b": {
+    "annotation": "Prepares b5"
+  },
+  "sic-14b2b": {
+    "name": "Aggressive Taimanov"
+  },
+  "sic-3c": {
+    "name": "Kan/Scheveningen setup"
+  },
+  "sic-7c1": {
+    "name": "Kan",
+    "annotation": "Very flexible"
+  },
+  "sic-9c1a": {
+    "name": "Main Kan",
+    "annotation": "Protects and develops"
+  },
+  "sic-14c1a": {
+    "name": "Classical Kan"
+  },
+  "sic-9c1b": {
+    "name": "Aggressive Kan",
+    "annotation": "Flank advance"
+  },
+  "sic-14c1b": {
+    "name": "Kan with b5"
+  },
+  "sic-7c2": {
+    "name": "Scheveningen",
+    "annotation": "e6+d6 structure"
+  },
+  "sic-9c2a": {
+    "name": "Classical Scheveningen",
+    "annotation": "The most common structure"
+  },
+  "sic-15c2a": {
+    "name": "Complete Scheveningen"
+  },
+  "sic-9c2b": {
+    "name": "Nimzovich Sicilian",
+    "annotation": "Pins the knight"
+  },
+  "sic-15c2b": {
+    "name": "Complete Nimzovich"
+  },
+  "sic-2b": {
+    "name": "Closed Sicilian",
+    "annotation": "Avoids opening the center"
+  },
+  "sic-4d": {
+    "annotation": "Bishop fianchetto"
+  },
+  "sic-5d": {
+    "annotation": "Symmetric fianchetto"
+  },
+  "sic-7d": {
+    "name": "Closed with Fianchetto",
+    "annotation": "Positional game"
+  },
+  "sic-8d": {
+    "annotation": "Grand Prix classic"
+  },
+  "sic-9d": {
+    "annotation": "Prepares e5 or Nf6"
+  },
+  "sic-10d": {
+    "annotation": "Strengthens the center"
+  },
+  "sic-11d": {
+    "annotation": "Prepares d5"
+  },
+  "sic-16da": {
+    "name": "Queenside Closed",
+    "annotation": "Queenside attack"
+  },
+  "sic-16db": {
+    "name": "Central Closed",
+    "annotation": "Knight jump to center"
+  },
+  "fr-1": {
+    "name": "French Defense",
+    "annotation": "Second most played response to 1.e4"
+  },
+  "fr-2": {
+    "annotation": "Controls the center"
+  },
+  "fr-3": {
+    "annotation": "Challenges White's center"
+  },
+  "fr-4a": {
+    "name": "Advance Variation",
+    "annotation": "Gains space, closes the center"
+  },
+  "fr-5a": {
+    "annotation": "Attacks the base of the chain"
+  },
+  "fr-6a": {
+    "annotation": "Reinforces d4"
+  },
+  "fr-13a": {
+    "name": "Main Advance",
+    "annotation": "Knight pin"
+  },
+  "fr-4b": {
+    "name": "Exchange Variation",
+    "annotation": "Simplifies the center"
+  },
+  "fr-13b": {
+    "name": "Typical Exchange",
+    "annotation": "Equal endgame"
+  },
+  "fr-4c": {
+    "annotation": "The most popular elite move"
+  },
+  "fr-5c1": {
+    "name": "Winawer",
+    "annotation": "Pins the knight, creates tension"
+  },
+  "fr-6c1": {
+    "name": "Winawer Advance",
+    "annotation": "The sharpest line"
+  },
+  "fr-8c1": {
+    "annotation": "Forces the bishop's decision"
+  },
+  "fr-9c1": {
+    "annotation": "Doubles White's pawns"
+  },
+  "fr-13c1": {
+    "name": "Main Winawer",
+    "annotation": "Very complex position"
+  },
+  "fr-5c2": {
+    "name": "Classical",
+    "annotation": "Normal development"
+  },
+  "fr-13c2": {
+    "name": "Main Classical"
+  },
+  "fr-4d": {
+    "name": "Tarrasch Variation",
+    "annotation": "Avoids the Bb4 pin"
+  },
+  "fr-5d1": {
+    "name": "Open Tarrasch",
+    "annotation": "Double attack on the center"
+  },
+  "fr-13d1": {
+    "name": "Complete Open Tarrasch"
+  },
+  "fr-5d2": {
+    "name": "Closed Tarrasch",
+    "annotation": "Normal development"
+  },
+  "fr-13d2": {
+    "name": "Complete Closed Tarrasch"
+  },
+  "ck-1": {
+    "name": "Caro-Kann",
+    "annotation": "Solid and positional defense"
+  },
+  "ck-3": {
+    "annotation": "Creates tension in the center"
+  },
+  "ck-4a": {
+    "name": "Classical Line",
+    "annotation": "The most popular approach"
+  },
+  "ck-7a": {
+    "name": "Main Classical",
+    "annotation": "The bishop activates before Nd7"
+  },
+  "ck-16a": {
+    "name": "Complete Classical Caro-Kann"
+  },
+  "ck-4b": {
+    "name": "Advance Variation",
+    "annotation": "Gains space, restricts Black"
+  },
+  "ck-5b": {
+    "annotation": "Develops the bishop before e6"
+  },
+  "ck-13b": {
+    "name": "Complete Caro-Kann Advance"
+  },
+  "ck-4c": {
+    "name": "Exchange Variation",
+    "annotation": "Simplifies, facilitates draws"
+  },
+  "ck-12c": {
+    "name": "Complete Caro-Kann Exchange"
+  },
+  "ck-4d": {
+    "name": "Fantasy Variation",
+    "annotation": "Aggressive, seeks massive center"
+  },
+  "ck-12d": {
+    "name": "Complete Fantasy"
+  },
+  "pirc-1": {
+    "name": "Pirc Defense",
+    "annotation": "Hypermodern defense, yields the center"
+  },
+  "pirc-5": {
+    "annotation": "King's bishop fianchetto"
+  },
+  "pirc-6a": {
+    "name": "Austrian Attack",
+    "annotation": "The most aggressive, seeks f5"
+  },
+  "pirc-14a": {
+    "name": "Complete Austrian"
+  },
+  "pirc-6b": {
+    "name": "Classical System",
+    "annotation": "Quiet development"
+  },
+  "pirc-14b": {
+    "name": "Complete Classical Pirc"
+  },
+  "pirc-6c": {
+    "name": "150 Attack",
+    "annotation": "Informal name, very aggressive"
+  },
+  "pirc-10c": {
+    "annotation": "Opposite castling, tension"
+  },
+  "pirc-13c": {
+    "name": "Complete 150 Attack",
+    "annotation": "Queenside counterattack"
+  },
+  "al-1": {
+    "name": "Alekhine's Defense",
+    "annotation": "Provokes White's advance to attack it"
+  },
+  "al-2": {
+    "annotation": "Accepts the challenge, gains space"
+  },
+  "al-3": {
+    "annotation": "The knight retreats with a future plan"
+  },
+  "al-5": {
+    "annotation": "Attacks the pawn chain"
+  },
+  "al-6a": {
+    "name": "Modern Variation",
+    "annotation": "Solid development"
+  },
+  "al-13a": {
+    "name": "Complete Modern Alekhine"
+  },
+  "al-6b": {
+    "name": "Exchange Variation",
+    "annotation": "Attacks the knight on d5"
+  },
+  "al-13b": {
+    "name": "Complete Alekhine Exchange"
+  },
+  "al-6c": {
+    "name": "Four Pawns Attack",
+    "annotation": "The most aggressive, massive pawn chain"
+  },
+  "al-9c": {
+    "annotation": "Attacks White's center"
+  },
+  "al-13c": {
+    "name": "Complete Four Pawns"
+  },
+  "d4": {
+    "name": "Queen's Pawn",
+    "annotation": "Center control, positional opening"
+  },
+  "qg-1": {
+    "name": "Queen's Pawn Defense",
+    "annotation": "Symmetric response to the center"
+  },
+  "qg-2": {
+    "name": "Queen's Gambit",
+    "annotation": "Offers the pawn for central control"
+  },
+  "qg-3a": {
+    "name": "Queen's Gambit Accepted",
+    "annotation": "Accepts the gambit; White recovers the pawn"
+  },
+  "qg-4a": {
+    "annotation": "Development and threat to recover the pawn"
+  },
+  "qg-5a": {
+    "annotation": "Normal development"
+  },
+  "qg-6a1": {
+    "name": "Classical QGA",
+    "annotation": "Solid pawn recovery"
+  },
+  "qg-12a1": {
+    "name": "Complete Classical QGA"
+  },
+  "qg-6a2": {
+    "name": "Modern QGA",
+    "annotation": "Immediate pressure on the center"
+  },
+  "qg-8a2": {
+    "annotation": "Powerful center"
+  },
+  "qg-12a2": {
+    "name": "Aggressive Modern QGA"
+  },
+  "qg-3b": {
+    "name": "Queen's Gambit Declined",
+    "annotation": "Declines maintaining the center with e6"
+  },
+  "qg-4b": {
+    "annotation": "Develops and pressures the center"
+  },
+  "qg-6b": {
+    "annotation": "Pins Black's knight"
+  },
+  "qg-7b1": {
+    "name": "Orthodox QGD",
+    "annotation": "The classic and solid continuation"
+  },
+  "qg-14b1": {
+    "name": "Complete Orthodox QGD"
+  },
+  "qg-7b2": {
+    "name": "Cambridge Springs",
+    "annotation": "Prepares Bb4 and active threats"
+  },
+  "qg-13b2": {
+    "name": "Complete Cambridge Springs"
+  },
+  "qg-3c": {
+    "name": "Slav Defense",
+    "annotation": "Reinforces d5 without blocking the queen's bishop"
+  },
+  "qg-7c1": {
+    "name": "Accepted Slav",
+    "annotation": "Accepts the gambit with c6 support"
+  },
+  "qg-8c1": {
+    "annotation": "Classical center"
+  },
+  "qg-13c1": {
+    "name": "Complete Accepted Slav"
+  },
+  "qg-7c2": {
+    "name": "Semi-Slav",
+    "annotation": "Merano and Anti-Merano, very sharp"
+  },
+  "qg-13c2": {
+    "name": "Semi-Slav Meran"
+  },
+  "lon-2": {
+    "name": "London System",
+    "annotation": "Solid setup without committing to c4"
+  },
+  "lon-3": {
+    "annotation": "Natural knight development"
+  },
+  "lon-4": {
+    "annotation": "Active bishop before closing the chain"
+  },
+  "lon-6": {
+    "annotation": "Consolidates the center without sharp exchanges"
+  },
+  "lon-7a": {
+    "name": "Classical London",
+    "annotation": "Solid structure, positional play"
+  },
+  "lon-13a": {
+    "name": "Main Classical London"
+  },
+  "lon-7b": {
+    "name": "London vs c5",
+    "annotation": "Challenges the center immediately"
+  },
+  "lon-12b": {
+    "name": "London vs c5 typical draws"
+  },
+  "ki-1": {
+    "name": "Indian Defense",
+    "annotation": "Center control from the flank"
+  },
+  "ki-2": {
+    "annotation": "Expands White's center"
+  },
+  "ki-3a": {
+    "name": "King's Indian Defense",
+    "annotation": "King's bishop fianchetto"
+  },
+  "ki-5a": {
+    "annotation": "The powerful Indian bishop on the long diagonal"
+  },
+  "ki-6a": {
+    "annotation": "Large pawn center"
+  },
+  "ki-7a": {
+    "annotation": "Prepares e5 to attack the center"
+  },
+  "ki-10a1": {
+    "name": "Classical King's Indian",
+    "annotation": "The most popular tournament variation"
+  },
+  "ki-11a1": {
+    "annotation": "The typical Indian break, generates dynamic play"
+  },
+  "ki-12a1": {
+    "annotation": "Closes the center"
+  },
+  "ki-13a1": {
+    "annotation": "The knight goes to f4"
+  },
+  "ki-17a1": {
+    "name": "Main Classical King's Indian",
+    "annotation": "Kingside attack"
+  },
+  "ki-8a2": {
+    "name": "Sämisch",
+    "annotation": "Aggressive, prepares the g4 advance"
+  },
+  "ki-10a2": {
+    "name": "Main Sämisch",
+    "annotation": "Targets the dark squares on the kingside"
+  },
+  "ki-17a2": {
+    "name": "Complete Sämisch"
+  },
+  "nim-3b": {
+    "name": "Nimzo-Indian / Queen's Indian",
+    "annotation": "Prepares Bb4 pinning the c3 knight"
+  },
+  "nim-5b": {
+    "name": "Nimzo-Indian Defense",
+    "annotation": "The central pin, Nimzowitsch's creation"
+  },
+  "nim-6b1": {
+    "name": "Classical Nimzo",
+    "annotation": "Avoids doubling pawns, pressure on c4"
+  },
+  "nim-7b1": {
+    "annotation": "Quiet and solid development"
+  },
+  "nim-13b1": {
+    "name": "Complete Classical Nimzo"
+  },
+  "nim-6b2": {
+    "name": "Rubinstein Nimzo",
+    "annotation": "Solid and classical, consolidates the center"
+  },
+  "nim-8b2": {
+    "annotation": "Bishop aims at h7"
+  },
+  "nim-14b2": {
+    "name": "Complete Rubinstein Nimzo"
+  }
+}

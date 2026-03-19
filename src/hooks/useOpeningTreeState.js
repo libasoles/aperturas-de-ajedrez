@@ -1,8 +1,10 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import i18n from "../i18n";
 import { OPENING_TREE } from "../data/openings";
 import { MOBILE_BOARD_PANEL_HEIGHT } from "../components/panelLayout";
 import {
+  HELP_ROUTE,
   ROUTE_BY_NODE_ID,
   ROUTE_BY_SLUG,
   VARIANT_ROUTES,
@@ -14,6 +16,25 @@ import {
   getPathToNextFork,
   getVerticalNavigationTarget,
 } from "../utils/chessPath";
+
+// Detect locale from URL prefix — server falls back to "es"
+function detectLocale() {
+  if (typeof window === "undefined") return "es";
+  const p = window.location.pathname;
+  return p === "/en" || p.startsWith("/en/") ? "en" : "es";
+}
+
+// Build a URL for a given route slug, preserving the current locale prefix
+function buildOpeningUrl(route, locale) {
+  const slug = locale === "en" ? route.slugEn : route.slug;
+  return locale === "en" ? `/en/${slug}` : `/${slug}`;
+}
+
+function buildHelpUrl(locale) {
+  return locale === "en" ? `/en/${HELP_ROUTE.slugEn}` : `/${HELP_ROUTE.slug}`;
+}
+
+export { buildHelpUrl, detectLocale };
 
 const INITIAL_EXPANDED = new Set([
   "root",
@@ -276,8 +297,6 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
     position: { x: depth * X_STEP, y: yOffset },
     data: {
       move: treeNode.move,
-      name: treeNode.name,
-      annotation: treeNode.annotation,
       color: treeNode.color,
       opening: treeNode.opening,
       isExpanded,
@@ -329,7 +348,12 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
 
 function getRouteFromPathname() {
   if (typeof window === "undefined") return { opening: null, variant: null };
-  const slug = window.location.pathname.replace(/^\/|\/$/, "");
+  // Strip /en/ prefix if present, then extract the slug
+  let path = window.location.pathname;
+  if (path === "/en" || path.startsWith("/en/")) {
+    path = path.slice(3) || "/"; // remove "/en"
+  }
+  const slug = path.replace(/^\/|\/$/, "");
   if (!slug) return { opening: null, variant: null };
   const variantRoute = VARIANT_ROUTE_BY_SLUG[slug];
   if (variantRoute) {
@@ -355,6 +379,24 @@ function getInitialStateFromUrl() {
   if (!path.length) return { selectedNodeId: "root", extraExpanded: new Set() };
   const ancestorIds = new Set(path.slice(0, -1).map((n) => n.id));
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
+}
+
+// Browser language redirect: if no /en/ prefix but browser is English, rewrite URL to /en/
+// This runs once at module load, before React mounts.
+if (typeof window !== "undefined") {
+  const path = window.location.pathname;
+  const hasEnPrefix = path === "/en" || path.startsWith("/en/");
+  if (!hasEnPrefix && navigator.language?.startsWith("en")) {
+    const slug = path.replace(/^\/|\/$/, "");
+    let enPath = "/en/";
+    if (slug) {
+      const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
+      // slugEn already contains the full path segment (e.g. "scandinavian-defense/mieses-kotroc")
+      enPath = route ? `/en/${route.slugEn}` : `/en/${slug}`;
+    }
+    history.replaceState(null, "", enPath);
+    i18n.changeLanguage("en");
+  }
 }
 
 const INITIAL_ROUTE = getRouteFromPathname();
@@ -417,7 +459,7 @@ export function useOpeningTreeState() {
   );
   const firstOpeningBtnRef = useRef(null);
 
-  // Sync selected node → URL
+  // Sync selected node → URL (preserves /en/ prefix)
   useEffect(() => {
     const url = new URL(window.location.href);
     if (selectedNodeId && selectedNodeId !== "root") {
@@ -467,8 +509,9 @@ export function useOpeningTreeState() {
     setActiveOpening((prev) => {
       const next = prev === nodeId ? null : nodeId;
       if (typeof window !== "undefined") {
+        const locale = detectLocale();
         const route = next ? ROUTE_BY_NODE_ID[next] : null;
-        const url = route ? `/${route.slug}` : "/";
+        const url = route ? buildOpeningUrl(route, locale) : (locale === "en" ? "/en/" : "/");
         history.pushState(null, "", url);
       }
       return next;

@@ -1,6 +1,7 @@
 import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
+import { useTranslation } from "react-i18next";
 import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 272;
@@ -24,6 +25,9 @@ function fenAfterMoves(moves, count) {
 }
 
 export default function MobileChessBoard({ selectedNodeId }) {
+  const { t, i18n } = useTranslation();
+  const san = (move) => i18n.language === "en" ? move : toSpanishSAN(move);
+
   const frameRef = useRef(null);
   const [frameSize, setFrameSize] = useState({
     width: ROTATED_FRAME_WIDTH,
@@ -116,13 +120,13 @@ export default function MobileChessBoard({ selectedNodeId }) {
         parts.push(
           `<span class="move-number">${Math.floor(i / 2) + 1}.</span>`,
         );
-      const move = toSpanishSAN(moves[i]);
+      const move = san(moves[i]);
       parts.push(
         i < playedCount ? move : `<span style="opacity:0.35">${move}</span>`,
       );
     }
     return parts.join(" ");
-  }, [moves, playedCount]);
+  }, [moves, playedCount, i18n.language]);
 
   return (
     <div className="h-full w-full flex items-start justify-start overflow-hidden">
@@ -167,14 +171,14 @@ export default function MobileChessBoard({ selectedNodeId }) {
                   }}
                 >
                   <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
-                  {isPlaying ? "jugando..." : "reproducir"}
+                  {isPlaying ? t("chess_panel.playing") : t("chess_panel.play")}
                 </button>
               )}
               <button
                 onClick={() =>
                   setOrientation((o) => (o === "white" ? "black" : "white"))
                 }
-                title="Girar tablero"
+                title={t("chess_panel.flip_board")}
                 className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
               >
                 <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
@@ -188,8 +192,8 @@ export default function MobileChessBoard({ selectedNodeId }) {
                   "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
               }}
             >
-              {selectedNode?.name ??
-                (selectedNode?.move ? toSpanishSAN(selectedNode.move) : "Inicial")}
+              {(selectedNode && t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
+                (selectedNode?.move ? san(selectedNode.move) : t("chess_panel.initial"))}
             </span>
           </div>
 

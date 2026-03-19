@@ -12,9 +12,16 @@ const BASE_URL = "https://aperturasdeajedrez.com.ar";
 const HOME_TITLE = "Árbol de Aperturas de Ajedrez | Explora Variantes";
 const HOME_DESC =
   "Explora y compara las principales aperturas de ajedrez en un árbol interactivo. Siciliana, Italiana, Ruy López, Francesa, Caro-Kann y Gambito de Dama. Visualiza variantes con tablero animado.";
+const HOME_TITLE_EN = "Chess Opening Tree | Explore Variations";
+const HOME_DESC_EN =
+  "Explore and compare the main chess openings in an interactive tree. Sicilian, Italian, Ruy López, French, Caro-Kann and Queen's Gambit. Visualize variations with an animated board.";
 
-function injectMeta(template, { title, description, canonical }) {
+function injectMeta(template, { title, description, canonical, lang = "es", alternates = [] }) {
   let html = template;
+
+  // Set <html lang="...">
+  html = html.replace(/<html([^>]*)lang="[^"]*"/, `<html$1lang="${lang}"`);
+
   html = html.replace(
     /<title>[^<]*<\/title>/,
     `<title>${title}</title>`,
@@ -51,7 +58,21 @@ function injectMeta(template, { title, description, canonical }) {
     /<meta\s+name="twitter:url"\s+content="[^"]*"\s*\/?>/,
     `<meta name="twitter:url" content="${canonical}" />`,
   );
+
+  // Inject hreflang alternate links before </head>
+  if (alternates.length > 0) {
+    const altTags = alternates
+      .map((a) => `  <link rel="alternate" hreflang="${a.hreflang}" href="${a.href}" />`)
+      .join("\n");
+    html = html.replace("</head>", `${altTags}\n</head>`);
+  }
+
   return html;
+}
+
+async function writePageAndDir(filePath, html) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, html, "utf8");
 }
 
 async function run() {
@@ -75,70 +96,141 @@ async function run() {
     `<div id="root">${appHtml}</div>`,
   );
 
-  // 1. Home page
+  const sitemapUrls = [];
+
+  function addSitemapUrl(loc, priority, changefreq = "monthly") {
+    sitemapUrls.push({ loc, priority, changefreq });
+  }
+
+  // ── 1. Home page (ES) ──────────────────────────────────────────────────────
   const homeHtml = injectMeta(rendered, {
     title: HOME_TITLE,
     description: HOME_DESC,
     canonical: `${BASE_URL}/`,
+    lang: "es",
+    alternates: [
+      { hreflang: "es", href: `${BASE_URL}/` },
+      { hreflang: "en", href: `${BASE_URL}/en/` },
+    ],
   });
   await fs.writeFile(path.join(distDir, "index.html"), homeHtml, "utf8");
   process.stdout.write("Prerendered /\n");
+  addSitemapUrl(`${BASE_URL}/`, "1.0", "weekly");
 
-  // 2. Help page
-  const helpDir = path.join(distDir, HELP_ROUTE.slug);
-  await fs.mkdir(helpDir, { recursive: true });
+  // ── 2. Home page (EN) ──────────────────────────────────────────────────────
+  const homeEnHtml = injectMeta(rendered, {
+    title: HOME_TITLE_EN,
+    description: HOME_DESC_EN,
+    canonical: `${BASE_URL}/en/`,
+    lang: "en",
+    alternates: [
+      { hreflang: "es", href: `${BASE_URL}/` },
+      { hreflang: "en", href: `${BASE_URL}/en/` },
+    ],
+  });
+  await writePageAndDir(path.join(distDir, "en", "index.html"), homeEnHtml);
+  process.stdout.write("Prerendered /en/\n");
+  addSitemapUrl(`${BASE_URL}/en/`, "1.0", "weekly");
+
+  // ── 3. Help page (ES + EN) ─────────────────────────────────────────────────
   const helpHtml = injectMeta(rendered, {
     title: HELP_ROUTE.title,
     description: HELP_ROUTE.description,
     canonical: `${BASE_URL}/${HELP_ROUTE.slug}`,
+    lang: "es",
+    alternates: [
+      { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
+      { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}` },
+    ],
   });
-  await fs.writeFile(path.join(helpDir, "index.html"), helpHtml, "utf8");
+  await writePageAndDir(path.join(distDir, HELP_ROUTE.slug, "index.html"), helpHtml);
   process.stdout.write(`Prerendered /${HELP_ROUTE.slug}\n`);
+  addSitemapUrl(`${BASE_URL}/${HELP_ROUTE.slug}`, "0.5");
 
-  // 3. Opening pages
+  const helpEnHtml = injectMeta(rendered, {
+    title: HELP_ROUTE.titleEn,
+    description: HELP_ROUTE.descriptionEn,
+    canonical: `${BASE_URL}/en/${HELP_ROUTE.slugEn}`,
+    lang: "en",
+    alternates: [
+      { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
+      { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}` },
+    ],
+  });
+  await writePageAndDir(path.join(distDir, "en", HELP_ROUTE.slugEn, "index.html"), helpEnHtml);
+  process.stdout.write(`Prerendered /en/${HELP_ROUTE.slugEn}\n`);
+  addSitemapUrl(`${BASE_URL}/en/${HELP_ROUTE.slugEn}`, "0.5");
+
+  // ── 4. Opening pages (ES + EN) ─────────────────────────────────────────────
   for (const route of OPENING_ROUTES) {
-    const dir = path.join(distDir, route.slug);
-    await fs.mkdir(dir, { recursive: true });
-
     const pageHtml = injectMeta(rendered, {
       title: route.title,
       description: route.description,
       canonical: `${BASE_URL}/${route.slug}`,
+      lang: "es",
+      alternates: [
+        { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
+        { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+      ],
     });
-    await fs.writeFile(path.join(dir, "index.html"), pageHtml, "utf8");
+    await writePageAndDir(path.join(distDir, route.slug, "index.html"), pageHtml);
     process.stdout.write(`Prerendered /${route.slug}\n`);
+    addSitemapUrl(`${BASE_URL}/${route.slug}`, "0.8");
+
+    const pageEnHtml = injectMeta(rendered, {
+      title: route.titleEn,
+      description: route.descriptionEn,
+      canonical: `${BASE_URL}/en/${route.slugEn}`,
+      lang: "en",
+      alternates: [
+        { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
+        { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+      ],
+    });
+    await writePageAndDir(path.join(distDir, "en", route.slugEn, "index.html"), pageEnHtml);
+    process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
+    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}`, "0.8");
   }
 
-  // 4. Variant pages
+  // ── 5. Variant pages (ES + EN) ─────────────────────────────────────────────
   for (const route of VARIANT_ROUTES) {
-    const dir = path.join(distDir, route.slug);
-    await fs.mkdir(dir, { recursive: true });
-
     const pageHtml = injectMeta(rendered, {
       title: route.title,
       description: route.description,
       canonical: `${BASE_URL}/${route.slug}`,
+      lang: "es",
+      alternates: [
+        { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
+        { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+      ],
     });
-    await fs.writeFile(path.join(dir, "index.html"), pageHtml, "utf8");
+    await writePageAndDir(path.join(distDir, route.slug, "index.html"), pageHtml);
     process.stdout.write(`Prerendered /${route.slug}\n`);
+    addSitemapUrl(`${BASE_URL}/${route.slug}`, "0.6");
+
+    const pageEnHtml = injectMeta(rendered, {
+      title: route.titleEn,
+      description: route.descriptionEn,
+      canonical: `${BASE_URL}/en/${route.slugEn}`,
+      lang: "en",
+      alternates: [
+        { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
+        { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+      ],
+    });
+    await writePageAndDir(path.join(distDir, "en", route.slugEn, "index.html"), pageEnHtml);
+    process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
+    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}`, "0.6");
   }
 
-  // 5. Generate sitemap.xml from route definitions
-  const sitemapEntries = [
-    `  <url>\n    <loc>${BASE_URL}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
-    `  <url>\n    <loc>${BASE_URL}/${HELP_ROUTE.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>`,
-    ...OPENING_ROUTES.map(
-      (r) =>
-        `  <url>\n    <loc>${BASE_URL}/${r.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
-    ),
-    ...VARIANT_ROUTES.map(
-      (r) =>
-        `  <url>\n    <loc>${BASE_URL}/${r.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
-    ),
-  ];
+  // ── 6. Sitemap ─────────────────────────────────────────────────────────────
+  const sitemapEntries = sitemapUrls.map(
+    ({ loc, priority, changefreq }) =>
+      `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+  );
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`;
   await fs.writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
-  process.stdout.write(`Generated sitemap.xml (${2 + OPENING_ROUTES.length + VARIANT_ROUTES.length} URLs)\n`);
+  process.stdout.write(`Generated sitemap.xml (${sitemapUrls.length} URLs)\n`);
 }
 
 run().catch((err) => {

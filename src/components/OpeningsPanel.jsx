@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { DESKTOP_OPENINGS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 export default function OpeningsPanel({
@@ -7,6 +8,7 @@ export default function OpeningsPanel({
   onToggleOpening,
   firstButtonRef,
 }) {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   const [pos, setPos] = useState(null);
   const panelRef = useRef(null);
@@ -83,7 +85,7 @@ export default function OpeningsPanel({
         onMouseDown={onMouseDown}
       >
         <span className="font-mono text-[11px] tracking-[0.35em] uppercase text-neon-purple/70">
-          Aperturas
+          {t("openings_panel.header")}
         </span>
         <div
           className="flex items-center gap-3"
@@ -154,7 +156,7 @@ export default function OpeningsPanel({
                             : "none",
                         }}
                       >
-                        {opening.label}
+                        {t(`panel_openings.${opening.nodeId}`, opening.label)}
                       </span>
                     </button>
                   );

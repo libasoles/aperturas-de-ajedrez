@@ -1,0 +1,859 @@
+{
+  "e4": {
+    "name": "Peón de Rey",
+    "annotation": "Controla el centro"
+  },
+  "scan-1": {
+    "name": "Escandinava",
+    "annotation": "Desafío inmediato al centro"
+  },
+  "scan-2": {
+    "annotation": "Acepta el peón"
+  },
+  "scan-3a": {
+    "name": "Recaptura con dama",
+    "annotation": "Línea principal"
+  },
+  "scan-4a": {
+    "annotation": "Ataca la dama"
+  },
+  "scan-5a1": {
+    "name": "Mieses-Kotroc",
+    "annotation": "Línea moderna principal"
+  },
+  "scan-6a1": {
+    "annotation": "Consolida el centro"
+  },
+  "scan-7a1": {
+    "annotation": "Desarrollo natural"
+  },
+  "scan-8a1": {
+    "annotation": "Desarrollo activo"
+  },
+  "scan-9a1a": {
+    "name": "Fianchetto",
+    "annotation": "Alfil en g7"
+  },
+  "scan-10a1a": {
+    "annotation": "Previene Bg4"
+  },
+  "scan-13a1a": {
+    "name": "Fianchetto completo",
+    "annotation": "Posición sólida para negras"
+  },
+  "scan-9a1b": {
+    "annotation": "Clava el caballo"
+  },
+  "scan-11a1b": {
+    "annotation": "Dobla los peones blancos"
+  },
+  "scan-13a1b": {
+    "name": "Estructura sólida"
+  },
+  "scan-5a2": {
+    "name": "Clásica",
+    "annotation": "Dama en a5, presión en el flanco"
+  },
+  "scan-9a2a": {
+    "annotation": "Clavada activa"
+  },
+  "scan-13a2a": {
+    "name": "Clásica Qa5",
+    "annotation": "Negras completan el desarrollo"
+  },
+  "scan-9a2b": {
+    "annotation": "Sólido"
+  },
+  "scan-10a2b": {
+    "annotation": "Desarrollo activo"
+  },
+  "scan-13a2b": {
+    "name": "Escandinava Clásica",
+    "annotation": "Negras castran corto"
+  },
+  "scan-3b": {
+    "name": "Moderna (caballo)",
+    "annotation": "Evita el desarrollo temprano de la dama"
+  },
+  "scan-5b1": {
+    "annotation": "Recaptura con el caballo"
+  },
+  "scan-7b1a": {
+    "name": "Fianchetto",
+    "annotation": "Alfil en g7"
+  },
+  "scan-8b1a": {
+    "annotation": "Expulsa el caballo"
+  },
+  "scan-9b1a": {
+    "annotation": "Retroceso forzado"
+  },
+  "scan-12b1a": {
+    "name": "Sistema Moderno",
+    "annotation": "Control del centro"
+  },
+  "scan-7b1b": {
+    "annotation": "Intercambio inmediato"
+  },
+  "scan-9b1b": {
+    "annotation": "Fianchetto del alfil"
+  },
+  "scan-13b1b": {
+    "name": "Moderna con b pawn"
+  },
+  "scan-5b2": {
+    "name": "Gambito Islandés",
+    "annotation": "Sacrificio de peón por actividad"
+  },
+  "scan-7b2": {
+    "annotation": "Compensación posicional"
+  },
+  "scan-9b2": {
+    "annotation": "Desarrollo con ataque"
+  },
+  "scan-13b2": {
+    "name": "Gambito Islandés completo"
+  },
+  "span-1": {
+    "name": "Aperturas Abiertas",
+    "annotation": "Centro simétrico"
+  },
+  "span-2": {
+    "annotation": "Ataca e5"
+  },
+  "span-3": {
+    "annotation": "Defiende e5"
+  },
+  "span-4": {
+    "name": "Ruy López",
+    "annotation": "Pina el caballo que defiende e5"
+  },
+  "span-5a": {
+    "name": "Defensa Morphy",
+    "annotation": "Respuesta más común"
+  },
+  "span-6a": {
+    "annotation": "Mantiene la presión"
+  },
+  "span-7a1": {
+    "name": "Variante Cerrada",
+    "annotation": "La más sólida"
+  },
+  "span-8a1": {
+    "annotation": "Enroca y prepara d4"
+  },
+  "span-9a1a": {
+    "name": "Española Cerrada",
+    "annotation": "Sólida y posicional"
+  },
+  "span-10a1a": {
+    "annotation": "El avance central clave"
+  },
+  "span-11a1a": {
+    "annotation": "Cierra el centro"
+  },
+  "span-15a1a": {
+    "annotation": "Rerouting the knight"
+  },
+  "span-16a1a": {
+    "name": "Española Cerrada principal",
+    "annotation": "Posición característica"
+  },
+  "span-9a1b": {
+    "name": "Española Abierta",
+    "annotation": "Activa y táctica"
+  },
+  "span-10a1b": {
+    "annotation": "Retira el alfil"
+  },
+  "span-16a1b": {
+    "name": "Española Abierta principal"
+  },
+  "span-6ae": {
+    "name": "Variante de Cambio",
+    "annotation": "Dobla los peones negros"
+  },
+  "span-7ae": {
+    "annotation": "Recaptura con el peón"
+  },
+  "span-9ae": {
+    "annotation": "Defiende e5"
+  },
+  "span-14ae": {
+    "name": "Cambio con damas",
+    "annotation": "Ventaja estructural blanca"
+  },
+  "span-5b": {
+    "name": "Defensa Berlín",
+    "annotation": "El arma del empate"
+  },
+  "span-7b": {
+    "name": "Final de Berlín",
+    "annotation": "Favorito de Kramnik"
+  },
+  "span-8b": {
+    "annotation": "Reclama el centro"
+  },
+  "span-9b1": {
+    "name": "Berlín Principal",
+    "annotation": "Línea más jugada"
+  },
+  "span-10b1": {
+    "annotation": "Captura el peón"
+  },
+  "span-16b1": {
+    "name": "Final de Berlín",
+    "annotation": "El final más analizado del mundo"
+  },
+  "span-9b2": {
+    "name": "Río de Janeiro",
+    "annotation": "Variante aguda"
+  },
+  "span-15b2": {
+    "name": "Río de Janeiro completo"
+  },
+  "span-5c": {
+    "name": "Gambito Schliemann",
+    "annotation": "Agresivo e irregular"
+  },
+  "span-9c": {
+    "annotation": "Contraataca el centro"
+  },
+  "span-10c": {
+    "annotation": "Ataca el peón f7"
+  },
+  "span-14c": {
+    "name": "Schliemann activo"
+  },
+  "ital-1": {
+    "name": "Italiana",
+    "annotation": "Apunta a f7"
+  },
+  "ital-2a": {
+    "name": "Giuoco Piano",
+    "annotation": "Juego tranquilo"
+  },
+  "ital-3a": {
+    "annotation": "Prepara d4"
+  },
+  "ital-4a": {
+    "annotation": "Ataca e4"
+  },
+  "ital-5a": {
+    "annotation": "Abre el centro"
+  },
+  "ital-6a1": {
+    "name": "Giuoco Moderno",
+    "annotation": "Acepta el cambio"
+  },
+  "ital-13a1": {
+    "name": "Giuoco Moderno principal"
+  },
+  "ital-6a2": {
+    "annotation": "Preserva el alfil"
+  },
+  "ital-7a2": {
+    "annotation": "Avance central agresivo"
+  },
+  "ital-12a2": {
+    "name": "Italiana con d5"
+  },
+  "ital-2b": {
+    "name": "Dos Caballos",
+    "annotation": "Agresivo, ignora la amenaza"
+  },
+  "ital-3b": {
+    "annotation": "Amenaza Nxf7"
+  },
+  "ital-4b": {
+    "annotation": "Única defensa"
+  },
+  "ital-6b1": {
+    "name": "Variante Knorre",
+    "annotation": "Ataca el alfil"
+  },
+  "ital-12b1": {
+    "name": "Knorre completo"
+  },
+  "ital-6b2": {
+    "name": "Fried Liver",
+    "annotation": "Táctica muy aguda"
+  },
+  "ital-7b2": {
+    "annotation": "El sacrificio Fried Liver"
+  },
+  "ital-12b2": {
+    "name": "Fried Liver principal",
+    "annotation": "Defensa más sólida"
+  },
+  "ital-3b2": {
+    "annotation": "Enroca primero"
+  },
+  "ital-4b2": {
+    "annotation": "Gana el peón"
+  },
+  "ital-5b2": {
+    "annotation": "Presiona el caballo"
+  },
+  "ital-6b3": {
+    "annotation": "Contraataca"
+  },
+  "ital-12b3": {
+    "name": "Italiana dos caballos completa"
+  },
+  "sic-1": {
+    "name": "Siciliana",
+    "annotation": "Respuesta más popular a e4"
+  },
+  "sic-3a": {
+    "name": "Setup Najdorf/Dragón"
+  },
+  "sic-4a": {
+    "annotation": "Siciliana Abierta"
+  },
+  "sic-9a1": {
+    "name": "Najdorf",
+    "annotation": "La más jugada del mundo"
+  },
+  "sic-10a1": {
+    "name": "Ataque Fischer",
+    "annotation": "Clásico de Fischer"
+  },
+  "sic-15a1": {
+    "name": "Fischer-Sozin Najdorf",
+    "annotation": "Posición aguda típica"
+  },
+  "sic-10a2": {
+    "name": "Ataque Inglés",
+    "annotation": "Muy popular hoy"
+  },
+  "sic-16a2": {
+    "name": "Inglés Agresivo",
+    "annotation": "Ataque de peones"
+  },
+  "sic-9a2": {
+    "name": "Dragón",
+    "annotation": "Alfil en g7, muy aguda"
+  },
+  "sic-10a3": {
+    "name": "Ataque Yugoslavo",
+    "annotation": "La continuación más agresiva"
+  },
+  "sic-16a3": {
+    "name": "Yugoslavo principal",
+    "annotation": "Ataque de peones en flanco"
+  },
+  "sic-10a4": {
+    "name": "Dragón Clásico",
+    "annotation": "Más posicional"
+  },
+  "sic-15a4": {
+    "name": "Dragón Clásico línea principal"
+  },
+  "sic-9a3": {
+    "name": "Scheveningen",
+    "annotation": "Estructura flexible e6+d6"
+  },
+  "sic-10a5": {
+    "name": "Ataque Keres",
+    "annotation": "Muy agresivo"
+  },
+  "sic-11a5": {
+    "annotation": "Frena g5"
+  },
+  "sic-15a5": {
+    "name": "Keres contragolpe"
+  },
+  "sic-10a6": {
+    "name": "Línea Clásica",
+    "annotation": "Sólido y flexible"
+  },
+  "sic-15a6": {
+    "name": "Scheveningen Clásica completa"
+  },
+  "sic-3b": {
+    "name": "Setup Clásico/Taimanov"
+  },
+  "sic-7b1": {
+    "name": "Clásica"
+  },
+  "sic-9b1a": {
+    "annotation": "Posición sólida"
+  },
+  "sic-14b1a": {
+    "name": "Clásica con d6"
+  },
+  "sic-9b1b": {
+    "name": "Sveshnikov",
+    "annotation": "Agresiva, debilita d5"
+  },
+  "sic-15b1b": {
+    "name": "Sveshnikov principal",
+    "annotation": "El caballo se redirige"
+  },
+  "sic-7b2": {
+    "name": "Taimanov",
+    "annotation": "Flexible y sólida"
+  },
+  "sic-9b2a": {
+    "annotation": "Desarrollo normal"
+  },
+  "sic-14b2a": {
+    "name": "Taimanov-Kan mezclado"
+  },
+  "sic-9b2b": {
+    "annotation": "Prepara b5"
+  },
+  "sic-14b2b": {
+    "name": "Taimanov agresivo"
+  },
+  "sic-3c": {
+    "name": "Setup Kan/Scheveningen"
+  },
+  "sic-7c1": {
+    "name": "Kan",
+    "annotation": "Muy flexible"
+  },
+  "sic-9c1a": {
+    "name": "Kan Principal",
+    "annotation": "Protege y desarrolla"
+  },
+  "sic-14c1a": {
+    "name": "Kan Clásica"
+  },
+  "sic-9c1b": {
+    "name": "Kan Agresivo",
+    "annotation": "Avance de flanco"
+  },
+  "sic-14c1b": {
+    "name": "Kan con b5"
+  },
+  "sic-7c2": {
+    "name": "Scheveningen",
+    "annotation": "Estructura e6+d6"
+  },
+  "sic-9c2a": {
+    "name": "Scheveningen Clásica",
+    "annotation": "La estructura más común"
+  },
+  "sic-15c2a": {
+    "name": "Scheveningen completa"
+  },
+  "sic-9c2b": {
+    "name": "Siciliana Nimzovich",
+    "annotation": "Clava al caballo"
+  },
+  "sic-15c2b": {
+    "name": "Nimzovich completa"
+  },
+  "sic-2b": {
+    "name": "Siciliana Cerrada",
+    "annotation": "Evita la apertura del centro"
+  },
+  "sic-4d": {
+    "annotation": "Fianchetto del alfil"
+  },
+  "sic-5d": {
+    "annotation": "Fianchetto simétrico"
+  },
+  "sic-7d": {
+    "name": "Cerrada con Fianchetto",
+    "annotation": "Partida posicional"
+  },
+  "sic-8d": {
+    "annotation": "Clásico de Grand Prix"
+  },
+  "sic-9d": {
+    "annotation": "Prepara e5 o Nf6"
+  },
+  "sic-10d": {
+    "annotation": "Refuerza el centro"
+  },
+  "sic-11d": {
+    "annotation": "Prepara d5"
+  },
+  "sic-16da": {
+    "name": "Cerrada flanco de dama",
+    "annotation": "Ataque en flanco de dama"
+  },
+  "sic-16db": {
+    "name": "Cerrada central",
+    "annotation": "Salto de caballo al centro"
+  },
+  "fr-1": {
+    "name": "Defensa Francesa",
+    "annotation": "Segunda respuesta más jugada a 1.e4"
+  },
+  "fr-2": {
+    "annotation": "Controla el centro"
+  },
+  "fr-3": {
+    "annotation": "Desafía el centro blanco"
+  },
+  "fr-4a": {
+    "name": "Variante Avance",
+    "annotation": "Gana espacio, cierra el centro"
+  },
+  "fr-5a": {
+    "annotation": "Ataca la base de la cadena"
+  },
+  "fr-6a": {
+    "annotation": "Refuerza d4"
+  },
+  "fr-13a": {
+    "name": "Avance principal",
+    "annotation": "Clavada al caballo"
+  },
+  "fr-4b": {
+    "name": "Variante Cambio",
+    "annotation": "Simplifica el centro"
+  },
+  "fr-13b": {
+    "name": "Cambio típico",
+    "annotation": "Final igualado"
+  },
+  "fr-4c": {
+    "annotation": "La jugada más popular en élite"
+  },
+  "fr-5c1": {
+    "name": "Winawer",
+    "annotation": "Clava el caballo, crea tensión"
+  },
+  "fr-6c1": {
+    "name": "Winawer Avance",
+    "annotation": "La línea más aguda"
+  },
+  "fr-8c1": {
+    "annotation": "Fuerza la decisión del alfil"
+  },
+  "fr-9c1": {
+    "annotation": "Dobla los peones blancos"
+  },
+  "fr-13c1": {
+    "name": "Winawer principal",
+    "annotation": "Posición muy compleja"
+  },
+  "fr-5c2": {
+    "name": "Clásica",
+    "annotation": "Desarrollo normal"
+  },
+  "fr-13c2": {
+    "name": "Clásica principal"
+  },
+  "fr-4d": {
+    "name": "Variante Tarrasch",
+    "annotation": "Evita la clavada Bb4"
+  },
+  "fr-5d1": {
+    "name": "Tarrasch Abierta",
+    "annotation": "Doble ataque al centro"
+  },
+  "fr-13d1": {
+    "name": "Tarrasch Abierta completa"
+  },
+  "fr-5d2": {
+    "name": "Tarrasch Cerrada",
+    "annotation": "Desarrollo normal"
+  },
+  "fr-13d2": {
+    "name": "Tarrasch Cerrada completa"
+  },
+  "ck-1": {
+    "name": "Caro-Kann",
+    "annotation": "Defensa sólida y posicional"
+  },
+  "ck-3": {
+    "annotation": "Crea tensión en el centro"
+  },
+  "ck-4a": {
+    "name": "Línea Clásica",
+    "annotation": "El enfoque más popular"
+  },
+  "ck-7a": {
+    "name": "Clásica principal",
+    "annotation": "El alfil se activa antes de Nd7"
+  },
+  "ck-16a": {
+    "name": "Caro-Kann Clásica completa"
+  },
+  "ck-4b": {
+    "name": "Variante Avance",
+    "annotation": "Gana espacio, restringe al negro"
+  },
+  "ck-5b": {
+    "annotation": "Desarrolla el alfil antes de e6"
+  },
+  "ck-13b": {
+    "name": "Avance Caro-Kann completo"
+  },
+  "ck-4c": {
+    "name": "Variante Cambio",
+    "annotation": "Simplifica, facilita tablas"
+  },
+  "ck-12c": {
+    "name": "Cambio Caro-Kann completo"
+  },
+  "ck-4d": {
+    "name": "Variante Fantasía",
+    "annotation": "Agresivo, busca centro masivo"
+  },
+  "ck-12d": {
+    "name": "Fantasía completa"
+  },
+  "pirc-1": {
+    "name": "Pirc",
+    "annotation": "Defensa hipermoderna, cede el centro"
+  },
+  "pirc-5": {
+    "annotation": "Fiancheto del alfil de rey"
+  },
+  "pirc-6a": {
+    "name": "Ataque Austriaco",
+    "annotation": "El más agresivo, busca f5"
+  },
+  "pirc-14a": {
+    "name": "Austriaco completo"
+  },
+  "pirc-6b": {
+    "name": "Sistema Clásico",
+    "annotation": "Desarrollo tranquilo"
+  },
+  "pirc-14b": {
+    "name": "Pirc Clásico completo"
+  },
+  "pirc-6c": {
+    "name": "Ataque 150",
+    "annotation": "Nombre informal, muy agresivo"
+  },
+  "pirc-10c": {
+    "annotation": "Enroques opuestos, tensión"
+  },
+  "pirc-13c": {
+    "name": "Ataque 150 completo",
+    "annotation": "Contrataque en flanco de dama"
+  },
+  "al-1": {
+    "name": "Alekhine",
+    "annotation": "Provoca el avance blanco para atacarlo"
+  },
+  "al-2": {
+    "annotation": "Acepta el reto, gana espacio"
+  },
+  "al-3": {
+    "annotation": "El caballo se retira con plan futuro"
+  },
+  "al-5": {
+    "annotation": "Ataca la cadena de peones"
+  },
+  "al-6a": {
+    "name": "Variante Moderna",
+    "annotation": "Desarrollo sólido"
+  },
+  "al-13a": {
+    "name": "Alekhine Moderna completa"
+  },
+  "al-6b": {
+    "name": "Variante Cambio",
+    "annotation": "Ataca el caballo en d5"
+  },
+  "al-13b": {
+    "name": "Alekhine Cambio completo"
+  },
+  "al-6c": {
+    "name": "Variante Cuatro Peones",
+    "annotation": "El más agresivo, cadena de peones masiva"
+  },
+  "al-9c": {
+    "annotation": "Ataca el centro blanco"
+  },
+  "al-13c": {
+    "name": "Cuatro Peones completo"
+  },
+  "d4": {
+    "name": "Peón de Dama",
+    "annotation": "Control del centro, apertura posicional"
+  },
+  "qg-1": {
+    "name": "Defensa de Peón de Dama",
+    "annotation": "Respuesta simétrica al centro"
+  },
+  "qg-2": {
+    "name": "Gambito de Dama",
+    "annotation": "Ofrece el peón por el control del centro"
+  },
+  "qg-3a": {
+    "name": "Gambito de Dama Aceptado",
+    "annotation": "Acepta el gambito; las blancas recuperan el peón"
+  },
+  "qg-4a": {
+    "annotation": "Desarrollo y amenaza recuperar el peón"
+  },
+  "qg-5a": {
+    "annotation": "Desarrollo normal"
+  },
+  "qg-6a1": {
+    "name": "GDA Clásico",
+    "annotation": "Sólida recuperación del peón"
+  },
+  "qg-12a1": {
+    "name": "GDA Clásico completo"
+  },
+  "qg-6a2": {
+    "name": "GDA Moderno",
+    "annotation": "Presión inmediata sobre el centro"
+  },
+  "qg-8a2": {
+    "annotation": "Centro poderoso"
+  },
+  "qg-12a2": {
+    "name": "GDA Moderno agresivo"
+  },
+  "qg-3b": {
+    "name": "Gambito de Dama Declinado",
+    "annotation": "Declina manteniendo el centro con e6"
+  },
+  "qg-4b": {
+    "annotation": "Desarrolla y presiona el centro"
+  },
+  "qg-6b": {
+    "annotation": "Clava el caballo negro"
+  },
+  "qg-7b1": {
+    "name": "GDD Ortodoxa",
+    "annotation": "La continuación clásica y sólida"
+  },
+  "qg-14b1": {
+    "name": "GDD Ortodoxa completa"
+  },
+  "qg-7b2": {
+    "name": "Cambridge Springs",
+    "annotation": "Prepara Bb4 y amenazas activas"
+  },
+  "qg-13b2": {
+    "name": "Cambridge Springs completa"
+  },
+  "qg-3c": {
+    "name": "Defensa Eslava",
+    "annotation": "Refuerza d5 sin bloquear el alfil de dama"
+  },
+  "qg-7c1": {
+    "name": "Eslava Aceptada",
+    "annotation": "Acepta el gambito con c6 de apoyo"
+  },
+  "qg-8c1": {
+    "annotation": "Centro clásico"
+  },
+  "qg-13c1": {
+    "name": "Eslava Aceptada completa"
+  },
+  "qg-7c2": {
+    "name": "Semi-Eslava",
+    "annotation": "Merano y Anti-Merano, muy agudas"
+  },
+  "qg-13c2": {
+    "name": "Semi-Eslava meran"
+  },
+  "lon-2": {
+    "name": "Sistema Londres",
+    "annotation": "Setup sólido sin comprometerse con c4"
+  },
+  "lon-3": {
+    "annotation": "Desarrollo natural del caballo"
+  },
+  "lon-4": {
+    "annotation": "Alfil activo antes de cerrar la cadena"
+  },
+  "lon-6": {
+    "annotation": "Consolida el centro sin cambios bruscos"
+  },
+  "lon-7a": {
+    "name": "Londres Clásico",
+    "annotation": "Estructura sólida, juego posicional"
+  },
+  "lon-13a": {
+    "name": "Londres Clásico principal"
+  },
+  "lon-7b": {
+    "name": "Londres vs c5",
+    "annotation": "Desafía el centro inmediatamente"
+  },
+  "lon-12b": {
+    "name": "Londres vs c5 tablas típicas"
+  },
+  "ki-1": {
+    "name": "Defensa India",
+    "annotation": "Control del centro desde el flanco"
+  },
+  "ki-2": {
+    "annotation": "Expande el centro blanco"
+  },
+  "ki-3a": {
+    "name": "India de Rey",
+    "annotation": "Fianchetto del alfil de rey"
+  },
+  "ki-5a": {
+    "annotation": "El poderoso alfil indio en la diagonal larga"
+  },
+  "ki-6a": {
+    "annotation": "Gran centro de peones"
+  },
+  "ki-7a": {
+    "annotation": "Prepara e5 para atacar el centro"
+  },
+  "ki-10a1": {
+    "name": "India de Rey Clásica",
+    "annotation": "La variante más popular del torneo"
+  },
+  "ki-11a1": {
+    "annotation": "La típica ruptura india, genera juego dinámico"
+  },
+  "ki-12a1": {
+    "annotation": "Cierra el centro"
+  },
+  "ki-13a1": {
+    "annotation": "El caballo va a f4"
+  },
+  "ki-17a1": {
+    "name": "India de Rey Clásica principal",
+    "annotation": "Ataque en flanco de rey"
+  },
+  "ki-8a2": {
+    "name": "Sämisch",
+    "annotation": "Agresivo, prepara el avance g4"
+  },
+  "ki-10a2": {
+    "name": "Sämisch Principal",
+    "annotation": "Apunta a las casillas negras del flanco de rey"
+  },
+  "ki-17a2": {
+    "name": "Sämisch completo"
+  },
+  "nim-3b": {
+    "name": "Nimzo-India / India de Dama",
+    "annotation": "Prepara Bb4 clavando el caballo de c3"
+  },
+  "nim-5b": {
+    "name": "Nimzo-India",
+    "annotation": "La clavada central, creación de Nimzowitsch"
+  },
+  "nim-6b1": {
+    "name": "Nimzo Clásica",
+    "annotation": "Evita doblar peones, presión sobre c4"
+  },
+  "nim-7b1": {
+    "annotation": "Desarrollo tranquilo y sólido"
+  },
+  "nim-13b1": {
+    "name": "Nimzo Clásica completa"
+  },
+  "nim-6b2": {
+    "name": "Nimzo Rubinstein",
+    "annotation": "Sólida y clásica, consolida el centro"
+  },
+  "nim-8b2": {
+    "annotation": "Alfil apunta a h7"
+  },
+  "nim-14b2": {
+    "name": "Nimzo Rubinstein completa"
+  }
+}

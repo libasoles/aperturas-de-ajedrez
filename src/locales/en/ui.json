@@ -1,0 +1,76 @@
+{
+  "title": "Chess Openings",
+  "subtitle": "Explore variations, compare",
+  "openings_panel": {
+    "header": "Openings"
+  },
+  "panel_openings": {
+    "scan-1": "Scandinavian",
+    "span-4": "Spanish",
+    "ital-1": "Italian",
+    "sic-1": "Sicilian",
+    "fr-1": "French",
+    "ck-1": "Caro-Kann",
+    "pirc-1": "Pirc",
+    "al-1": "Alekhine",
+    "qg-2": "Queen's Gambit",
+    "lon-2": "London",
+    "ki-3a": "King's Indian",
+    "nim-3b": "Nimzo-Indian"
+  },
+  "chess_panel": {
+    "position": "Position",
+    "initial": "Initial",
+    "play": "play",
+    "playing": "playing...",
+    "flip_board": "Flip board"
+  },
+  "help": {
+    "title": "Help",
+    "rows": {
+      "click": {
+        "label": "Click on node",
+        "desc": "Select the node and show its moves on the board"
+      },
+      "flecha": {
+        "label": "Arrow icon",
+        "desc": "Expand nodes to the next branch point"
+      },
+      "tab": {
+        "label": "Tab / Shift+Tab",
+        "desc": "Advance to next node / go back to previous node"
+      },
+      "space": {
+        "label": "Space",
+        "desc": "If a node is selected, expand children to the next branch point, same as the → icon"
+      },
+      "arrows-lr": {
+        "label": "← / →",
+        "desc": "Same as Shift+Tab / Tab when a node is selected"
+      },
+      "arrows-ud": {
+        "label": "↑ / ↓",
+        "desc": "Navigate between adjacent branches"
+      },
+      "flip": {
+        "label": "Enter or ↻ button",
+        "desc": "Flip the board perspective"
+      },
+      "play": {
+        "label": "▶ Play",
+        "desc": "Animate moves one by one"
+      }
+    }
+  },
+  "mobile_gate": {
+    "warning": "Warning",
+    "designed_for_large": "This app is designed for large screens.",
+    "mobile_version": "The mobile version is in",
+    "beta": "beta",
+    "may_not_look_good": ", and some elements may not look right.",
+    "continue": "Continue"
+  },
+  "node": {
+    "expand_to_fork": "Expand to branch point"
+  }
+}

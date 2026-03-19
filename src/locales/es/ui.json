@@ -1,0 +1,76 @@
+{
+  "title": "Árbol de Aperturas",
+  "subtitle": "Explora variantes, compara",
+  "openings_panel": {
+    "header": "Aperturas"
+  },
+  "panel_openings": {
+    "scan-1": "Escandinava",
+    "span-4": "Española",
+    "ital-1": "Italiana",
+    "sic-1": "Siciliana",
+    "fr-1": "Francesa",
+    "ck-1": "Caro-Kann",
+    "pirc-1": "Pirc",
+    "al-1": "Alekhine",
+    "qg-2": "Gambito de Dama",
+    "lon-2": "Londres",
+    "ki-3a": "India de Rey",
+    "nim-3b": "Nimzo-India"
+  },
+  "chess_panel": {
+    "position": "Posición",
+    "initial": "Inicial",
+    "play": "reproducir",
+    "playing": "jugando...",
+    "flip_board": "Girar tablero"
+  },
+  "help": {
+    "title": "Ayuda",
+    "rows": {
+      "click": {
+        "label": "Click en nodo",
+        "desc": "Selecciona el nodo y muestra las jugadas en el tablero"
+      },
+      "flecha": {
+        "label": "Icono de flecha",
+        "desc": "Despliega los nodos hasta la próxima bifurcación"
+      },
+      "tab": {
+        "label": "Tab / Shift+Tab",
+        "desc": "Avanza al próximo nodo / retrocede al nodo anterior"
+      },
+      "space": {
+        "label": "Espacio",
+        "desc": "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación, igual que el icono →"
+      },
+      "arrows-lr": {
+        "label": "← / →",
+        "desc": "Igual que Shift+Tab / Tab, si hay un nodo seleccionado"
+      },
+      "arrows-ud": {
+        "label": "↑ / ↓",
+        "desc": "Navega entre ramas adyacentes"
+      },
+      "flip": {
+        "label": "Enter o botón ↻",
+        "desc": "Invierte la perspectiva del tablero"
+      },
+      "play": {
+        "label": "▶ Reproducir",
+        "desc": "Anima las jugadas una por una"
+      }
+    }
+  },
+  "mobile_gate": {
+    "warning": "Advertencia",
+    "designed_for_large": "Esta app está diseñada para pantallas grandes.",
+    "mobile_version": "La versión móvil está en",
+    "beta": "beta",
+    "may_not_look_good": ", y algunos elementos pueden no verse bien.",
+    "continue": "Continuar"
+  },
+  "node": {
+    "expand_to_fork": "Expandir hasta bifurcación"
+  }
+}
