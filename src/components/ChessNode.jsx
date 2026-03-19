@@ -24,7 +24,6 @@ function ChessNode({ id, data }) {
   const {
     move,
     color,
-    opening,
     isExpanded,
     hasChildren,
     colors,

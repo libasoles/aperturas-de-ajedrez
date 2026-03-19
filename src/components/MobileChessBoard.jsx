@@ -26,7 +26,7 @@ function fenAfterMoves(moves, count) {
 
 export default function MobileChessBoard({ selectedNodeId }) {
   const { t, i18n } = useTranslation();
-  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
+  const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
 
   const frameRef = useRef(null);
   const [frameSize, setFrameSize] = useState({
@@ -126,7 +126,7 @@ export default function MobileChessBoard({ selectedNodeId }) {
       );
     }
     return parts.join(" ");
-  }, [moves, playedCount, i18n.language]);
+  }, [moves, playedCount, san]);
 
   return (
     <div className="h-full w-full flex items-start justify-start overflow-hidden">

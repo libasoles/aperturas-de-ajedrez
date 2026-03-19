@@ -26,7 +26,7 @@ function fenAfterMoves(moves, count) {
 
 export default function ChessPanel({ selectedNodeId }) {
   const { t, i18n } = useTranslation();
-  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
+  const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
 
   const path = useMemo(
     () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),
@@ -107,7 +107,7 @@ export default function ChessPanel({ selectedNodeId }) {
       );
     }
     return parts.join(" ");
-  }, [moves, playedCount, i18n.language]);
+  }, [moves, playedCount, san]);
 
   // Flip board on Enter key
   useEffect(() => {
