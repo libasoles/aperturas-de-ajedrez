@@ -1,11 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import esUi from "./locales/es/ui.json";
-import enUi from "./locales/en/ui.json";
-import frUi from "./locales/fr/ui.json";
-import esOpenings from "./locales/es/openings.json";
-import enOpenings from "./locales/en/openings.json";
-import frOpenings from "./locales/fr/openings.json";
 
 function detectLng() {
   if (typeof window === "undefined") return "es";
@@ -15,25 +9,32 @@ function detectLng() {
   return "es";
 }
 
-i18n.use(initReactI18next).init({
-  lng: detectLng(),
-  fallbackLng: "es",
-  ns: ["ui", "openings"],
-  defaultNS: "ui",
-  resources: {
-    es: { ui: esUi, openings: esOpenings },
-    en: { ui: enUi, openings: enOpenings },
-    fr: { ui: frUi, openings: frOpenings },
-  },
-  interpolation: { escapeValue: false },
-});
+// Import only the detected language (avoid loading all 3 languages in bundle)
+async function initializeI18n() {
+  const lng = detectLng();
 
-// Keep <html lang="..."> in sync with the active language
-if (typeof document !== "undefined") {
-  document.documentElement.lang = i18n.language;
-  i18n.on("languageChanged", (lng) => {
-    document.documentElement.lang = lng;
+  const [{ default: ui }, { default: openings }] = await Promise.all([
+    import(`./locales/${lng}/ui.json`),
+    import(`./locales/${lng}/openings.json`),
+  ]);
+
+  i18n.use(initReactI18next).init({
+    lng,
+    fallbackLng: "es",
+    ns: ["ui", "openings"],
+    defaultNS: "ui",
+    resources: {
+      [lng]: { ui, openings },
+    },
+    interpolation: { escapeValue: false },
   });
+
+  // Keep <html lang="..."> in sync with the active language
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = i18n.language;
+  }
 }
+
+initializeI18n();
 
 export default i18n;
