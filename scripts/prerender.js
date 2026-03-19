@@ -111,6 +111,7 @@ async function run() {
     alternates: [
       { hreflang: "es", href: `${BASE_URL}/` },
       { hreflang: "en", href: `${BASE_URL}/en/` },
+      { hreflang: "x-default", href: `${BASE_URL}/` },
     ],
   });
   await fs.writeFile(path.join(distDir, "index.html"), homeHtml, "utf8");
@@ -126,6 +127,7 @@ async function run() {
     alternates: [
       { hreflang: "es", href: `${BASE_URL}/` },
       { hreflang: "en", href: `${BASE_URL}/en/` },
+      { hreflang: "x-default", href: `${BASE_URL}/` },
     ],
   });
   await writePageAndDir(path.join(distDir, "en", "index.html"), homeEnHtml);
@@ -141,6 +143,7 @@ async function run() {
     alternates: [
       { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
       { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}` },
+      { hreflang: "x-default", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
     ],
   });
   await writePageAndDir(path.join(distDir, HELP_ROUTE.slug, "index.html"), helpHtml);
@@ -155,6 +158,7 @@ async function run() {
     alternates: [
       { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
       { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}` },
+      { hreflang: "x-default", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
     ],
   });
   await writePageAndDir(path.join(distDir, "en", HELP_ROUTE.slugEn, "index.html"), helpEnHtml);
@@ -202,6 +206,7 @@ async function run() {
       alternates: [
         { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
         { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+        { hreflang: "x-default", href: `${BASE_URL}/${route.slug}` },
       ],
     });
     await writePageAndDir(path.join(distDir, route.slug, "index.html"), pageHtml);
@@ -216,6 +221,7 @@ async function run() {
       alternates: [
         { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
         { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
+        { hreflang: "x-default", href: `${BASE_URL}/${route.slug}` },
       ],
     });
     await writePageAndDir(path.join(distDir, "en", route.slugEn, "index.html"), pageEnHtml);

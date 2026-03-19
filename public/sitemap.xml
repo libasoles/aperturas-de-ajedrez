@@ -1,68 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-escandinava</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/ruy-lopez</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/apertura-italiana</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-siciliana</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-francesa</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-caro-kann</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-pirc</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-alekhine</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/gambito-de-dama</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/sistema-londres</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-india-de-rey</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aperturasdeajedrez.com.ar/defensa-nimzo-india</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
+<!--
+  Este archivo es sobreescrito automáticamente por scripts/prerender.js durante el build.
+  No lo edites manualmente — los cambios se perderán.
+  Para modificar el sitemap, editá scripts/prerender.js o src/data/routes.js.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />

@@ -23,4 +23,12 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 });
 
+// Keep <html lang="..."> in sync with the active language
+if (typeof document !== "undefined") {
+  document.documentElement.lang = i18n.language;
+  i18n.on("languageChanged", (lng) => {
+    document.documentElement.lang = lng;
+  });
+}
+
 export default i18n;
