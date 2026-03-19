@@ -29,8 +29,6 @@
     ]
   },
   "permissions": {
-    "allow": [
-      "Read(//private/tmp/**)"
-    ]
+    "allow": ["Read(//private/tmp/**)"]
   }
 }

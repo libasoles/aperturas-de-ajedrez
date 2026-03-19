@@ -19,7 +19,12 @@ function getPieceCode(move, isWhite) {
 
 function ChessNode({ id, data }) {
   const { t, i18n } = useTranslation();
-  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
+  const san = (move) =>
+    i18n.language === "en"
+      ? move
+      : i18n.language === "fr"
+        ? toFrenchSAN(move)
+        : toSpanishSAN(move);
 
   const {
     move,
@@ -35,7 +40,8 @@ function ChessNode({ id, data }) {
   } = data;
 
   const name = t(`openings:${id}.name`, { defaultValue: "" }) || null;
-  const annotation = t(`openings:${id}.annotation`, { defaultValue: "" }) || null;
+  const annotation =
+    t(`openings:${id}.annotation`, { defaultValue: "" }) || null;
 
   const isRoot = id === "root";
   const isWhite = color === "white";
@@ -132,7 +138,10 @@ function ChessNode({ id, data }) {
     // The outer div's height = pill height only (label is absolutely positioned).
     // This keeps the ReactFlow node bounds flush with the pill, so edge handles
     // connect at the visual pill center instead of an offset below it.
-    <div className="relative flex items-center select-none" style={{ overflow: "visible" }}>
+    <div
+      className="relative flex items-center select-none"
+      style={{ overflow: "visible" }}
+    >
       <Handle
         type="target"
         position={Position.Left}
