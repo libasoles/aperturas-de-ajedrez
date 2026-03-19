@@ -1,6 +1,6 @@
 import { Chess } from 'chess.js';
 import { describe, expect, it } from 'vitest';
-import { fenAfterMoves, findPathToNode, toFrenchSAN, toSpanishSAN } from './chessPath';
+import { fenAfterMoves, findPathToNode, getPathToNextFork, getVerticalNavigationTarget, toFrenchSAN, toSpanishSAN } from './chessPath';
 
 // ─── toSpanishSAN ──────────────────────────────────────────────────────────────
 
@@ -114,5 +114,108 @@ describe('fenAfterMoves', () => {
 
   it('returns the initial FEN for a non-existent ID without crashing', () => {
     expect(fenAfterMoves('nonexistent-node')).toBe(INITIAL_FEN);
+  });
+});
+
+// ─── getPathToNextFork ────────────────────────────────────────────────────────
+//
+// Tree structure used in these tests:
+//   scan-3a → scan-4a[fork: scan-5a1, scan-5a2]
+//   scan-5a1 → scan-6a1 → scan-7a1 → scan-8a1[fork: scan-9a1a, scan-9a1b]
+//   scan-13a1a: leaf (no children)
+
+describe('getPathToNextFork', () => {
+  it('returns only the node itself when it is an immediate fork (≥2 children)', () => {
+    // scan-4a has 2 children: scan-5a1 and scan-5a2
+    expect(getPathToNextFork('scan-4a')).toEqual(['scan-4a']);
+  });
+
+  it('walks a single-link chain and stops at the fork', () => {
+    // scan-3a has 1 child (scan-4a), which is a fork
+    expect(getPathToNextFork('scan-3a')).toEqual(['scan-3a', 'scan-4a']);
+  });
+
+  it('walks a multi-link chain until the fork (4 nodes)', () => {
+    // scan-5a1 → scan-6a1 → scan-7a1 → scan-8a1[fork]
+    expect(getPathToNextFork('scan-5a1')).toEqual([
+      'scan-5a1',
+      'scan-6a1',
+      'scan-7a1',
+      'scan-8a1',
+    ]);
+  });
+
+  it('returns [] for a leaf node', () => {
+    // scan-13a1a has no children
+    expect(getPathToNextFork('scan-13a1a')).toEqual([]);
+  });
+
+  it('returns [] for a non-existent ID', () => {
+    expect(getPathToNextFork('nonexistent-node')).toEqual([]);
+  });
+});
+
+// ─── getVerticalNavigationTarget ─────────────────────────────────────────────
+//
+// Tree forks used in these tests:
+//   scan-2 (exd5):  children = [scan-3a (Qxd5, idx 0), scan-3b (Nf6, idx 1)]
+//   scan-4a (Nc3):  children = [scan-5a1 (Qd6, idx 0), scan-5a2 (Qa5, idx 1)]
+
+describe('getVerticalNavigationTarget', () => {
+  it('navigates down to the next sibling at a fork', () => {
+    // scan-3a is idx 0, scan-3b is idx 1 under fork scan-2
+    expect(getVerticalNavigationTarget('scan-3a', 'down', new Set())).toBe('scan-3b');
+  });
+
+  it('navigates up to the previous sibling at a fork', () => {
+    expect(getVerticalNavigationTarget('scan-3b', 'up', new Set())).toBe('scan-3a');
+  });
+
+  it('returns null when no sibling exists in the given direction', () => {
+    // scan-3a is the first child — no sibling above it at scan-2
+    // root/e4 ancestors also have no prior sibling for this path
+    expect(getVerticalNavigationTarget('scan-3a', 'up', new Set())).toBeNull();
+  });
+
+  it('returns null for the root node (no fork ancestor)', () => {
+    expect(getVerticalNavigationTarget('root', 'down', new Set())).toBeNull();
+  });
+
+  it('climbs to a higher fork when the immediate fork has no sibling in that direction (cousin navigation)', () => {
+    // scan-3b is the last child of scan-2 → no 'down' sibling there
+    // so it climbs to the e4 fork and navigates to the next e4 branch (span-1)
+    const result = getVerticalNavigationTarget('scan-3b', 'down', new Set());
+    expect(result).toBe('span-1');
+  });
+
+  it('stops at the target branch root when it is not expanded', () => {
+    // Selected: scan-6a1 (child of scan-5a1, depth 1 below fork scan-4a)
+    // Navigate down → target branch root is scan-5a2 (not in displayIds)
+    expect(
+      getVerticalNavigationTarget('scan-6a1', 'down', new Set()),
+    ).toBe('scan-5a2');
+  });
+
+  it('follows the first child into the target branch when it is expanded', () => {
+    // Same as above but scan-5a2 IS expanded → follow first child → scan-6a2
+    expect(
+      getVerticalNavigationTarget('scan-6a1', 'down', new Set(['scan-5a2'])),
+    ).toBe('scan-6a2');
+  });
+
+  it('follows the last child when navigating up (visually closest)', () => {
+    // Navigate up from scan-5a2 to scan-5a1 branch.
+    // scan-5a1 is not in displayIds → stops at scan-5a1
+    expect(
+      getVerticalNavigationTarget('scan-5a2', 'up', new Set()),
+    ).toBe('scan-5a1');
+  });
+
+  it('follows the last child chain when navigating up into an expanded branch', () => {
+    // Navigate up from scan-6a2 to scan-5a1 branch (depth 1 below fork scan-4a)
+    // scan-5a1 IS expanded → follow last child = scan-6a1
+    expect(
+      getVerticalNavigationTarget('scan-6a2', 'up', new Set(['scan-5a1'])),
+    ).toBe('scan-6a1');
   });
 });
