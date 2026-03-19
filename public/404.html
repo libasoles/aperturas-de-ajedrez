@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Posición no encontrada | Aperturas de Ajedrez</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      (function () {
+        var p = window.location.pathname;
+        var lang = p === "/en" || p.startsWith("/en/") ? "en"
+                 : p === "/fr" || p.startsWith("/fr/") ? "fr"
+                 : "es";
+        var copy = {
+          es: {
+            lang: "es",
+            title: "404 — Posición no encontrada | Aperturas de Ajedrez",
+            subtitle: "Posición no encontrada",
+            body: "Esta URL no existe en el tablero.",
+            btn: "← Volver al inicio",
+            home: "/",
+          },
+          en: {
+            lang: "en",
+            title: "404 — Position not found | Chess Openings",
+            subtitle: "Position not found",
+            body: "This URL does not exist on the board.",
+            btn: "← Back to home",
+            home: "/en/",
+          },
+          fr: {
+            lang: "fr",
+            title: "404 — Position introuvable | Ouvertures d'Échecs",
+            subtitle: "Position introuvable",
+            body: "Cette URL n'existe pas sur l'échiquier.",
+            btn: "← Retour à l'accueil",
+            home: "/fr/",
+          },
+        };
+        var c = copy[lang];
+        document.documentElement.lang = c.lang;
+        document.addEventListener("DOMContentLoaded", function () {
+          document.title = c.title;
+          document.getElementById("subtitle").textContent = c.subtitle;
+          document.getElementById("body-text").textContent = c.body;
+          var btn = document.getElementById("btn");
+          btn.textContent = c.btn;
+          btn.href = c.home;
+        });
+      })();
+    </script>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --neon-purple: #bf5fff;
+        --neon-cyan:   #00f5ff;
+        --neon-pink:   #ff2d78;
+        --color-panel: #0a0a14;
+        --color-app:   #0f1117;
+      }
+
+      body {
+        background: var(--color-app);
+        color: #f0ecff;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card {
+        background: color-mix(in srgb, var(--color-panel) 96%, transparent);
+        border: 1px solid color-mix(in srgb, var(--neon-purple) 25%, transparent);
+        box-shadow:
+          0 0 24px color-mix(in srgb, var(--neon-purple) 12%, transparent),
+          0 0 48px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        padding: 2.5rem 2rem;
+        max-width: 22rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .piece {
+        font-size: 3rem;
+        line-height: 1;
+      }
+
+      @keyframes flicker {
+        0%, 100% { opacity: 1; }
+        92%  { opacity: 1; }
+        93%  { opacity: 0.85; }
+        94%  { opacity: 1; }
+        96%  { opacity: 0.9; }
+        97%  { opacity: 1; }
+      }
+
+      .neon-title {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        font-size: 3.5rem;
+        letter-spacing: 0.08em;
+        background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter:
+          drop-shadow(0 0 8px color-mix(in srgb, var(--neon-pink) 50%, transparent))
+          drop-shadow(0 0 20px color-mix(in srgb, var(--neon-purple) 38%, transparent));
+        animation: flicker 8s infinite;
+      }
+
+      .subtitle {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--neon-purple) 80%, transparent);
+      }
+
+      .body-text {
+        font-size: 14px;
+        line-height: 1.65;
+        color: color-mix(in srgb, var(--neon-cyan) 60%, transparent);
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: color-mix(in srgb, var(--neon-purple) 12%, transparent);
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-family: inherit;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        border: 1px solid color-mix(in srgb, var(--neon-purple) 38%, transparent);
+        color: var(--neon-purple);
+        background: color-mix(in srgb, var(--neon-purple) 6%, transparent);
+        box-shadow: 0 0 12px color-mix(in srgb, var(--neon-purple) 14%, transparent);
+        cursor: pointer;
+        transition: background 150ms, border-color 150ms, transform 150ms;
+      }
+
+      .btn:hover {
+        background: color-mix(in srgb, var(--neon-purple) 12%, transparent);
+        border-color: color-mix(in srgb, var(--neon-purple) 60%, transparent);
+      }
+
+      .btn:active { transform: scale(0.95); }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <span class="piece">♟</span>
+
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div class="neon-title">404</div>
+        <div id="subtitle" class="subtitle">Posición no encontrada</div>
+      </div>
+
+      <p id="body-text" class="body-text">Esta URL no existe en el tablero.</p>
+
+      <div class="divider"></div>
+
+      <a id="btn" href="/" class="btn">← Volver al inicio</a>
+    </div>
+  </body>
+</html>
