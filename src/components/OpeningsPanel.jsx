@@ -121,14 +121,14 @@ export default function OpeningsPanel({
                           : undefined
                       }
                       onClick={() => onToggleOpening(opening.nodeId)}
-                      className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2"
+                      className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
                       style={{
                         borderColor: isActive
                           ? opening.glow
                           : `${opening.color}40`,
                         background: isActive
                           ? `${opening.color}20`
-                          : "transparent",
+                          : `${opening.color}08`,
                         boxShadow: isActive
                           ? `0 0 12px ${opening.glow}40`
                           : "none",
