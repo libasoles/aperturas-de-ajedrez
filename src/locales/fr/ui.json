@@ -1,0 +1,76 @@
+{
+  "title": "Arbre des Ouvertures",
+  "subtitle": "Explorez les variantes, comparez",
+  "openings_panel": {
+    "header": "Ouvertures"
+  },
+  "panel_openings": {
+    "scan-1": "Scandinave",
+    "span-4": "Espagnole",
+    "ital-1": "Italienne",
+    "sic-1": "Sicilienne",
+    "fr-1": "Française",
+    "ck-1": "Caro-Kann",
+    "pirc-1": "Pirc",
+    "al-1": "Alekhine",
+    "qg-2": "Gambit Dame",
+    "lon-2": "Londres",
+    "ki-3a": "Indienne du Roi",
+    "nim-3b": "Nimzo-Indienne"
+  },
+  "chess_panel": {
+    "position": "Position",
+    "initial": "Initiale",
+    "play": "jouer",
+    "playing": "en cours...",
+    "flip_board": "Retourner l'échiquier"
+  },
+  "help": {
+    "title": "Aide",
+    "rows": {
+      "click": {
+        "label": "Clic sur un nœud",
+        "desc": "Sélectionne le nœud et affiche les coups sur l'échiquier"
+      },
+      "flecha": {
+        "label": "Icône flèche",
+        "desc": "Développe les nœuds jusqu'à la prochaine bifurcation"
+      },
+      "tab": {
+        "label": "Tab / Maj+Tab",
+        "desc": "Avance au nœud suivant / recule au nœud précédent"
+      },
+      "space": {
+        "label": "Espace",
+        "desc": "Si un nœud est sélectionné, développe les enfants jusqu'à la prochaine bifurcation, comme l'icône →"
+      },
+      "arrows-lr": {
+        "label": "← / →",
+        "desc": "Identique à Maj+Tab / Tab, si un nœud est sélectionné"
+      },
+      "arrows-ud": {
+        "label": "↑ / ↓",
+        "desc": "Navigue entre les branches adjacentes"
+      },
+      "flip": {
+        "label": "Entrée ou bouton ↻",
+        "desc": "Inverse la perspective de l'échiquier"
+      },
+      "play": {
+        "label": "▶ Jouer",
+        "desc": "Anime les coups un par un"
+      }
+    }
+  },
+  "mobile_gate": {
+    "warning": "Avertissement",
+    "designed_for_large": "Cette application est conçue pour les grands écrans.",
+    "mobile_version": "La version mobile est en",
+    "beta": "bêta",
+    "may_not_look_good": ", et certains éléments peuvent ne pas s'afficher correctement.",
+    "continue": "Continuer"
+  },
+  "node": {
+    "expand_to_fork": "Développer jusqu'à la bifurcation"
+  }
+}

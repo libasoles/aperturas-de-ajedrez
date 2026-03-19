@@ -1,7 +1,8 @@
 import { Handle, Position } from "@xyflow/react";
 import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
-import { toSpanishSAN } from "../utils/chessPath";
+import { useTranslation } from "react-i18next";
+import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 
 function getPieceCode(move, isWhite) {
   if (!move) return null;
@@ -16,6 +17,8 @@ function getPieceCode(move, isWhite) {
 }
 
 function MobileChessNode({ id, data }) {
+  const { i18n } = useTranslation();
+  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
   const {
     move,
     name,
@@ -104,7 +107,7 @@ function MobileChessNode({ id, data }) {
           transform: "rotate(180deg)",
         }}
       >
-        {toSpanishSAN(move)}
+        {san(move)}
       </span>
 
       {!isRoot &&

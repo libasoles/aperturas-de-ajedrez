@@ -11,6 +11,16 @@ export function toSpanishSAN(move) {
     .replace(/^N/, "C"); // Knight → Caballo
 }
 
+export function toFrenchSAN(move) {
+  if (!move) return move;
+  return move
+    .replace(/^K/, "R") // King → Roi
+    .replace(/^Q/, "D") // Queen → Dame
+    .replace(/^R/, "T") // Rook → Tour
+    .replace(/^B/, "F") // Bishop → Fou
+    .replace(/^N/, "C"); // Knight → Cavalier
+}
+
 /**
  * Returns the array of nodes from root to the target node (inclusive),
  * or null if not found.

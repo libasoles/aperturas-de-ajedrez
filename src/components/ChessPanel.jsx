@@ -2,7 +2,7 @@ import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
-import { findPathToNode, toSpanishSAN } from "../utils/chessPath";
+import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 460;
@@ -26,7 +26,7 @@ function fenAfterMoves(moves, count) {
 
 export default function ChessPanel({ selectedNodeId }) {
   const { t, i18n } = useTranslation();
-  const san = (move) => i18n.language === "en" ? move : toSpanishSAN(move);
+  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
 
   const path = useMemo(
     () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),

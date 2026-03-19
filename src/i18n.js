@@ -2,13 +2,17 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import esUi from "./locales/es/ui.json";
 import enUi from "./locales/en/ui.json";
+import frUi from "./locales/fr/ui.json";
 import esOpenings from "./locales/es/openings.json";
 import enOpenings from "./locales/en/openings.json";
+import frOpenings from "./locales/fr/openings.json";
 
 function detectLng() {
   if (typeof window === "undefined") return "es";
   const path = window.location.pathname;
-  return path === "/en" || path.startsWith("/en/") ? "en" : "es";
+  if (path === "/en" || path.startsWith("/en/")) return "en";
+  if (path === "/fr" || path.startsWith("/fr/")) return "fr";
+  return "es";
 }
 
 i18n.use(initReactI18next).init({
@@ -19,6 +23,7 @@ i18n.use(initReactI18next).init({
   resources: {
     es: { ui: esUi, openings: esOpenings },
     en: { ui: enUi, openings: enOpenings },
+    fr: { ui: frUi, openings: frOpenings },
   },
   interpolation: { escapeValue: false },
 });

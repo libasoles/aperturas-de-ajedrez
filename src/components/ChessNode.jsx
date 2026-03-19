@@ -2,7 +2,7 @@ import { Handle, Position } from "@xyflow/react";
 import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
-import { toSpanishSAN } from "../utils/chessPath";
+import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 import { Tooltip } from "./ui/Tooltip";
 
 function getPieceCode(move, isWhite) {
@@ -19,7 +19,7 @@ function getPieceCode(move, isWhite) {
 
 function ChessNode({ id, data }) {
   const { t, i18n } = useTranslation();
-  const san = (move) => i18n.language === "en" ? move : toSpanishSAN(move);
+  const san = (move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move);
 
   const {
     move,

@@ -21,17 +21,22 @@ import {
 function detectLocale() {
   if (typeof window === "undefined") return "es";
   const p = window.location.pathname;
-  return p === "/en" || p.startsWith("/en/") ? "en" : "es";
+  if (p === "/en" || p.startsWith("/en/")) return "en";
+  if (p === "/fr" || p.startsWith("/fr/")) return "fr";
+  return "es";
 }
 
 // Build a URL for a given route slug, preserving the current locale prefix
 function buildOpeningUrl(route, locale) {
-  const slug = locale === "en" ? route.slugEn : route.slug;
-  return locale === "en" ? `/en/${slug}` : `/${slug}`;
+  if (locale === "en") return `/en/${route.slugEn}`;
+  if (locale === "fr") return `/fr/${route.slugFr}`;
+  return `/${route.slug}`;
 }
 
 function buildHelpUrl(locale) {
-  return locale === "en" ? `/en/${HELP_ROUTE.slugEn}` : `/${HELP_ROUTE.slug}`;
+  if (locale === "en") return `/en/${HELP_ROUTE.slugEn}`;
+  if (locale === "fr") return `/fr/${HELP_ROUTE.slugFr}`;
+  return `/${HELP_ROUTE.slug}`;
 }
 
 export { buildHelpUrl, detectLocale };
@@ -348,10 +353,12 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
 
 function getRouteFromPathname() {
   if (typeof window === "undefined") return { opening: null, variant: null };
-  // Strip /en/ prefix if present, then extract the slug
+  // Strip /en/ or /fr/ prefix if present, then extract the slug
   let path = window.location.pathname;
   if (path === "/en" || path.startsWith("/en/")) {
     path = path.slice(3) || "/"; // remove "/en"
+  } else if (path === "/fr" || path.startsWith("/fr/")) {
+    path = path.slice(3) || "/"; // remove "/fr"
   }
   const slug = path.replace(/^\/|\/$/, "");
   if (!slug) return { opening: null, variant: null };
@@ -381,21 +388,31 @@ function getInitialStateFromUrl() {
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
 }
 
-// Browser language redirect: if no /en/ prefix but browser is English, rewrite URL to /en/
+// Browser language redirect: if URL has no locale prefix, redirect based on navigator.language
 // This runs once at module load, before React mounts.
 if (typeof window !== "undefined") {
   const path = window.location.pathname;
-  const hasEnPrefix = path === "/en" || path.startsWith("/en/");
-  if (!hasEnPrefix && navigator.language?.startsWith("en")) {
+  const hasLocalePrefix =
+    path === "/en" || path.startsWith("/en/") ||
+    path === "/fr" || path.startsWith("/fr/");
+  if (!hasLocalePrefix) {
+    const lang = navigator.language ?? "";
     const slug = path.replace(/^\/|\/$/, "");
-    let enPath = "/en/";
-    if (slug) {
+    if (lang.startsWith("en")) {
       const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
-      // slugEn already contains the full path segment (e.g. "scandinavian-defense/mieses-kotroc")
-      enPath = route ? `/en/${route.slugEn}` : `/en/${slug}`;
+      const enPath = slug
+        ? (route ? `/en/${route.slugEn}` : `/en/${slug}`)
+        : "/en/";
+      history.replaceState(null, "", enPath);
+      i18n.changeLanguage("en");
+    } else if (lang.startsWith("fr")) {
+      const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
+      const frPath = slug
+        ? (route ? `/fr/${route.slugFr}` : `/fr/${slug}`)
+        : "/fr/";
+      history.replaceState(null, "", frPath);
+      i18n.changeLanguage("fr");
     }
-    history.replaceState(null, "", enPath);
-    i18n.changeLanguage("en");
   }
 }
 
@@ -511,7 +528,7 @@ export function useOpeningTreeState() {
       if (typeof window !== "undefined") {
         const locale = detectLocale();
         const route = next ? ROUTE_BY_NODE_ID[next] : null;
-        const url = route ? buildOpeningUrl(route, locale) : (locale === "en" ? "/en/" : "/");
+        const url = route ? buildOpeningUrl(route, locale) : (locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/");
         history.pushState(null, "", url);
       }
       return next;
