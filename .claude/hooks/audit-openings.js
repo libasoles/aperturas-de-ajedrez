@@ -1,6 +1,6 @@
 import { Chess } from 'chess.js';
 import { execSync } from 'child_process';
-import { OPENING_TREE } from '../src/data/openings.js';
+import { OPENING_TREE } from '../../src/data/openings.js';
 
 // ─── DFS validation ───────────────────────────────────────────────────────────
 
@@ -35,7 +35,7 @@ function detectNewNodes() {
   try {
     const diff = execSync('git diff HEAD src/data/openings.js 2>/dev/null', {
       encoding: 'utf8',
-      cwd: new URL('..', import.meta.url).pathname,
+      cwd: new URL('../..', import.meta.url).pathname,
     });
     const newNodes = [];
     for (const line of diff.split('\n')) {

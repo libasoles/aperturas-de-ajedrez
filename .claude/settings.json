@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/audit-openings.js --hook"
+            "command": "node .claude/hooks/audit-openings.js --hook"
           },
           {
             "type": "command",
