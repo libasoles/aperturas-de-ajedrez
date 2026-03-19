@@ -1,3 +1,4 @@
+import { Chess } from 'chess.js';
 import { OPENING_TREE } from '../data/openings';
 
 // SAN usa notación inglesa internamente; esto convierte para mostrar al usuario
@@ -36,6 +37,25 @@ export function findPathToNode(targetId) {
     return null;
   }
   return search(OPENING_TREE, []) ?? [];
+}
+
+/**
+ * Returns the FEN string for the position reached after playing all moves
+ * from root to the node with the given ID. Returns the initial position FEN
+ * if the node is not found or has no moves.
+ */
+export function fenAfterMoves(nodeId) {
+  const path = findPathToNode(nodeId);
+  const moves = path.map((n) => n.move).filter((m) => m && m !== 'Inicial');
+  const chess = new Chess();
+  for (const move of moves) {
+    try {
+      chess.move(move);
+    } catch {
+      break;
+    }
+  }
+  return chess.fen();
 }
 
 /**

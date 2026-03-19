@@ -12,7 +12,7 @@ const MOVE_DELAY = 600; // ms between moves
 const CUSTOM_LIGHT = { backgroundColor: "#c8b89a" };
 const CUSTOM_DARK = { backgroundColor: "#6b4f3a" };
 
-function fenAfterMoves(moves, count) {
+function fenAtStep(moves, count) {
   const chess = new Chess();
   for (let i = 0; i < count; i++) {
     try {
@@ -88,7 +88,7 @@ export default function ChessPanel({ selectedNodeId }) {
   }, [isPlaying, moves]);
 
   const fen = useMemo(
-    () => fenAfterMoves(moves, playedCount),
+    () => fenAtStep(moves, playedCount),
     [moves, playedCount],
   );
 
