@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+const STORAGE_KEY = "mobile_gate_accepted";
+
 export default function MobileGate({ children }) {
   const { t } = useTranslation();
-  const [accepted, setAccepted] = useState(false);
+  const [accepted, setAccepted] = useState(
+    () => localStorage.getItem(STORAGE_KEY) === "1"
+  );
 
   if (accepted) return children;
 
@@ -30,7 +34,10 @@ export default function MobileGate({ children }) {
         <div className="w-full h-px bg-neon-purple/12" />
 
         <button
-          onClick={() => setAccepted(true)}
+          onClick={() => {
+            localStorage.setItem(STORAGE_KEY, "1");
+            setAccepted(true);
+          }}
           className="w-full py-3 font-mono text-[13px] tracking-widest uppercase border border-neon-purple/38 text-neon-purple bg-neon-purple/6 transition-all duration-150 hover:bg-neon-purple/12 hover:border-neon-purple/60 active:scale-95 cursor-pointer"
           style={{
             boxShadow:
