@@ -157,92 +157,92 @@ async function run() {
 
   // ── 2. Help pages (ES / EN / FR) ──────────────────────────────────────────
   const helpAlts = [
-    { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
-    { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}` },
-    { hreflang: "fr", href: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}` },
-    { hreflang: "x-default", href: `${BASE_URL}/${HELP_ROUTE.slug}` },
+    { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}/` },
+    { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}/` },
+    { hreflang: "fr", href: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}/` },
+    { hreflang: "x-default", href: `${BASE_URL}/${HELP_ROUTE.slug}/` },
   ];
 
   await writePageAndDir(
     path.join(distDir, HELP_ROUTE.slug, "index.html"),
-    injectMeta(rendered, { title: HELP_ROUTE.title, description: HELP_ROUTE.description, canonical: `${BASE_URL}/${HELP_ROUTE.slug}`, lang: "es", alternates: helpAlts }),
+    injectMeta(rendered, { title: HELP_ROUTE.title, description: HELP_ROUTE.description, canonical: `${BASE_URL}/${HELP_ROUTE.slug}/`, lang: "es", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /${HELP_ROUTE.slug}\n`);
-  addSitemapUrl(`${BASE_URL}/${HELP_ROUTE.slug}`, "0.5");
+  addSitemapUrl(`${BASE_URL}/${HELP_ROUTE.slug}/`, "0.5");
 
   await writePageAndDir(
     path.join(distDir, "en", HELP_ROUTE.slugEn, "index.html"),
-    injectMeta(rendered, { title: HELP_ROUTE.titleEn, description: HELP_ROUTE.descriptionEn, canonical: `${BASE_URL}/en/${HELP_ROUTE.slugEn}`, lang: "en", alternates: helpAlts }),
+    injectMeta(rendered, { title: HELP_ROUTE.titleEn, description: HELP_ROUTE.descriptionEn, canonical: `${BASE_URL}/en/${HELP_ROUTE.slugEn}/`, lang: "en", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /en/${HELP_ROUTE.slugEn}\n`);
-  addSitemapUrl(`${BASE_URL}/en/${HELP_ROUTE.slugEn}`, "0.5");
+  addSitemapUrl(`${BASE_URL}/en/${HELP_ROUTE.slugEn}/`, "0.5");
 
   await writePageAndDir(
     path.join(distDir, "fr", HELP_ROUTE.slugFr, "index.html"),
-    injectMeta(rendered, { title: HELP_ROUTE.titleFr, description: HELP_ROUTE.descriptionFr, canonical: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}`, lang: "fr", alternates: helpAlts }),
+    injectMeta(rendered, { title: HELP_ROUTE.titleFr, description: HELP_ROUTE.descriptionFr, canonical: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}/`, lang: "fr", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /fr/${HELP_ROUTE.slugFr}\n`);
-  addSitemapUrl(`${BASE_URL}/fr/${HELP_ROUTE.slugFr}`, "0.5");
+  addSitemapUrl(`${BASE_URL}/fr/${HELP_ROUTE.slugFr}/`, "0.5");
 
   // ── 3. Opening pages (ES / EN / FR) ───────────────────────────────────────
   for (const route of OPENING_ROUTES) {
     const alts = [
-      { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
-      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
-      { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}` },
+      { hreflang: "es", href: `${BASE_URL}/${route.slug}/` },
+      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}/` },
+      { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}/` },
     ];
 
     await writePageAndDir(
       path.join(distDir, route.slug, "index.html"),
-      injectMeta(rendered, { title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}`, lang: "es", alternates: alts }),
+      injectMeta(rendered, { title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}/`, lang: "es", alternates: alts }),
     );
     process.stdout.write(`Prerendered /${route.slug}\n`);
-    addSitemapUrl(`${BASE_URL}/${route.slug}`, "0.8");
+    addSitemapUrl(`${BASE_URL}/${route.slug}/`, "0.8");
 
     await writePageAndDir(
       path.join(distDir, "en", route.slugEn, "index.html"),
-      injectMeta(rendered, { title: route.titleEn, description: route.descriptionEn, canonical: `${BASE_URL}/en/${route.slugEn}`, lang: "en", alternates: alts }),
+      injectMeta(rendered, { title: route.titleEn, description: route.descriptionEn, canonical: `${BASE_URL}/en/${route.slugEn}/`, lang: "en", alternates: alts }),
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
-    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}`, "0.8");
+    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}/`, "0.8");
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
-      injectMeta(rendered, { title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}`, lang: "fr", alternates: alts }),
+      injectMeta(rendered, { title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}/`, lang: "fr", alternates: alts }),
     );
     process.stdout.write(`Prerendered /fr/${route.slugFr}\n`);
-    addSitemapUrl(`${BASE_URL}/fr/${route.slugFr}`, "0.8");
+    addSitemapUrl(`${BASE_URL}/fr/${route.slugFr}/`, "0.8");
   }
 
   // ── 4. Variant pages (ES / EN / FR) ───────────────────────────────────────
   for (const route of VARIANT_ROUTES) {
     const alts = [
-      { hreflang: "es", href: `${BASE_URL}/${route.slug}` },
-      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}` },
-      { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}` },
-      { hreflang: "x-default", href: `${BASE_URL}/${route.slug}` },
+      { hreflang: "es", href: `${BASE_URL}/${route.slug}/` },
+      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}/` },
+      { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}/` },
+      { hreflang: "x-default", href: `${BASE_URL}/${route.slug}/` },
     ];
 
     await writePageAndDir(
       path.join(distDir, route.slug, "index.html"),
-      injectMeta(rendered, { title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}`, lang: "es", alternates: alts }),
+      injectMeta(rendered, { title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}/`, lang: "es", alternates: alts }),
     );
     process.stdout.write(`Prerendered /${route.slug}\n`);
-    addSitemapUrl(`${BASE_URL}/${route.slug}`, "0.6");
+    addSitemapUrl(`${BASE_URL}/${route.slug}/`, "0.6");
 
     await writePageAndDir(
       path.join(distDir, "en", route.slugEn, "index.html"),
-      injectMeta(rendered, { title: route.titleEn, description: route.descriptionEn, canonical: `${BASE_URL}/en/${route.slugEn}`, lang: "en", alternates: alts }),
+      injectMeta(rendered, { title: route.titleEn, description: route.descriptionEn, canonical: `${BASE_URL}/en/${route.slugEn}/`, lang: "en", alternates: alts }),
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
-    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}`, "0.6");
+    addSitemapUrl(`${BASE_URL}/en/${route.slugEn}/`, "0.6");
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
-      injectMeta(rendered, { title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}`, lang: "fr", alternates: alts }),
+      injectMeta(rendered, { title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}/`, lang: "fr", alternates: alts }),
     );
     process.stdout.write(`Prerendered /fr/${route.slugFr}\n`);
-    addSitemapUrl(`${BASE_URL}/fr/${route.slugFr}`, "0.6");
+    addSitemapUrl(`${BASE_URL}/fr/${route.slugFr}/`, "0.6");
   }
 
   // ── 5. Sitemap ─────────────────────────────────────────────────────────────
