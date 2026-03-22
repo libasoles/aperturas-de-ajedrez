@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "http://aperturasdeajedrez.com.ar/*"
+  to = "https://aperturasdeajedrez.com.ar/:splat"
+  status = 301
+  force = true
