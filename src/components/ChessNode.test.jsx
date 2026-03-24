@@ -150,6 +150,28 @@ describe('ChessNode — piece icons', () => {
   });
 });
 
+describe('ChessNode — keyboard interaction', () => {
+  it('does not call onSelect when Enter is pressed (reserved for board flip)', async () => {
+    const user = userEvent.setup();
+    const onSelect = vi.fn();
+    render(<ChessNode id="e4" data={makeData({ move: 'e4', onSelect })} />);
+    const pill = screen.getByRole('button', { name: /e4/i });
+    await user.click(pill);
+    await user.keyboard('{Enter}');
+    expect(onSelect).toHaveBeenCalledTimes(1); // only the click, not Enter
+  });
+
+  it('calls onSelect when Space is pressed on focused pill', async () => {
+    const user = userEvent.setup();
+    const onSelect = vi.fn();
+    render(<ChessNode id="e4" data={makeData({ move: 'e4', onSelect })} />);
+    const pill = screen.getByRole('button', { name: /e4/i });
+    pill.focus();
+    await user.keyboard(' ');
+    expect(onSelect).toHaveBeenCalledWith('e4');
+  });
+});
+
 describe('ChessNode — expand/collapse', () => {
   it('shows + when node has children and is collapsed, calls onToggle on click', async () => {
     const user = userEvent.setup();

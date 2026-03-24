@@ -597,6 +597,12 @@ export function useOpeningTreeState() {
       e.preventDefault();
       e.stopPropagation();
 
+      const currentDisplayIds = activeVariant
+        ? VARIANT_FULL_IDS[activeVariant]
+        : activeOpening
+          ? OPENING_FULL_IDS[activeOpening]
+          : expandedIds;
+
       if (e.key === "ArrowRight") {
         const node = findPathToNode(selectedNodeId).at(-1);
         if (!node?.children?.length) {
@@ -605,10 +611,14 @@ export function useOpeningTreeState() {
           return;
         }
         const firstChild = node.children[0];
-        setActiveOpening(null);
-        setActiveVariant(null);
-        setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
-        setSelectedNodeId(firstChild.id);
+        if (currentDisplayIds.has(firstChild.id)) {
+          setSelectedNodeId(firstChild.id);
+        } else {
+          setActiveOpening(null);
+          setActiveVariant(null);
+          setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
+          setSelectedNodeId(firstChild.id);
+        }
         return;
       }
 
@@ -619,11 +629,6 @@ export function useOpeningTreeState() {
         return;
       }
 
-      const currentDisplayIds = activeVariant
-        ? VARIANT_FULL_IDS[activeVariant]
-        : activeOpening
-          ? OPENING_FULL_IDS[activeOpening]
-          : expandedIds;
       const direction = e.key === "ArrowUp" ? "up" : "down";
       const targetId = getVerticalNavigationTarget(
         selectedNodeId,
@@ -636,8 +641,10 @@ export function useOpeningTreeState() {
         .slice(0, -1)
         .map((n) => n.id);
       setExpandedIds((prev) => new Set([...prev, ...ancestorIds]));
-      setActiveOpening(null);
-      setActiveVariant(null);
+      if (!currentDisplayIds.has(targetId)) {
+        setActiveOpening(null);
+        setActiveVariant(null);
+      }
       setSelectedNodeId(targetId);
     }
     window.addEventListener("keydown", handleKeyDown, true);

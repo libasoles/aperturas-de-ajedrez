@@ -63,7 +63,7 @@ function ChessNode({ id, data }) {
       data-node-pill-id={id}
       onClick={() => onSelect?.(id)}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+        if (e.key === " ") {
           e.preventDefault();
           onSelect?.(id);
         }
