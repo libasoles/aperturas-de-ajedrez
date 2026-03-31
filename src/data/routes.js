@@ -974,3 +974,8 @@ export const VARIANT_ROUTE_BY_SLUG = Object.fromEntries(
     [r.slugFr, r],
   ]),
 );
+
+/** Map from variantNodeId → variant route */
+export const VARIANT_ROUTE_BY_NODE_ID = Object.fromEntries(
+  VARIANT_ROUTES.map((r) => [r.variantNodeId, r]),
+);

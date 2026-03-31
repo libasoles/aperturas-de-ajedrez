@@ -3,13 +3,22 @@ import { useMemo } from "react";
 import { INITIAL_MOBILE_VIEWPORT, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
+import MobileHamburgerMenu from "./MobileHamburgerMenu";
 
 const nodeTypes = { chess: MobileChessNode };
 
 import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 export default function MobileOpeningTree() {
-  const { nodes, edges, selectedNodeId } = useOpeningTreeState();
+  const {
+    nodes,
+    edges,
+    selectedNodeId,
+    activeOpening,
+    activeVariant,
+    toggleOpening,
+    toggleVariant,
+  } = useOpeningTreeState();
   const mobileNodes = useMemo(
     () =>
       nodes.map((node) => ({
@@ -34,6 +43,12 @@ export default function MobileOpeningTree() {
         flexDirection: "column",
       }}
     >
+      <MobileHamburgerMenu
+        activeOpening={activeOpening}
+        activeVariant={activeVariant}
+        onToggleOpening={toggleOpening}
+        onToggleVariant={toggleVariant}
+      />
       <div
         className="panel"
         style={{

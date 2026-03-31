@@ -9,6 +9,7 @@ import {
   ROUTE_BY_SLUG,
   VARIANT_ROUTES,
   VARIANT_ROUTE_BY_SLUG,
+  VARIANT_ROUTE_BY_NODE_ID,
 } from "../data/routes";
 import {
   findPathToNode,
@@ -37,6 +38,12 @@ function buildHelpUrl(locale) {
   if (locale === "en") return `/en/${HELP_ROUTE.slugEn}`;
   if (locale === "fr") return `/fr/${HELP_ROUTE.slugFr}`;
   return `/${HELP_ROUTE.slug}`;
+}
+
+function buildVariantUrl(variantRoute, locale) {
+  if (locale === "en") return `/en/${variantRoute.slugEn}`;
+  if (locale === "fr") return `/fr/${variantRoute.slugFr}`;
+  return `/${variantRoute.slug}`;
 }
 
 export { buildHelpUrl, detectLocale };
@@ -535,6 +542,23 @@ export function useOpeningTreeState() {
     });
   }, []);
 
+  const toggleVariant = useCallback((variantNodeId) => {
+    const variantRoute = VARIANT_ROUTE_BY_NODE_ID[variantNodeId];
+    if (!variantRoute) return;
+    setActiveVariant((prev) => {
+      const next = prev === variantNodeId ? null : variantNodeId;
+      setActiveOpening(variantRoute.parentNodeId);
+      if (typeof window !== "undefined") {
+        const locale = detectLocale();
+        const url = next
+          ? buildVariantUrl(variantRoute, locale)
+          : buildOpeningUrl(ROUTE_BY_NODE_ID[variantRoute.parentNodeId], locale) ?? (locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/");
+        history.pushState(null, "", url);
+      }
+      return next;
+    });
+  }, []);
+
   // Space: expand to next fork
   useEffect(() => {
     function handleKeyDown(e) {
@@ -684,7 +708,9 @@ export function useOpeningTreeState() {
     edges: rawEdges,
     selectedNodeId,
     activeOpening,
+    activeVariant,
     toggleOpening,
+    toggleVariant,
     firstOpeningBtnRef,
   };
 }

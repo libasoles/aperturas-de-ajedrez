@@ -72,5 +72,9 @@
   },
   "node": {
     "expand_to_fork": "Expand to branch point"
+  },
+  "hamburger_menu": {
+    "open": "Open menu",
+    "close": "Close menu"
   }
 }

@@ -72,5 +72,9 @@
   },
   "node": {
     "expand_to_fork": "Développer jusqu'à la bifurcation"
+  },
+  "hamburger_menu": {
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu"
   }
 }
