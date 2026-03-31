@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import MobileGate from "./components/MobileGate";
 import MobileOpeningTree from "./components/MobileOpeningTree";
 import OpeningTree from "./components/OpeningTree";
 
@@ -24,9 +23,5 @@ export default function App() {
 
   if (!isMobile) return <OpeningTree />;
 
-  return (
-    <MobileGate>
-      <MobileOpeningTree />
-    </MobileGate>
-  );
+  return <MobileOpeningTree />;
 }

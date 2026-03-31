@@ -34,7 +34,15 @@ export default function MobileHamburgerMenu({
   const locale = detectLocale();
 
   const handleOpeningClick = (nodeId) => {
-    onToggleOpening(nodeId);
+    // If a child variant is active for this opening, clicking the parent
+    // should deactivate the variant while keeping the opening active —
+    // not toggle the opening off (which is what toggleOpening would do
+    // since activeOpening === nodeId was set by toggleVariant).
+    if (activeOpening === nodeId && activeVariant !== null) {
+      onToggleVariant(activeVariant); // clears variant, keeps opening active
+    } else {
+      onToggleOpening(nodeId);
+    }
     setIsOpen(false);
   };
 
@@ -90,6 +98,7 @@ export default function MobileHamburgerMenu({
             position: "fixed",
             inset: 0,
             zIndex: 51,
+            overflow: "hidden",
           }}
         >
           {/*
