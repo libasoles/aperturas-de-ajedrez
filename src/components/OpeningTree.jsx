@@ -1,5 +1,5 @@
-import { Background, Controls, ReactFlow } from "@xyflow/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Background, Controls, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { buildHelpUrl, detectLocale, INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
@@ -18,13 +18,15 @@ function isHelpPath(pathname) {
   return p === "/ayuda" || p === "/en/help" || p === "/fr/aide";
 }
 
-export default function OpeningTree() {
+function OpeningTreeContent() {
   const { t, i18n } = useTranslation();
-  const { nodes, edges, selectedNodeId, activeOpening, toggleOpening, firstOpeningBtnRef } =
+  const { nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef } =
     useOpeningTreeState();
+  const { getViewport, setViewport } = useReactFlow();
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const previousPathRef = useRef("/");
   const didFocusRootRef = useRef(false);
+  const anchorRef = useRef(null); // { nodeId, screenX, screenY }
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -96,6 +98,45 @@ export default function OpeningTree() {
     };
   }, [nodes]);
 
+  // Restore viewport so the toggled node stays at the same screen position
+  useEffect(() => {
+    if (!anchorRef.current) return;
+    const { nodeId, screenX, screenY } = anchorRef.current;
+    anchorRef.current = null;
+
+    const node = nodes.find((n) => n.id === nodeId);
+    if (!node) return;
+
+    const vp = getViewport();
+    setViewport({
+      x: screenX - node.position.x * vp.zoom,
+      y: screenY - node.position.y * vp.zoom,
+      zoom: vp.zoom,
+    });
+  }, [nodes, getViewport, setViewport]);
+
+  // Wrap toggleNode to capture the node's screen position before layout changes
+  const handleToggle = useCallback(
+    (id) => {
+      const node = nodes.find((n) => n.id === id);
+      if (node) {
+        const vp = getViewport();
+        anchorRef.current = {
+          nodeId: id,
+          screenX: node.position.x * vp.zoom + vp.x,
+          screenY: node.position.y * vp.zoom + vp.y,
+        };
+      }
+      toggleNode(id);
+    },
+    [nodes, getViewport, toggleNode],
+  );
+
+  const nodesWithAnchor = useMemo(
+    () => nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
+    [nodes, handleToggle],
+  );
+
   return (
     <div className="w-screen h-screen bg-app">
       {/* Panels first in DOM so Tab reaches them before the ReactFlow canvas */}
@@ -108,7 +149,7 @@ export default function OpeningTree() {
 
       <div className="absolute inset-0">
         <ReactFlow
-          nodes={nodes}
+          nodes={nodesWithAnchor}
           edges={edges}
           nodeTypes={nodeTypes}
           defaultViewport={INITIAL_VIEWPORT}
@@ -144,5 +185,13 @@ export default function OpeningTree() {
         <HelpDialog open={isHelpOpen} onOpenChange={onHelpOpenChange} />
       </div>
     </div>
+  );
+}
+
+export default function OpeningTree() {
+  return (
+    <ReactFlowProvider>
+      <OpeningTreeContent />
+    </ReactFlowProvider>
   );
 }

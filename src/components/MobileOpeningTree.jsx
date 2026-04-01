@@ -1,24 +1,28 @@
-import { Background, ReactFlow } from "@xyflow/react";
-import { useMemo } from "react";
+import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { INITIAL_MOBILE_VIEWPORT, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
+import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 const nodeTypes = { chess: MobileChessNode };
 
-import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
-
-export default function MobileOpeningTree() {
+function MobileOpeningTreeContent() {
   const {
     nodes,
     edges,
     selectedNodeId,
     activeOpening,
     activeVariant,
+    toggleNode,
     toggleOpening,
     toggleVariant,
+    expandToNextFork,
   } = useOpeningTreeState();
+  const { getViewport, setViewport } = useReactFlow();
+  const anchorRef = useRef(null); // { nodeId, screenX, screenY }
+
   const mobileNodes = useMemo(
     () =>
       nodes.map((node) => ({
@@ -30,6 +34,59 @@ export default function MobileOpeningTree() {
         },
       })),
     [nodes],
+  );
+
+  // After layout changes, restore viewport so the toggled node stays at the same screen position
+  useEffect(() => {
+    if (!anchorRef.current) return;
+    const { nodeId, screenX, screenY } = anchorRef.current;
+    anchorRef.current = null;
+
+    const node = mobileNodes.find((n) => n.id === nodeId);
+    if (!node) return;
+
+    const vp = getViewport();
+    setViewport({
+      x: screenX - node.position.x * vp.zoom,
+      y: screenY - node.position.y * vp.zoom,
+      zoom: vp.zoom,
+    });
+  }, [mobileNodes, getViewport, setViewport]);
+
+  // Capture the node's screen position (using rotated coords) before layout changes
+  const makeAnchoredHandler = useCallback(
+    (callback) => (id) => {
+      const node = mobileNodes.find((n) => n.id === id);
+      if (node) {
+        const vp = getViewport();
+        anchorRef.current = {
+          nodeId: id,
+          screenX: node.position.x * vp.zoom + vp.x,
+          screenY: node.position.y * vp.zoom + vp.y,
+        };
+      }
+      callback(id);
+    },
+    [mobileNodes, getViewport],
+  );
+
+  const handleToggle = useMemo(
+    () => makeAnchoredHandler(toggleNode),
+    [makeAnchoredHandler, toggleNode],
+  );
+
+  const handleExpandToFork = useMemo(
+    () => makeAnchoredHandler(expandToNextFork),
+    [makeAnchoredHandler, expandToNextFork],
+  );
+
+  const mobileNodesWithAnchor = useMemo(
+    () =>
+      mobileNodes.map((n) => ({
+        ...n,
+        data: { ...n.data, onToggle: handleToggle, onExpandToFork: handleExpandToFork },
+      })),
+    [mobileNodes, handleToggle, handleExpandToFork],
   );
 
   return (
@@ -70,7 +127,7 @@ export default function MobileOpeningTree() {
         }}
       >
         <ReactFlow
-          nodes={mobileNodes}
+          nodes={mobileNodesWithAnchor}
           edges={edges}
           nodeTypes={nodeTypes}
           defaultViewport={INITIAL_MOBILE_VIEWPORT}
@@ -88,5 +145,13 @@ export default function MobileOpeningTree() {
         </ReactFlow>
       </div>
     </div>
+  );
+}
+
+export default function MobileOpeningTree() {
+  return (
+    <ReactFlowProvider>
+      <MobileOpeningTreeContent />
+    </ReactFlowProvider>
   );
 }

@@ -709,6 +709,8 @@ export function useOpeningTreeState() {
     selectedNodeId,
     activeOpening,
     activeVariant,
+    toggleNode,
+    expandToNextFork,
     toggleOpening,
     toggleVariant,
     firstOpeningBtnRef,
