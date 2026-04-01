@@ -99,6 +99,7 @@ export default function MobileHamburgerMenu({
             inset: 0,
             zIndex: 51,
             overflow: "hidden",
+            pointerEvents: "auto",
           }}
         >
           {/*
@@ -117,8 +118,8 @@ export default function MobileHamburgerMenu({
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%) rotate(-90deg)",
-              width: "100vh",
-              height: "100vw",
+              width: "100dvh",
+              height: "100dvw",
               display: "flex",
               flexDirection: "column",
               overflow: "hidden",
@@ -170,13 +171,20 @@ export default function MobileHamburgerMenu({
             {/*
              * Columns area — flex-row so each PANEL_OPENINGS group is a column.
              * Since local coordinates align with landscape, flex-row = side-by-side columns.
+             * Single unified scroll for all columns (not per-column).
+             * align-items: flex-start prevents columns from stretching vertically,
+             * allowing the container itself to become scrollable when content is taller.
+             * -webkit-overflow-scrolling: touch enables momentum scrolling on iOS.
              */}
             <div
               style={{
                 flex: 1,
+                minHeight: 0,
                 display: "flex",
                 flexDirection: "row",
-                overflow: "hidden",
+                overflow: "auto",
+                alignItems: "flex-start",
+                WebkitOverflowScrolling: "touch",
               }}
             >
               {PANEL_OPENINGS.map((group, groupIndex) => (
@@ -184,7 +192,6 @@ export default function MobileHamburgerMenu({
                   key={group.group}
                   style={{
                     flex: 1,
-                    overflowY: "auto",
                     borderRight:
                       groupIndex < PANEL_OPENINGS.length - 1
                         ? "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)"
