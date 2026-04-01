@@ -72,32 +72,29 @@ function MobileChessNode({ id, data }) {
         "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white/80",
       ].join(" ")}
     >
-      {hasChildren && (
-        <span
-          role="button"
-          tabIndex={-1}
-          onClick={(e) => {
+      <span
+        role={hasChildren && !isExpanded ? "button" : undefined}
+        tabIndex={hasChildren && !isExpanded ? -1 : undefined}
+        onClick={hasChildren && !isExpanded ? (e) => { e.stopPropagation(); onToggle?.(id); } : undefined}
+        onKeyDown={hasChildren && !isExpanded ? (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
             e.stopPropagation();
             onToggle?.(id);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              onToggle?.(id);
-            }
-          }}
-          className="flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
-          style={{
-            background: `${colors.border}30`,
-            border: `1px solid ${colors.border}60`,
-            color: colors.text,
-            transform: "rotate(270deg)",
-          }}
-        >
-          {isExpanded ? "−" : "+"}
-        </span>
-      )}
+          }
+        } : undefined}
+        className={`flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 ${
+          !hasChildren || isExpanded ? "opacity-0 pointer-events-none" : "hover:brightness-150"
+        }`}
+        style={{
+          background: `${colors.border}30`,
+          border: `1px solid ${colors.border}60`,
+          color: colors.text,
+          transform: "rotate(270deg)",
+        }}
+      >
+        {isExpanded ? "−" : "+"}
+      </span>
 
       <span
         style={{

@@ -22,6 +22,7 @@
     "position": "Position",
     "initial": "Initial",
     "play": "play",
+    "pause": "pause",
     "playing": "playing...",
     "flip_board": "Flip board"
   },

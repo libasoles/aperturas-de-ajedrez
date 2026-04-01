@@ -22,6 +22,7 @@
     "position": "Posición",
     "initial": "Inicial",
     "play": "reproducir",
+    "pause": "pausar",
     "playing": "jugando...",
     "flip_board": "Girar tablero"
   },

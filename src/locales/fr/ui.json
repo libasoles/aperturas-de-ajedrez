@@ -22,6 +22,7 @@
     "position": "Position",
     "initial": "Initiale",
     "play": "jouer",
+    "pause": "pause",
     "playing": "en cours...",
     "flip_board": "Retourner l'échiquier"
   },

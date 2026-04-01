@@ -61,12 +61,57 @@ export default function MobileChessBoard({ selectedNodeId }) {
     });
   }
 
+  const { playedCount, isPlaying } = anim;
+
   useEffect(() => {
     return () => {
       timeoutsRef.current.forEach(clearTimeout);
       timeoutsRef.current = [];
     };
   }, [selectedNodeId]);
+
+  // Handle animation playback and pausing
+  useEffect(() => {
+    if (!isPlaying) {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+      return;
+    }
+
+    const startFrom = playedCount >= moves.length ? 0 : playedCount;
+    const ts = moves
+      .slice(startFrom)
+      .map((_, i) =>
+        setTimeout(
+          () => {
+            setAnim((p) => ({
+              ...p,
+              playedCount: startFrom + i + 1,
+              isPlaying: startFrom + i + 1 < moves.length,
+            }));
+          },
+          (i + 1) * MOVE_DELAY,
+        ),
+      );
+
+    timeoutsRef.current = ts;
+
+    return () => {
+      ts.forEach(clearTimeout);
+    };
+  }, [isPlaying, playedCount, moves]);
+
+  const play = useCallback(() => {
+    setAnim((prev) => {
+      if (prev.isPlaying) return prev;
+      const startFrom = prev.playedCount >= moves.length ? 0 : prev.playedCount;
+      return { ...prev, playedCount: startFrom, isPlaying: true };
+    });
+  }, [moves]);
+
+  const pause = useCallback(() => {
+    setAnim((prev) => ({ ...prev, isPlaying: false }));
+  }, []);
 
   useEffect(() => {
     if (!frameRef.current) return;
@@ -82,29 +127,6 @@ export default function MobileChessBoard({ selectedNodeId }) {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-
-  const { playedCount, isPlaying } = anim;
-
-  const play = useCallback(() => {
-    if (isPlaying) return;
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-    setAnim((prev) => ({ ...prev, playedCount: 0, isPlaying: true }));
-
-    const ts = moves.map((_, i) =>
-      setTimeout(
-        () => {
-          setAnim((prev) => ({
-            ...prev,
-            playedCount: i + 1,
-            isPlaying: i < moves.length - 1,
-          }));
-        },
-        (i + 1) * MOVE_DELAY,
-      ),
-    );
-    timeoutsRef.current = ts;
-  }, [isPlaying, moves]);
 
   const fen = useMemo(
     () => fenAfterMoves(moves, playedCount),
@@ -155,23 +177,24 @@ export default function MobileChessBoard({ selectedNodeId }) {
             <div className="flex items-center justify-end gap-2">
               {moves.length > 0 && (
                 <button
-                  onClick={play}
-                  disabled={isPlaying}
+                  onClick={isPlaying ? pause : play}
                   className={[
-                    "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
-                    "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
+                    "flex items-center justify-center gap-2 px-3 py-1.5 min-w-19 font-mono text-[11px] tracking-widest uppercase border",
+                    "transition-all duration-150 active:scale-95 cursor-pointer",
                     isPlaying
-                      ? "text-neon-purple/50 border-neon-purple/19"
+                      ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
                       : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
                   ].join(" ")}
                   style={{
                     boxShadow: isPlaying
-                      ? "none"
+                      ? "0 0 14px color-mix(in srgb, var(--color-neon-purple) 26%, transparent)"
                       : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                   }}
                 >
-                  <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
-                  {isPlaying ? t("chess_panel.playing") : t("chess_panel.play")}
+                  <span style={{ fontSize: "13px", lineHeight: 1 }}>
+                    {isPlaying ? "||" : "▶"}
+                  </span>
+                  {isPlaying ? t("chess_panel.pause", { defaultValue: "pause" }) : t("chess_panel.play")}
                 </button>
               )}
               <button

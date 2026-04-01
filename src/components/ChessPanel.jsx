@@ -47,6 +47,8 @@ export default function ChessPanel({ selectedNodeId }) {
   });
   const timeoutsRef = useRef([]);
 
+  const { playedCount, isPlaying } = anim;
+
   // Reset state during render when selection changes — no ref access here
   if (anim.nodeId !== selectedNodeId) {
     setAnim({
@@ -56,7 +58,7 @@ export default function ChessPanel({ selectedNodeId }) {
     });
   }
 
-  // Clear pending timeouts when selection changes — side-effect only, no setState
+  // Clear pending timeouts when selection changes
   useEffect(() => {
     return () => {
       timeoutsRef.current.forEach(clearTimeout);
@@ -64,28 +66,48 @@ export default function ChessPanel({ selectedNodeId }) {
     };
   }, [selectedNodeId]);
 
-  const { playedCount, isPlaying } = anim;
+  // Handle animation playback and pausing
+  useEffect(() => {
+    if (!isPlaying) {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+      return;
+    }
+
+    const startFrom = playedCount >= moves.length ? 0 : playedCount;
+    const ts = moves
+      .slice(startFrom)
+      .map((_, i) =>
+        setTimeout(
+          () => {
+            setAnim((p) => ({
+              ...p,
+              playedCount: startFrom + i + 1,
+              isPlaying: startFrom + i + 1 < moves.length,
+            }));
+          },
+          (i + 1) * MOVE_DELAY,
+        ),
+      );
+
+    timeoutsRef.current = ts;
+
+    return () => {
+      ts.forEach(clearTimeout);
+    };
+  }, [isPlaying, playedCount, moves]);
 
   const play = useCallback(() => {
-    if (isPlaying) return;
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-    setAnim((prev) => ({ ...prev, playedCount: 0, isPlaying: true }));
+    setAnim((prev) => {
+      if (prev.isPlaying) return prev;
+      const startFrom = prev.playedCount >= moves.length ? 0 : prev.playedCount;
+      return { ...prev, playedCount: startFrom, isPlaying: true };
+    });
+  }, [moves]);
 
-    const ts = moves.map((_, i) =>
-      setTimeout(
-        () => {
-          setAnim((prev) => ({
-            ...prev,
-            playedCount: i + 1,
-            isPlaying: i < moves.length - 1,
-          }));
-        },
-        (i + 1) * MOVE_DELAY,
-      ),
-    );
-    timeoutsRef.current = ts;
-  }, [isPlaying, moves]);
+  const pause = useCallback(() => {
+    setAnim((prev) => ({ ...prev, isPlaying: false }));
+  }, []);
 
   const fen = useMemo(
     () => fenAtStep(moves, playedCount),
@@ -219,24 +241,28 @@ export default function ChessPanel({ selectedNodeId }) {
           {/* Play button */}
           {moves.length > 0 && (
             <button
-              onClick={play}
+              onClick={isPlaying ? pause : play}
               onMouseDown={(e) => e.stopPropagation()}
-              disabled={isPlaying}
               className={[
-                "flex items-center gap-2 px-3 py-1.5 font-mono text-[11px] tracking-widest uppercase border",
-                "transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
+                "flex items-center justify-center gap-2 px-3 py-1.5 min-w-19 font-mono text-[11px] tracking-widest uppercase border",
+                "transition-all duration-150 active:scale-95 cursor-pointer",
                 isPlaying
-                  ? "text-neon-purple/50 border-neon-purple/19"
+                  ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
                   : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
               ].join(" ")}
               style={{
                 boxShadow: isPlaying
-                  ? "none"
+                  ? "0 0 14px color-mix(in srgb, var(--color-neon-purple) 26%, transparent)"
                   : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
               }}
+              title={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
             >
-              <span style={{ fontSize: "16px", lineHeight: 1 }}>▶</span>
-              {isPlaying ? t("chess_panel.playing") : t("chess_panel.play")}
+              <span style={{ fontSize: "13px", lineHeight: 1 }}>
+                {isPlaying ? "||" : "▶"}
+              </span>
+              {isPlaying
+                ? t("chess_panel.pause", { defaultValue: "pause" })
+                : t("chess_panel.play")}
             </button>
           )}
           <button
