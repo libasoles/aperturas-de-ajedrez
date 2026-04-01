@@ -6,8 +6,6 @@ import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 272;
 const MOVE_DELAY = 600;
-const ROTATED_FRAME_WIDTH = 320;
-const ROTATED_FRAME_HEIGHT = 310;
 
 const CUSTOM_LIGHT = { backgroundColor: "#c8b89a" };
 const CUSTOM_DARK = { backgroundColor: "#6b4f3a" };
@@ -29,10 +27,6 @@ export default function MobileChessBoard({ selectedNodeId }) {
   const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
 
   const frameRef = useRef(null);
-  const [frameSize, setFrameSize] = useState({
-    width: ROTATED_FRAME_WIDTH,
-    height: ROTATED_FRAME_HEIGHT,
-  });
 
   const path = useMemo(
     () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),
@@ -113,21 +107,6 @@ export default function MobileChessBoard({ selectedNodeId }) {
     setAnim((prev) => ({ ...prev, isPlaying: false }));
   }, []);
 
-  useEffect(() => {
-    if (!frameRef.current) return;
-    const element = frameRef.current;
-    const updateSize = () =>
-      setFrameSize({
-        width: element.clientWidth || ROTATED_FRAME_WIDTH,
-        height: element.clientHeight || ROTATED_FRAME_HEIGHT,
-      });
-
-    updateSize();
-    const observer = new ResizeObserver(updateSize);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
   const fen = useMemo(
     () => fenAfterMoves(moves, playedCount),
     [moves, playedCount],
@@ -158,6 +137,7 @@ export default function MobileChessBoard({ selectedNodeId }) {
           width: "100%",
           height: "100%",
           position: "relative",
+          containerType: "size",
         }}
       >
         <div
@@ -168,8 +148,8 @@ export default function MobileChessBoard({ selectedNodeId }) {
             left: "50%",
             transform: "translate(-50%, -50%) rotate(-90deg)",
             transformOrigin: "center",
-            width: `${frameSize.height}px`,
-            height: `${frameSize.width}px`,
+            width: "100cqh",
+            height: "100cqw",
           }}
         >
           {/* Header */}
