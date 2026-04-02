@@ -258,7 +258,7 @@ export default function ChessPanel({ selectedNodeId }) {
               title={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
             >
               <span style={{ fontSize: "13px", lineHeight: 1 }}>
-                {isPlaying ? "||" : "▶"}
+                {isPlaying ? "⏸" : "▶"}
               </span>
               {isPlaying
                 ? t("chess_panel.pause", { defaultValue: "pause" })
