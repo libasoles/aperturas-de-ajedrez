@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Read(//private/tmp/**)",
+      "Bash(grep -r \"body\\\\|html\\\\|#root\" /Users/guillermoperez/Projects/playground/aperturas-de-ajedrez/src/*.css)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -27,8 +33,5 @@
         ]
       }
     ]
-  },
-  "permissions": {
-    "allow": ["Read(//private/tmp/**)"]
   }
 }

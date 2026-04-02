@@ -130,7 +130,7 @@ export default function MobileChessBoard({ selectedNodeId }) {
   }, [moves, playedCount, san]);
 
   return (
-    <div className="h-full w-full flex items-start justify-start overflow-hidden">
+    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "flex-start", justifyContent: "flex-start", overflow: "hidden" }}>
       <div
         ref={frameRef}
         style={{
