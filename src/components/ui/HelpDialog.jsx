@@ -1,14 +1,64 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { buildHelpUrl, detectLocale } from "../../hooks/useOpeningTreeState";
 
 const ROW_KEYS = ["click", "flecha", "tab", "space", "arrows-lr", "arrows-ud", "flip", "play"];
 
-export default function HelpDialog({ open, onOpenChange }) {
+function isHelpPath(pathname) {
+  const p = pathname.replace(/\/$/, "");
+  return p === "/ayuda" || p === "/en/help" || p === "/fr/aide";
+}
+
+function getHelpPath() {
+  return buildHelpUrl(detectLocale());
+}
+
+export default function HelpDialog() {
   const { t } = useTranslation();
-  const isControlled = typeof open === "boolean";
+  const [isHelpOpen, setIsHelpOpen] = useState(
+    () => typeof window !== "undefined" && isHelpPath(window.location.pathname)
+  );
+  const previousPathRef = useRef("/");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const syncFromLocation = () => {
+      setIsHelpOpen(isHelpPath(window.location.pathname));
+    };
+    syncFromLocation();
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
+  }, []);
+
+  const onHelpOpenChange = useCallback((nextOpen) => {
+    if (typeof window === "undefined") return;
+
+    const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    const currentlyOnHelp = isHelpPath(window.location.pathname);
+
+    if (nextOpen) {
+      if (!currentlyOnHelp) {
+        previousPathRef.current = currentPath || "/";
+        history.pushState(null, "", getHelpPath());
+      }
+      setIsHelpOpen(true);
+      return;
+    }
+
+    if (currentlyOnHelp) {
+      const locale = detectLocale();
+      const fallbackPath =
+        previousPathRef.current && !isHelpPath(previousPathRef.current)
+          ? previousPathRef.current
+          : locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/";
+      history.pushState(null, "", fallbackPath);
+    }
+    setIsHelpOpen(false);
+  }, []);
 
   return (
-    <Dialog.Root {...(isControlled ? { open, onOpenChange } : {})}>
+    <Dialog.Root open={isHelpOpen} onOpenChange={onHelpOpenChange}>
       <Dialog.Trigger asChild>
         <button
           tabIndex={-1}

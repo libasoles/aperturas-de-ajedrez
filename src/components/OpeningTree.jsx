@@ -1,7 +1,7 @@
 import { Background, Controls, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { buildHelpUrl, detectLocale, INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -9,59 +9,13 @@ import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
-function getHelpPath() {
-  return buildHelpUrl(detectLocale());
-}
-
-function isHelpPath(pathname) {
-  const p = pathname.replace(/\/$/, "");
-  return p === "/ayuda" || p === "/en/help" || p === "/fr/aide";
-}
-
 function OpeningTreeContent() {
   const { t, i18n } = useTranslation();
   const { nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef } =
     useOpeningTreeState();
   const { getViewport, setViewport } = useReactFlow();
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const previousPathRef = useRef("/");
   const didFocusRootRef = useRef(false);
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const syncFromLocation = () => {
-      setIsHelpOpen(isHelpPath(window.location.pathname));
-    };
-    syncFromLocation();
-    window.addEventListener("popstate", syncFromLocation);
-    return () => window.removeEventListener("popstate", syncFromLocation);
-  }, []);
-
-  const onHelpOpenChange = useCallback((nextOpen) => {
-    if (typeof window === "undefined") return;
-
-    const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-    const currentlyOnHelp = isHelpPath(window.location.pathname);
-
-    if (nextOpen) {
-      if (!currentlyOnHelp) {
-        previousPathRef.current = currentPath || "/";
-        history.pushState(null, "", getHelpPath());
-      }
-      setIsHelpOpen(true);
-      return;
-    }
-
-    if (currentlyOnHelp) {
-      const locale = detectLocale();
-      const fallbackPath = previousPathRef.current && !isHelpPath(previousPathRef.current)
-        ? previousPathRef.current
-        : (locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/");
-      history.pushState(null, "", fallbackPath);
-    }
-    setIsHelpOpen(false);
-  }, []);
 
   useEffect(() => {
     if (didFocusRootRef.current) return;
@@ -182,7 +136,7 @@ function OpeningTreeContent() {
 
       {/* Help button — fixed bottom-left */}
       <div className="absolute bottom-28 left-4 z-10">
-        <HelpDialog open={isHelpOpen} onOpenChange={onHelpOpenChange} />
+        <HelpDialog />
       </div>
     </div>
   );

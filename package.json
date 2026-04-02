@@ -11,6 +11,7 @@
     "prerender": "node scripts/prerender.js",
     "lint": "eslint .",
     "preview": "vite preview",
+    "hooks:install": "git config core.hooksPath .githooks",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
