@@ -24,7 +24,15 @@ function fenAfterMoves(moves, count) {
 
 export default function MobileChessBoard({ selectedNodeId }) {
   const { t, i18n } = useTranslation();
-  const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
+  const san = useCallback(
+    (move) =>
+      i18n.language === "en"
+        ? move
+        : i18n.language === "fr"
+          ? toFrenchSAN(move)
+          : toSpanishSAN(move),
+    [i18n.language],
+  );
 
   const frameRef = useRef(null);
 
@@ -73,20 +81,18 @@ export default function MobileChessBoard({ selectedNodeId }) {
     }
 
     const startFrom = playedCount >= moves.length ? 0 : playedCount;
-    const ts = moves
-      .slice(startFrom)
-      .map((_, i) =>
-        setTimeout(
-          () => {
-            setAnim((p) => ({
-              ...p,
-              playedCount: startFrom + i + 1,
-              isPlaying: startFrom + i + 1 < moves.length,
-            }));
-          },
-          (i + 1) * MOVE_DELAY,
-        ),
-      );
+    const ts = moves.slice(startFrom).map((_, i) =>
+      setTimeout(
+        () => {
+          setAnim((p) => ({
+            ...p,
+            playedCount: startFrom + i + 1,
+            isPlaying: startFrom + i + 1 < moves.length,
+          }));
+        },
+        (i + 1) * MOVE_DELAY,
+      ),
+    );
 
     timeoutsRef.current = ts;
 
@@ -130,7 +136,16 @@ export default function MobileChessBoard({ selectedNodeId }) {
   }, [moves, playedCount, san]);
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "flex-start", justifyContent: "flex-start", overflow: "hidden" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        overflow: "hidden",
+      }}
+    >
       <div
         ref={frameRef}
         style={{
@@ -171,10 +186,18 @@ export default function MobileChessBoard({ selectedNodeId }) {
                       : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                   }}
                 >
-                  <span style={{ fontSize: "13px", lineHeight: 1 }}>
-                    {isPlaying ? "⏸" : "▶"}
+                  <span
+                    style={{
+                      fontSize: "13px",
+                      lineHeight: 1,
+                      fontVariantEmoji: "text",
+                    }}
+                  >
+                    {isPlaying ? "⏸\uFE0E" : "▶\uFE0E"}
                   </span>
-                  {isPlaying ? t("chess_panel.pause", { defaultValue: "pause" }) : t("chess_panel.play")}
+                  {isPlaying
+                    ? t("chess_panel.pause", { defaultValue: "pause" })
+                    : t("chess_panel.play")}
                 </button>
               )}
               <button
@@ -195,8 +218,11 @@ export default function MobileChessBoard({ selectedNodeId }) {
                   "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
               }}
             >
-              {(selectedNode && t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
-                (selectedNode?.move ? san(selectedNode.move) : t("chess_panel.initial"))}
+              {(selectedNode &&
+                t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
+                (selectedNode?.move
+                  ? san(selectedNode.move)
+                  : t("chess_panel.initial"))}
             </span>
           </div>
 
