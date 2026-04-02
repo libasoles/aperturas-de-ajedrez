@@ -1,6 +1,6 @@
 import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { INITIAL_MOBILE_VIEWPORT, useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { INITIAL_MOBILE_VIEWPORT } from "../hooks/useOpeningTreeState";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
@@ -8,18 +8,7 @@ import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 const nodeTypes = { chess: MobileChessNode };
 
-function MobileOpeningTreeContent() {
-  const {
-    nodes,
-    edges,
-    selectedNodeId,
-    activeOpening,
-    activeVariant,
-    toggleNode,
-    toggleOpening,
-    toggleVariant,
-    expandToNextFork,
-  } = useOpeningTreeState();
+function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
 
@@ -148,10 +137,10 @@ function MobileOpeningTreeContent() {
   );
 }
 
-export default function MobileOpeningTree() {
+export default function MobileOpeningTree({ state }) {
   return (
     <ReactFlowProvider>
-      <MobileOpeningTreeContent />
+      <MobileOpeningTreeContent {...state} />
     </ReactFlowProvider>
   );
 }

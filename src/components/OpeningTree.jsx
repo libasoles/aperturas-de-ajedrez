@@ -1,7 +1,7 @@
 import { Background, Controls, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { INITIAL_VIEWPORT, PANEL_OPENINGS, useOpeningTreeState } from "../hooks/useOpeningTreeState";
+import { INITIAL_VIEWPORT, PANEL_OPENINGS } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -9,10 +9,8 @@ import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
-function OpeningTreeContent() {
+function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef }) {
   const { t, i18n } = useTranslation();
-  const { nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef } =
-    useOpeningTreeState();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
@@ -142,10 +140,10 @@ function OpeningTreeContent() {
   );
 }
 
-export default function OpeningTree() {
+export default function OpeningTree({ state }) {
   return (
     <ReactFlowProvider>
-      <OpeningTreeContent />
+      <OpeningTreeContent {...state} />
     </ReactFlowProvider>
   );
 }

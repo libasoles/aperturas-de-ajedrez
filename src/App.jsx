@@ -1,11 +1,18 @@
 import MobileOpeningTree from "./components/MobileOpeningTree";
 import OpeningTree from "./components/OpeningTree";
-import { useIsMobile } from "./hooks/useIsMobile";
+import { useOpeningTreeState } from "./hooks/useOpeningTreeState";
 
 export default function App() {
-  const isMobile = useIsMobile();
+  const state = useOpeningTreeState();
 
-  if (!isMobile) return <OpeningTree />;
-
-  return <MobileOpeningTree />;
+  return (
+    <>
+      <div className="hidden md:block">
+        <OpeningTree state={state} />
+      </div>
+      <div className="block md:hidden">
+        <MobileOpeningTree state={state} />
+      </div>
+    </>
+  );
 }
