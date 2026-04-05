@@ -514,15 +514,24 @@ export function useOpeningTreeState() {
   );
 
   const toggleNode = useCallback((id) => {
-    setActiveOpening(null);
-    setActiveVariant(null);
+    // When deactivating an active opening/variant, preserve all visible nodes
+    // by adding them to expandedIds before clearing the opening state
     setExpandedIds((prev) => {
-      const next = new Set(prev);
+      let next = new Set(prev);
+      if (activeOpening && OPENING_FULL_IDS[activeOpening]) {
+        next = new Set([...next, ...OPENING_FULL_IDS[activeOpening]]);
+      }
+      if (activeVariant && VARIANT_FULL_IDS[activeVariant]) {
+        next = new Set([...next, ...VARIANT_FULL_IDS[activeVariant]]);
+      }
+      // Toggle the specific node
       if (next.has(id)) next.delete(id);
       else next.add(id);
       return next;
     });
-  }, []);
+    setActiveOpening(null);
+    setActiveVariant(null);
+  }, [activeOpening, activeVariant]);
 
   const selectNode = useCallback((id) => {
     setSelectedNodeId((prev) => {
