@@ -411,14 +411,22 @@ if (typeof window !== "undefined") {
         ? (route ? `/en/${route.slugEn}` : `/en/${slug}`)
         : "/en/";
       history.replaceState(null, "", enPath);
-      i18n.changeLanguage("en");
+      try {
+        i18n.changeLanguage("en");
+      } catch (e) {
+        // i18n may not be fully initialized yet; ignore
+      }
     } else if (lang.startsWith("fr")) {
       const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
       const frPath = slug
         ? (route ? `/fr/${route.slugFr}` : `/fr/${slug}`)
         : "/fr/";
       history.replaceState(null, "", frPath);
-      i18n.changeLanguage("fr");
+      try {
+        i18n.changeLanguage("fr");
+      } catch (e) {
+        // i18n may not be fully initialized yet; ignore
+      }
     }
   }
 }
@@ -495,9 +503,9 @@ export function useOpeningTreeState() {
   }, [selectedNodeId]);
 
   const displayIds = activeVariant
-    ? VARIANT_FULL_IDS[activeVariant]
+    ? new Set([...VARIANT_FULL_IDS[activeVariant], ...expandedIds])
     : activeOpening
-      ? OPENING_FULL_IDS[activeOpening]
+      ? new Set([...OPENING_FULL_IDS[activeOpening], ...expandedIds])
       : expandedIds;
 
   const activePathIds = useMemo(
@@ -517,8 +525,18 @@ export function useOpeningTreeState() {
   }, []);
 
   const selectNode = useCallback((id) => {
-    setSelectedNodeId((prev) => (prev === id ? null : id));
-  }, []);
+    setSelectedNodeId((prev) => {
+      const next = prev === id ? null : id;
+      // If selecting a node outside the current opening/variant active path,
+      // expand the path to that node so it stays visible
+      if (next && (activeOpening || activeVariant)) {
+        const pathToNode = findPathToNode(next);
+        const ancestorIds = new Set(pathToNode.slice(0, -1).map((n) => n.id));
+        setExpandedIds((current) => new Set([...current, ...ancestorIds]));
+      }
+      return next;
+    });
+  }, [activeOpening, activeVariant]);
 
   const expandToNextFork = useCallback((id) => {
     const idsToExpand = getPathToNextFork(id);
