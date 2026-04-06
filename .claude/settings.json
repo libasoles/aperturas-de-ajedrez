@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//private/tmp/**)",
-      "Bash(grep -r \"body\\\\|html\\\\|#root\" /Users/guillermoperez/Projects/playground/aperturas-de-ajedrez/src/*.css)"
+      "Bash(grep -r \"body\\\\|html\\\\|#root\" /Users/guillermoperez/Projects/playground/aperturas-de-ajedrez/src/*.css)",
+      "mcp__playwright__browser_tabs"
     ]
   },
   "hooks": {
