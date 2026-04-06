@@ -3,6 +3,7 @@ import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
+import PremiumLockIcon from "./PremiumLockIcon";
 import { Tooltip } from "./ui/Tooltip";
 
 function getPieceCode(move, isWhite) {
@@ -37,6 +38,8 @@ function ChessNode({ id, data }) {
     onToggle,
     onSelect,
     onExpandToFork,
+    isPremium,
+    isLocked,
   } = data;
 
   const name = t(`openings:${id}.name`, { defaultValue: "" }) || null;
@@ -106,7 +109,7 @@ function ChessNode({ id, data }) {
       <span>{isRoot ? t("chess_panel.initial") : san(move)}</span>
 
       {/* Expand/collapse button — separate click area */}
-      {hasChildren && (
+      {hasChildren && !isPremium && (
         <span
           role="button"
           tabIndex={-1}
@@ -129,6 +132,23 @@ function ChessNode({ id, data }) {
           }}
         >
           {isExpanded ? "−" : "+"}
+        </span>
+      )}
+
+      {hasChildren && isPremium && (
+        <span
+          className="flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0"
+          style={{
+            background: `${colors.border}30`,
+            border: `1px solid ${colors.border}60`,
+            color: colors.text,
+          }}
+        >
+          <PremiumLockIcon
+            className="w-3.5 h-3.5"
+            title={isLocked ? "Contenido bloqueado" : "Contenido restringido"}
+            strokeWidth={2.2}
+          />
         </span>
       )}
     </div>
@@ -157,7 +177,7 @@ function ChessNode({ id, data }) {
       />
 
       {/* Expand-to-fork button — only on selected nodes with unexpanded children */}
-      {isSelected && hasChildren && !isExpanded && (
+      {isSelected && hasChildren && !isExpanded && !isPremium && (
         <span
           role="button"
           tabIndex={-1}

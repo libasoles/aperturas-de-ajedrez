@@ -225,6 +225,32 @@
   "span-14c": {
     "name": "Active Schliemann"
   },
+  "scot-1": {
+    "name": "Scotch",
+    "annotation": "Hits the center with d4"
+  },
+  "scot-2": {
+    "annotation": "Black accepts the central challenge"
+  },
+  "scot-3": {
+    "annotation": "Recaptures and centralizes the knight"
+  },
+  "scot-4a": {
+    "name": "Schmidt Variation",
+    "annotation": "Flexible development"
+  },
+  "scot-7a": {
+    "name": "Classical Scotch",
+    "annotation": "Central space and damaged black structure"
+  },
+  "scot-4b": {
+    "name": "Classical",
+    "annotation": "Active bishop on c5"
+  },
+  "scot-7b": {
+    "name": "Scotch with Be3",
+    "annotation": "Solid development and central control"
+  },
   "ital-1": {
     "name": "Italian Game",
     "annotation": "Targets f7"

@@ -1,3 +1,8 @@
+import {
+  OPENING_ENTRY_BY_NODE_ID,
+  VARIANT_ENTRY_BY_NODE_ID,
+} from "./openingCatalog.js";
+
 /**
  * Route definitions for opening pages and variant pages.
  * Each entry maps a URL slug to an opening/variant nodeId
@@ -18,7 +23,7 @@ export const HELP_ROUTE = {
     "Consultez les raccourcis clavier et les commandes de l'Arbre des Ouvertures d'Échecs pour naviguer, développer les variantes et utiliser l'échiquier interactif.",
 };
 
-export const OPENING_ROUTES = [
+const OPENING_ROUTE_DEFS = [
   {
     slug: "defensa-escandinava",
     slugEn: "scandinavian-defense",
@@ -63,6 +68,21 @@ export const OPENING_ROUTES = [
       "Discover the Italian Game (1.e4 e5 2.Nf3 Nc6 3.Bc4): variations like Giuoco Piano, Fried Liver, Two Knights, and more in an interactive tree.",
     descriptionFr:
       "Découvrez la Partie Italienne (1.e4 e5 2.Cf3 Cc6 3.Fc4) : variantes comme le Giuoco Piano, Fried Liver, Deux Cavaliers et plus dans un arbre interactif.",
+  },
+  {
+    slug: "apertura-escocesa",
+    slugEn: "scotch-game",
+    slugFr: "partie-ecossaise",
+    nodeId: "scot-1",
+    title: "Apertura Escocesa | Aperturas de Ajedrez",
+    titleEn: "Scotch Game | Chess Openings",
+    titleFr: "Partie Ecossaise | Ouvertures d'Échecs",
+    description:
+      "Explora la Apertura Escocesa (1.e4 e5 2.Cf3 Cc6 3.d4): juego abierto, iniciativa central y líneas tácticas en un árbol interactivo.",
+    descriptionEn:
+      "Explore the Scotch Game (1.e4 e5 2.Nf3 Nc6 3.d4): open play, central initiative, and tactical lines in an interactive tree.",
+    descriptionFr:
+      "Explorez la Partie Ecossaise (1.e4 e5 2.Cf3 Cc6 3.d4) : jeu ouvert, initiative centrale et lignes tactiques dans un arbre interactif.",
   },
   {
     slug: "defensa-siciliana",
@@ -206,7 +226,7 @@ export const OPENING_ROUTES = [
  * parentNodeId is the opening panel button to highlight.
  * variantNodeId is the subtree root to display.
  */
-export const VARIANT_ROUTES = [
+const VARIANT_ROUTE_DEFS = [
   // ── Escandinava ──────────────────────────────────────────
   {
     slug: "defensa-escandinava/mieses-kotroc",
@@ -370,7 +390,6 @@ export const VARIANT_ROUTES = [
     descriptionFr:
       "Explorez le Gambit Schliemann (3...f5) : la réponse la plus agressive et irrégulière contre le Ruy López.",
   },
-
   // ── Italiana ─────────────────────────────────────────────
   {
     slug: "apertura-italiana/giuoco-piano",
@@ -951,6 +970,19 @@ export const VARIANT_ROUTES = [
       "Étudiez la Variante Rubinstein de la Nimzo-Indienne (4.e3) : solide et classique, consolide le centre avec Fd3 et Cf3.",
   },
 ];
+
+export const OPENING_ROUTES = OPENING_ROUTE_DEFS.map((route) => ({
+  access: OPENING_ENTRY_BY_NODE_ID[route.nodeId]?.access ?? "free",
+  discoverable: OPENING_ENTRY_BY_NODE_ID[route.nodeId]?.discoverable ?? true,
+  ...route,
+}));
+
+export const VARIANT_ROUTES = VARIANT_ROUTE_DEFS.map((route) => ({
+  access: VARIANT_ENTRY_BY_NODE_ID[route.variantNodeId]?.access ?? "free",
+  discoverable:
+    VARIANT_ENTRY_BY_NODE_ID[route.variantNodeId]?.discoverable ?? true,
+  ...route,
+}));
 
 /** Map from slug → opening route */
 export const ROUTE_BY_SLUG = Object.fromEntries(

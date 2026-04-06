@@ -225,6 +225,32 @@
   "span-14c": {
     "name": "Schliemann actif"
   },
+  "scot-1": {
+    "name": "Ecossaise",
+    "annotation": "Frappe le centre avec d4"
+  },
+  "scot-2": {
+    "annotation": "Les Noirs acceptent le défi central"
+  },
+  "scot-3": {
+    "annotation": "Le cavalier se recentralise après la reprise"
+  },
+  "scot-4a": {
+    "name": "Variante Schmidt",
+    "annotation": "Développement flexible"
+  },
+  "scot-7a": {
+    "name": "Ecossaise Classique",
+    "annotation": "Espace central et structure noire abîmée"
+  },
+  "scot-4b": {
+    "name": "Classique",
+    "annotation": "Fou actif en c5"
+  },
+  "scot-7b": {
+    "name": "Ecossaise avec Be3",
+    "annotation": "Développement solide et contrôle central"
+  },
   "ital-1": {
     "name": "Partie Italienne",
     "annotation": "Vise f7"

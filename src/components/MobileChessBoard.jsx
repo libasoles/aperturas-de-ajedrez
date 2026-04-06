@@ -2,6 +2,7 @@ import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
+import PremiumContentGate from "./PremiumContentGate";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 272;
@@ -22,7 +23,11 @@ function fenAfterMoves(moves, count) {
   return chess.fen();
 }
 
-export default function MobileChessBoard({ selectedNodeId }) {
+export default function MobileChessBoard({
+  selectedNodeId,
+  lockedContentId,
+  premiumOverlayVersion,
+}) {
   const { t, i18n } = useTranslation();
   const san = useCallback(
     (move) =>
@@ -47,6 +52,7 @@ export default function MobileChessBoard({ selectedNodeId }) {
   );
 
   const [orientation, setOrientation] = useState("white");
+  const [dismissedGateId, setDismissedGateId] = useState(null);
 
   const [anim, setAnim] = useState({
     nodeId: selectedNodeId,
@@ -119,6 +125,10 @@ export default function MobileChessBoard({ selectedNodeId }) {
   );
 
   const selectedNode = path[path.length - 1] ?? null;
+  const gateKey = lockedContentId
+    ? `${lockedContentId}:${premiumOverlayVersion}`
+    : null;
+  const isGateVisible = gateKey && dismissedGateId !== gateKey;
 
   const formattedMoves = useMemo(() => {
     const parts = [];
@@ -230,29 +240,37 @@ export default function MobileChessBoard({ selectedNodeId }) {
             className="mobile-board-scroll flex-1 min-h-0 overflow-auto"
             style={{ touchAction: "pan-x pan-y" }}
           >
-            <div className="flex flex-col gap-1 min-h-full">
-              {/* Board */}
-              <div
-                inert
-                style={{
-                  width: BOARD_SIZE,
-                  height: BOARD_SIZE,
-                }}
-              >
-                <Chessboard
-                  options={{
-                    position: fen,
-                    boardOrientation: orientation,
-                    allowDragging: false,
-                    showAnimations: false,
-                    darkSquareStyle: CUSTOM_DARK,
-                    lightSquareStyle: CUSTOM_LIGHT,
-                    boardStyle: {
-                      borderRadius: 0,
-                      boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-                    },
+            <div className="relative flex flex-col gap-1 min-h-full">
+              <div className="relative" style={{ width: BOARD_SIZE }}>
+                {/* Board */}
+                <div
+                  inert
+                  style={{
+                    width: BOARD_SIZE,
+                    height: BOARD_SIZE,
                   }}
-                />
+                >
+                  <Chessboard
+                    options={{
+                      position: fen,
+                      boardOrientation: orientation,
+                      allowDragging: false,
+                      showAnimations: false,
+                      darkSquareStyle: CUSTOM_DARK,
+                      lightSquareStyle: CUSTOM_LIGHT,
+                      boardStyle: {
+                        borderRadius: 0,
+                        boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+                      },
+                    }}
+                  />
+                </div>
+                {isGateVisible ? (
+                  <PremiumContentGate
+                    contentId={lockedContentId}
+                    onClose={() => setDismissedGateId(gateKey)}
+                  />
+                ) : null}
               </div>
 
               {/* Move sequence */}

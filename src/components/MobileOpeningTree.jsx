@@ -8,7 +8,7 @@ import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 const nodeTypes = { chess: MobileChessNode };
 
-function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork }) {
+function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork, lockedContentId, premiumOverlayVersion }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
 
@@ -104,7 +104,11 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           flexShrink: 0,
         }}
       >
-        <MobileChessBoard selectedNodeId={selectedNodeId} />
+        <MobileChessBoard
+          selectedNodeId={selectedNodeId}
+          lockedContentId={lockedContentId}
+          premiumOverlayVersion={premiumOverlayVersion}
+        />
       </div>
 
       <div

@@ -225,6 +225,32 @@
   "span-14c": {
     "name": "Schliemann activo"
   },
+  "scot-1": {
+    "name": "Escocesa",
+    "annotation": "Golpea el centro con d4"
+  },
+  "scot-2": {
+    "annotation": "Acepta el reto central"
+  },
+  "scot-3": {
+    "annotation": "Recaptura y centraliza el caballo"
+  },
+  "scot-4a": {
+    "name": "Schmidt",
+    "annotation": "Desarrollo flexible"
+  },
+  "scot-7a": {
+    "name": "Escocesa Clásica",
+    "annotation": "Espacio central y estructura dañada negra"
+  },
+  "scot-4b": {
+    "name": "Clásica",
+    "annotation": "Alfil activo en c5"
+  },
+  "scot-7b": {
+    "name": "Escocesa con Be3",
+    "annotation": "Desarrollo sólido y control del centro"
+  },
   "ital-1": {
     "name": "Italiana",
     "annotation": "Apunta a f7"

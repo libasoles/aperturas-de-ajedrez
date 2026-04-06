@@ -9,7 +9,7 @@ import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
-function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef }) {
+function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion }) {
   const { t, i18n } = useTranslation();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
@@ -116,7 +116,11 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggl
         </ReactFlow>
       </div>
 
-      <ChessPanel selectedNodeId={selectedNodeId} />
+      <ChessPanel
+        selectedNodeId={selectedNodeId}
+        lockedContentId={lockedContentId}
+        premiumOverlayVersion={premiumOverlayVersion}
+      />
 
       {/* Top bar */}
       <div

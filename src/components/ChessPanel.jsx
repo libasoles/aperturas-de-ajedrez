@@ -2,6 +2,7 @@ import { Chess } from "chess.js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
+import PremiumContentGate from "./PremiumContentGate";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
@@ -24,7 +25,11 @@ function fenAtStep(moves, count) {
   return chess.fen();
 }
 
-export default function ChessPanel({ selectedNodeId }) {
+export default function ChessPanel({
+  selectedNodeId,
+  lockedContentId,
+  premiumOverlayVersion,
+}) {
   const { t, i18n } = useTranslation();
   const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
 
@@ -39,6 +44,7 @@ export default function ChessPanel({ selectedNodeId }) {
   );
 
   const [orientation, setOrientation] = useState("white");
+  const [dismissedGateId, setDismissedGateId] = useState(null);
 
   const [anim, setAnim] = useState({
     nodeId: selectedNodeId,
@@ -115,6 +121,10 @@ export default function ChessPanel({ selectedNodeId }) {
   );
 
   const selectedNode = path[path.length - 1] ?? null;
+  const gateKey = lockedContentId
+    ? `${lockedContentId}:${premiumOverlayVersion}`
+    : null;
+  const isGateVisible = gateKey && dismissedGateId !== gateKey;
 
   const formattedMoves = useMemo(() => {
     const parts = [];
@@ -277,27 +287,36 @@ export default function ChessPanel({ selectedNodeId }) {
         </div>
       </div>
 
-      {/* react-chessboard v5 uses a single `options` prop */}
-      <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
-        <Chessboard
-          options={{
-            position: fen,
-            boardOrientation: orientation,
-            allowDragging: false,
-            showAnimations: false,
-            darkSquareStyle: CUSTOM_DARK,
-            lightSquareStyle: CUSTOM_LIGHT,
-            boardStyle: {
-              borderRadius: 0,
-              boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-            },
-          }}
-        />
+      <div className="relative" style={{ width: BOARD_SIZE }}>
+        {/* react-chessboard v5 uses a single `options` prop */}
+        <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
+          <Chessboard
+            options={{
+              position: fen,
+              boardOrientation: orientation,
+              allowDragging: false,
+              showAnimations: false,
+              darkSquareStyle: CUSTOM_DARK,
+              lightSquareStyle: CUSTOM_LIGHT,
+              boardStyle: {
+                borderRadius: 0,
+                boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+              },
+            }}
+          />
+        </div>
+
+        {isGateVisible ? (
+          <PremiumContentGate
+            contentId={lockedContentId}
+            onClose={() => setDismissedGateId(gateKey)}
+          />
+        ) : null}
       </div>
 
       {/* Move sequence — fixed height so the panel never resizes */}
       <div
-        className="font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
+        className="relative font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
         style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
         dangerouslySetInnerHTML={{ __html: formattedMoves }}
       />

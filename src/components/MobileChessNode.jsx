@@ -3,6 +3,7 @@ import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
+import PremiumLockIcon from "./PremiumLockIcon";
 
 function getPieceCode(move, isWhite) {
   if (!move) return null;
@@ -32,6 +33,8 @@ function MobileChessNode({ id, data }) {
     onToggle,
     onSelect,
     onExpandToFork,
+    isPremium,
+    isLocked,
   } = data;
 
   const isRoot = opening === "root";
@@ -73,10 +76,10 @@ function MobileChessNode({ id, data }) {
       ].join(" ")}
     >
       <span
-        role={hasChildren && !isExpanded ? "button" : undefined}
-        tabIndex={hasChildren && !isExpanded ? -1 : undefined}
-        onClick={hasChildren && !isExpanded ? (e) => { e.stopPropagation(); onToggle?.(id); } : undefined}
-        onKeyDown={hasChildren && !isExpanded ? (e) => {
+        role={hasChildren && !isExpanded && !isPremium ? "button" : undefined}
+        tabIndex={hasChildren && !isExpanded && !isPremium ? -1 : undefined}
+        onClick={hasChildren && !isExpanded && !isPremium ? (e) => { e.stopPropagation(); onToggle?.(id); } : undefined}
+        onKeyDown={hasChildren && !isExpanded && !isPremium ? (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             e.stopPropagation();
@@ -84,7 +87,7 @@ function MobileChessNode({ id, data }) {
           }
         } : undefined}
         className={`flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 ${
-          !hasChildren || isExpanded ? "opacity-0 pointer-events-none" : "hover:brightness-150"
+          !hasChildren || isExpanded ? "opacity-0 pointer-events-none" : !isPremium ? "hover:brightness-150" : ""
         }`}
         style={{
           background: `${colors.border}30`,
@@ -93,7 +96,13 @@ function MobileChessNode({ id, data }) {
           transform: "rotate(270deg)",
         }}
       >
-        {isExpanded ? "−" : "+"}
+        {isPremium ? (
+          <PremiumLockIcon
+            className="w-3.5 h-3.5"
+            title={isLocked ? "Contenido bloqueado" : "Contenido restringido"}
+            strokeWidth={2.2}
+          />
+        ) : isExpanded ? "−" : "+"}
       </span>
 
       <span
@@ -146,7 +155,7 @@ function MobileChessNode({ id, data }) {
         style={{ background: "transparent", border: "none" }}
       />
 
-      {isSelected && hasChildren && !isExpanded && (
+      {isSelected && hasChildren && !isExpanded && !isPremium && (
         <span
           role="button"
           tabIndex={-1}

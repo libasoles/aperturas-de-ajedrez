@@ -1,7 +1,9 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import i18n from "../i18n";
+import { OPENING_CATALOG } from "../data/openingCatalog";
 import { OPENING_TREE } from "../data/openings";
+import { getPathIdsToNode, isPremiumNode } from "../data/premiumContent";
 import { MOBILE_BOARD_PANEL_HEIGHT } from "../components/panelLayout";
 import {
   HELP_ROUTE,
@@ -11,6 +13,8 @@ import {
   VARIANT_ROUTE_BY_SLUG,
   VARIANT_ROUTE_BY_NODE_ID,
 } from "../data/routes";
+import { canAccessContent, hasPremiumAccess } from "../lib/access";
+import { trackPremiumNodeClick } from "../lib/analytics";
 import {
   findPathToNode,
   getActivePathIds,
@@ -62,10 +66,8 @@ const INITIAL_EXPANDED = new Set([
 ]);
 
 function collectAllIds(node, acc = new Set()) {
-  if (node.children && node.children.length > 0) {
-    acc.add(node.id);
-    node.children.forEach((c) => collectAllIds(c, acc));
-  }
+  acc.add(node.id);
+  node.children?.forEach((c) => collectAllIds(c, acc));
   return acc;
 }
 
@@ -83,114 +85,7 @@ function buildOpeningFullIds(nodeId, pathIds) {
   return ids;
 }
 
-export const PANEL_OPENINGS = [
-  {
-    group: "e4",
-    openings: [
-      {
-        label: "Escandinava",
-        nodeId: "scan-1",
-        pathIds: ["e4"],
-        color: "#16a34a",
-        glow: "#22c55e",
-        text: "#bbf7d0",
-      },
-      {
-        label: "Española",
-        nodeId: "span-4",
-        pathIds: ["e4", "span-1", "span-2", "span-3"],
-        color: "#2563eb",
-        glow: "#3b82f6",
-        text: "#bfdbfe",
-      },
-      {
-        label: "Italiana",
-        nodeId: "ital-1",
-        pathIds: ["e4", "span-1", "span-2", "span-3"],
-        color: "#ea580c",
-        glow: "#f97316",
-        text: "#fed7aa",
-      },
-      {
-        label: "Siciliana",
-        nodeId: "sic-1",
-        pathIds: ["e4"],
-        color: "#dc2626",
-        glow: "#ef4444",
-        text: "#fecdd3",
-      },
-      {
-        label: "Francesa",
-        nodeId: "fr-1",
-        pathIds: ["e4"],
-        color: "#4f46e5",
-        glow: "#6366f1",
-        text: "#c7d2fe",
-      },
-      {
-        label: "Caro-Kann",
-        nodeId: "ck-1",
-        pathIds: ["e4"],
-        color: "#0d9488",
-        glow: "#14b8a6",
-        text: "#99f6e4",
-      },
-      {
-        label: "Pirc",
-        nodeId: "pirc-1",
-        pathIds: ["e4"],
-        color: "#9a3412",
-        glow: "#c2410c",
-        text: "#fde8d8",
-      },
-      {
-        label: "Alekhine",
-        nodeId: "al-1",
-        pathIds: ["e4"],
-        color: "#db2777",
-        glow: "#ec4899",
-        text: "#fda4c8",
-      },
-    ],
-  },
-  {
-    group: "d4",
-    openings: [
-      {
-        label: "Gambito de Dama",
-        nodeId: "qg-2",
-        pathIds: ["d4", "qg-1"],
-        color: "#7c3aed",
-        glow: "#8b5cf6",
-        text: "#ddd6fe",
-      },
-      {
-        label: "Londres",
-        nodeId: "lon-2",
-        pathIds: ["d4", "qg-1"],
-        color: "#0891b2",
-        glow: "#06b6d4",
-        text: "#a5f3fc",
-      },
-      {
-        label: "India de Rey",
-        nodeId: "ki-3a",
-        pathIds: ["d4", "ki-1", "ki-2"],
-        color: "#d97706",
-        glow: "#f59e0b",
-        text: "#fde68a",
-      },
-      {
-        label: "Nimzo-India",
-        nodeId: "nim-3b",
-        pathIds: ["d4", "ki-1", "ki-2"],
-        color: "#a21caf",
-        glow: "#c026d3",
-        text: "#f5d0fe",
-      },
-    ],
-  },
-];
+export const PANEL_OPENINGS = OPENING_CATALOG;
 
 const ALL_OPENINGS = PANEL_OPENINGS.flatMap((g) => g.openings);
 
@@ -238,6 +133,12 @@ export const OPENING_COLORS = {
     text: "#fed7aa",
     border: "#ea580c",
     edge: "#f97316",
+  },
+  scotch: {
+    node: "#3f2305",
+    text: "#fde68a",
+    border: "#b45309",
+    edge: "#d97706",
   },
   sicilian: {
     node: "#4c1d2e",
@@ -302,6 +203,7 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   const colors = OPENING_COLORS[treeNode.opening] || OPENING_COLORS.root;
   const isExpanded = expandedIds.has(treeNode.id);
   const hasChildren = treeNode.children && treeNode.children.length > 0;
+  const isPremium = isPremiumNode(treeNode.id);
 
   const rfNode = {
     id: treeNode.id,
@@ -314,6 +216,7 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
       isExpanded,
       hasChildren,
       colors,
+      isPremium,
     },
   };
 
@@ -413,7 +316,7 @@ if (typeof window !== "undefined") {
       history.replaceState(null, "", enPath);
       try {
         i18n.changeLanguage("en");
-      } catch (e) {
+      } catch {
         // i18n may not be fully initialized yet; ignore
       }
     } else if (lang.startsWith("fr")) {
@@ -424,7 +327,7 @@ if (typeof window !== "undefined") {
       history.replaceState(null, "", frPath);
       try {
         i18n.changeLanguage("fr");
-      } catch (e) {
+      } catch {
         // i18n may not be fully initialized yet; ignore
       }
     }
@@ -435,6 +338,28 @@ const INITIAL_ROUTE = getRouteFromPathname();
 const INITIAL_URL_STATE = getInitialStateFromUrl();
 
 function getInitialDisplayIds() {
+  if (
+    INITIAL_ROUTE.variant &&
+    VARIANT_ROUTE_BY_NODE_ID[INITIAL_ROUTE.variant] &&
+    !canAccessContent(VARIANT_ROUTE_BY_NODE_ID[INITIAL_ROUTE.variant].access)
+  ) {
+    return new Set([
+      ...INITIAL_EXPANDED,
+      ...getPathIdsToNode(INITIAL_ROUTE.variant).slice(0, -1),
+      ...INITIAL_URL_STATE.extraExpanded,
+    ]);
+  }
+  if (
+    INITIAL_ROUTE.opening &&
+    ROUTE_BY_NODE_ID[INITIAL_ROUTE.opening] &&
+    !canAccessContent(ROUTE_BY_NODE_ID[INITIAL_ROUTE.opening].access)
+  ) {
+    return new Set([
+      ...INITIAL_EXPANDED,
+      ...getPathIdsToNode(INITIAL_ROUTE.opening).slice(0, -1),
+      ...INITIAL_URL_STATE.extraExpanded,
+    ]);
+  }
   if (INITIAL_ROUTE.variant && VARIANT_FULL_IDS[INITIAL_ROUTE.variant]) {
     return VARIANT_FULL_IDS[INITIAL_ROUTE.variant];
   }
@@ -481,6 +406,7 @@ function computeInitialMobileViewport() {
 export const INITIAL_MOBILE_VIEWPORT = computeInitialMobileViewport();
 
 export function useOpeningTreeState() {
+  const premiumAccess = hasPremiumAccess();
   const [expandedIds, setExpandedIds] = useState(
     () => new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]),
   );
@@ -489,6 +415,7 @@ export function useOpeningTreeState() {
   const [selectedNodeId, setSelectedNodeId] = useState(
     INITIAL_URL_STATE.selectedNodeId,
   );
+  const [premiumOverlayVersion, setPremiumOverlayVersion] = useState(0);
   const firstOpeningBtnRef = useRef(null);
 
   // Sync selected node → URL (preserves /en/ prefix)
@@ -502,11 +429,55 @@ export function useOpeningTreeState() {
     history.replaceState(null, "", url);
   }, [selectedNodeId]);
 
-  const displayIds = activeVariant
-    ? new Set([...VARIANT_FULL_IDS[activeVariant], ...expandedIds])
-    : activeOpening
-      ? new Set([...OPENING_FULL_IDS[activeOpening], ...expandedIds])
-      : expandedIds;
+  const activeOpeningRoute = activeOpening ? ROUTE_BY_NODE_ID[activeOpening] : null;
+  const activeVariantRoute = activeVariant
+    ? VARIANT_ROUTE_BY_NODE_ID[activeVariant]
+    : null;
+  const isActiveOpeningLocked =
+    activeOpeningRoute && !canAccessContent(activeOpeningRoute.access);
+  const isActiveVariantLocked =
+    activeVariantRoute && !canAccessContent(activeVariantRoute.access);
+  const selectedNodeLocked = selectedNodeId
+    ? isPremiumNode(selectedNodeId) && !premiumAccess
+    : false;
+  const lockedContentId = selectedNodeId
+    ? selectedNodeLocked
+      ? selectedNodeId
+      : null
+    : isActiveVariantLocked
+      ? activeVariant
+      : isActiveOpeningLocked
+        ? activeOpening
+        : null;
+  const isPremiumRouteLocked = Boolean(isActiveOpeningLocked || isActiveVariantLocked);
+
+  const displayIds = useMemo(() => {
+    if (isActiveVariantLocked && activeVariant) {
+      return new Set([
+        ...expandedIds,
+        ...getPathIdsToNode(activeVariant).slice(0, -1),
+      ]);
+    }
+    if (isActiveOpeningLocked && activeOpening) {
+      return new Set([
+        ...expandedIds,
+        ...getPathIdsToNode(activeOpening).slice(0, -1),
+      ]);
+    }
+    if (activeVariant) {
+      return new Set([...VARIANT_FULL_IDS[activeVariant], ...expandedIds]);
+    }
+    if (activeOpening) {
+      return new Set([...OPENING_FULL_IDS[activeOpening], ...expandedIds]);
+    }
+    return expandedIds;
+  }, [
+    activeOpening,
+    activeVariant,
+    expandedIds,
+    isActiveOpeningLocked,
+    isActiveVariantLocked,
+  ]);
 
   const activePathIds = useMemo(
     () => (selectedNodeId ? getActivePathIds(selectedNodeId) : new Set()),
@@ -519,17 +490,18 @@ export function useOpeningTreeState() {
   const absorbActiveIntoExpanded = useCallback(() => {
     setExpandedIds((prev) => {
       let next = new Set(prev);
-      if (activeOpening && OPENING_FULL_IDS[activeOpening]) {
+      if (activeOpening && OPENING_FULL_IDS[activeOpening] && !isActiveOpeningLocked) {
         next = new Set([...next, ...OPENING_FULL_IDS[activeOpening]]);
       }
-      if (activeVariant && VARIANT_FULL_IDS[activeVariant]) {
+      if (activeVariant && VARIANT_FULL_IDS[activeVariant] && !isActiveVariantLocked) {
         next = new Set([...next, ...VARIANT_FULL_IDS[activeVariant]]);
       }
       return next;
     });
-  }, [activeOpening, activeVariant]);
+  }, [activeOpening, activeVariant, isActiveOpeningLocked, isActiveVariantLocked]);
 
   const toggleNode = useCallback((id) => {
+    if (isPremiumNode(id) && !premiumAccess) return;
     // Preserve visible nodes before deactivating opening/variant
     absorbActiveIntoExpanded();
     setExpandedIds((prev) => {
@@ -541,11 +513,21 @@ export function useOpeningTreeState() {
     });
     setActiveOpening(null);
     setActiveVariant(null);
-  }, [absorbActiveIntoExpanded]);
+  }, [absorbActiveIntoExpanded, premiumAccess]);
 
   const selectNode = useCallback((id) => {
+    const isPremium = isPremiumNode(id);
+    if (isPremium) {
+      trackPremiumNodeClick({
+        node_id: id,
+        surface: "tree_node",
+        locale: detectLocale(),
+        has_access: premiumAccess,
+      });
+      setPremiumOverlayVersion((prev) => prev + 1);
+    }
     setSelectedNodeId((prev) => {
-      const next = prev === id ? null : id;
+      const next = isPremium ? id : prev === id ? null : id;
       // If selecting a node outside the current opening/variant active path,
       // expand the path to that node so it stays visible
       if (next && (activeOpening || activeVariant)) {
@@ -555,16 +537,17 @@ export function useOpeningTreeState() {
       }
       return next;
     });
-  }, [activeOpening, activeVariant]);
+  }, [activeOpening, activeVariant, premiumAccess]);
 
   const expandToNextFork = useCallback((id) => {
+    if (isPremiumNode(id) && !premiumAccess) return;
     const idsToExpand = getPathToNextFork(id);
     if (idsToExpand.length === 0) return;
     absorbActiveIntoExpanded();
     setActiveOpening(null);
     setActiveVariant(null);
     setExpandedIds((prev) => new Set([...prev, ...idsToExpand]));
-  }, [absorbActiveIntoExpanded]);
+  }, [absorbActiveIntoExpanded, premiumAccess]);
 
   const toggleOpening = useCallback((nodeId) => {
     setActiveVariant(null);
@@ -630,12 +613,17 @@ export function useOpeningTreeState() {
       }
 
       const node = findPathToNode(selectedNodeId).at(-1);
+      if (isPremiumNode(selectedNodeId) && !premiumAccess) return;
       if (!node?.children?.length) {
         setSelectedNodeId(null);
         firstOpeningBtnRef.current?.focus();
         return;
       }
       const firstChild = node.children[0];
+      if (isPremiumNode(firstChild.id) && !premiumAccess) {
+        setSelectedNodeId(firstChild.id);
+        return;
+      }
       absorbActiveIntoExpanded();
       setActiveOpening(null);
       setActiveVariant(null);
@@ -644,7 +632,7 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, absorbActiveIntoExpanded]);
+  }, [selectedNodeId, absorbActiveIntoExpanded, premiumAccess]);
 
   // Arrow keys
   useEffect(() => {
@@ -660,11 +648,7 @@ export function useOpeningTreeState() {
       e.preventDefault();
       e.stopPropagation();
 
-      const currentDisplayIds = activeVariant
-        ? VARIANT_FULL_IDS[activeVariant]
-        : activeOpening
-          ? OPENING_FULL_IDS[activeOpening]
-          : expandedIds;
+      const currentDisplayIds = displayIds;
 
       if (e.key === "ArrowRight") {
         const node = findPathToNode(selectedNodeId).at(-1);
@@ -674,6 +658,10 @@ export function useOpeningTreeState() {
           return;
         }
         const firstChild = node.children[0];
+        if (isPremiumNode(firstChild.id) && !premiumAccess) {
+          setSelectedNodeId(firstChild.id);
+          return;
+        }
         if (currentDisplayIds.has(firstChild.id)) {
           setSelectedNodeId(firstChild.id);
         } else {
@@ -714,7 +702,7 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, activeOpening, activeVariant, expandedIds, absorbActiveIntoExpanded]);
+  }, [selectedNodeId, displayIds, premiumAccess, absorbActiveIntoExpanded]);
 
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
     () => buildGraph(OPENING_TREE, displayIds),
@@ -732,6 +720,7 @@ export function useOpeningTreeState() {
           onExpandToFork: expandToNextFork,
           isSelected: n.id === selectedNodeId,
           isInActivePath: activePathIds.has(n.id),
+          isLocked: isPremiumNode(n.id) && !premiumAccess,
         },
       })),
     [
@@ -741,6 +730,7 @@ export function useOpeningTreeState() {
       expandToNextFork,
       selectedNodeId,
       activePathIds,
+      premiumAccess,
     ],
   );
 
@@ -750,6 +740,9 @@ export function useOpeningTreeState() {
     selectedNodeId,
     activeOpening,
     activeVariant,
+    lockedContentId,
+    isPremiumRouteLocked,
+    premiumOverlayVersion,
     toggleNode,
     expandToNextFork,
     toggleOpening,

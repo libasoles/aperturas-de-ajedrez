@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PANEL_OPENINGS, detectLocale } from "../hooks/useOpeningTreeState";
+import { hasPremiumAccess } from "../lib/access";
+import { trackPremiumMenuClick } from "../lib/analytics";
 import { VARIANT_ROUTES } from "../data/routes";
+import PremiumLockIcon from "./PremiumLockIcon";
 
 // Build Map<parentNodeId, variantRoute[]> once at module level
 const VARIANTS_BY_PARENT = new Map();
@@ -32,22 +35,43 @@ export default function MobileHamburgerMenu({
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
   const locale = detectLocale();
+  const premiumAccess = hasPremiumAccess();
 
-  const handleOpeningClick = (nodeId) => {
+  const handleOpeningClick = (opening) => {
+    if (opening.access === "premium") {
+      trackPremiumMenuClick("premium_menu_opening_click", {
+        node_id: opening.nodeId,
+        opening_id: opening.nodeId,
+        surface: "mobile_menu_opening",
+        locale,
+        has_access: premiumAccess,
+      });
+    }
+
     // If a child variant is active for this opening, clicking the parent
     // should deactivate the variant while keeping the opening active —
     // not toggle the opening off (which is what toggleOpening would do
     // since activeOpening === nodeId was set by toggleVariant).
-    if (activeOpening === nodeId && activeVariant !== null) {
+    if (activeOpening === opening.nodeId && activeVariant !== null) {
       onToggleVariant(activeVariant); // clears variant, keeps opening active
     } else {
-      onToggleOpening(nodeId);
+      onToggleOpening(opening.nodeId);
     }
     setIsOpen(false);
   };
 
-  const handleVariantClick = (variantNodeId) => {
-    onToggleVariant(variantNodeId);
+  const handleVariantClick = (variant) => {
+    if (variant.access === "premium") {
+      trackPremiumMenuClick("premium_menu_variant_click", {
+        variant_node_id: variant.variantNodeId,
+        opening_id: variant.parentNodeId,
+        surface: "mobile_menu_variant",
+        locale,
+        has_access: premiumAccess,
+      });
+    }
+
+    onToggleVariant(variant.variantNodeId);
     setIsOpen(false);
   };
 
@@ -221,7 +245,7 @@ export default function MobileHamburgerMenu({
                       <div key={opening.nodeId}>
                         {/* Opening row */}
                         <button
-                          onClick={() => handleOpeningClick(opening.nodeId)}
+                          onClick={() => handleOpeningClick(opening)}
                           style={{
                             display: "flex",
                             alignItems: "center",
@@ -273,6 +297,12 @@ export default function MobileHamburgerMenu({
                               opening.label
                             )}
                           </span>
+                          {opening.access === "premium" && (
+                            <PremiumLockIcon
+                              className="w-3.5 h-3.5 shrink-0"
+                              title="Contenido premium"
+                            />
+                          )}
                         </button>
 
                         {/* Variant rows — indented under parent opening */}
@@ -284,9 +314,7 @@ export default function MobileHamburgerMenu({
                           return (
                             <button
                               key={variant.variantNodeId}
-                              onClick={() =>
-                                handleVariantClick(variant.variantNodeId)
-                              }
+                              onClick={() => handleVariantClick(variant)}
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -332,6 +360,12 @@ export default function MobileHamburgerMenu({
                               >
                                 {label}
                               </span>
+                              {variant.access === "premium" && (
+                                <PremiumLockIcon
+                                  className="w-3.5 h-3.5 shrink-0"
+                                  title="Contenido premium"
+                                />
+                              )}
                             </button>
                           );
                         })}
