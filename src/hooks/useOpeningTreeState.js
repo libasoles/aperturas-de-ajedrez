@@ -513,9 +513,10 @@ export function useOpeningTreeState() {
     [selectedNodeId],
   );
 
-  const toggleNode = useCallback((id) => {
-    // When deactivating an active opening/variant, preserve all visible nodes
-    // by adding them to expandedIds before clearing the opening state
+  // Helper: absorb currently visible opening/variant nodes into expandedIds
+  // before clearing the active opening/variant state.
+  // This ensures nodes don't collapse when the user interacts with the tree.
+  const absorbActiveIntoExpanded = useCallback(() => {
     setExpandedIds((prev) => {
       let next = new Set(prev);
       if (activeOpening && OPENING_FULL_IDS[activeOpening]) {
@@ -524,6 +525,15 @@ export function useOpeningTreeState() {
       if (activeVariant && VARIANT_FULL_IDS[activeVariant]) {
         next = new Set([...next, ...VARIANT_FULL_IDS[activeVariant]]);
       }
+      return next;
+    });
+  }, [activeOpening, activeVariant]);
+
+  const toggleNode = useCallback((id) => {
+    // Preserve visible nodes before deactivating opening/variant
+    absorbActiveIntoExpanded();
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
       // Toggle the specific node
       if (next.has(id)) next.delete(id);
       else next.add(id);
@@ -531,7 +541,7 @@ export function useOpeningTreeState() {
     });
     setActiveOpening(null);
     setActiveVariant(null);
-  }, [activeOpening, activeVariant]);
+  }, [absorbActiveIntoExpanded]);
 
   const selectNode = useCallback((id) => {
     setSelectedNodeId((prev) => {
@@ -550,10 +560,11 @@ export function useOpeningTreeState() {
   const expandToNextFork = useCallback((id) => {
     const idsToExpand = getPathToNextFork(id);
     if (idsToExpand.length === 0) return;
+    absorbActiveIntoExpanded();
     setActiveOpening(null);
     setActiveVariant(null);
     setExpandedIds((prev) => new Set([...prev, ...idsToExpand]));
-  }, []);
+  }, [absorbActiveIntoExpanded]);
 
   const toggleOpening = useCallback((nodeId) => {
     setActiveVariant(null);
@@ -625,6 +636,7 @@ export function useOpeningTreeState() {
         return;
       }
       const firstChild = node.children[0];
+      absorbActiveIntoExpanded();
       setActiveOpening(null);
       setActiveVariant(null);
       setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
@@ -632,7 +644,7 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId]);
+  }, [selectedNodeId, absorbActiveIntoExpanded]);
 
   // Arrow keys
   useEffect(() => {
@@ -665,6 +677,7 @@ export function useOpeningTreeState() {
         if (currentDisplayIds.has(firstChild.id)) {
           setSelectedNodeId(firstChild.id);
         } else {
+          absorbActiveIntoExpanded();
           setActiveOpening(null);
           setActiveVariant(null);
           setExpandedIds((prev) => new Set([...prev, selectedNodeId]));
@@ -693,6 +706,7 @@ export function useOpeningTreeState() {
         .map((n) => n.id);
       setExpandedIds((prev) => new Set([...prev, ...ancestorIds]));
       if (!currentDisplayIds.has(targetId)) {
+        absorbActiveIntoExpanded();
         setActiveOpening(null);
         setActiveVariant(null);
       }
@@ -700,7 +714,7 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, activeOpening, activeVariant, expandedIds]);
+  }, [selectedNodeId, activeOpening, activeVariant, expandedIds, absorbActiveIntoExpanded]);
 
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
     () => buildGraph(OPENING_TREE, displayIds),
