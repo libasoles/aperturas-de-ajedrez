@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import PremiumContentGate from "./PremiumContentGate";
+import Toast from "./ui/Toast";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 
 const BOARD_SIZE = 272;
@@ -53,6 +54,7 @@ export default function MobileChessBoard({
 
   const [orientation, setOrientation] = useState("white");
   const [dismissedGateId, setDismissedGateId] = useState(null);
+  const [dismissedToastId, setDismissedToastId] = useState(null);
 
   const [anim, setAnim] = useState({
     nodeId: selectedNodeId,
@@ -125,6 +127,12 @@ export default function MobileChessBoard({
   );
 
   const selectedNode = path[path.length - 1] ?? null;
+  const toastMessage =
+    (selectedNode &&
+      t(`openings:${selectedNode.id}.annotation`, { defaultValue: "" })) ||
+    null;
+  const isToastVisible =
+    Boolean(toastMessage) && selectedNode?.id !== dismissedToastId;
   const gateKey = lockedContentId
     ? `${lockedContentId}:${premiumOverlayVersion}`
     : null;
@@ -156,6 +164,12 @@ export default function MobileChessBoard({
         overflow: "hidden",
       }}
     >
+      <Toast
+        message={toastMessage}
+        isVisible={isToastVisible}
+        onDismiss={() => setDismissedToastId(selectedNode?.id ?? null)}
+        duration={4000}
+      />
       <div
         ref={frameRef}
         style={{
