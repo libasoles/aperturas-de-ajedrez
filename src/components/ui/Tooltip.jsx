@@ -1,4 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip';
+import { useEffect, useRef, useState } from 'react';
+
+const TOOLTIP_DELAY_MS = 300;
 
 export function TooltipProvider({ children }) {
   return (
@@ -9,11 +12,58 @@ export function TooltipProvider({ children }) {
 }
 
 export function Tooltip({ children, content }) {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, []);
+
   if (!content) return children;
 
+  const clearScheduledOpen = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
   return (
-    <RadixTooltip.Root>
-      <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+    <RadixTooltip.Root open={open}>
+      <RadixTooltip.Trigger
+        asChild
+        onPointerEnter={(event) => {
+          if (event.pointerType !== 'mouse') return;
+          clearScheduledOpen();
+          timeoutRef.current = setTimeout(() => {
+            setOpen(true);
+            timeoutRef.current = null;
+          }, TOOLTIP_DELAY_MS);
+        }}
+        onPointerLeave={() => {
+          clearScheduledOpen();
+          setOpen(false);
+        }}
+        onPointerDown={() => {
+          clearScheduledOpen();
+          setOpen(false);
+        }}
+        onFocus={() => {
+          clearScheduledOpen();
+          setOpen(false);
+        }}
+        onBlur={() => {
+          clearScheduledOpen();
+          setOpen(false);
+        }}
+      >
+        {children}
+      </RadixTooltip.Trigger>
       <RadixTooltip.Portal>
         <RadixTooltip.Content
           side="top"

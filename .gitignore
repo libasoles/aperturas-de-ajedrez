@@ -24,4 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-.playwright-mcp/*.png
+.playwright-mcp
