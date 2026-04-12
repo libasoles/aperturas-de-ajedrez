@@ -881,5 +881,78 @@
   },
   "nim-14b2": {
     "name": "Complete Rubinstein Nimzo"
+  },
+  "dutch-1": {
+    "name": "Dutch Defense",
+    "annotation": "Black weakens e5 to attack the kingside"
+  },
+  "dutch-2": {
+    "annotation": "White fianchetto setup"
+  },
+  "dutch-3": {
+    "annotation": "Natural knight development"
+  },
+  "dutch-4": {
+    "annotation": "White bishop fianchetto"
+  },
+  "dutch-5a": {
+    "name": "Leningrad Variation",
+    "annotation": "Aggressive fianchetto with bishop on g7"
+  },
+  "dutch-5b": {
+    "annotation": "Fork towards Stonewall or Classical"
+  },
+  "dutch-6a": {
+    "annotation": "Knight development"
+  },
+  "dutch-7a": {
+    "annotation": "Black bishop fianchetto"
+  },
+  "dutch-8a": {
+    "annotation": "White castling"
+  },
+  "dutch-9a": {
+    "annotation": "Black castling"
+  },
+  "dutch-10a": {
+    "annotation": "White central advance"
+  },
+  "dutch-11a": {
+    "name": "Complete Leningrad",
+    "annotation": "Solid defensive structure"
+  },
+  "dutch-6b": {
+    "annotation": "Knight development"
+  },
+  "dutch-7b1": {
+    "name": "Stonewall Variation",
+    "annotation": "Pawns on d5-e6-f5, defensive structure"
+  },
+  "dutch-7b2": {
+    "name": "Classical Variation",
+    "annotation": "Flexible development without d5"
+  },
+  "dutch-8b1": {
+    "annotation": "White castling"
+  },
+  "dutch-8b2": {
+    "annotation": "White castling"
+  },
+  "dutch-9b1": {
+    "annotation": "Bishop development"
+  },
+  "dutch-9b2": {
+    "annotation": "Black castling"
+  },
+  "dutch-10b1": {
+    "annotation": "White central advance"
+  },
+  "dutch-10b2": {
+    "name": "Complete Classical",
+    "annotation": "Open center, flexible play"
+  },
+  "dutch-11b1": {
+    "name": "Complete Stonewall",
+    "annotation": "Solid and closed position for Black"
   }
 }

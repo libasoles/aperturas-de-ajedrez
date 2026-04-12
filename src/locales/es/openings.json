@@ -881,5 +881,78 @@
   },
   "nim-14b2": {
     "name": "Nimzo Rubinstein completa"
+  },
+  "dutch-1": {
+    "name": "Holandesa",
+    "annotation": "Negro debilita e5 para atacar en el flanco de rey"
+  },
+  "dutch-2": {
+    "annotation": "Fianchetto blanco"
+  },
+  "dutch-3": {
+    "annotation": "Desarrollo natural del caballo"
+  },
+  "dutch-4": {
+    "annotation": "Fianchetto del alfil blanco"
+  },
+  "dutch-5a": {
+    "name": "Variante Leningrado",
+    "annotation": "Fianchetto agresivo con alfil en g7"
+  },
+  "dutch-5b": {
+    "annotation": "Fork hacia Muro de Piedra o Clásica"
+  },
+  "dutch-6a": {
+    "annotation": "Desarrollo del caballo"
+  },
+  "dutch-7a": {
+    "annotation": "Fianchetto del alfil negro"
+  },
+  "dutch-8a": {
+    "annotation": "Enroque blanco"
+  },
+  "dutch-9a": {
+    "annotation": "Enroque negro"
+  },
+  "dutch-10a": {
+    "annotation": "Avance central blanco"
+  },
+  "dutch-11a": {
+    "name": "Leningrado completa",
+    "annotation": "Estructura defensiva sólida"
+  },
+  "dutch-6b": {
+    "annotation": "Desarrollo del caballo"
+  },
+  "dutch-7b1": {
+    "name": "Muro de Piedra",
+    "annotation": "Peones en d5-e6-f5, estructura defensiva"
+  },
+  "dutch-7b2": {
+    "name": "Variante Clásica",
+    "annotation": "Desarrollo flexible sin d5"
+  },
+  "dutch-8b1": {
+    "annotation": "Enroque blanco"
+  },
+  "dutch-8b2": {
+    "annotation": "Enroque blanco"
+  },
+  "dutch-9b1": {
+    "annotation": "Desarrollo del alfil"
+  },
+  "dutch-9b2": {
+    "annotation": "Enroque negro"
+  },
+  "dutch-10b1": {
+    "annotation": "Avance central blanco"
+  },
+  "dutch-10b2": {
+    "name": "Clásica completa",
+    "annotation": "Centro abierto, juego flexible"
+  },
+  "dutch-11b1": {
+    "name": "Muro de Piedra completa",
+    "annotation": "Posición sólida y cerrada para negras"
   }
 }

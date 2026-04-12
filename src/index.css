@@ -42,6 +42,28 @@ body,
   97% { opacity: 1; }
 }
 
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Componentes reutilizables ───────────────────────────────────────────── */
 @layer components {
   /* Panel flotante (ChessPanel, OpeningsPanel) */

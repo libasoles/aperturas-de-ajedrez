@@ -219,6 +219,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Explorez la Défense Nimzo-Indienne (1.d4 Cf6 2.c4 e6 3.Cc3 Fb4) : variante Rubinstein, classique et lignes principales dans un arbre interactif.",
   },
+  {
+    slug: "defensa-holandesa",
+    slugEn: "dutch-defense",
+    slugFr: "defense-hollandaise",
+    nodeId: "dutch-1",
+    title: "Defensa Holandesa | Aperturas de Ajedrez",
+    titleEn: "Dutch Defense | Chess Openings",
+    titleFr: "Défense Hollandaise | Ouvertures d'Échecs",
+    description:
+      "Domina la Defensa Holandesa (1.d4 f5): variantes Leningrado, Muro de Piedra y Clásica en un árbol interactivo con tablero animado.",
+    descriptionEn:
+      "Master the Dutch Defense (1.d4 f5): Leningrad, Stonewall, and Classical variations in an interactive tree with animated board.",
+    descriptionFr:
+      "Maîtrisez la Défense Hollandaise (1.d4 f5) : variantes Leningrad, Mur de Pierre et Classique dans un arbre interactif avec échiquier animé.",
+  },
 ];
 
 /**
@@ -968,6 +983,56 @@ const VARIANT_ROUTE_DEFS = [
       "Study the Rubinstein Variation of the Nimzo-Indian Defense (4.e3): solid and classical, consolidates the center with Bd3 and Nf3.",
     descriptionFr:
       "Étudiez la Variante Rubinstein de la Nimzo-Indienne (4.e3) : solide et classique, consolide le centre avec Fd3 et Cf3.",
+  },
+
+  // ── Defensa Holandesa ──────────────────────────────────────
+  {
+    slug: "defensa-holandesa/leningrado",
+    slugEn: "dutch-defense/leningrad",
+    slugFr: "defense-hollandaise/leningrad",
+    variantNodeId: "dutch-5a",
+    parentNodeId: "dutch-1",
+    title: "Variante Leningrado | Defensa Holandesa | Aperturas de Ajedrez",
+    titleEn: "Leningrad Variation | Dutch Defense | Chess Openings",
+    titleFr: "Variante Leningrad | Défense Hollandaise | Ouvertures d'Échecs",
+    description:
+      "Aprende la Variante Leningrado de la Defensa Holandesa (3...g6): fianchetto de alfil en g7 y ataque directo en el flanco de rey.",
+    descriptionEn:
+      "Learn the Leningrad Variation of the Dutch Defense (3...g6): fianchetto of the bishop on g7 and direct kingside attack.",
+    descriptionFr:
+      "Apprenez la Variante Leningrad de la Défense Hollandaise (3...g6) : fianchetto du fou en g7 et attaque directe sur l'aile roi.",
+  },
+  {
+    slug: "defensa-holandesa/muro-de-piedra",
+    slugEn: "dutch-defense/stonewall",
+    slugFr: "defense-hollandaise/mur-de-pierre",
+    variantNodeId: "dutch-7b1",
+    parentNodeId: "dutch-1",
+    title: "Variante Muro de Piedra | Defensa Holandesa | Aperturas de Ajedrez",
+    titleEn: "Stonewall Variation | Dutch Defense | Chess Openings",
+    titleFr: "Variante Mur de Pierre | Défense Hollandaise | Ouvertures d'Échecs",
+    description:
+      "Estudia la Variante Muro de Piedra de la Defensa Holandesa (2...e6 3...d5): estructura sólida con peones en d5-e6-f5, formación defensiva característica.",
+    descriptionEn:
+      "Study the Stonewall Variation of the Dutch Defense (2...e6 3...d5): solid structure with pawns on d5-e6-f5, characteristic defensive formation.",
+    descriptionFr:
+      "Étudiez la Variante Mur de Pierre de la Défense Hollandaise (2...e6 3...d5) : structure solide avec pions en d5-e6-f5, formation défensive caractéristique.",
+  },
+  {
+    slug: "defensa-holandesa/clasica",
+    slugEn: "dutch-defense/classical",
+    slugFr: "defense-hollandaise/classique",
+    variantNodeId: "dutch-7b2",
+    parentNodeId: "dutch-1",
+    title: "Variante Clásica | Defensa Holandesa | Aperturas de Ajedrez",
+    titleEn: "Classical Variation | Dutch Defense | Chess Openings",
+    titleFr: "Variante Classique | Défense Hollandaise | Ouvertures d'Échecs",
+    description:
+      "Explora la Variante Clásica de la Defensa Holandesa (2...e6 3...Be7): desarrollo flexible que mantiene opciones antes de comprometerse con d5.",
+    descriptionEn:
+      "Explore the Classical Variation of the Dutch Defense (2...e6 3...Be7): flexible development that keeps options before committing to d5.",
+    descriptionFr:
+      "Explorez la Variante Classique de la Défense Hollandaise (2...e6 3...Be7) : développement flexible qui maintient les options avant de s'engager sur d5.",
   },
 ];
 

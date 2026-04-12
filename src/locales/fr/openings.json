@@ -881,5 +881,78 @@
   },
   "nim-14b2": {
     "name": "Nimzo Rubinstein complet"
+  },
+  "dutch-1": {
+    "name": "Défense Hollandaise",
+    "annotation": "Les Noirs affaiblissent e5 pour attaquer l'aile roi"
+  },
+  "dutch-2": {
+    "annotation": "Fianchetto blanc"
+  },
+  "dutch-3": {
+    "annotation": "Développement naturel du cavalier"
+  },
+  "dutch-4": {
+    "annotation": "Fianchetto du fou blanc"
+  },
+  "dutch-5a": {
+    "name": "Variante Leningrad",
+    "annotation": "Fianchetto agressif avec fou en g7"
+  },
+  "dutch-5b": {
+    "annotation": "Bifurcation vers Mur ou Classique"
+  },
+  "dutch-6a": {
+    "annotation": "Développement du cavalier"
+  },
+  "dutch-7a": {
+    "annotation": "Fianchetto du fou noir"
+  },
+  "dutch-8a": {
+    "annotation": "Roque blanc"
+  },
+  "dutch-9a": {
+    "annotation": "Roque noir"
+  },
+  "dutch-10a": {
+    "annotation": "Avancée centrale blanche"
+  },
+  "dutch-11a": {
+    "name": "Leningrad complet",
+    "annotation": "Structure défensive solide"
+  },
+  "dutch-6b": {
+    "annotation": "Développement du cavalier"
+  },
+  "dutch-7b1": {
+    "name": "Variante Mur de Pierre",
+    "annotation": "Pions en d5-e6-f5, structure défensive"
+  },
+  "dutch-7b2": {
+    "name": "Variante Classique",
+    "annotation": "Développement flexible sans d5"
+  },
+  "dutch-8b1": {
+    "annotation": "Roque blanc"
+  },
+  "dutch-8b2": {
+    "annotation": "Roque blanc"
+  },
+  "dutch-9b1": {
+    "annotation": "Développement du fou"
+  },
+  "dutch-9b2": {
+    "annotation": "Roque noir"
+  },
+  "dutch-10b1": {
+    "annotation": "Avancée centrale blanche"
+  },
+  "dutch-10b2": {
+    "name": "Classique complet",
+    "annotation": "Centre ouvert, jeu flexible"
+  },
+  "dutch-11b1": {
+    "name": "Mur de Pierre complet",
+    "annotation": "Position solide et fermée pour les Noirs"
   }
 }

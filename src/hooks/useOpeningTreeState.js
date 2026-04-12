@@ -194,6 +194,12 @@ export const OPENING_COLORS = {
     border: "#db2777",
     edge: "#ec4899",
   },
+  dutch: {
+    node: "#1c3a2a",
+    text: "#6ee7b7",
+    border: "#10b981",
+    edge: "#34d399",
+  },
 };
 
 const X_STEP = 160;

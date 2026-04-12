@@ -4,6 +4,10 @@ import { describe, expect, it, vi } from 'vitest';
 import OpeningsPanel from './OpeningsPanel';
 
 vi.mock('react-i18next', () => ({
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
+  },
   useTranslation: () => ({
     t: (key, fallback) => (typeof fallback === 'string' ? fallback : key),
     i18n: { language: 'es' },
@@ -13,6 +17,19 @@ vi.mock('react-i18next', () => ({
 vi.mock('./panelLayout', () => ({
   DESKTOP_OPENINGS_PANEL_BOTTOM: 20,
   DESKTOP_PANEL_RIGHT: 20,
+  MOBILE_BOARD_PANEL_HEIGHT: 310,
+}));
+
+vi.mock('../hooks/useOpeningTreeState', () => ({
+  detectLocale: () => 'es',
+}));
+
+vi.mock('../lib/access', () => ({
+  hasPremiumAccess: () => false,
+}));
+
+vi.mock('../lib/analytics', () => ({
+  trackPremiumMenuClick: vi.fn(),
 }));
 
 const MOCK_OPENINGS = [

@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PremiumLockIcon from "./PremiumLockIcon";
 import { DESKTOP_OPENINGS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
+import { detectLocale } from "../hooks/useOpeningTreeState";
+import { hasPremiumAccess } from "../lib/access";
+import { trackPremiumMenuClick } from "../lib/analytics";
 
 export default function OpeningsPanel({
   openings,
@@ -121,7 +124,18 @@ export default function OpeningsPanel({
                           ? firstButtonRef
                           : undefined
                       }
-                      onClick={() => onToggleOpening(opening.nodeId)}
+                      onClick={() => {
+                        if (opening.access === "premium") {
+                          trackPremiumMenuClick("premium_menu_opening_click", {
+                            node_id: opening.nodeId,
+                            opening_id: opening.nodeId,
+                            surface: "desktop_panel_opening",
+                            locale: detectLocale(),
+                            has_access: hasPremiumAccess(),
+                          });
+                        }
+                        onToggleOpening(opening.nodeId);
+                      }}
                       className="flex items-center gap-2 px-3 py-2 border transition-all duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
                       style={{
                         borderColor: isActive
