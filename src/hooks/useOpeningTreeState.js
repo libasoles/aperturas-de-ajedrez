@@ -446,10 +446,8 @@ export function useOpeningTreeState() {
   const selectedNodeLocked = selectedNodeId
     ? isPremiumNode(selectedNodeId) && !premiumAccess
     : false;
-  const lockedContentId = selectedNodeId
-    ? selectedNodeLocked
-      ? selectedNodeId
-      : null
+  const lockedContentId = selectedNodeLocked
+    ? selectedNodeId
     : isActiveVariantLocked
       ? activeVariant
       : isActiveOpeningLocked
@@ -534,16 +532,25 @@ export function useOpeningTreeState() {
     }
     setSelectedNodeId((prev) => {
       const next = isPremium ? id : prev === id ? null : id;
-      // If selecting a node outside the current opening/variant active path,
-      // expand the path to that node so it stays visible
+      // If selecting a node while an opening/variant filter is active,
+      // keep its ancestors visible and clear the filter if the node is outside
+      // the active branch so the desktop menu de-selects the current option.
       if (next && (activeOpening || activeVariant)) {
+        const isInActiveBranch = activeVariant
+          ? VARIANT_FULL_IDS[activeVariant]?.has(next)
+          : OPENING_FULL_IDS[activeOpening]?.has(next);
         const pathToNode = findPathToNode(next);
         const ancestorIds = new Set(pathToNode.slice(0, -1).map((n) => n.id));
         setExpandedIds((current) => new Set([...current, ...ancestorIds]));
+        if (!isInActiveBranch) {
+          absorbActiveIntoExpanded();
+          setActiveOpening(null);
+          setActiveVariant(null);
+        }
       }
       return next;
     });
-  }, [activeOpening, activeVariant, premiumAccess]);
+  }, [activeOpening, activeVariant, absorbActiveIntoExpanded, premiumAccess]);
 
   const expandToNextFork = useCallback((id) => {
     if (isPremiumNode(id) && !premiumAccess) return;
@@ -559,6 +566,9 @@ export function useOpeningTreeState() {
     setActiveVariant(null);
     setActiveOpening((prev) => {
       const next = prev === nodeId ? null : nodeId;
+      if (next && !canAccessContent(ROUTE_BY_NODE_ID[next]?.access)) {
+        setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
+      }
       if (typeof window !== "undefined") {
         const locale = detectLocale();
         const route = next ? ROUTE_BY_NODE_ID[next] : null;
@@ -574,6 +584,9 @@ export function useOpeningTreeState() {
     if (!variantRoute) return;
     setActiveVariant((prev) => {
       const next = prev === variantNodeId ? null : variantNodeId;
+      if (next && !canAccessContent(variantRoute.access)) {
+        setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
+      }
       setActiveOpening(variantRoute.parentNodeId);
       if (typeof window !== "undefined") {
         const locale = detectLocale();

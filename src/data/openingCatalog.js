@@ -425,16 +425,19 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "dutch-5a",
     parentNodeId: "dutch-1",
+    access: "premium",
     discoverable: true,
   },
   {
     variantNodeId: "dutch-7b1",
     parentNodeId: "dutch-1",
+    access: "premium",
     discoverable: true,
   },
   {
     variantNodeId: "dutch-7b2",
     parentNodeId: "dutch-1",
+    access: "premium",
     discoverable: true,
   },
 ];
