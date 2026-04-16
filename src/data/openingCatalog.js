@@ -243,13 +243,13 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "scot-8a",
     parentNodeId: "scot-1",
-    access: "free",
+    access: "premium",
     discoverable: true,
   },
   {
     variantNodeId: "scot-7b",
     parentNodeId: "scot-1",
-    access: "free",
+    access: "premium",
     discoverable: true,
   },
   {
