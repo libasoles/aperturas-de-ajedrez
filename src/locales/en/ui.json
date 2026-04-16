@@ -72,6 +72,13 @@
     "may_not_look_good": ", and some elements may not look right.",
     "continue": "Continue"
   },
+  "premium_gate": {
+    "fallback_name": "Not available",
+    "close": "Close",
+    "locked": "Locked content",
+    "title": "{{contentName}}",
+    "body": "This opening is not available yet."
+  },
   "node": {
     "expand_to_fork": "Expand to branch point"
   },

@@ -72,6 +72,13 @@
     "may_not_look_good": ", y algunos elementos pueden no verse bien.",
     "continue": "Continuar"
   },
+  "premium_gate": {
+    "fallback_name": "No disponible",
+    "close": "Cerrar",
+    "locked": "Contenido bloqueado",
+    "title": "{{contentName}}",
+    "body": "Esta apertura aún no está disponible."
+  },
   "node": {
     "expand_to_fork": "Expandir hasta bifurcación"
   },

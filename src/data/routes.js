@@ -160,6 +160,21 @@ const OPENING_ROUTE_DEFS = [
       "Explorez la Défense Alekhine (1.e4 Cf6) : attaque des quatre pions, variante moderne et lignes principales dans un arbre interactif.",
   },
   {
+    slug: "defensa-moderna",
+    slugEn: "modern-defense",
+    slugFr: "defense-moderne",
+    nodeId: "mod-1",
+    title: "Defensa Moderna | Aperturas de Ajedrez",
+    titleEn: "Modern Defense | Chess Openings",
+    titleFr: "Défense Moderne | Ouvertures d'Échecs",
+    description:
+      "Domina la Defensa Moderna (1.e4 g6): enfoque hipermoderno con fianchetto en g7, variantes Ataque Austriaco y Clásica en un árbol interactivo.",
+    descriptionEn:
+      "Master the Modern Defense (1.e4 g6): hypermodern approach with g7 fianchetto, Austrian Attack and Classical variations in an interactive tree.",
+    descriptionFr:
+      "Maîtrisez la Défense Moderne (1.e4 g6) : approche hypermoderne avec fianchetto en g7, variantes Attaque Autrichienne et Classique dans un arbre interactif.",
+  },
+  {
     slug: "gambito-de-dama",
     slugEn: "queens-gambit",
     slugFr: "gambit-dame",
@@ -404,6 +419,39 @@ const VARIANT_ROUTE_DEFS = [
       "Explore the Schliemann Gambit (3...f5): the most aggressive and irregular response against the Ruy López.",
     descriptionFr:
       "Explorez le Gambit Schliemann (3...f5) : la réponse la plus agressive et irrégulière contre le Ruy López.",
+  },
+  // ── Escocesa ─────────────────────────────────────────────
+  {
+    slug: "apertura-escocesa/clasica",
+    slugEn: "scotch-game/classical",
+    slugFr: "partie-ecossaise/classique",
+    variantNodeId: "scot-8a",
+    parentNodeId: "scot-1",
+    title: "Escocesa Clásica | Apertura Escocesa | Aperturas de Ajedrez",
+    titleEn: "Classical Scotch | Scotch Game | Chess Openings",
+    titleFr: "Ecossaise Classique | Partie Ecossaise | Ouvertures d'Échecs",
+    description:
+      "Explora la Escocesa Clásica (1.e4 e5 2.Cf3 Cc6 3.d4 exd4 4.Cxd4 Cf6 5.Cxc6 bxc6 6.e5 De7): ventaja espacial blanca y estructura dañada negra.",
+    descriptionEn:
+      "Explore the Classical Scotch (1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Nf6 5.Nxc6 bxc6 6.e5 Qe7): White's space advantage vs. Black's damaged structure.",
+    descriptionFr:
+      "Explorez l'Ecossaise Classique (1.e4 e5 2.Cf3 Cc6 3.d4 exd4 4.Cxd4 Cf6 5.Cxc6 bxc6 6.e5 De7) : avantage d'espace blanc contre structure noire abîmée.",
+  },
+  {
+    slug: "apertura-escocesa/con-alfil-e3",
+    slugEn: "scotch-game/with-be3",
+    slugFr: "partie-ecossaise/avec-fe3",
+    variantNodeId: "scot-7b",
+    parentNodeId: "scot-1",
+    title: "Escocesa con Ae3 | Apertura Escocesa | Aperturas de Ajedrez",
+    titleEn: "Scotch with Be3 | Scotch Game | Chess Openings",
+    titleFr: "Ecossaise avec Fe3 | Partie Ecossaise | Ouvertures d'Échecs",
+    description:
+      "Analiza la Escocesa con Ae3 (1.e4 e5 2.Cf3 Cc6 3.d4 exd4 4.Cxd4 Ac5 5.Ae3 Df6 6.c3): desarrollo sólido y control central tras el alfil en c5.",
+    descriptionEn:
+      "Analyze the Scotch with Be3 (1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Bc5 5.Be3 Qf6 6.c3): solid development and central control against the bishop on c5.",
+    descriptionFr:
+      "Analysez l'Ecossaise avec Fe3 (1.e4 e5 2.Cf3 Cc6 3.d4 exd4 4.Cxd4 Ac5 5.Fe3 Df6 6.c3) : développement solide et contrôle central face au fou en c5.",
   },
   // ── Italiana ─────────────────────────────────────────────
   {
@@ -1010,7 +1058,8 @@ const VARIANT_ROUTE_DEFS = [
     parentNodeId: "dutch-1",
     title: "Variante Muro de Piedra | Defensa Holandesa | Aperturas de Ajedrez",
     titleEn: "Stonewall Variation | Dutch Defense | Chess Openings",
-    titleFr: "Variante Mur de Pierre | Défense Hollandaise | Ouvertures d'Échecs",
+    titleFr:
+      "Variante Mur de Pierre | Défense Hollandaise | Ouvertures d'Échecs",
     description:
       "Estudia la Variante Muro de Piedra de la Defensa Holandesa (2...e6 3...d5): estructura sólida con peones en d5-e6-f5, formación defensiva característica.",
     descriptionEn:
@@ -1033,6 +1082,40 @@ const VARIANT_ROUTE_DEFS = [
       "Explore the Classical Variation of the Dutch Defense (2...e6 3...Be7): flexible development that keeps options before committing to d5.",
     descriptionFr:
       "Explorez la Variante Classique de la Défense Hollandaise (2...e6 3...Be7) : développement flexible qui maintient les options avant de s'engager sur d5.",
+  },
+
+  // ── Defensa Moderna ──────────────────────────────────────
+  {
+    slug: "defensa-moderna/ataque-austriaco",
+    slugEn: "modern-defense/austrian-attack",
+    slugFr: "defense-moderne/attaque-autrichienne",
+    variantNodeId: "mod-6a",
+    parentNodeId: "mod-1",
+    title: "Ataque Austriaco | Defensa Moderna | Aperturas de Ajedrez",
+    titleEn: "Austrian Attack | Modern Defense | Chess Openings",
+    titleFr: "Attaque Autrichienne | Défense Moderne | Ouvertures d'Échecs",
+    description:
+      "Aprende el Ataque Austriaco de la Defensa Moderna (4.f4): la continuación más agresiva, preparando el avance f5 y la presión sobre el flanco de rey.",
+    descriptionEn:
+      "Learn the Austrian Attack of the Modern Defense (4.f4): the most aggressive continuation, preparing the f5 advance and kingside pressure.",
+    descriptionFr:
+      "Apprenez l'Attaque Autrichienne de la Défense Moderne (4.f4) : la continuation la plus agressive, préparant l'avance f5 et la pression sur l'aile roi.",
+  },
+  {
+    slug: "defensa-moderna/clasica",
+    slugEn: "modern-defense/classical",
+    slugFr: "defense-moderne/classique",
+    variantNodeId: "mod-6b",
+    parentNodeId: "mod-1",
+    title: "Variante Clásica | Defensa Moderna | Aperturas de Ajedrez",
+    titleEn: "Classical Variation | Modern Defense | Chess Openings",
+    titleFr: "Variante Classique | Défense Moderne | Ouvertures d'Échecs",
+    description:
+      "Estudia la Variante Clásica de la Defensa Moderna (4.Cf3): desarrollo sólido con Be2 y enroque corto, manteniendo la tensión central.",
+    descriptionEn:
+      "Study the Classical Variation of the Modern Defense (4.Nf3): solid development with Be2 and kingside castling, maintaining central tension.",
+    descriptionFr:
+      "Étudiez la Variante Classique de la Défense Moderne (4.Cf3) : développement solide avec Fe2 et roque côté roi, maintenant la tension centrale.",
   },
 ];
 

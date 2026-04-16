@@ -3767,6 +3767,140 @@ export const E4_TREE = {
           ]
         }
       ]
+    },
+    {
+      "id": "mod-1",
+      "move": "g6",
+      "color": "black",
+      "opening": "modern",
+      "children": [
+        {
+          "id": "mod-2",
+          "move": "d4",
+          "color": "white",
+          "opening": "modern",
+          "children": [
+            {
+              "id": "mod-3",
+              "move": "Bg7",
+              "color": "black",
+              "opening": "modern",
+              "children": [
+                {
+                  "id": "mod-4",
+                  "move": "Nc3",
+                  "color": "white",
+                  "opening": "modern",
+                  "children": [
+                    {
+                      "id": "mod-5",
+                      "move": "d6",
+                      "color": "black",
+                      "opening": "modern",
+                      "children": [
+                        {
+                          "id": "mod-6a",
+                          "move": "f4",
+                          "color": "white",
+                          "opening": "modern",
+                          "children": [
+                            {
+                              "id": "mod-7a",
+                              "move": "Nf6",
+                              "color": "black",
+                              "opening": "modern",
+                              "children": [
+                                {
+                                  "id": "mod-8a",
+                                  "move": "Nf3",
+                                  "color": "white",
+                                  "opening": "modern",
+                                  "children": [
+                                    {
+                                      "id": "mod-9a",
+                                      "move": "O-O",
+                                      "color": "black",
+                                      "opening": "modern",
+                                      "children": [
+                                        {
+                                          "id": "mod-10a",
+                                          "move": "Be2",
+                                          "color": "white",
+                                          "opening": "modern",
+                                          "children": [
+                                            {
+                                              "id": "mod-11a",
+                                              "move": "e5",
+                                              "color": "black",
+                                              "opening": "modern",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "mod-6b",
+                          "move": "Nf3",
+                          "color": "white",
+                          "opening": "modern",
+                          "children": [
+                            {
+                              "id": "mod-7b",
+                              "move": "Nf6",
+                              "color": "black",
+                              "opening": "modern",
+                              "children": [
+                                {
+                                  "id": "mod-8b",
+                                  "move": "Be2",
+                                  "color": "white",
+                                  "opening": "modern",
+                                  "children": [
+                                    {
+                                      "id": "mod-9b",
+                                      "move": "O-O",
+                                      "color": "black",
+                                      "opening": "modern",
+                                      "children": [
+                                        {
+                                          "id": "mod-10b",
+                                          "move": "O-O",
+                                          "color": "white",
+                                          "opening": "modern",
+                                          "children": [
+                                            {
+                                              "id": "mod-11b",
+                                              "move": "e5",
+                                              "color": "black",
+                                              "opening": "modern",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 };

@@ -200,6 +200,12 @@ export const OPENING_COLORS = {
     border: "#10b981",
     edge: "#34d399",
   },
+  modern: {
+    node: "#1a2600",
+    text: "#d9f99d",
+    border: "#65a30d",
+    edge: "#84cc16",
+  },
 };
 
 const X_STEP = 160;
@@ -357,7 +363,7 @@ function getInitialDisplayIds() {
   ) {
     return new Set([
       ...INITIAL_EXPANDED,
-      ...getPathIdsToNode(INITIAL_ROUTE.variant).slice(0, -1),
+      ...getPathIdsToNode(INITIAL_ROUTE.opening ?? INITIAL_ROUTE.variant).slice(0, -1),
       ...INITIAL_URL_STATE.extraExpanded,
     ]);
   }
@@ -472,7 +478,7 @@ export function useOpeningTreeState() {
     if (isActiveVariantLocked && activeVariant) {
       return new Set([
         ...expandedIds,
-        ...getPathIdsToNode(activeVariant).slice(0, -1),
+        ...getPathIdsToNode(activeOpening ?? activeVariant).slice(0, -1),
       ]);
     }
     if (isActiveOpeningLocked && activeOpening) {

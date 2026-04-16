@@ -243,6 +243,9 @@
     "name": "Classical Scotch",
     "annotation": "Central space and damaged black structure"
   },
+  "scot-8a": {
+    "name": "Classical Scotch"
+  },
   "scot-4b": {
     "name": "Classical",
     "annotation": "Active bishop on c5"
@@ -954,5 +957,35 @@
   "dutch-11b1": {
     "name": "Complete Stonewall",
     "annotation": "Solid and closed position for Black"
+  },
+  "mod-1": {
+    "name": "Modern Defense",
+    "annotation": "Hypermodern: Black cedes the center to attack it with pieces"
+  },
+  "mod-2": {
+    "annotation": "White claims the center"
+  },
+  "mod-3": {
+    "annotation": "Fianchetto: the bishop will dominate the long diagonal"
+  },
+  "mod-4": {
+    "annotation": "Active development"
+  },
+  "mod-5": {
+    "annotation": "Consolidates the kingside"
+  },
+  "mod-6a": {
+    "name": "Austrian Attack",
+    "annotation": "Most aggressive: f4 prepares f5 and a central push"
+  },
+  "mod-6b": {
+    "name": "Classical Variation",
+    "annotation": "Solid development, maintains central tension"
+  },
+  "mod-11a": {
+    "annotation": "Black counterplay in the center"
+  },
+  "mod-11b": {
+    "annotation": "Black counterplay, preparing central break"
   }
 }

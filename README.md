@@ -11,7 +11,7 @@ Explorador interactivo de aperturas de ajedrez. Visualiza las principales línea
 ## Funcionalidades
 
 - **Árbol navegable** — expande y colapsa ramas con los botones `+` / `−` de cada nodo
-- **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Francesa, Caro-Kann, Pirc, Alekhine, Gambito de Dama, Londres, India de Rey, Nimzo-India, Holandesa) muestran únicamente esa línea completa
+- **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Francesa, Caro-Kann, Pirc, Alekhine, Gambito de Dama, Londres, India de Rey, Nimzo-India, Holandesa, Moderna) muestran únicamente esa línea completa
 - **Tablero de visualización** — al hacer clic en un nodo se muestra la posición resultante en el panel lateral; el botón **▶ Reproducir** anima los movimientos uno a uno.
 
 ## Desarrollo

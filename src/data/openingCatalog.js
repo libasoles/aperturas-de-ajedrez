@@ -92,6 +92,16 @@ export const OPENING_CATALOG = [
         access: "free",
         discoverable: true,
       },
+      {
+        label: "Moderna",
+        nodeId: "mod-1",
+        pathIds: ["e4"],
+        color: "#4d7c0f",
+        glow: "#65a30d",
+        text: "#ecfccb",
+        access: "premium",
+        discoverable: true,
+      },
     ],
   },
   {
@@ -227,6 +237,18 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "ital-6b2",
     parentNodeId: "ital-1",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "scot-8a",
+    parentNodeId: "scot-1",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "scot-7b",
+    parentNodeId: "scot-1",
     access: "free",
     discoverable: true,
   },
@@ -437,6 +459,18 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "dutch-7b2",
     parentNodeId: "dutch-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "mod-6a",
+    parentNodeId: "mod-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "mod-6b",
+    parentNodeId: "mod-1",
     access: "premium",
     discoverable: true,
   },

@@ -243,6 +243,9 @@
     "name": "Ecossaise Classique",
     "annotation": "Espace central et structure noire abîmée"
   },
+  "scot-8a": {
+    "name": "Ecossaise Classique"
+  },
   "scot-4b": {
     "name": "Classique",
     "annotation": "Fou actif en c5"
@@ -954,5 +957,35 @@
   "dutch-11b1": {
     "name": "Mur de Pierre complet",
     "annotation": "Position solide et fermée pour les Noirs"
+  },
+  "mod-1": {
+    "name": "Défense Moderne",
+    "annotation": "Hypermoderne : les Noirs cèdent le centre pour l'attaquer avec les pièces"
+  },
+  "mod-2": {
+    "annotation": "Les Blancs revendiquent le centre"
+  },
+  "mod-3": {
+    "annotation": "Fianchetto : le fou dominera la grande diagonale"
+  },
+  "mod-4": {
+    "annotation": "Développement actif"
+  },
+  "mod-5": {
+    "annotation": "Consolide l'aile roi"
+  },
+  "mod-6a": {
+    "name": "Attaque Autrichienne",
+    "annotation": "La plus agressive : f4 prépare f5 et la poussée centrale"
+  },
+  "mod-6b": {
+    "name": "Variante Classique",
+    "annotation": "Développement solide, maintient la tension centrale"
+  },
+  "mod-11a": {
+    "annotation": "Contre-jeu des Noirs au centre"
+  },
+  "mod-11b": {
+    "annotation": "Contre-jeu des Noirs, préparant la rupture centrale"
   }
 }

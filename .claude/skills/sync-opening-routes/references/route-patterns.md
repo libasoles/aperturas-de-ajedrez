@@ -5,11 +5,13 @@ Reference for slug, title, and description conventions used in `src/data/routes.
 ## Slug conventions
 
 ### Opening slugs
+
 - Use **kebab-case Spanish names**: `defensa-siciliana`, `gambito-de-dama`
 - Prefix with the type: `defensa-`, `apertura-`, `gambito-de-`, `sistema-`
 - Exceptions: `ruy-lopez` (proper name, no prefix)
 
 ### Variant slugs
+
 - Format: `<parent-opening-slug>/<variant-kebab-case>`
 - Examples:
   - `defensa-siciliana/najdorf`
@@ -21,19 +23,25 @@ Reference for slug, title, and description conventions used in `src/data/routes.
 ## Title patterns
 
 ### Openings
+
 ```
 <Opening Name> | Aperturas de Ajedrez
 ```
+
 Examples:
+
 - `Defensa Siciliana | Aperturas de Ajedrez`
 - `Gambito de Dama | Aperturas de Ajedrez`
 - `Ruy López (Apertura Española) | Aperturas de Ajedrez`
 
 ### Variants
+
 ```
 <Variant Name> | <Parent Opening Name> | Aperturas de Ajedrez
 ```
+
 Examples:
+
 - `Variante Najdorf | Siciliana | Aperturas de Ajedrez`
 - `Defensa Berlín | Ruy López | Aperturas de Ajedrez`
 - `Gambito de Dama Aceptado | Aperturas de Ajedrez` (when variant IS the full name)
@@ -47,11 +55,13 @@ Examples:
 - Keep descriptions between 120–180 characters for optimal SEO
 
 ### Opening description template
+
 ```
 <Verb> la <Opening Name> (<moves>): <main variants or ideas> en un árbol interactivo con tablero animado.
 ```
 
 ### Variant description template
+
 ```
 <Verb> la <Variant Name> de la <Opening> (<moves>): <description of character/ideas> en un árbol interactivo.
 ```
@@ -60,24 +70,25 @@ Examples:
 
 The `parentNodeId` is always the top-level opening's `nodeId`:
 
-| Opening | parentNodeId |
-|---------|-------------|
-| Escandinava | scan-1 |
-| Ruy López | span-4 |
-| Italiana | ital-1 |
-| Siciliana | sic-1 |
-| Francesa | fr-1 |
-| Caro-Kann | ck-1 |
-| Pirc | pirc-1 |
-| Alekhine | al-1 |
-| Gambito de Dama | qg-2 |
-| Londres | lon-2 |
-| India de Rey | ki-3a |
-| Nimzo-India | nim-3b |
+| Opening         | parentNodeId |
+| --------------- | ------------ |
+| Escandinava     | scan-1       |
+| Ruy López       | span-4       |
+| Italiana        | ital-1       |
+| Siciliana       | sic-1        |
+| Francesa        | fr-1         |
+| Caro-Kann       | ck-1         |
+| Pirc            | pirc-1       |
+| Alekhine        | al-1         |
+| Gambito de Dama | qg-2         |
+| Londres         | lon-2        |
+| India de Rey    | ki-3a        |
+| Nimzo-India     | nim-3b       |
 
 ## Comment sections in VARIANT_ROUTES
 
 Each opening has a labeled comment section. Place new variants under the correct one:
+
 ```js
 // ── Escandinava ──────────────────────────────────────────
 // ── Ruy López ────────────────────────────────────────────

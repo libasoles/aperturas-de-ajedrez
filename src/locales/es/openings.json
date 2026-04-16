@@ -243,6 +243,9 @@
     "name": "Escocesa Clásica",
     "annotation": "Espacio central y estructura dañada negra"
   },
+  "scot-8a": {
+    "name": "Escocesa Clásica"
+  },
   "scot-4b": {
     "name": "Clásica",
     "annotation": "Alfil activo en c5"
@@ -954,5 +957,35 @@
   "dutch-11b1": {
     "name": "Muro de Piedra completa",
     "annotation": "Posición sólida y cerrada para negras"
+  },
+  "mod-1": {
+    "name": "Moderna",
+    "annotation": "Hipermoderna: negro cede el centro para atacarlo con piezas"
+  },
+  "mod-2": {
+    "annotation": "Blancas afirman el centro"
+  },
+  "mod-3": {
+    "annotation": "Fianchetto: el alfil dominará la gran diagonal"
+  },
+  "mod-4": {
+    "annotation": "Desarrollo activo"
+  },
+  "mod-5": {
+    "annotation": "Consolida el flanco de rey"
+  },
+  "mod-6a": {
+    "name": "Ataque Austriaco",
+    "annotation": "El ataque más agresivo: f4 prepara f5 y el avance central"
+  },
+  "mod-6b": {
+    "name": "Variante Clásica",
+    "annotation": "Desarrollo sólido, mantiene la tensión en el centro"
+  },
+  "mod-11a": {
+    "annotation": "Contrajuego negro en el centro"
+  },
+  "mod-11b": {
+    "annotation": "Contrajuego negro, preparando ruptura central"
   }
 }
