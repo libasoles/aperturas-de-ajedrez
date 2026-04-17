@@ -109,7 +109,7 @@ function ChessNode({ id, data }) {
       <span>{isRoot ? t("chess_panel.initial") : san(move)}</span>
 
       {/* Expand/collapse button — separate click area */}
-      {hasChildren && !isPremium && (
+      {hasChildren && !isLocked && (
         <span
           role="button"
           tabIndex={-1}
@@ -135,7 +135,7 @@ function ChessNode({ id, data }) {
         </span>
       )}
 
-      {hasChildren && isPremium && (
+      {hasChildren && isPremium && isLocked && (
         <span
           className="flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0"
           style={{

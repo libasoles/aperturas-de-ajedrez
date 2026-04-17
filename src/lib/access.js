@@ -1,5 +1,5 @@
 export function hasPremiumAccess() {
-  return import.meta.env.VITE_PREMIUM_ACCESS === "1";
+  return import.meta.env.VITE_PREMIUM_ACCESS !== "0";
 }
 
 export function canAccessContent(accessLevel = "free") {

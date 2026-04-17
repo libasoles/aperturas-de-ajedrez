@@ -7,13 +7,13 @@ afterEach(() => {
 });
 
 describe("hasPremiumAccess", () => {
-  it("enables premium access only with the numeric env flag", () => {
+  it("grants access when VITE_PREMIUM_ACCESS is 1", () => {
     vi.stubEnv("VITE_PREMIUM_ACCESS", "1");
 
     expect(hasPremiumAccess()).toBe(true);
   });
 
-  it("treats missing or non-1 values as no premium access", () => {
+  it("blocks access when VITE_PREMIUM_ACCESS is 0 (simulates gated user)", () => {
     vi.stubEnv("VITE_PREMIUM_ACCESS", "0");
 
     expect(hasPremiumAccess()).toBe(false);
@@ -25,7 +25,7 @@ describe("canAccessContent", () => {
     expect(canAccessContent("free")).toBe(true);
   });
 
-  it("blocks premium content when premium access is disabled", () => {
+  it("blocks premium content when VITE_PREMIUM_ACCESS=0 (gating enabled)", () => {
     vi.stubEnv("VITE_PREMIUM_ACCESS", "0");
 
     expect(canAccessContent("premium")).toBe(false);

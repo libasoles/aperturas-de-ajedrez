@@ -71,7 +71,7 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 
 ## Adding Premium Openings
 
-Premium openings are gated behind `VITE_PREMIUM_ACCESS=1` environment variable. Users without premium see the entry node but cannot expand child nodes.
+Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) grants full access — all premium content visible. Set to `0` to simulate the locked experience a non-premium user sees.
 
 ### Step-by-step checklist
 
