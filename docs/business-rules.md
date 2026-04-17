@@ -50,7 +50,7 @@ user clicks a node → absorbActiveIntoExpanded() → setActiveOpening(null) →
 ## Premium gating rules
 
 ```
-canAccessContent(accessLevel) → accessLevel !== "premium" || VITE_PREMIUM_ACCESS === "1"
+canAccessContent(accessLevel) → accessLevel !== "premium" || hasPremiumAccess()
 ```
 
 - `"free"` nodes → always accessible.

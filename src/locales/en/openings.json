@@ -987,5 +987,59 @@
   },
   "mod-11b": {
     "annotation": "Black counterplay, preparing central break"
+  },
+  "nw-1": {
+    "name": "Nimzowitsch Defense",
+    "annotation": "Hypermodern opening: 1...Nc6 lets White occupy the center to attack it later"
+  },
+  "nw-2": {
+    "annotation": "White occupies the center with d4"
+  },
+  "nw-3a": {
+    "name": "Scandinavian Variation",
+    "annotation": "2...d5 immediately challenges the center"
+  },
+  "nw-3b": {
+    "name": "Kennedy Variation",
+    "annotation": "2...e5 counterattacks the center, seeking imbalance"
+  },
+  "nw-4a": {
+    "annotation": "3.e5 advances gaining space, ceding control of d5"
+  },
+  "nw-4b": {
+    "annotation": "3.exd5 opens the game, Black's queen comes to d5"
+  },
+  "nw-4c": {
+    "annotation": "Normal development, preparing to recapture the pawn"
+  },
+  "nw-5a": {
+    "annotation": "Bishop actively developed outside the pawn chain"
+  },
+  "nw-5b": {
+    "annotation": "Queen centralizes with tempo"
+  },
+  "nw-5c": {
+    "annotation": "Black captures the central pawn"
+  },
+  "nw-6a": {
+    "annotation": "Knight development, preparing castling"
+  },
+  "nw-6b": {
+    "annotation": "White develops the knight, attacking the queen on d5"
+  },
+  "nw-6c": {
+    "annotation": "Knight centralizes on d4, dominating the center"
+  },
+  "nw-7a": {
+    "name": "Advance Variation",
+    "annotation": "Black consolidates with e6, limiting White's bishop behind the chain"
+  },
+  "nw-7b": {
+    "name": "Exchange Variation",
+    "annotation": "Pin with Bg4, pressuring White's knight on f3"
+  },
+  "nw-7c": {
+    "name": "Kennedy Variation",
+    "annotation": "Knight development, preparing castling and dynamic counterplay"
   }
 }

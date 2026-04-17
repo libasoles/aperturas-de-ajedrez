@@ -135,7 +135,7 @@ Premium openings are gated behind `VITE_PREMIUM_ACCESS=1` environment variable. 
 - ✅ `npm run lint` — must pass
 - ✅ Routing: Visit `/en/dutch-defense`, `/dutch-defense/leningrad` (if bilingual)
 - ✅ Premium gating:
-  - Without `VITE_PREMIUM_ACCESS=1`: Entry node visible, children hidden, lock icon on button
+  - Without premium env enabled: Entry node visible, children hidden, lock icon on button
   - With `VITE_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
 - ✅ Translations: Reload browser; pill names appear below move (e.g., "f5" + "Dutch Defense")
 - ✅ Colors: Verify contrast and no collision with existing openings

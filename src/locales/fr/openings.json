@@ -987,5 +987,59 @@
   },
   "mod-11b": {
     "annotation": "Contre-jeu des Noirs, préparant la rupture centrale"
+  },
+  "nw-1": {
+    "name": "Défense Nimzowitsch",
+    "annotation": "Ouverture hypermoderne : 1...Cc6 laisse les Blancs occuper le centre pour mieux l'attaquer"
+  },
+  "nw-2": {
+    "annotation": "Les Blancs occupent le centre avec d4"
+  },
+  "nw-3a": {
+    "name": "Variante Scandinave",
+    "annotation": "2...d5 défie immédiatement le centre"
+  },
+  "nw-3b": {
+    "name": "Variante Kennedy",
+    "annotation": "2...e5 contre-attaque le centre, cherchant le déséquilibre"
+  },
+  "nw-4a": {
+    "annotation": "3.e5 avance en gagnant de l'espace, cédant le contrôle de d5"
+  },
+  "nw-4b": {
+    "annotation": "3.exd5 ouvre la position, la dame noire vient en d5"
+  },
+  "nw-4c": {
+    "annotation": "Développement normal, préparant la récupération du pion"
+  },
+  "nw-5a": {
+    "annotation": "Fou développé activement hors de la chaîne de pions"
+  },
+  "nw-5b": {
+    "annotation": "La dame se centralise en gagnant du temps"
+  },
+  "nw-5c": {
+    "annotation": "Les Noirs capturent le pion central"
+  },
+  "nw-6a": {
+    "annotation": "Développement du cavalier, préparant le roque"
+  },
+  "nw-6b": {
+    "annotation": "Les Blancs développent le cavalier, attaquant la dame en d5"
+  },
+  "nw-6c": {
+    "annotation": "Le cavalier se centralise en d4, dominant le centre"
+  },
+  "nw-7a": {
+    "name": "Variante Avancée",
+    "annotation": "Les Noirs consolident avec e6, limitant le fou blanc derrière la chaîne"
+  },
+  "nw-7b": {
+    "name": "Variante d'Échange",
+    "annotation": "Clouage avec Fg4, pressant le cavalier blanc en f3"
+  },
+  "nw-7c": {
+    "name": "Variante Kennedy",
+    "annotation": "Développement du cavalier, préparant le roque et le contre-jeu dynamique"
   }
 }

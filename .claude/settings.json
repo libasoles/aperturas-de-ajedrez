@@ -10,7 +10,8 @@
       "Bash(VITE_PREMIUM_ACCESS=1 npm run dev)",
       "mcp__playwright__browser_close",
       "Bash(curl -s http://localhost:5174/en/dutch-defense)",
-      "Bash(pkill -f \"npm run dev\")"
+      "Bash(pkill -f \"npm run dev\")",
+      "WebFetch(domain:es.wikipedia.org)"
     ],
     "additionalDirectories": [
       "/tmp",

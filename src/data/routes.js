@@ -175,6 +175,21 @@ const OPENING_ROUTE_DEFS = [
       "Maîtrisez la Défense Moderne (1.e4 g6) : approche hypermoderne avec fianchetto en g7, variantes Attaque Autrichienne et Classique dans un arbre interactif.",
   },
   {
+    slug: "defensa-nimzowitsch",
+    slugEn: "nimzowitsch-defense",
+    slugFr: "defense-nimzowitsch",
+    nodeId: "nw-1",
+    title: "Defensa Nimzowitsch | Aperturas de Ajedrez",
+    titleEn: "Nimzowitsch Defense | Chess Openings",
+    titleFr: "Défense Nimzowitsch | Ouvertures d'Échecs",
+    description:
+      "Domina la Defensa Nimzowitsch (1.e4 Cc6): apertura hipermoderna donde las negras dejan que las blancas ocupen el centro para atacarlo con d5 o e5.",
+    descriptionEn:
+      "Master the Nimzowitsch Defense (1.e4 Nc6): a hypermodern opening where Black allows White to occupy the center and then attacks it with d5 or e5.",
+    descriptionFr:
+      "Maîtrisez la Défense Nimzowitsch (1.e4 Cc6) : une ouverture hypermoderne où les Noirs laissent les Blancs occuper le centre pour l'attaquer avec d5 ou e5.",
+  },
+  {
     slug: "gambito-de-dama",
     slugEn: "queens-gambit",
     slugFr: "gambit-dame",
@@ -1116,6 +1131,54 @@ const VARIANT_ROUTE_DEFS = [
       "Study the Classical Variation of the Modern Defense (4.Nf3): solid development with Be2 and kingside castling, maintaining central tension.",
     descriptionFr:
       "Étudiez la Variante Classique de la Défense Moderne (4.Cf3) : développement solide avec Fe2 et roque côté roi, maintenant la tension centrale.",
+  },
+  {
+    slug: "defensa-nimzowitsch/avanzada",
+    slugEn: "nimzowitsch-defense/advance",
+    slugFr: "defense-nimzowitsch/avancee",
+    variantNodeId: "nw-7a",
+    parentNodeId: "nw-1",
+    title: "Variante Avanzada | Nimzowitsch | Aperturas de Ajedrez",
+    titleEn: "Advance Variation | Nimzowitsch | Chess Openings",
+    titleFr: "Variante Avancée | Nimzowitsch | Ouvertures d'Échecs",
+    description:
+      "Estudia la Variante Avanzada de la Defensa Nimzowitsch (3.e5 Af5): las blancas avanzan el peón e creando espacio, mientras las negras desarrollan el alfil fuera de la cadena.",
+    descriptionEn:
+      "Study the Advance Variation of the Nimzowitsch Defense (3.e5 Bf5): White advances the e-pawn gaining space while Black develops the bishop outside the pawn chain.",
+    descriptionFr:
+      "Étudiez la Variante Avancée de la Défense Nimzowitsch (3.e5 Ff5) : les Blancs avancent le pion e en gagnant de l'espace tandis que les Noirs développent le fou hors de la chaîne.",
+  },
+  {
+    slug: "defensa-nimzowitsch/intercambio",
+    slugEn: "nimzowitsch-defense/exchange",
+    slugFr: "defense-nimzowitsch/echange",
+    variantNodeId: "nw-7b",
+    parentNodeId: "nw-1",
+    title: "Variante de Intercambio | Nimzowitsch | Aperturas de Ajedrez",
+    titleEn: "Exchange Variation | Nimzowitsch | Chess Openings",
+    titleFr: "Variante d'Échange | Nimzowitsch | Ouvertures d'Échecs",
+    description:
+      "Explora la Variante de Intercambio de la Defensa Nimzowitsch (3.exd5 Dxd5): posición abierta con la dama negra activa en d5 y tensión central inmediata.",
+    descriptionEn:
+      "Explore the Exchange Variation of the Nimzowitsch Defense (3.exd5 Qxd5): open position with Black's active queen on d5 and immediate central tension.",
+    descriptionFr:
+      "Explorez la Variante d'Échange de la Défense Nimzowitsch (3.exd5 Dxd5) : position ouverte avec la dame noire active en d5 et tension centrale immédiate.",
+  },
+  {
+    slug: "defensa-nimzowitsch/kennedy",
+    slugEn: "nimzowitsch-defense/kennedy",
+    slugFr: "defense-nimzowitsch/kennedy",
+    variantNodeId: "nw-7c",
+    parentNodeId: "nw-1",
+    title: "Variante Kennedy | Nimzowitsch | Aperturas de Ajedrez",
+    titleEn: "Kennedy Variation | Nimzowitsch | Chess Openings",
+    titleFr: "Variante Kennedy | Nimzowitsch | Ouvertures d'Échecs",
+    description:
+      "Aprende la Variante Kennedy de la Defensa Nimzowitsch (2...e5): las negras contraatacan el centro inmediatamente con e5, buscando juego dinámico y desequilibrado.",
+    descriptionEn:
+      "Learn the Kennedy Variation of the Nimzowitsch Defense (2...e5): Black immediately counterattacks the center with e5, seeking dynamic and unbalanced play.",
+    descriptionFr:
+      "Apprenez la Variante Kennedy de la Défense Nimzowitsch (2...e5) : les Noirs contre-attaquent immédiatement le centre avec e5, cherchant un jeu dynamique et déséquilibré.",
   },
 ];
 

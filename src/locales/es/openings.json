@@ -987,5 +987,59 @@
   },
   "mod-11b": {
     "annotation": "Contrajuego negro, preparando ruptura central"
+  },
+  "nw-1": {
+    "name": "Defensa Nimzowitsch",
+    "annotation": "Apertura hipermoderna: 1...Cc6 deja que las blancas ocupen el centro para atacarlo"
+  },
+  "nw-2": {
+    "annotation": "Las blancas ocupan el centro con d4"
+  },
+  "nw-3a": {
+    "name": "Variante Escandinava",
+    "annotation": "2...d5 desafía el centro inmediatamente"
+  },
+  "nw-3b": {
+    "name": "Variante Kennedy",
+    "annotation": "2...e5 contraataca el centro, buscando desequilibrio"
+  },
+  "nw-4a": {
+    "annotation": "3.e5 avanza ganando espacio, cediendo el control de d5"
+  },
+  "nw-4b": {
+    "annotation": "3.exd5 abre el juego, la dama negra vendrá a d5"
+  },
+  "nw-4c": {
+    "annotation": "Desarrollo normal, preparando la recuperación del peón"
+  },
+  "nw-5a": {
+    "annotation": "Alfil desarrollado activamente fuera de la cadena de peones"
+  },
+  "nw-5b": {
+    "annotation": "La dama se centraliza con ganancia de tiempo"
+  },
+  "nw-5c": {
+    "annotation": "Las negras capturan el peón central"
+  },
+  "nw-6a": {
+    "annotation": "Desarrollo del caballo, preparando el enroque"
+  },
+  "nw-6b": {
+    "annotation": "Las blancas desarrollan el caballo, atacando la dama en d5"
+  },
+  "nw-6c": {
+    "annotation": "El caballo se centraliza en d4, dominando el centro"
+  },
+  "nw-7a": {
+    "name": "Variante Avanzada",
+    "annotation": "Las negras consolidan con e6, limitando el alfil blanco tras la cadena"
+  },
+  "nw-7b": {
+    "name": "Variante de Intercambio",
+    "annotation": "Clavada con Ag4, presionando el caballo blanco en f3"
+  },
+  "nw-7c": {
+    "name": "Variante Kennedy",
+    "annotation": "Desarrollo del caballo, preparando enroque y contrajuego dinámico"
   }
 }

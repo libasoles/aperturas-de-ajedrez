@@ -206,6 +206,12 @@ export const OPENING_COLORS = {
     border: "#65a30d",
     edge: "#84cc16",
   },
+  nimzowitsch: {
+    node: "#082030",
+    text: "#bae6fd",
+    border: "#0284c7",
+    edge: "#0ea5e9",
+  },
 };
 
 const X_STEP = 160;

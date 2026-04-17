@@ -3901,6 +3901,131 @@ export const E4_TREE = {
           ]
         }
       ]
+    },
+    {
+      "id": "nw-1",
+      "move": "Nc6",
+      "color": "black",
+      "opening": "nimzowitsch",
+      "children": [
+        {
+          "id": "nw-2",
+          "move": "d4",
+          "color": "white",
+          "opening": "nimzowitsch",
+          "children": [
+            {
+              "id": "nw-3a",
+              "move": "d5",
+              "color": "black",
+              "opening": "nimzowitsch",
+              "children": [
+                {
+                  "id": "nw-4a",
+                  "move": "e5",
+                  "color": "white",
+                  "opening": "nimzowitsch",
+                  "children": [
+                    {
+                      "id": "nw-5a",
+                      "move": "Bf5",
+                      "color": "black",
+                      "opening": "nimzowitsch",
+                      "children": [
+                        {
+                          "id": "nw-6a",
+                          "move": "Nf3",
+                          "color": "white",
+                          "opening": "nimzowitsch",
+                          "children": [
+                            {
+                              "id": "nw-7a",
+                              "move": "e6",
+                              "color": "black",
+                              "opening": "nimzowitsch",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "nw-4b",
+                  "move": "exd5",
+                  "color": "white",
+                  "opening": "nimzowitsch",
+                  "children": [
+                    {
+                      "id": "nw-5b",
+                      "move": "Qxd5",
+                      "color": "black",
+                      "opening": "nimzowitsch",
+                      "children": [
+                        {
+                          "id": "nw-6b",
+                          "move": "Nf3",
+                          "color": "white",
+                          "opening": "nimzowitsch",
+                          "children": [
+                            {
+                              "id": "nw-7b",
+                              "move": "Bg4",
+                              "color": "black",
+                              "opening": "nimzowitsch",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "nw-3b",
+              "move": "e5",
+              "color": "black",
+              "opening": "nimzowitsch",
+              "children": [
+                {
+                  "id": "nw-4c",
+                  "move": "Nf3",
+                  "color": "white",
+                  "opening": "nimzowitsch",
+                  "children": [
+                    {
+                      "id": "nw-5c",
+                      "move": "exd4",
+                      "color": "black",
+                      "opening": "nimzowitsch",
+                      "children": [
+                        {
+                          "id": "nw-6c",
+                          "move": "Nxd4",
+                          "color": "white",
+                          "opening": "nimzowitsch",
+                          "children": [
+                            {
+                              "id": "nw-7c",
+                              "move": "Nf6",
+                              "color": "black",
+                              "opening": "nimzowitsch",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 };

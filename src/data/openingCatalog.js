@@ -102,6 +102,16 @@ export const OPENING_CATALOG = [
         access: "premium",
         discoverable: true,
       },
+      {
+        label: "Nimzowitsch",
+        nodeId: "nw-1",
+        pathIds: ["e4"],
+        color: "#0284c7",
+        glow: "#0ea5e9",
+        text: "#bae6fd",
+        access: "premium",
+        discoverable: true,
+      },
     ],
   },
   {
@@ -471,6 +481,24 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "mod-6b",
     parentNodeId: "mod-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "nw-7a",
+    parentNodeId: "nw-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "nw-7b",
+    parentNodeId: "nw-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "nw-7c",
+    parentNodeId: "nw-1",
     access: "premium",
     discoverable: true,
   },
