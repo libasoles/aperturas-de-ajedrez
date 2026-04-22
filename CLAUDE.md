@@ -99,7 +99,20 @@ Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) gr
    { variantNodeId: "dutch-5a", parentNodeId: "dutch-1", access: "premium", discoverable: true }
    ```
 
-4. **Add translations** — `src/locales/{es,en,fr}/openings.json`
+4. **Add opening menu labels** — `src/locales/{es,en,fr}/ui.json`
+   - Add the opening `nodeId` under `panel_openings` for every supported locale
+   - Desktop and mobile opening menus read from `panel_openings`; if the key is missing, they fall back to the Spanish `label` from `OPENING_CATALOG`
+   - Keep this in sync with every entry added to `OPENING_CATALOG`
+   - Example:
+
+   ```json
+   "panel_openings": {
+     "dutch-1": "Dutch Defense",
+     "mod-1": "Modern Defense"
+   }
+   ```
+
+5. **Add node translations** — `src/locales/{es,en,fr}/openings.json`
    - For every node with a concept, add `"node-id": { "name": "...", "annotation": "..." }`
    - Entry nodes (e.g., `dutch-1`) MUST have `name` — displayed on pill
    - Other nodes: `name` optional (shows on pill if present), `annotation` optional (tooltip)
@@ -111,7 +124,7 @@ Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) gr
    "dutch-6a": { "annotation": "Knight development" }
    ```
 
-5. **Add routes** — `src/data/routes.js`
+6. **Add routes** — `src/data/routes.js`
    - **OPENING_ROUTE_DEFS**: Main opening route
 
    ```js
@@ -127,7 +140,7 @@ Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) gr
      variantNodeId: "dutch-5a", parentNodeId: "dutch-1", title: "...", ... }
    ```
 
-6. **Update README.md** — Add opening name to the feature list (line ~14)
+7. **Update README.md** — Add opening name to the feature list (line ~14)
    - Just append to the comma-separated list of openings
 
 ### Validation
@@ -137,7 +150,7 @@ Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) gr
 - ✅ Premium gating:
   - Without premium env enabled: Entry node visible, children hidden, lock icon on button
   - With `VITE_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
-- ✅ Translations: Reload browser; pill names appear below move (e.g., "f5" + "Dutch Defense")
+- ✅ Translations: Reload browser; menu labels and pill names appear in the active locale (e.g., "Dutch Defense" in `/en/...`)
 - ✅ Colors: Verify contrast and no collision with existing openings
 
 ### Example: Dutch Defense (d4)
