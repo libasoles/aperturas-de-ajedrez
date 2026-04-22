@@ -14,10 +14,13 @@
     "ck-1": "Caro-Kann",
     "pirc-1": "Pirc",
     "al-1": "Alekhine",
+    "mod-1": "Défense Moderne",
+    "nw-1": "Nimzowitsch",
     "qg-2": "Gambit Dame",
     "lon-2": "Londres",
     "ki-3a": "Indienne du Roi",
-    "nim-3b": "Nimzo-Indienne"
+    "nim-3b": "Nimzo-Indienne",
+    "dutch-1": "Défense Hollandaise"
   },
   "chess_panel": {
     "position": "Position",
