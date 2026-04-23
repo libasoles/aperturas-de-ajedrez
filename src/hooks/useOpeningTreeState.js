@@ -570,7 +570,9 @@ export function useOpeningTreeState() {
           locale: detectLocale(),
           has_access: premiumAccess,
         });
-        setPremiumOverlayVersion((prev) => prev + 1);
+        if (!premiumAccess) {
+          setPremiumOverlayVersion((prev) => prev + 1);
+        }
       }
       setSelectedNodeId((prev) => {
         const next = isPremium ? id : prev === id ? null : id;

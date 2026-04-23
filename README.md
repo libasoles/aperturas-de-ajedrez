@@ -28,7 +28,7 @@ npm run lint
 El contenido marcado con `access: "premium"` en `src/data/openingCatalog.js` se desbloquea con una variable de entorno de Vite:
 
 ```bash
-VITE_PREMIUM_ACCESS=1
+VITE_HAS_PREMIUM_ACCESS=1
 ```
 
 ## Stack

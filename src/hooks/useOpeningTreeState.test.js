@@ -12,7 +12,7 @@
  */
 
 import { renderHook, act } from "@testing-library/react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 
 // ── Mocks (hoisted by Vitest) ────────────────────────────────────────────────
 
@@ -40,6 +40,11 @@ beforeEach(() => {
   // Prevent actual URL mutations from polluting test output / JSDOM state.
   vi.spyOn(history, "pushState").mockImplementation(() => {});
   vi.spyOn(history, "replaceState").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllEnvs();
 });
 
 // ── toggleOpening ─────────────────────────────────────────────────────────────
@@ -172,5 +177,43 @@ describe("toggleVariant", () => {
 
     expect(result.current.selectedNodeId).toBe(selectedBefore);
     expect(result.current.activeVariant).toBe(variantBefore);
+  });
+});
+
+describe("premium gating", () => {
+  it("does not open the premium overlay when access is enabled", () => {
+    vi.stubEnv("VITE_HAS_PREMIUM_ACCESS", "1");
+
+    const { result } = renderHook(() => useOpeningTreeState());
+    const premiumNode = result.current.nodes.find(
+      (node) => node.id === "mod-1",
+    );
+
+    expect(premiumNode).toBeDefined();
+
+    act(() => {
+      premiumNode.data.onSelect("mod-1");
+    });
+
+    expect(result.current.selectedNodeId).toBe("mod-1");
+    expect(result.current.premiumOverlayVersion).toBe(0);
+  });
+
+  it("opens the premium overlay when access is disabled", () => {
+    vi.stubEnv("VITE_HAS_PREMIUM_ACCESS", "0");
+
+    const { result } = renderHook(() => useOpeningTreeState());
+    const premiumNode = result.current.nodes.find(
+      (node) => node.id === "mod-1",
+    );
+
+    expect(premiumNode).toBeDefined();
+
+    act(() => {
+      premiumNode.data.onSelect("mod-1");
+    });
+
+    expect(result.current.selectedNodeId).toBe("mod-1");
+    expect(result.current.premiumOverlayVersion).toBe(1);
   });
 });

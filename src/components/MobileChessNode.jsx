@@ -33,7 +33,6 @@ function MobileChessNode({ id, data }) {
     onToggle,
     onSelect,
     onExpandToFork,
-    isPremium,
     isLocked,
   } = data;
 
@@ -76,10 +75,10 @@ function MobileChessNode({ id, data }) {
       ].join(" ")}
     >
       <span
-        role={hasChildren && !isExpanded && !isPremium ? "button" : undefined}
-        tabIndex={hasChildren && !isExpanded && !isPremium ? -1 : undefined}
-        onClick={hasChildren && !isExpanded && !isPremium ? (e) => { e.stopPropagation(); onToggle?.(id); } : undefined}
-        onKeyDown={hasChildren && !isExpanded && !isPremium ? (e) => {
+        role={hasChildren && !isExpanded && !isLocked ? "button" : undefined}
+        tabIndex={hasChildren && !isExpanded && !isLocked ? -1 : undefined}
+        onClick={hasChildren && !isExpanded && !isLocked ? (e) => { e.stopPropagation(); onToggle?.(id); } : undefined}
+        onKeyDown={hasChildren && !isExpanded && !isLocked ? (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             e.stopPropagation();
@@ -87,7 +86,7 @@ function MobileChessNode({ id, data }) {
           }
         } : undefined}
         className={`flex items-center justify-center w-5 h-5 rounded-full text-sm font-bold leading-none shrink-0 transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 ${
-          !hasChildren || isExpanded ? "opacity-0 pointer-events-none" : !isPremium ? "hover:brightness-150" : ""
+          !hasChildren || isExpanded ? "opacity-0 pointer-events-none" : !isLocked ? "hover:brightness-150" : ""
         }`}
         style={{
           background: `${colors.border}30`,
@@ -96,7 +95,7 @@ function MobileChessNode({ id, data }) {
           transform: "rotate(270deg)",
         }}
       >
-        {isPremium ? (
+        {isLocked ? (
           <PremiumLockIcon
             className="w-3.5 h-3.5"
             title={isLocked ? "Contenido bloqueado" : "Contenido restringido"}
@@ -155,7 +154,7 @@ function MobileChessNode({ id, data }) {
         style={{ background: "transparent", border: "none" }}
       />
 
-      {isSelected && hasChildren && !isExpanded && !isPremium && (
+      {isSelected && hasChildren && !isExpanded && !isLocked && (
         <span
           role="button"
           tabIndex={-1}

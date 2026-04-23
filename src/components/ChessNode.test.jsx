@@ -49,6 +49,8 @@ function makeData(overrides = {}) {
     colors: DEFAULT_COLORS,
     isSelected: false,
     isInActivePath: false,
+    isPremium: false,
+    isLocked: false,
     onToggle: vi.fn(),
     onSelect: vi.fn(),
     onExpandToFork: vi.fn(),
@@ -194,5 +196,22 @@ describe('ChessNode — expand/collapse', () => {
       />,
     );
     expect(screen.getByText('−')).toBeInTheDocument();
+  });
+
+  it('shows expand-to-fork for premium nodes when they are accessible', () => {
+    render(
+      <ChessNode
+        id="mod-1"
+        data={makeData({
+          move: 'g6',
+          hasChildren: true,
+          isSelected: true,
+          isPremium: true,
+          isLocked: false,
+        })}
+      />,
+    );
+
+    expect(screen.getByText('→')).toBeInTheDocument();
   });
 });

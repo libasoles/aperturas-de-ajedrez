@@ -7,7 +7,7 @@
       "mcp__playwright__browser_press_key",
       "mcp__playwright__browser_run_code",
       "Bash(grep -n \"isPremium\\\\|isLocked\\\\|premium\\\\|PremiumOverlay\\\\|PremiumLock\" /Users/guillermoperez/Projects/playground/aperturas-de-ajedrez/src/components/*.jsx)",
-      "Bash(VITE_PREMIUM_ACCESS=1 npm run dev)",
+      "Bash(VITE_HAS_PREMIUM_ACCESS=1 npm run dev)",
       "mcp__playwright__browser_close",
       "Bash(curl -s http://localhost:5174/en/dutch-defense)",
       "Bash(pkill -f \"npm run dev\")",

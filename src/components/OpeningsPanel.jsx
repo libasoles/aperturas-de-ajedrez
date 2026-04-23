@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PremiumLockIcon from "./PremiumLockIcon";
-import { DESKTOP_OPENINGS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
+import {
+  DESKTOP_OPENINGS_PANEL_BOTTOM,
+  DESKTOP_PANEL_RIGHT,
+} from "./panelLayout";
 import { detectLocale } from "../hooks/useOpeningTreeState";
 import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
@@ -173,7 +176,7 @@ export default function OpeningsPanel({
                       >
                         {t(`panel_openings.${opening.nodeId}`, opening.label)}
                       </span>
-                      {opening.access === "premium" && (
+                      {opening.access === "premium" && !hasPremiumAccess() && (
                         <PremiumLockIcon
                           className="w-3.5 h-3.5 shrink-0"
                           title="Contenido premium"

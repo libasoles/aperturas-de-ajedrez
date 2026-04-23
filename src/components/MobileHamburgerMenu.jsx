@@ -35,7 +35,6 @@ export default function MobileHamburgerMenu({
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
   const locale = detectLocale();
-  const premiumAccess = hasPremiumAccess();
 
   const handleOpeningClick = (opening) => {
     if (opening.access === "premium") {
@@ -44,7 +43,7 @@ export default function MobileHamburgerMenu({
         opening_id: opening.nodeId,
         surface: "mobile_menu_opening",
         locale,
-        has_access: premiumAccess,
+        has_access: hasPremiumAccess(),
       });
     }
 
@@ -67,7 +66,7 @@ export default function MobileHamburgerMenu({
         opening_id: variant.parentNodeId,
         surface: "mobile_menu_variant",
         locale,
-        has_access: premiumAccess,
+        has_access: hasPremiumAccess(),
       });
     }
 
@@ -239,7 +238,8 @@ export default function MobileHamburgerMenu({
 
                   {group.openings.map((opening) => {
                     const isOpeningActive = activeOpening === opening.nodeId;
-                    const variants = VARIANTS_BY_PARENT.get(opening.nodeId) ?? [];
+                    const variants =
+                      VARIANTS_BY_PARENT.get(opening.nodeId) ?? [];
 
                     return (
                       <div key={opening.nodeId}>
@@ -294,15 +294,16 @@ export default function MobileHamburgerMenu({
                           >
                             {t(
                               `panel_openings.${opening.nodeId}`,
-                              opening.label
+                              opening.label,
                             )}
                           </span>
-                          {opening.access === "premium" && (
-                            <PremiumLockIcon
-                              className="w-3.5 h-3.5 shrink-0"
-                              title="Contenido premium"
-                            />
-                          )}
+                          {opening.access === "premium" &&
+                            !hasPremiumAccess() && (
+                              <PremiumLockIcon
+                                className="w-3.5 h-3.5 shrink-0"
+                                title="Contenido premium"
+                              />
+                            )}
                         </button>
 
                         {/* Variant rows — indented under parent opening */}
@@ -360,12 +361,13 @@ export default function MobileHamburgerMenu({
                               >
                                 {label}
                               </span>
-                              {variant.access === "premium" && (
-                                <PremiumLockIcon
-                                  className="w-3.5 h-3.5 shrink-0"
-                                  title="Contenido premium"
-                                />
-                              )}
+                              {variant.access === "premium" &&
+                                !hasPremiumAccess() && (
+                                  <PremiumLockIcon
+                                    className="w-3.5 h-3.5 shrink-0"
+                                    title="Contenido premium"
+                                  />
+                                )}
                             </button>
                           );
                         })}

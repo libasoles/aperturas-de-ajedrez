@@ -16,8 +16,8 @@ No test suite exists in this project.
 
 Skills are in `.claude/skills/`. They are invoked **automatically** — read the skill instructions whenever the trigger conditions apply, without waiting to be asked.
 
-| Skill | Trigger |
-|-------|---------|
+| Skill                                                                | Trigger                                                                         |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`sync-opening-routes`](.claude/skills/sync-opening-routes/SKILL.md) | Any edit to `src/data/openings.js` that adds a new opening node or variant node |
 
 ## Architecture
@@ -71,7 +71,7 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 
 ## Adding Premium Openings
 
-Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) grants full access — all premium content visible. Set to `0` to simulate the locked experience a non-premium user sees.
+Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access — all premium content visible. Set to `0` to simulate the locked experience a non-premium user sees.
 
 ### Step-by-step checklist
 
@@ -149,7 +149,7 @@ Premium gating is controlled by `VITE_PREMIUM_ACCESS`. Default (unset or `1`) gr
 - ✅ Routing: Visit `/en/dutch-defense`, `/dutch-defense/leningrad` (if bilingual)
 - ✅ Premium gating:
   - Without premium env enabled: Entry node visible, children hidden, lock icon on button
-  - With `VITE_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
+  - With `VITE_HAS_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
 - ✅ Translations: Reload browser; menu labels and pill names appear in the active locale (e.g., "Dutch Defense" in `/en/...`)
 - ✅ Colors: Verify contrast and no collision with existing openings
 

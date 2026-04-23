@@ -177,7 +177,7 @@ function ChessNode({ id, data }) {
       />
 
       {/* Expand-to-fork button — only on selected nodes with unexpanded children */}
-      {isSelected && hasChildren && !isExpanded && !isPremium && (
+      {isSelected && hasChildren && !isExpanded && !isLocked && (
         <span
           role="button"
           tabIndex={-1}
