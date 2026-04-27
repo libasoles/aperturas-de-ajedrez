@@ -1,10 +1,18 @@
 import MobileOpeningTree from "./components/MobileOpeningTree";
 import OpeningTree from "./components/OpeningTree";
+import {
+  applyLocaleRedirectForTreeConfigs,
+  resolveTreeConfigFromPathname,
+} from "./data/treeConfigs";
 import { useIsMobile } from "./hooks/useIsMobile";
 import { useOpeningTreeState } from "./hooks/useOpeningTreeState";
 
 export default function App() {
-  const state = useOpeningTreeState();
+  applyLocaleRedirectForTreeConfigs();
+  const config = resolveTreeConfigFromPathname(
+    typeof window === "undefined" ? "/" : window.location.pathname,
+  );
+  const state = useOpeningTreeState(config);
   const isMobile = useIsMobile();
 
   return isMobile ? (

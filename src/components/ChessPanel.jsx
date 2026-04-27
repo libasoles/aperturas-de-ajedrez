@@ -26,6 +26,7 @@ function fenAtStep(moves, count) {
 }
 
 export default function ChessPanel({
+  tree,
   selectedNodeId,
   lockedContentId,
   premiumOverlayVersion,
@@ -34,8 +35,8 @@ export default function ChessPanel({
   const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
 
   const path = useMemo(
-    () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),
-    [selectedNodeId],
+    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId) : []),
+    [selectedNodeId, tree],
   );
 
   const moves = useMemo(

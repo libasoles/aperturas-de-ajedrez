@@ -1,6 +1,3 @@
-import { OPENING_TREE } from "./openings";
-import { OPENING_CATALOG, VARIANT_CATALOG } from "./openingCatalog";
-
 function findNode(root, targetId) {
   if (root.id === targetId) return root;
   for (const child of root.children || []) {
@@ -28,32 +25,36 @@ function collectIds(node, ids = new Set()) {
   return ids;
 }
 
-const premiumVariantRoots = VARIANT_CATALOG.filter(
-  (variant) => variant.access === "premium",
-);
-const premiumOpeningRoots = OPENING_CATALOG.flatMap((group) =>
-  group.openings.filter((opening) => opening.access === "premium"),
-);
+export function buildPremiumVariantIds(variantCatalog = []) {
+  return new Set(
+    variantCatalog
+      .filter((variant) => variant.access === "premium")
+      .map((variant) => variant.variantNodeId),
+  );
+}
 
-export const PREMIUM_VARIANT_IDS = new Set(
-  premiumVariantRoots.map((variant) => variant.variantNodeId),
-);
+export function buildPremiumNodeIds(tree, catalog = [], variantCatalog = []) {
+  const premiumVariantRoots = variantCatalog.filter(
+    (variant) => variant.access === "premium",
+  );
+  const premiumOpeningRoots = catalog.flatMap((group) =>
+    group.openings.filter((opening) => opening.access === "premium"),
+  );
 
-export const PREMIUM_NODE_IDS = premiumVariantRoots.reduce((ids, variant) => {
-  const node = findNode(OPENING_TREE, variant.variantNodeId);
-  if (node) collectIds(node, ids);
+  const ids = premiumVariantRoots.reduce((acc, variant) => {
+    const node = findNode(tree, variant.variantNodeId);
+    if (node) collectIds(node, acc);
+    return acc;
+  }, new Set());
+
+  for (const opening of premiumOpeningRoots) {
+    const node = findNode(tree, opening.nodeId);
+    if (node) collectIds(node, ids);
+  }
+
   return ids;
-}, new Set());
-
-for (const opening of premiumOpeningRoots) {
-  const node = findNode(OPENING_TREE, opening.nodeId);
-  if (node) collectIds(node, PREMIUM_NODE_IDS);
 }
 
-export function getPathIdsToNode(nodeId) {
-  return findPathIds(OPENING_TREE, nodeId) ?? [];
-}
-
-export function isPremiumNode(nodeId) {
-  return PREMIUM_NODE_IDS.has(nodeId);
+export function getPathIdsToNodeInTree(tree, nodeId) {
+  return findPathIds(tree, nodeId) ?? [];
 }

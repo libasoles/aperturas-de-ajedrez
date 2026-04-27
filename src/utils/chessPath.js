@@ -1,5 +1,4 @@
 import { Chess } from 'chess.js';
-import { OPENING_TREE } from '../data/openings';
 
 // SAN usa notación inglesa internamente; esto convierte para mostrar al usuario
 export function toSpanishSAN(move) {
@@ -26,7 +25,7 @@ export function toFrenchSAN(move) {
  * Returns the array of nodes from root to the target node (inclusive),
  * or null if not found.
  */
-export function findPathToNode(targetId) {
+export function findPathToNode(tree, targetId) {
   function search(node, path) {
     const current = [...path, node];
     if (node.id === targetId) return current;
@@ -36,7 +35,7 @@ export function findPathToNode(targetId) {
     }
     return null;
   }
-  return search(OPENING_TREE, []) ?? [];
+  return search(tree, []) ?? [];
 }
 
 /**
@@ -44,8 +43,8 @@ export function findPathToNode(targetId) {
  * from root to the node with the given ID. Returns the initial position FEN
  * if the node is not found or has no moves.
  */
-export function fenAfterMoves(nodeId) {
-  const path = findPathToNode(nodeId);
+export function fenAfterMoves(tree, nodeId) {
+  const path = findPathToNode(tree, nodeId);
   const moves = path.map((n) => n.move).filter((m) => m && m !== 'Inicial');
   const chess = new Chess();
   for (const move of moves) {
@@ -61,8 +60,8 @@ export function fenAfterMoves(nodeId) {
 /**
  * Returns a Set of node IDs from root to the target node (for path highlighting).
  */
-export function getActivePathIds(targetId) {
-  const path = findPathToNode(targetId);
+export function getActivePathIds(tree, targetId) {
+  const path = findPathToNode(tree, targetId);
   return new Set(path.map((n) => n.id));
 }
 
@@ -71,7 +70,7 @@ export function getActivePathIds(targetId) {
  * and walking down single-child chains until the next fork (≥2 children) or leaf.
  * The fork node is included so its branches (children) become visible.
  */
-export function getPathToNextFork(startId) {
+export function getPathToNextFork(tree, startId) {
   function findNode(node) {
     if (node.id === startId) return node;
     for (const child of node.children || []) {
@@ -81,7 +80,7 @@ export function getPathToNextFork(startId) {
     return null;
   }
 
-  const startNode = findNode(OPENING_TREE);
+  const startNode = findNode(tree);
   if (!startNode) return [];
 
   const ids = [];
@@ -114,8 +113,8 @@ export function getPathToNextFork(startId) {
  * @param {Set<string>} displayIds - IDs of currently expanded nodes (children visible)
  * @returns {string|null} target node ID, or null if no navigation is possible
  */
-export function getVerticalNavigationTarget(selectedId, direction, displayIds) {
-  const path = findPathToNode(selectedId);
+export function getVerticalNavigationTarget(tree, selectedId, direction, displayIds) {
+  const path = findPathToNode(tree, selectedId);
   if (path.length <= 1) return null;
 
   // Walk up all fork ancestors from nearest to farthest.

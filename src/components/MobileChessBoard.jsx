@@ -25,6 +25,7 @@ function fenAfterMoves(moves, count) {
 }
 
 export default function MobileChessBoard({
+  tree,
   selectedNodeId,
   lockedContentId,
   premiumOverlayVersion,
@@ -43,8 +44,8 @@ export default function MobileChessBoard({
   const frameRef = useRef(null);
 
   const path = useMemo(
-    () => (selectedNodeId ? findPathToNode(selectedNodeId) : []),
-    [selectedNodeId],
+    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId) : []),
+    [selectedNodeId, tree],
   );
 
   const moves = useMemo(

@@ -1,20 +1,9 @@
 import { MarkerType } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import i18n from "../i18n";
-import { OPENING_CATALOG } from "../data/openingCatalog";
-import { OPENING_TREE } from "../data/openings";
-import { getPathIdsToNode, isPremiumNode } from "../data/premiumContent";
+import { defaultOpeningTreeConfig } from "../data/treeConfigs";
+import { OPENING_COLORS } from "../data/openingColors";
+import { buildPremiumNodeIds, getPathIdsToNodeInTree } from "../data/premiumContent";
 import { MOBILE_BOARD_PANEL_HEIGHT } from "../components/panelLayout";
-import {
-  HELP_ROUTE,
-  ROUTE_BY_NODE_ID,
-  ROUTE_BY_SLUG,
-  VARIANT_ROUTES,
-  VARIANT_ROUTE_BY_SLUG,
-  VARIANT_ROUTE_BY_NODE_ID,
-} from "../data/routes";
-import { canAccessContent, hasPremiumAccess } from "../lib/access";
-import { trackPremiumNodeClick } from "../lib/analytics";
 import {
   findPathToNode,
   getActivePathIds,
@@ -38,10 +27,10 @@ function buildOpeningUrl(route, locale) {
   return `/${route.slug}`;
 }
 
-function buildHelpUrl(locale) {
-  if (locale === "en") return `/en/${HELP_ROUTE.slugEn}`;
-  if (locale === "fr") return `/fr/${HELP_ROUTE.slugFr}`;
-  return `/${HELP_ROUTE.slug}`;
+function buildHelpUrlForRoute(helpRoute, locale) {
+  if (locale === "en") return `/en/${helpRoute.slugEn}`;
+  if (locale === "fr") return `/fr/${helpRoute.slugFr}`;
+  return `/${helpRoute.slug}`;
 }
 
 function buildVariantUrl(variantRoute, locale) {
@@ -50,20 +39,14 @@ function buildVariantUrl(variantRoute, locale) {
   return `/${variantRoute.slug}`;
 }
 
-export { buildHelpUrl, detectLocale };
+export function buildHelpUrl(locale) {
+  return buildHelpUrlForRoute(
+    defaultOpeningTreeConfig.routeData.helpRoute,
+    locale,
+  );
+}
 
-const INITIAL_EXPANDED = new Set([
-  "root",
-  "e4",
-  "scan-1",
-  "span-1",
-  "span-2",
-  "span-3",
-  "sic-1",
-  "d4",
-  "qg-1",
-  "ki-1",
-]);
+export { detectLocale };
 
 function collectAllIds(node, acc = new Set()) {
   acc.add(node.id);
@@ -71,7 +54,7 @@ function collectAllIds(node, acc = new Set()) {
   return acc;
 }
 
-function buildOpeningFullIds(nodeId, pathIds) {
+function buildOpeningFullIds(tree, nodeId, pathIds) {
   const ids = new Set(["root", ...pathIds]);
   function findAndCollect(node) {
     if (node.id === nodeId) {
@@ -81,20 +64,12 @@ function buildOpeningFullIds(nodeId, pathIds) {
     }
     return (node.children || []).some(findAndCollect);
   }
-  findAndCollect(OPENING_TREE);
+  findAndCollect(tree);
   return ids;
 }
 
-export const PANEL_OPENINGS = OPENING_CATALOG;
-
-const ALL_OPENINGS = PANEL_OPENINGS.flatMap((g) => g.openings);
-
-const OPENING_FULL_IDS = Object.fromEntries(
-  ALL_OPENINGS.map((o) => [o.nodeId, buildOpeningFullIds(o.nodeId, o.pathIds)]),
-);
-
-function buildVariantFullIds(variantNodeId) {
-  const path = findPathToNode(variantNodeId);
+function buildVariantFullIds(tree, variantNodeId) {
+  const path = findPathToNode(tree, variantNodeId);
   if (!path.length) return new Set(["root"]);
   const ids = new Set(path.map((n) => n.id));
   const variantNode = path.at(-1);
@@ -102,126 +77,27 @@ function buildVariantFullIds(variantNodeId) {
   return ids;
 }
 
-const VARIANT_FULL_IDS = Object.fromEntries(
-  VARIANT_ROUTES.map((r) => [
-    r.variantNodeId,
-    buildVariantFullIds(r.variantNodeId),
-  ]),
-);
-
-export const OPENING_COLORS = {
-  root: {
-    node: "#3a2a1e",
-    text: "#e8d5bc",
-    border: "#6b4f3a",
-    edge: "#8b6a50",
-  },
-  scandinavian: {
-    node: "#14532d",
-    text: "#bbf7d0",
-    border: "#16a34a",
-    edge: "#22c55e",
-  },
-  spanish: {
-    node: "#1e3a5f",
-    text: "#bfdbfe",
-    border: "#2563eb",
-    edge: "#3b82f6",
-  },
-  italian: {
-    node: "#431407",
-    text: "#fed7aa",
-    border: "#ea580c",
-    edge: "#f97316",
-  },
-  scotch: {
-    node: "#3f2305",
-    text: "#fde68a",
-    border: "#b45309",
-    edge: "#d97706",
-  },
-  sicilian: {
-    node: "#4c1d2e",
-    text: "#fecdd3",
-    border: "#dc2626",
-    edge: "#ef4444",
-  },
-  queens_gambit: {
-    node: "#1e1a3a",
-    text: "#ddd6fe",
-    border: "#7c3aed",
-    edge: "#8b5cf6",
-  },
-  london: {
-    node: "#1a2a2a",
-    text: "#a5f3fc",
-    border: "#0891b2",
-    edge: "#06b6d4",
-  },
-  kings_indian: {
-    node: "#2a1a00",
-    text: "#fde68a",
-    border: "#d97706",
-    edge: "#f59e0b",
-  },
-  nimzo: {
-    node: "#2a1a2a",
-    text: "#f5d0fe",
-    border: "#a21caf",
-    edge: "#c026d3",
-  },
-  french: {
-    node: "#1a1a3a",
-    text: "#c7d2fe",
-    border: "#4f46e5",
-    edge: "#6366f1",
-  },
-  caro_kann: {
-    node: "#042f2e",
-    text: "#99f6e4",
-    border: "#0d9488",
-    edge: "#14b8a6",
-  },
-  pirc: {
-    node: "#2a1515",
-    text: "#fde8d8",
-    border: "#9a3412",
-    edge: "#c2410c",
-  },
-  alekhine: {
-    node: "#2d0a1e",
-    text: "#fda4c8",
-    border: "#db2777",
-    edge: "#ec4899",
-  },
-  dutch: {
-    node: "#1c3a2a",
-    text: "#6ee7b7",
-    border: "#10b981",
-    edge: "#34d399",
-  },
-  modern: {
-    node: "#1a2600",
-    text: "#d9f99d",
-    border: "#65a30d",
-    edge: "#84cc16",
-  },
-  nimzowitsch: {
-    node: "#082030",
-    text: "#bae6fd",
-    border: "#0284c7",
-    edge: "#0ea5e9",
-  },
-};
 
 const X_STEP = 160;
 const Y_STEP = 90;
+const EMPTY_ARRAY = [];
+const EMPTY_OBJECT = {};
+const DEFAULT_INITIAL_EXPANDED_IDS = ["root"];
 
-function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
-  const colors = OPENING_COLORS[treeNode.opening] || OPENING_COLORS.root;
+function buildGraph(
+  treeNode,
+  expandedIds,
+  options = {},
+  depth = 0,
+  yOffset = 0,
+) {
+  const colorMap = options.colors ?? {};
+  const fallbackColors = OPENING_COLORS.root;
+  const colors =
+    colorMap[treeNode.opening] || colorMap.root || fallbackColors;
   const isExpanded = expandedIds.has(treeNode.id);
   const hasChildren = treeNode.children && treeNode.children.length > 0;
-  const isPremium = isPremiumNode(treeNode.id);
+  const isPremium = options.isPremiumNode?.(treeNode.id) ?? false;
 
   const rfNode = {
     id: treeNode.id,
@@ -249,7 +125,7 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
         nodes: cn,
         edges: ce,
         height,
-      } = buildGraph(child, expandedIds, depth + 1, childY);
+      } = buildGraph(child, expandedIds, options, depth + 1, childY);
       nodes.push(...cn);
       edges.push(...ce);
 
@@ -279,8 +155,9 @@ function buildGraph(treeNode, expandedIds, depth = 0, yOffset = 0) {
   return { nodes, edges, height: Y_STEP };
 }
 
-function getRouteFromPathname() {
+function getRouteFromPathname(routeData) {
   if (typeof window === "undefined") return { opening: null, variant: null };
+  if (!routeData) return { opening: null, variant: null };
   // Strip /en/ or /fr/ prefix if present, then extract the slug
   let path = window.location.pathname;
   if (path === "/en" || path.startsWith("/en/")) {
@@ -290,157 +167,223 @@ function getRouteFromPathname() {
   }
   const slug = path.replace(/^\/|\/$/, "");
   if (!slug) return { opening: null, variant: null };
-  const variantRoute = VARIANT_ROUTE_BY_SLUG[slug];
+  const variantRoute = routeData.variantRouteBySlug?.[slug];
   if (variantRoute) {
     return {
       opening: variantRoute.parentNodeId,
       variant: variantRoute.variantNodeId,
     };
   }
-  const openingRoute = ROUTE_BY_SLUG[slug];
+  const openingRoute = routeData.routeBySlug?.[slug];
   if (openingRoute) {
     return { opening: openingRoute.nodeId, variant: null };
   }
   return { opening: null, variant: null };
 }
 
-function getInitialStateFromUrl() {
+function getInitialStateFromUrl(tree) {
   if (typeof window === "undefined") {
     return { selectedNodeId: "root", extraExpanded: new Set() };
   }
   const nodeId = new URLSearchParams(window.location.search).get("node");
   if (!nodeId) return { selectedNodeId: "root", extraExpanded: new Set() };
-  const path = findPathToNode(nodeId);
+  const path = findPathToNode(tree, nodeId);
   if (!path.length) return { selectedNodeId: "root", extraExpanded: new Set() };
   const ancestorIds = new Set(path.slice(0, -1).map((n) => n.id));
   return { selectedNodeId: nodeId, extraExpanded: ancestorIds };
 }
 
-// Browser language redirect: if URL has no locale prefix, redirect based on navigator.language
-// This runs once at module load, before React mounts.
-if (typeof window !== "undefined") {
-  const path = window.location.pathname;
-  const hasLocalePrefix =
-    path === "/en" ||
-    path.startsWith("/en/") ||
-    path === "/fr" ||
-    path.startsWith("/fr/");
-  if (!hasLocalePrefix) {
-    const lang = navigator.language ?? "";
-    const slug = path.replace(/^\/|\/$/, "");
-    if (lang.startsWith("en")) {
-      const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
-      const enPath = slug
-        ? route
-          ? `/en/${route.slugEn}`
-          : `/en/${slug}`
-        : "/en/";
-      history.replaceState(null, "", enPath);
-      try {
-        i18n.changeLanguage("en");
-      } catch {
-        // i18n may not be fully initialized yet; ignore
-      }
-    } else if (lang.startsWith("fr")) {
-      const route = VARIANT_ROUTE_BY_SLUG[slug] ?? ROUTE_BY_SLUG[slug];
-      const frPath = slug
-        ? route
-          ? `/fr/${route.slugFr}`
-          : `/fr/${slug}`
-        : "/fr/";
-      history.replaceState(null, "", frPath);
-      try {
-        i18n.changeLanguage("fr");
-      } catch {
-        // i18n may not be fully initialized yet; ignore
-      }
-    }
-  }
-}
-
-const INITIAL_ROUTE = getRouteFromPathname();
-const INITIAL_URL_STATE = getInitialStateFromUrl();
-
-function getInitialDisplayIds() {
+function getInitialDisplayIds({
+  initialExpandedIds,
+  initialRoute,
+  initialUrlState,
+  openingFullIds,
+  premiumCanAccess,
+  routeByNodeId,
+  tree,
+  variantFullIds,
+  variantRouteByNodeId,
+}) {
   if (
-    INITIAL_ROUTE.variant &&
-    VARIANT_ROUTE_BY_NODE_ID[INITIAL_ROUTE.variant] &&
-    !canAccessContent(VARIANT_ROUTE_BY_NODE_ID[INITIAL_ROUTE.variant].access)
+    initialRoute.variant &&
+    variantRouteByNodeId[initialRoute.variant] &&
+    !premiumCanAccess(variantRouteByNodeId[initialRoute.variant].access)
   ) {
     return new Set([
-      ...INITIAL_EXPANDED,
-      ...getPathIdsToNode(INITIAL_ROUTE.opening ?? INITIAL_ROUTE.variant).slice(0, -1),
-      ...INITIAL_URL_STATE.extraExpanded,
+      ...initialExpandedIds,
+      ...getPathIdsToNodeInTree(
+        tree,
+        initialRoute.opening ?? initialRoute.variant,
+      ).slice(0, -1),
+      ...initialUrlState.extraExpanded,
     ]);
   }
   if (
-    INITIAL_ROUTE.opening &&
-    ROUTE_BY_NODE_ID[INITIAL_ROUTE.opening] &&
-    !canAccessContent(ROUTE_BY_NODE_ID[INITIAL_ROUTE.opening].access)
+    initialRoute.opening &&
+    routeByNodeId[initialRoute.opening] &&
+    !premiumCanAccess(routeByNodeId[initialRoute.opening].access)
   ) {
     return new Set([
-      ...INITIAL_EXPANDED,
-      ...getPathIdsToNode(INITIAL_ROUTE.opening).slice(0, -1),
-      ...INITIAL_URL_STATE.extraExpanded,
+      ...initialExpandedIds,
+      ...getPathIdsToNodeInTree(tree, initialRoute.opening).slice(0, -1),
+      ...initialUrlState.extraExpanded,
     ]);
   }
-  if (INITIAL_ROUTE.variant && VARIANT_FULL_IDS[INITIAL_ROUTE.variant]) {
-    return VARIANT_FULL_IDS[INITIAL_ROUTE.variant];
+  if (initialRoute.variant && variantFullIds[initialRoute.variant]) {
+    return variantFullIds[initialRoute.variant];
   }
-  if (INITIAL_ROUTE.opening && OPENING_FULL_IDS[INITIAL_ROUTE.opening]) {
-    return OPENING_FULL_IDS[INITIAL_ROUTE.opening];
+  if (initialRoute.opening && openingFullIds[initialRoute.opening]) {
+    return openingFullIds[initialRoute.opening];
   }
-  return new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]);
+  return new Set([...initialExpandedIds, ...initialUrlState.extraExpanded]);
 }
 
-const { nodes: _INIT_NODES, height: _INIT_HEIGHT } = buildGraph(
-  OPENING_TREE,
-  getInitialDisplayIds(),
-);
-const _INIT_ROOT_Y = _INIT_NODES.find((n) => n.id === "root")?.position.y ?? 0;
-
-function computeInitialViewport() {
+function computeInitialViewport(initGraph) {
   if (typeof window === "undefined") return { x: 24, y: 0, zoom: 0.85 };
+  const rootY = initGraph.nodes.find((n) => n.id === "root")?.position.y ?? 0;
   const zoom = Math.min(
     1,
-    Math.max(0.35, (window.innerHeight * 0.88) / _INIT_HEIGHT),
+    Math.max(0.35, (window.innerHeight * 0.88) / initGraph.height),
   );
   return {
     x: 36,
-    y: window.innerHeight / 2 - _INIT_ROOT_Y * zoom,
+    y: window.innerHeight / 2 - rootY * zoom,
     zoom,
   };
 }
 
-export const INITIAL_VIEWPORT = computeInitialViewport();
-
-function computeInitialMobileViewport() {
+function computeInitialMobileViewport(initGraph) {
   if (typeof window === "undefined") return { x: 0, y: 200, zoom: 0.7 };
+  const rootY = initGraph.nodes.find((n) => n.id === "root")?.position.y ?? 0;
   const zoom = Math.min(
     1,
-    Math.max(0.3, (window.innerWidth * 0.88) / _INIT_HEIGHT),
+    Math.max(0.3, (window.innerWidth * 0.88) / initGraph.height),
   );
   const treeAreaHeight = window.innerHeight - MOBILE_BOARD_PANEL_HEIGHT;
   return {
-    // Center the root node (canvas x = _INIT_ROOT_Y) horizontally
-    x: window.innerWidth / 2 - _INIT_ROOT_Y * zoom,
+    // Center the root node (rotated canvas x = rootY) horizontally
+    x: window.innerWidth / 2 - rootY * zoom,
     // Root node is at canvas y = 0; place it at 88% down the tree area
     y: treeAreaHeight * 0.88,
     zoom,
   };
 }
 
-export const INITIAL_MOBILE_VIEWPORT = computeInitialMobileViewport();
+function resolvePremiumAccess(premium) {
+  if (!premium?.enabled) return true;
+  return typeof premium.hasAccess === "function"
+    ? premium.hasAccess()
+    : Boolean(premium.hasAccess);
+}
 
-export function useOpeningTreeState() {
-  const premiumAccess = hasPremiumAccess();
-  const [expandedIds, setExpandedIds] = useState(
-    () => new Set([...INITIAL_EXPANDED, ...INITIAL_URL_STATE.extraExpanded]),
+function resolvePremiumCanAccess(premium, premiumAccess) {
+  if (!premium?.enabled) return () => true;
+  if (typeof premium.canAccessContent === "function") {
+    return premium.canAccessContent;
+  }
+  return (accessLevel = "free") => accessLevel !== "premium" || premiumAccess;
+}
+
+export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
+  const tree = config.tree;
+  const catalog = config.catalog ?? EMPTY_ARRAY;
+  const variantCatalog = config.variantCatalog ?? EMPTY_ARRAY;
+  const routeData = config.routeData ?? EMPTY_OBJECT;
+  const colors = config.colors ?? EMPTY_OBJECT;
+  const initialExpandedIds =
+    config.initialExpandedIds ?? DEFAULT_INITIAL_EXPANDED_IDS;
+  const premium = config.premium;
+  const premiumAccess = resolvePremiumAccess(premium);
+  const premiumCanAccess = resolvePremiumCanAccess(premium, premiumAccess);
+  const premiumNodeIds = useMemo(
+    () =>
+      premium?.enabled
+        ? buildPremiumNodeIds(tree, catalog, variantCatalog)
+        : new Set(),
+    [catalog, premium?.enabled, tree, variantCatalog],
   );
-  const [activeOpening, setActiveOpening] = useState(INITIAL_ROUTE.opening);
-  const [activeVariant, setActiveVariant] = useState(INITIAL_ROUTE.variant);
+  const isPremiumNode = useCallback(
+    (nodeId) => premiumNodeIds.has(nodeId),
+    [premiumNodeIds],
+  );
+  const openingFullIds = useMemo(
+    () =>
+      Object.fromEntries(
+        catalog
+          .flatMap((group) => group.openings)
+          .map((opening) => [
+            opening.nodeId,
+            buildOpeningFullIds(tree, opening.nodeId, opening.pathIds),
+          ]),
+      ),
+    [catalog, tree],
+  );
+  const variantFullIds = useMemo(
+    () =>
+      Object.fromEntries(
+        (routeData.variantRoutes ?? []).map((route) => [
+          route.variantNodeId,
+          buildVariantFullIds(tree, route.variantNodeId),
+        ]),
+      ),
+    [routeData.variantRoutes, tree],
+  );
+  const initialRoute = useMemo(
+    () => getRouteFromPathname(routeData),
+    [routeData],
+  );
+  const initialUrlState = useMemo(
+    () => getInitialStateFromUrl(tree),
+    [tree],
+  );
+  const initialDisplayIds = useMemo(
+    () =>
+      getInitialDisplayIds({
+        initialExpandedIds,
+        initialRoute,
+        initialUrlState,
+        openingFullIds,
+        premiumCanAccess,
+        routeByNodeId: routeData.routeByNodeId ?? {},
+        tree,
+        variantFullIds,
+        variantRouteByNodeId: routeData.variantRouteByNodeId ?? {},
+      }),
+    [
+      initialExpandedIds,
+      initialRoute,
+      initialUrlState,
+      openingFullIds,
+      premiumCanAccess,
+      routeData.routeByNodeId,
+      routeData.variantRouteByNodeId,
+      tree,
+      variantFullIds,
+    ],
+  );
+  const graphOptions = useMemo(
+    () => ({ colors, isPremiumNode }),
+    [colors, isPremiumNode],
+  );
+  const initGraph = useMemo(
+    () => buildGraph(tree, initialDisplayIds, graphOptions),
+    [graphOptions, initialDisplayIds, tree],
+  );
+  const initialViewport = useMemo(
+    () => computeInitialViewport(initGraph),
+    [initGraph],
+  );
+  const initialMobileViewport = useMemo(
+    () => computeInitialMobileViewport(initGraph),
+    [initGraph],
+  );
+  const [expandedIds, setExpandedIds] = useState(
+    () => new Set([...initialExpandedIds, ...initialUrlState.extraExpanded]),
+  );
+  const [activeOpening, setActiveOpening] = useState(initialRoute.opening);
+  const [activeVariant, setActiveVariant] = useState(initialRoute.variant);
   const [selectedNodeId, setSelectedNodeId] = useState(
-    INITIAL_URL_STATE.selectedNodeId,
+    initialUrlState.selectedNodeId,
   );
   const [premiumOverlayVersion, setPremiumOverlayVersion] = useState(0);
   const firstOpeningBtnRef = useRef(null);
@@ -457,15 +400,15 @@ export function useOpeningTreeState() {
   }, [selectedNodeId]);
 
   const activeOpeningRoute = activeOpening
-    ? ROUTE_BY_NODE_ID[activeOpening]
+    ? routeData.routeByNodeId?.[activeOpening]
     : null;
   const activeVariantRoute = activeVariant
-    ? VARIANT_ROUTE_BY_NODE_ID[activeVariant]
+    ? routeData.variantRouteByNodeId?.[activeVariant]
     : null;
   const isActiveOpeningLocked =
-    activeOpeningRoute && !canAccessContent(activeOpeningRoute.access);
+    activeOpeningRoute && !premiumCanAccess(activeOpeningRoute.access);
   const isActiveVariantLocked =
-    activeVariantRoute && !canAccessContent(activeVariantRoute.access);
+    activeVariantRoute && !premiumCanAccess(activeVariantRoute.access);
   const selectedNodeLocked = selectedNodeId
     ? isPremiumNode(selectedNodeId) && !premiumAccess
     : false;
@@ -484,33 +427,45 @@ export function useOpeningTreeState() {
     if (isActiveVariantLocked && activeVariant) {
       return new Set([
         ...expandedIds,
-        ...getPathIdsToNode(activeOpening ?? activeVariant).slice(0, -1),
+        ...getPathIdsToNodeInTree(tree, activeOpening ?? activeVariant).slice(
+          0,
+          -1,
+        ),
       ]);
     }
     if (isActiveOpeningLocked && activeOpening) {
       return new Set([
         ...expandedIds,
-        ...getPathIdsToNode(activeOpening).slice(0, -1),
+        ...getPathIdsToNodeInTree(tree, activeOpening).slice(0, -1),
       ]);
     }
     if (activeVariant) {
-      return new Set([...VARIANT_FULL_IDS[activeVariant], ...expandedIds]);
+      return new Set([
+        ...(variantFullIds[activeVariant] ?? []),
+        ...expandedIds,
+      ]);
     }
     if (activeOpening) {
-      return new Set([...OPENING_FULL_IDS[activeOpening], ...expandedIds]);
+      return new Set([
+        ...(openingFullIds[activeOpening] ?? []),
+        ...expandedIds,
+      ]);
     }
     return expandedIds;
   }, [
     activeOpening,
     activeVariant,
     expandedIds,
+    openingFullIds,
     isActiveOpeningLocked,
     isActiveVariantLocked,
+    tree,
+    variantFullIds,
   ]);
 
   const activePathIds = useMemo(
-    () => (selectedNodeId ? getActivePathIds(selectedNodeId) : new Set()),
-    [selectedNodeId],
+    () => (selectedNodeId ? getActivePathIds(tree, selectedNodeId) : new Set()),
+    [selectedNodeId, tree],
   );
 
   // Helper: absorb currently visible opening/variant nodes into expandedIds
@@ -521,17 +476,17 @@ export function useOpeningTreeState() {
       let next = new Set(prev);
       if (
         activeOpening &&
-        OPENING_FULL_IDS[activeOpening] &&
+        openingFullIds[activeOpening] &&
         !isActiveOpeningLocked
       ) {
-        next = new Set([...next, ...OPENING_FULL_IDS[activeOpening]]);
+        next = new Set([...next, ...openingFullIds[activeOpening]]);
       }
       if (
         activeVariant &&
-        VARIANT_FULL_IDS[activeVariant] &&
+        variantFullIds[activeVariant] &&
         !isActiveVariantLocked
       ) {
-        next = new Set([...next, ...VARIANT_FULL_IDS[activeVariant]]);
+        next = new Set([...next, ...variantFullIds[activeVariant]]);
       }
       return next;
     });
@@ -540,6 +495,8 @@ export function useOpeningTreeState() {
     activeVariant,
     isActiveOpeningLocked,
     isActiveVariantLocked,
+    openingFullIds,
+    variantFullIds,
   ]);
 
   const toggleNode = useCallback(
@@ -557,14 +514,14 @@ export function useOpeningTreeState() {
       setActiveOpening(null);
       setActiveVariant(null);
     },
-    [absorbActiveIntoExpanded, premiumAccess],
+    [absorbActiveIntoExpanded, isPremiumNode, premiumAccess],
   );
 
   const selectNode = useCallback(
     (id) => {
       const isPremium = isPremiumNode(id);
       if (isPremium) {
-        trackPremiumNodeClick({
+        premium?.trackNodeClick?.({
           node_id: id,
           surface: "tree_node",
           locale: detectLocale(),
@@ -581,9 +538,9 @@ export function useOpeningTreeState() {
         // the active branch so the desktop menu de-selects the current option.
         if (next && (activeOpening || activeVariant)) {
           const isInActiveBranch = activeVariant
-            ? VARIANT_FULL_IDS[activeVariant]?.has(next)
-            : OPENING_FULL_IDS[activeOpening]?.has(next);
-          const pathToNode = findPathToNode(next);
+            ? variantFullIds[activeVariant]?.has(next)
+            : openingFullIds[activeOpening]?.has(next);
+          const pathToNode = findPathToNode(tree, next);
           const ancestorIds = new Set(pathToNode.slice(0, -1).map((n) => n.id));
           setExpandedIds((current) => new Set([...current, ...ancestorIds]));
           if (!isInActiveBranch) {
@@ -595,33 +552,43 @@ export function useOpeningTreeState() {
         return next;
       });
     },
-    [activeOpening, activeVariant, absorbActiveIntoExpanded, premiumAccess],
+    [
+      activeOpening,
+      activeVariant,
+      absorbActiveIntoExpanded,
+      isPremiumNode,
+      openingFullIds,
+      premium,
+      premiumAccess,
+      tree,
+      variantFullIds,
+    ],
   );
 
   const expandToNextFork = useCallback(
     (id) => {
       if (isPremiumNode(id) && !premiumAccess) return;
-      const idsToExpand = getPathToNextFork(id);
+      const idsToExpand = getPathToNextFork(tree, id);
       if (idsToExpand.length === 0) return;
       absorbActiveIntoExpanded();
       setActiveOpening(null);
       setActiveVariant(null);
       setExpandedIds((prev) => new Set([...prev, ...idsToExpand]));
     },
-    [absorbActiveIntoExpanded, premiumAccess],
+    [absorbActiveIntoExpanded, isPremiumNode, premiumAccess, tree],
   );
 
   const toggleOpening = useCallback((nodeId) => {
     setActiveVariant(null);
     setActiveOpening((prev) => {
       const next = prev === nodeId ? null : nodeId;
-      if (next && !canAccessContent(ROUTE_BY_NODE_ID[next]?.access)) {
+      const route = next ? routeData.routeByNodeId?.[next] : null;
+      if (next && !premiumCanAccess(route?.access)) {
         setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
       }
       if (next) setSelectedNodeId(next);
       if (typeof window !== "undefined") {
         const locale = detectLocale();
-        const route = next ? ROUTE_BY_NODE_ID[next] : null;
         const url = route
           ? buildOpeningUrl(route, locale)
           : locale === "en"
@@ -633,14 +600,14 @@ export function useOpeningTreeState() {
       }
       return next;
     });
-  }, []);
+  }, [premiumCanAccess, routeData.routeByNodeId]);
 
   const toggleVariant = useCallback((variantNodeId) => {
-    const variantRoute = VARIANT_ROUTE_BY_NODE_ID[variantNodeId];
+    const variantRoute = routeData.variantRouteByNodeId?.[variantNodeId];
     if (!variantRoute) return;
     setActiveVariant((prev) => {
       const next = prev === variantNodeId ? null : variantNodeId;
-      if (next && !canAccessContent(variantRoute.access)) {
+      if (next && !premiumCanAccess(variantRoute.access)) {
         setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
       }
       if (next) setSelectedNodeId(next);
@@ -650,21 +617,25 @@ export function useOpeningTreeState() {
         const url = next
           ? buildVariantUrl(variantRoute, locale)
           : (buildOpeningUrl(
-              ROUTE_BY_NODE_ID[variantRoute.parentNodeId],
+              routeData.routeByNodeId?.[variantRoute.parentNodeId],
               locale,
             ) ?? (locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/"));
         history.pushState(null, "", url);
       }
       return next;
     });
-  }, []);
+  }, [
+    premiumCanAccess,
+    routeData.routeByNodeId,
+    routeData.variantRouteByNodeId,
+  ]);
 
   // Space: expand to next fork
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key !== " ") return;
       if (!selectedNodeId) return;
-      const node = findPathToNode(selectedNodeId).at(-1);
+      const node = findPathToNode(tree, selectedNodeId).at(-1);
       if (!node?.children?.length) return;
       e.preventDefault();
       e.stopPropagation();
@@ -672,7 +643,7 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, expandToNextFork]);
+  }, [selectedNodeId, expandToNextFork, tree]);
 
   // Tab / Shift+Tab: advance to first child / go back to parent
   useEffect(() => {
@@ -683,7 +654,7 @@ export function useOpeningTreeState() {
       e.stopPropagation();
 
       if (e.shiftKey) {
-        const path = findPathToNode(selectedNodeId);
+        const path = findPathToNode(tree, selectedNodeId);
         const parent = path.at(-2);
         if (parent) {
           setSelectedNodeId(parent.id);
@@ -691,7 +662,7 @@ export function useOpeningTreeState() {
         return;
       }
 
-      const node = findPathToNode(selectedNodeId).at(-1);
+      const node = findPathToNode(tree, selectedNodeId).at(-1);
       if (isPremiumNode(selectedNodeId) && !premiumAccess) return;
       if (!node?.children?.length) {
         setSelectedNodeId(null);
@@ -711,7 +682,13 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, absorbActiveIntoExpanded, premiumAccess]);
+  }, [
+    selectedNodeId,
+    absorbActiveIntoExpanded,
+    isPremiumNode,
+    premiumAccess,
+    tree,
+  ]);
 
   // Arrow keys
   useEffect(() => {
@@ -730,7 +707,7 @@ export function useOpeningTreeState() {
       const currentDisplayIds = displayIds;
 
       if (e.key === "ArrowRight") {
-        const node = findPathToNode(selectedNodeId).at(-1);
+        const node = findPathToNode(tree, selectedNodeId).at(-1);
         if (!node?.children?.length) {
           setSelectedNodeId(null);
           firstOpeningBtnRef.current?.focus();
@@ -754,7 +731,7 @@ export function useOpeningTreeState() {
       }
 
       if (e.key === "ArrowLeft") {
-        const path = findPathToNode(selectedNodeId);
+        const path = findPathToNode(tree, selectedNodeId);
         const parent = path.at(-2);
         if (parent) setSelectedNodeId(parent.id);
         return;
@@ -762,13 +739,14 @@ export function useOpeningTreeState() {
 
       const direction = e.key === "ArrowUp" ? "up" : "down";
       const targetId = getVerticalNavigationTarget(
+        tree,
         selectedNodeId,
         direction,
         currentDisplayIds,
       );
       if (!targetId) return;
 
-      const ancestorIds = findPathToNode(targetId)
+      const ancestorIds = findPathToNode(tree, targetId)
         .slice(0, -1)
         .map((n) => n.id);
       setExpandedIds((prev) => new Set([...prev, ...ancestorIds]));
@@ -781,11 +759,18 @@ export function useOpeningTreeState() {
     }
     window.addEventListener("keydown", handleKeyDown, true);
     return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [selectedNodeId, displayIds, premiumAccess, absorbActiveIntoExpanded]);
+  }, [
+    selectedNodeId,
+    displayIds,
+    isPremiumNode,
+    premiumAccess,
+    absorbActiveIntoExpanded,
+    tree,
+  ]);
 
   const { nodes: rawNodes, edges: rawEdges } = useMemo(
-    () => buildGraph(OPENING_TREE, displayIds),
-    [displayIds],
+    () => buildGraph(tree, displayIds, graphOptions),
+    [displayIds, graphOptions, tree],
   );
 
   const nodes = useMemo(
@@ -809,6 +794,7 @@ export function useOpeningTreeState() {
       expandToNextFork,
       selectedNodeId,
       activePathIds,
+      isPremiumNode,
       premiumAccess,
     ],
   );
@@ -819,6 +805,12 @@ export function useOpeningTreeState() {
     selectedNodeId,
     activeOpening,
     activeVariant,
+    catalog,
+    config,
+    initialMobileViewport,
+    initialViewport,
+    tree,
+    variantRoutes: routeData.variantRoutes ?? [],
     lockedContentId,
     isPremiumRouteLocked,
     premiumOverlayVersion,

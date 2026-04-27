@@ -1,19 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PANEL_OPENINGS, detectLocale } from "../hooks/useOpeningTreeState";
+import { detectLocale } from "../hooks/useOpeningTreeState";
 import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
-import { VARIANT_ROUTES } from "../data/routes";
 import PremiumLockIcon from "./PremiumLockIcon";
-
-// Build Map<parentNodeId, variantRoute[]> once at module level
-const VARIANTS_BY_PARENT = new Map();
-for (const v of VARIANT_ROUTES) {
-  if (!VARIANTS_BY_PARENT.has(v.parentNodeId)) {
-    VARIANTS_BY_PARENT.set(v.parentNodeId, []);
-  }
-  VARIANTS_BY_PARENT.get(v.parentNodeId).push(v);
-}
 
 // Locale-aware variant label: "Variante Mieses-Kotroc | Escandinava | ..." → "Variante Mieses-Kotroc"
 function getVariantLabel(variantRoute, locale) {
@@ -27,6 +17,8 @@ function getVariantLabel(variantRoute, locale) {
 }
 
 export default function MobileHamburgerMenu({
+  openings,
+  variantRoutes,
   activeOpening,
   activeVariant,
   onToggleOpening,
@@ -35,6 +27,13 @@ export default function MobileHamburgerMenu({
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
   const locale = detectLocale();
+  const variantsByParent = new Map();
+  for (const variant of variantRoutes ?? []) {
+    if (!variantsByParent.has(variant.parentNodeId)) {
+      variantsByParent.set(variant.parentNodeId, []);
+    }
+    variantsByParent.get(variant.parentNodeId).push(variant);
+  }
 
   const handleOpeningClick = (opening) => {
     if (opening.access === "premium") {
@@ -192,7 +191,7 @@ export default function MobileHamburgerMenu({
             </div>
 
             {/*
-             * Columns area — flex-row so each PANEL_OPENINGS group is a column.
+             * Columns area — flex-row so each opening group is a column.
              * Since local coordinates align with landscape, flex-row = side-by-side columns.
              * Single unified scroll for all columns (not per-column).
              * align-items: flex-start prevents columns from stretching vertically,
@@ -210,13 +209,13 @@ export default function MobileHamburgerMenu({
                 WebkitOverflowScrolling: "touch",
               }}
             >
-              {PANEL_OPENINGS.map((group, groupIndex) => (
+              {openings.map((group, groupIndex) => (
                 <div
                   key={group.group}
                   style={{
                     flex: 1,
                     borderRight:
-                      groupIndex < PANEL_OPENINGS.length - 1
+                      groupIndex < openings.length - 1
                         ? "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)"
                         : "none",
                     padding: "8px 0",
@@ -239,7 +238,7 @@ export default function MobileHamburgerMenu({
                   {group.openings.map((opening) => {
                     const isOpeningActive = activeOpening === opening.nodeId;
                     const variants =
-                      VARIANTS_BY_PARENT.get(opening.nodeId) ?? [];
+                      variantsByParent.get(opening.nodeId) ?? [];
 
                     return (
                       <div key={opening.nodeId}>

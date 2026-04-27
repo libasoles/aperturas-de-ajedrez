@@ -1,6 +1,5 @@
 import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { INITIAL_MOBILE_VIEWPORT } from "../hooks/useOpeningTreeState";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
@@ -8,7 +7,7 @@ import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
 
 const nodeTypes = { chess: MobileChessNode };
 
-function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork, lockedContentId, premiumOverlayVersion }) {
+function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
 
@@ -89,12 +88,16 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
         flexDirection: "column",
       }}
     >
-      <MobileHamburgerMenu
-        activeOpening={activeOpening}
-        activeVariant={activeVariant}
-        onToggleOpening={toggleOpening}
-        onToggleVariant={toggleVariant}
-      />
+      {catalog.length > 0 && (
+        <MobileHamburgerMenu
+          openings={catalog}
+          variantRoutes={variantRoutes}
+          activeOpening={activeOpening}
+          activeVariant={activeVariant}
+          onToggleOpening={toggleOpening}
+          onToggleVariant={toggleVariant}
+        />
+      )}
       <div
         className="panel"
         style={{
@@ -105,6 +108,7 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
         }}
       >
         <MobileChessBoard
+          tree={tree}
           selectedNodeId={selectedNodeId}
           lockedContentId={lockedContentId}
           premiumOverlayVersion={premiumOverlayVersion}
@@ -123,7 +127,7 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           nodes={mobileNodesWithAnchor}
           edges={edges}
           nodeTypes={nodeTypes}
-          defaultViewport={INITIAL_MOBILE_VIEWPORT}
+          defaultViewport={initialMobileViewport}
           minZoom={0.2}
           maxZoom={2}
           nodesDraggable={false}

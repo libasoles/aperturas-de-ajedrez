@@ -1,5 +1,6 @@
 import { Chess } from 'chess.js';
 import { describe, expect, it } from 'vitest';
+import { OPENING_TREE } from '../data/openings';
 import { fenAfterMoves, findPathToNode, getPathToNextFork, getVerticalNavigationTarget, toFrenchSAN, toSpanishSAN } from './chessPath';
 
 // ─── toSpanishSAN ──────────────────────────────────────────────────────────────
@@ -67,22 +68,22 @@ describe('toFrenchSAN', () => {
 describe('findPathToNode', () => {
   it('returns the correct path for an existing node', () => {
     // e4 is a direct child of root
-    const path = findPathToNode('e4');
+    const path = findPathToNode(OPENING_TREE, 'e4');
     const ids = path.map((n) => n.id);
     expect(ids).toEqual(['root', 'e4']);
   });
 
   it('returns [] for a non-existent ID', () => {
-    expect(findPathToNode('this-does-not-exist')).toEqual([]);
+    expect(findPathToNode(OPENING_TREE, 'this-does-not-exist')).toEqual([]);
   });
 
   it('has the target node as the last element', () => {
-    const path = findPathToNode('span-2');
+    const path = findPathToNode(OPENING_TREE, 'span-2');
     expect(path[path.length - 1].id).toBe('span-2');
   });
 
   it('returns the root node alone when searching for root', () => {
-    const path = findPathToNode('root');
+    const path = findPathToNode(OPENING_TREE, 'root');
     expect(path).toHaveLength(1);
     expect(path[0].id).toBe('root');
   });
@@ -94,13 +95,13 @@ describe('fenAfterMoves', () => {
   const INITIAL_FEN = new Chess().fen();
 
   it('returns the initial position FEN for the root node', () => {
-    expect(fenAfterMoves('root')).toBe(INITIAL_FEN);
+    expect(fenAfterMoves(OPENING_TREE, 'root')).toBe(INITIAL_FEN);
   });
 
   it('returns the correct FEN after a single move (e4)', () => {
     const chess = new Chess();
     chess.move('e4');
-    expect(fenAfterMoves('e4')).toBe(chess.fen());
+    expect(fenAfterMoves(OPENING_TREE, 'e4')).toBe(chess.fen());
   });
 
   it('returns the correct FEN for the sequence e4, e5, Nf3', () => {
@@ -109,11 +110,11 @@ describe('fenAfterMoves', () => {
     chess.move('e4');
     chess.move('e5');
     chess.move('Nf3');
-    expect(fenAfterMoves('span-2')).toBe(chess.fen());
+    expect(fenAfterMoves(OPENING_TREE, 'span-2')).toBe(chess.fen());
   });
 
   it('returns the initial FEN for a non-existent ID without crashing', () => {
-    expect(fenAfterMoves('nonexistent-node')).toBe(INITIAL_FEN);
+    expect(fenAfterMoves(OPENING_TREE, 'nonexistent-node')).toBe(INITIAL_FEN);
   });
 });
 
@@ -127,17 +128,17 @@ describe('fenAfterMoves', () => {
 describe('getPathToNextFork', () => {
   it('returns only the node itself when it is an immediate fork (≥2 children)', () => {
     // scan-4a has 2 children: scan-5a1 and scan-5a2
-    expect(getPathToNextFork('scan-4a')).toEqual(['scan-4a']);
+    expect(getPathToNextFork(OPENING_TREE, 'scan-4a')).toEqual(['scan-4a']);
   });
 
   it('walks a single-link chain and stops at the fork', () => {
     // scan-3a has 1 child (scan-4a), which is a fork
-    expect(getPathToNextFork('scan-3a')).toEqual(['scan-3a', 'scan-4a']);
+    expect(getPathToNextFork(OPENING_TREE, 'scan-3a')).toEqual(['scan-3a', 'scan-4a']);
   });
 
   it('walks a multi-link chain until the fork (4 nodes)', () => {
     // scan-5a1 → scan-6a1 → scan-7a1 → scan-8a1[fork]
-    expect(getPathToNextFork('scan-5a1')).toEqual([
+    expect(getPathToNextFork(OPENING_TREE, 'scan-5a1')).toEqual([
       'scan-5a1',
       'scan-6a1',
       'scan-7a1',
@@ -147,11 +148,11 @@ describe('getPathToNextFork', () => {
 
   it('returns [] for a leaf node', () => {
     // scan-13a1a has no children
-    expect(getPathToNextFork('scan-13a1a')).toEqual([]);
+    expect(getPathToNextFork(OPENING_TREE, 'scan-13a1a')).toEqual([]);
   });
 
   it('returns [] for a non-existent ID', () => {
-    expect(getPathToNextFork('nonexistent-node')).toEqual([]);
+    expect(getPathToNextFork(OPENING_TREE, 'nonexistent-node')).toEqual([]);
   });
 });
 
@@ -164,27 +165,27 @@ describe('getPathToNextFork', () => {
 describe('getVerticalNavigationTarget', () => {
   it('navigates down to the next sibling at a fork', () => {
     // scan-3a is idx 0, scan-3b is idx 1 under fork scan-2
-    expect(getVerticalNavigationTarget('scan-3a', 'down', new Set())).toBe('scan-3b');
+    expect(getVerticalNavigationTarget(OPENING_TREE, 'scan-3a', 'down', new Set())).toBe('scan-3b');
   });
 
   it('navigates up to the previous sibling at a fork', () => {
-    expect(getVerticalNavigationTarget('scan-3b', 'up', new Set())).toBe('scan-3a');
+    expect(getVerticalNavigationTarget(OPENING_TREE, 'scan-3b', 'up', new Set())).toBe('scan-3a');
   });
 
   it('returns null when no sibling exists in the given direction', () => {
     // scan-3a is the first child — no sibling above it at scan-2
     // root/e4 ancestors also have no prior sibling for this path
-    expect(getVerticalNavigationTarget('scan-3a', 'up', new Set())).toBeNull();
+    expect(getVerticalNavigationTarget(OPENING_TREE, 'scan-3a', 'up', new Set())).toBeNull();
   });
 
   it('returns null for the root node (no fork ancestor)', () => {
-    expect(getVerticalNavigationTarget('root', 'down', new Set())).toBeNull();
+    expect(getVerticalNavigationTarget(OPENING_TREE, 'root', 'down', new Set())).toBeNull();
   });
 
   it('climbs to a higher fork when the immediate fork has no sibling in that direction (cousin navigation)', () => {
     // scan-3b is the last child of scan-2 → no 'down' sibling there
     // so it climbs to the e4 fork and navigates to the next e4 branch (span-1)
-    const result = getVerticalNavigationTarget('scan-3b', 'down', new Set());
+    const result = getVerticalNavigationTarget(OPENING_TREE, 'scan-3b', 'down', new Set());
     expect(result).toBe('span-1');
   });
 
@@ -192,14 +193,14 @@ describe('getVerticalNavigationTarget', () => {
     // Selected: scan-6a1 (child of scan-5a1, depth 1 below fork scan-4a)
     // Navigate down → target branch root is scan-5a2 (not in displayIds)
     expect(
-      getVerticalNavigationTarget('scan-6a1', 'down', new Set()),
+      getVerticalNavigationTarget(OPENING_TREE, 'scan-6a1', 'down', new Set()),
     ).toBe('scan-5a2');
   });
 
   it('follows the first child into the target branch when it is expanded', () => {
     // Same as above but scan-5a2 IS expanded → follow first child → scan-6a2
     expect(
-      getVerticalNavigationTarget('scan-6a1', 'down', new Set(['scan-5a2'])),
+      getVerticalNavigationTarget(OPENING_TREE, 'scan-6a1', 'down', new Set(['scan-5a2'])),
     ).toBe('scan-6a2');
   });
 
@@ -207,7 +208,7 @@ describe('getVerticalNavigationTarget', () => {
     // Navigate up from scan-5a2 to scan-5a1 branch.
     // scan-5a1 is not in displayIds → stops at scan-5a1
     expect(
-      getVerticalNavigationTarget('scan-5a2', 'up', new Set()),
+      getVerticalNavigationTarget(OPENING_TREE, 'scan-5a2', 'up', new Set()),
     ).toBe('scan-5a1');
   });
 
@@ -215,7 +216,7 @@ describe('getVerticalNavigationTarget', () => {
     // Navigate up from scan-6a2 to scan-5a1 branch (depth 1 below fork scan-4a)
     // scan-5a1 IS expanded → follow last child = scan-6a1
     expect(
-      getVerticalNavigationTarget('scan-6a2', 'up', new Set(['scan-5a1'])),
+      getVerticalNavigationTarget(OPENING_TREE, 'scan-6a2', 'up', new Set(['scan-5a1'])),
     ).toBe('scan-6a1');
   });
 });

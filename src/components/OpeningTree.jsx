@@ -1,7 +1,6 @@
 import { Background, Controls, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { INITIAL_VIEWPORT, PANEL_OPENINGS } from "../hooks/useOpeningTreeState";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
@@ -9,7 +8,7 @@ import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
-function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion }) {
+function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion, catalog, initialViewport, tree }) {
   const { t, i18n } = useTranslation();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
@@ -92,19 +91,21 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggl
   return (
     <div className="w-screen h-screen bg-app">
       {/* Panels first in DOM so Tab reaches them before the ReactFlow canvas */}
-      <OpeningsPanel
-        openings={PANEL_OPENINGS}
-        activeOpening={activeOpening}
-        onToggleOpening={toggleOpening}
-        firstButtonRef={firstOpeningBtnRef}
-      />
+      {catalog.length > 0 && (
+        <OpeningsPanel
+          openings={catalog}
+          activeOpening={activeOpening}
+          onToggleOpening={toggleOpening}
+          firstButtonRef={firstOpeningBtnRef}
+        />
+      )}
 
       <div className="absolute inset-0">
         <ReactFlow
           nodes={nodesWithAnchor}
           edges={edges}
           nodeTypes={nodeTypes}
-          defaultViewport={INITIAL_VIEWPORT}
+          defaultViewport={initialViewport}
           minZoom={0.2}
           maxZoom={2}
           nodesDraggable={false}
@@ -117,6 +118,7 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggl
       </div>
 
       <ChessPanel
+        tree={tree}
         selectedNodeId={selectedNodeId}
         lockedContentId={lockedContentId}
         premiumOverlayVersion={premiumOverlayVersion}

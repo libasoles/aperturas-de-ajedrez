@@ -217,3 +217,57 @@ describe("premium gating", () => {
     expect(result.current.premiumOverlayVersion).toBe(1);
   });
 });
+
+describe("custom tree config", () => {
+  const customTree = {
+    id: "root",
+    move: "Inicial",
+    color: null,
+    opening: "root",
+    children: [
+      {
+        id: "custom-e4",
+        move: "e4",
+        color: "white",
+        opening: "root",
+        children: [
+          {
+            id: "custom-e5",
+            move: "e5",
+            color: "black",
+            opening: "root",
+            children: [],
+          },
+        ],
+      },
+    ],
+  };
+
+  it("uses an independent tree without catalog or premium data", () => {
+    const { result } = renderHook(() =>
+      useOpeningTreeState({
+        id: "custom",
+        tree: customTree,
+        catalog: [],
+        variantCatalog: [],
+        initialExpandedIds: ["root"],
+        colors: {},
+        routeData: null,
+        premium: null,
+      }),
+    );
+
+    expect(result.current.catalog).toEqual([]);
+    expect(result.current.nodes.map((node) => node.id)).toContain("custom-e4");
+    expect(result.current.nodes.map((node) => node.id)).not.toContain("e4");
+
+    act(() => {
+      result.current.nodes
+        .find((node) => node.id === "custom-e4")
+        .data.onSelect("custom-e4");
+    });
+
+    expect(result.current.selectedNodeId).toBe("custom-e4");
+    expect(result.current.premiumOverlayVersion).toBe(0);
+  });
+});
