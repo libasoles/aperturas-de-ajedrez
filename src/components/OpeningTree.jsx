@@ -8,7 +8,7 @@ import HelpDialog from "./ui/HelpDialog";
 
 const nodeTypes = { chess: ChessNode };
 
-function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion, catalog, initialViewport, tree }) {
+function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggleNode, toggleOpening, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion, catalog, initialViewport, tree, subtitle }) {
   const { t, i18n } = useTranslation();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
@@ -136,6 +136,7 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggl
           <div className="neon-title">{t("title")}</div>
           <div className="neon-subtitle">{t("subtitle")}</div>
         </a>
+        {subtitle && <div className="neon-subtitle text-right">{subtitle}</div>}
       </div>
 
       {/* Help button — fixed bottom-left */}

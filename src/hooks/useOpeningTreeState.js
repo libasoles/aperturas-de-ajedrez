@@ -821,5 +821,6 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     toggleOpening,
     toggleVariant,
     firstOpeningBtnRef,
+    subtitle: config.subtitle,
   };
 }

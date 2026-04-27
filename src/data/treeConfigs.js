@@ -132,6 +132,7 @@ export const londonStudyTreeConfig = {
   colors: LONDON_STUDY_COLORS,
   routeData: null,
   premium: null,
+  subtitle: "London",
 };
 
 export const TREE_CONFIGS = [
