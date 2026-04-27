@@ -88,7 +88,7 @@ root: London
                   Dxb2
                     6. Ca4 La dama queda atrapada
       Cc6
-        3. Cc3 (Londes Jobava)
+        3. Cc3 (Londres Jobava)
           Cf6
             4. Cb5 Caballo y alfil amenazan c7
               e5
@@ -164,7 +164,6 @@ root: London
                                                   14. Dh5
                                                     Rg8
                                                       15. Dxe8+
-
 
 
 

@@ -80,6 +80,7 @@ export function parseIndentedTree(source, options) {
   const {
     idPrefix,
     opening,
+    openingByName = {},
     rootOpening = "root",
     rootMove = "Inicial",
   } = options;
@@ -106,11 +107,13 @@ export function parseIndentedTree(source, options) {
     }
     const parent = stack[parentLevel] ?? root;
     const nodeLevel = parentLevel + 1;
+    const inheritedOpening =
+      parent.opening === rootOpening ? opening : parent.opening;
     const node = {
       id: nodeIdForMove(parsed.move, counts, idPrefix),
       move: parsed.move,
       color: nodeLevel % 2 === 1 ? "white" : "black",
-      opening,
+      opening: openingByName[parsed.name] ?? inheritedOpening,
       children: [],
     };
     if (parsed.name) node.name = parsed.name;

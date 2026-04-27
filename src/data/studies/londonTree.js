@@ -6,4 +6,7 @@ export const LONDON_OPENING = "london-study";
 export const LONDON_TREE = parseIndentedTree(londonSource, {
   idPrefix: "london",
   opening: LONDON_OPENING,
+  openingByName: {
+    "Londres Jobava": "london-jobava",
+  },
 });

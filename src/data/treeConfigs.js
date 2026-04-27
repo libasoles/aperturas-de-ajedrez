@@ -23,6 +23,12 @@ const LONDON_STUDY_COLORS = {
     border: "#14b8a6",
     edge: "#2dd4bf",
   },
+  "london-jobava": {
+    node: "#2a1a3a",
+    text: "#f5d0fe",
+    border: "#a21caf",
+    edge: "#c026d3",
+  },
 };
 
 export const DEFAULT_INITIAL_EXPANDED_IDS = [
@@ -132,7 +138,7 @@ export const londonStudyTreeConfig = {
   colors: LONDON_STUDY_COLORS,
   routeData: null,
   premium: null,
-  subtitle: "London",
+  subtitle: "Londres",
 };
 
 export const TREE_CONFIGS = [
@@ -211,7 +217,9 @@ export function applyLocaleRedirectForTreeConfigs() {
 
   if (config && config !== defaultOpeningTreeConfig && !localizedSlug) return;
 
-  const nextPath = localizedSlug ? `/${locale}/${localizedSlug}` : `/${locale}/`;
+  const nextPath = localizedSlug
+    ? `/${locale}/${localizedSlug}`
+    : `/${locale}/`;
   history.replaceState(null, "", nextPath);
   try {
     i18n.changeLanguage(locale);
