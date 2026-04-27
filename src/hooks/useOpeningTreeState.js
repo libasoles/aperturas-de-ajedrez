@@ -107,6 +107,8 @@ function buildGraph(
       move: treeNode.move,
       color: treeNode.color,
       opening: treeNode.opening,
+      name: treeNode.name,
+      annotation: treeNode.annotation,
       isExpanded,
       hasChildren,
       colors,

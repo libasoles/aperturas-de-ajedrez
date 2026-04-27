@@ -42,9 +42,12 @@ function ChessNode({ id, data }) {
     isLocked,
   } = data;
 
-  const name = t(`openings:${id}.name`, { defaultValue: "" }) || null;
+  const name =
+    data.name || t(`openings:${id}.name`, { defaultValue: "" }) || null;
   const annotation =
-    t(`openings:${id}.annotation`, { defaultValue: "" }) || null;
+    data.annotation ||
+    t(`openings:${id}.annotation`, { defaultValue: "" }) ||
+    null;
 
   const isRoot = id === "root";
   const isWhite = color === "white";

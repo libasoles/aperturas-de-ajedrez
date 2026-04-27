@@ -4,6 +4,7 @@ import { canAccessContent, hasPremiumAccess } from "../lib/access";
 import { OPENING_CATALOG, VARIANT_CATALOG } from "./openingCatalog";
 import { OPENING_COLORS } from "./openingColors";
 import { OPENING_TREE } from "./openings";
+import { LONDON_OPENING, LONDON_TREE } from "./studies/londonTree";
 import {
   HELP_ROUTE,
   OPENING_ROUTES,
@@ -13,6 +14,16 @@ import {
   VARIANT_ROUTE_BY_NODE_ID,
   VARIANT_ROUTE_BY_SLUG,
 } from "./routes";
+
+const LONDON_STUDY_COLORS = {
+  root: OPENING_COLORS.root,
+  [LONDON_OPENING]: {
+    node: "#132f2b",
+    text: "#ccfbf1",
+    border: "#14b8a6",
+    edge: "#2dd4bf",
+  },
+};
 
 export const DEFAULT_INITIAL_EXPANDED_IDS = [
   "root",
@@ -101,7 +112,33 @@ export const repertoireTreeConfig = {
   premium: null,
 };
 
-export const TREE_CONFIGS = [defaultOpeningTreeConfig, repertoireTreeConfig];
+export const londonStudyTreeConfig = {
+  id: "london-study",
+  routes: {
+    es: "studies/london",
+  },
+  tree: LONDON_TREE,
+  catalog: [],
+  variantCatalog: [],
+  initialExpandedIds: [
+    "root",
+    "london-d4",
+    "london-d5",
+    "london-bf4",
+    "london-nf6",
+    "london-e3-2",
+    "london-c5",
+  ],
+  colors: LONDON_STUDY_COLORS,
+  routeData: null,
+  premium: null,
+};
+
+export const TREE_CONFIGS = [
+  defaultOpeningTreeConfig,
+  repertoireTreeConfig,
+  londonStudyTreeConfig,
+];
 
 function stripLocalePrefix(pathname) {
   if (pathname === "/en" || pathname.startsWith("/en/")) {
@@ -126,7 +163,7 @@ function getPreferredLocale() {
 }
 
 function configSlugForLocale(config, locale) {
-  return config.routes?.[locale] ?? config.routes?.es ?? "";
+  return config.routes?.[locale] ?? "";
 }
 
 function findConfigBySlug(slug) {
@@ -170,6 +207,8 @@ export function applyLocaleRedirectForTreeConfigs() {
           return slug;
         })()
       : configSlugForLocale(config, locale);
+
+  if (config && config !== defaultOpeningTreeConfig && !localizedSlug) return;
 
   const nextPath = localizedSlug ? `/${locale}/${localizedSlug}` : `/${locale}/`;
   history.replaceState(null, "", nextPath);

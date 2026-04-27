@@ -1,0 +1,181 @@
+root: London
+
+1. d4
+  d5
+    2. Af4
+      e6
+        3. e3
+          Ad6
+            4. Dg4 Defiende el alfil y amenaza g7 -> h8
+              Axf4 ??
+                5. Dxg7
+                  Df6
+                    6. Dxf6 Intercambio de dama
+                      Cxf6
+                        7. exf4
+              Df6
+                5. Axd6
+                  cxd6
+                    6. Cc3
+                      a6
+                        7. Cd5 Amenaza saltar a c7
+                          exd5
+                            8. Dxc8+ Amenaza a b7
+      Cf6
+        3. e3
+          c5
+            4. c3 Lo mas usual
+              Cc6
+                5. Cf3
+                  e6 Movimiento clásico
+                  Ag4 Clava el caballo
+                    6. Cd2
+                      e6
+                        7. Da4 Siguiente será Ce5 o Ab5
+                          Ad6
+                            8. Aa6 Atrae el peón
+                              bxa6
+                                9. Dxc6+
+                              Axf4
+                                9. Axb7 Doble ataque
+                                  O-O
+                                    10. Axc6
+                                      
+
+
+
+
+
+            4. dxc5 Aunque destruye la defensa Londres
+              Cc6 Para avanzar e5. También libera el alfil
+                5. Ab5 Clava el caballo
+                  Da5 Doble ataque
+                    6. Cc3 Defiende el alfil
+                      Ce4 Ataca el caballo clavado
+                        7. Dxd5 Dama y alfil atacan dos caballos
+                          Cxc3
+                            8.Axc6
+                              bxc6
+                                9. Dxc6+ Doble ataque
+                                  Ad7
+                                    10. Dxa8
+                                  Rd8
+                                    10. b4 Para atraer a la dama
+                                      Dxb4
+                                        11. Ac7#
+              e6 Ataque a la descubierta con el alfil
+                5. b4
+                  a5
+                    6. c3
+                      axb4
+                      7. cxb4
+                        b6
+                          8. Axb8 Intercambio de piezas
+                            Txb8
+                              9. Ab5+
+                                Re7 Mala idea
+                                Ad7
+                                  10. c6
+                                    Axb4+
+                                      11. Cd2
+                                        Ac8
+                                          12. c7+ Jaque al descubierto
+                                      Ac8
+                                        11. c7+ Jaque al descubierto
+            4. Cc3
+              Db6 Amenaza b2
+                5. a3
+                  Dxb2
+                    6. Ca4 La dama queda atrapada
+      Cc6
+        3. Cc3 (Londes Jobava)
+          Cf6
+            4. Cb5 Caballo y alfil amenazan c7
+              e5
+                5. dxe5
+                  Ce4
+                    6. Dxd5
+                      Dxd5
+                        7. Cxc7 Triple ataque
+                  Ch5
+                    6. Ag5 Atrae la dama
+                      Dxg5
+                        7. Cxc7+ Doble ataque
+                      f6
+                        7. exf6
+                          gxf6
+                            8. e4 !!
+          Af5
+            4. e4 !
+              dxe4
+                5. d5
+                  Cb4
+                    6. a3
+                      Ca6
+                        7. Dd4 Las piezas negras estan inutilizadas
+                          e6
+                            8. Ab5+
+                              c6
+                                9. dxc6 Sacrificio de Dama
+                                  Dxd4
+                                    10. cxb7+ Jaque al descubierto
+      Af5
+        3. c4 Permite salida de Db3
+          dxc4
+            4. e3
+              b5
+                5. Df3
+                  Cd7
+                    6. Axc7
+                  c6
+                    6. Axb8 Intercambio
+                      Txb8
+                        7. Dxf5  
+  e6
+    2. Af4
+      Cf6
+        3. c3
+          e5
+            4. e3
+              d5
+                5. Cd2
+                  Cc7
+                    6.f3
+                      Ad6 Propone intercambio de alfiles
+                        7. Ag3
+                          Axg3
+                            8. hxg3 La torre se activa
+                          o-o
+                            8. Ad3
+                              Te8 O cualquier otro movimiento
+                              9. Ce5
+                                Cxe5
+                                  10. dxe5 Doble ataque
+                                Dc7 Nuevo escenario de intercambio de caballos
+                                  10. f4
+                                    Cd7 Propone otro intercambio de caballos
+                                      11. Dh5
+                                      11. Axh7+ Sacrificio de alfil
+                                        Rxh7
+                                          12. Dh5+
+                                            Rg8
+                                              13. De7
+                                                Rh7
+                                                  14. Dh5
+                                                    Rg8
+                                                      15. Dxe8+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
