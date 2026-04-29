@@ -765,6 +765,15 @@
     "name": "Slav Defense",
     "annotation": "Reinforces d5 without blocking the queen's bishop"
   },
+  "qg-4c": {
+    "annotation": "Natural knight development to f3"
+  },
+  "qg-5c": {
+    "annotation": "Develops the knight and defends d5"
+  },
+  "qg-6c": {
+    "annotation": "Pressures c5 and prepares e4"
+  },
   "qg-7c1": {
     "name": "Accepted Slav",
     "annotation": "Accepts the gambit with c6 support"
@@ -779,8 +788,64 @@
     "name": "Semi-Slav",
     "annotation": "Merano and Anti-Merano, very sharp"
   },
+  "qg-8c2": {
+    "annotation": "Opens the center to exploit the structure"
+  },
   "qg-13c2": {
     "name": "Semi-Slav Meran"
+  },
+  "qg-7c3": {
+    "name": "Classical Variation",
+    "annotation": "Develops the bishop before closing with e6, the key Slav idea"
+  },
+  "qg-8c3": {
+    "annotation": "Consolidates the center without closing the bishop yet"
+  },
+  "qg-9c3": {
+    "annotation": "Completes the central pawn structure"
+  },
+  "qg-10c3": {
+    "annotation": "Prepares the bishop exchange on d3"
+  },
+  "qg-11c3": {
+    "annotation": "Exchanges the active queenside bishop"
+  },
+  "qg-12c3": {
+    "annotation": "Recaptures activating the queen in the center"
+  },
+  "qg-13c3": {
+    "name": "Complete Classical Variation"
+  },
+  "qg-4ce": {
+    "name": "Exchange Variation",
+    "annotation": "Simplifies the center with cxd5, seeking equality with a symmetrical structure"
+  },
+  "qg-5ce": {
+    "annotation": "Recaptures with the pawn maintaining symmetry"
+  },
+  "qg-6ce": {
+    "annotation": "Develops the bishop outside the pawn chain, key idea of the Exchange"
+  },
+  "qg-7ce": {
+    "annotation": "Develops the knight to c6 with central pressure"
+  },
+  "qg-8ce": {
+    "annotation": "Consolidates with e3 before completing development"
+  },
+  "qg-9ce": {
+    "annotation": "Completes Black's minor piece development"
+  },
+  "qg-10ce": {
+    "annotation": "Completes development and coordinates the pieces"
+  },
+  "qg-11ce": {
+    "annotation": "Develops the light-squared bishop outside the pawn chain"
+  },
+  "qg-12ce": {
+    "annotation": "Increases pressure on d5 with the knight"
+  },
+  "qg-13ce": {
+    "name": "Complete Exchange Variation"
   },
   "lon-2": {
     "name": "London System",

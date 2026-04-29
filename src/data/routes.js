@@ -264,6 +264,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Maîtrisez la Défense Hollandaise (1.d4 f5) : variantes Leningrad, Mur de Pierre et Classique dans un arbre interactif avec échiquier animé.",
   },
+  {
+    slug: "defensa-eslava",
+    slugEn: "slav-defense",
+    slugFr: "defense-slave",
+    nodeId: "qg-3c",
+    title: "Defensa Eslava | Aperturas de Ajedrez",
+    titleEn: "Slav Defense | Chess Openings",
+    titleFr: "Défense Slave | Ouvertures d'Échecs",
+    description:
+      "Domina la Defensa Eslava (1.d4 d5 2.c4 c6): variante de cambio, línea clásica, eslava aceptada y semi-eslava en un árbol interactivo con tablero animado.",
+    descriptionEn:
+      "Master the Slav Defense (1.d4 d5 2.c4 c6): exchange variation, classical line, accepted slav and semi-slav in an interactive tree with animated board.",
+    descriptionFr:
+      "Maîtrisez la Défense Slave (1.d4 d5 2.c4 c6) : variante d'échange, ligne classique, slave acceptée et semi-slave dans un arbre interactif avec échiquier animé.",
+  },
 ];
 
 /**
@@ -1097,6 +1112,72 @@ const VARIANT_ROUTE_DEFS = [
       "Explore the Classical Variation of the Dutch Defense (2...e6 3...Be7): flexible development that keeps options before committing to d5.",
     descriptionFr:
       "Explorez la Variante Classique de la Défense Hollandaise (2...e6 3...Be7) : développement flexible qui maintient les options avant de s'engager sur d5.",
+  },
+
+  // ── Defensa Eslava ──────────────────────────────────────
+  {
+    slug: "defensa-eslava/variante-de-cambio",
+    slugEn: "slav-defense/exchange-variation",
+    slugFr: "defense-slave/variante-echange",
+    variantNodeId: "qg-4ce",
+    parentNodeId: "qg-3c",
+    title: "Variante de Cambio | Defensa Eslava | Aperturas de Ajedrez",
+    titleEn: "Exchange Variation | Slav Defense | Chess Openings",
+    titleFr: "Variante d'Échange | Défense Slave | Ouvertures d'Échecs",
+    description:
+      "Explora la Variante de Cambio de la Defensa Eslava (3.cxd5 cxd5): las blancas simplifican el centro buscando igualdad con estructura simétrica de peones.",
+    descriptionEn:
+      "Explore the Exchange Variation of the Slav Defense (3.cxd5 cxd5): White simplifies the center seeking equality with a symmetrical pawn structure.",
+    descriptionFr:
+      "Explorez la Variante d'Échange de la Défense Slave (3.cxd5 cxd5) : les Blancs simplifient le centre en cherchant l'égalité avec une structure de pions symétrique.",
+  },
+  {
+    slug: "defensa-eslava/eslava-aceptada",
+    slugEn: "slav-defense/accepted-slav",
+    slugFr: "defense-slave/slave-acceptee",
+    variantNodeId: "qg-7c1",
+    parentNodeId: "qg-3c",
+    title: "Eslava Aceptada | Defensa Eslava | Aperturas de Ajedrez",
+    titleEn: "Accepted Slav | Slav Defense | Chess Openings",
+    titleFr: "Slave Acceptée | Défense Slave | Ouvertures d'Échecs",
+    description:
+      "Aprende la Eslava Aceptada (4...dxc4): las negras conservan el peón con b5, llevando a posiciones tácticas con el avance blanco a4.",
+    descriptionEn:
+      "Learn the Accepted Slav (4...dxc4): Black holds the pawn with b5, leading to tactical positions with White's a4 advance.",
+    descriptionFr:
+      "Apprenez la Slave Acceptée (4...dxc4) : les Noirs conservent le pion avec b5, menant à des positions tactiques avec l'avance blanche a4.",
+  },
+  {
+    slug: "defensa-eslava/semi-eslava",
+    slugEn: "slav-defense/semi-slav",
+    slugFr: "defense-slave/semi-slave",
+    variantNodeId: "qg-7c2",
+    parentNodeId: "qg-3c",
+    title: "Semi-Eslava | Defensa Eslava | Aperturas de Ajedrez",
+    titleEn: "Semi-Slav | Slav Defense | Chess Openings",
+    titleFr: "Semi-Slave | Défense Slave | Ouvertures d'Échecs",
+    description:
+      "Estudia la Semi-Eslava (4...e6): la combinación de c6 y e6 crea tensiones únicas con las variantes Merano y Anti-Merano, muy afiladas.",
+    descriptionEn:
+      "Study the Semi-Slav (4...e6): the combination of c6 and e6 creates unique tensions with the sharp Merano and Anti-Merano variations.",
+    descriptionFr:
+      "Étudiez la Semi-Slave (4...e6) : la combinaison de c6 et e6 crée des tensions uniques avec les variantes Merano et Anti-Merano, très aiguës.",
+  },
+  {
+    slug: "defensa-eslava/clasica",
+    slugEn: "slav-defense/classical",
+    slugFr: "defense-slave/classique",
+    variantNodeId: "qg-7c3",
+    parentNodeId: "qg-3c",
+    title: "Línea Clásica | Defensa Eslava | Aperturas de Ajedrez",
+    titleEn: "Classical Variation | Slav Defense | Chess Openings",
+    titleFr: "Variante Classique | Défense Slave | Ouvertures d'Échecs",
+    description:
+      "Domina la Línea Clásica de la Defensa Eslava (4...Bf5): las negras desarrollan el alfil antes de jugar e6, manteniendo la actividad de piezas.",
+    descriptionEn:
+      "Master the Classical Variation of the Slav Defense (4...Bf5): Black develops the bishop before playing e6, maintaining piece activity.",
+    descriptionFr:
+      "Maîtrisez la Variante Classique de la Défense Slave (4...Ff5) : les Noirs développent le fou avant de jouer e6, maintenant l'activité des pièces.",
   },
 
   // ── Defensa Moderna ──────────────────────────────────────

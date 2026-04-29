@@ -20,7 +20,8 @@
     "lon-2": "London",
     "ki-3a": "King's Indian",
     "nim-3b": "Nimzo-Indian",
-    "dutch-1": "Dutch Defense"
+    "dutch-1": "Dutch Defense",
+    "qg-3c": "Slav"
   },
   "chess_panel": {
     "position": "Position",

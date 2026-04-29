@@ -167,6 +167,16 @@ export const OPENING_CATALOG = [
         access: "premium",
         discoverable: true,
       },
+      {
+        label: "Eslava",
+        nodeId: "qg-3c",
+        pathIds: ["d4", "qg-1", "qg-2"],
+        color: "#9f1239",
+        glow: "#e11d48",
+        text: "#ffe4e6",
+        access: "free",
+        discoverable: true,
+      },
     ],
   },
 ];
@@ -451,6 +461,30 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "nim-6b2",
     parentNodeId: "nim-3b",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "qg-4ce",
+    parentNodeId: "qg-3c",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "qg-7c1",
+    parentNodeId: "qg-3c",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "qg-7c2",
+    parentNodeId: "qg-3c",
+    access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "qg-7c3",
+    parentNodeId: "qg-3c",
     access: "free",
     discoverable: true,
   },

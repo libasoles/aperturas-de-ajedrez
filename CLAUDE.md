@@ -20,13 +20,23 @@ Skills are in `.claude/skills/`. They are invoked **automatically** — read the
 | -------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`sync-opening-routes`](.claude/skills/sync-opening-routes/SKILL.md) | Any edit to `src/data/openings.js` that adds a new opening node or variant node |
 
+## Agents (on demand)
+
+Agents are in `.claude/agents/`. They are **not** invoked automatically — spawn them explicitly when needed.
+
+| Agent                                                    | When to use                                                                                                                                                                              |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`research-opening`](.claude/agents/research-opening.md) | Before adding any new opening — fetches theory, validates moves, produces all data artifacts (node tree, colors, catalog, translations, routes). Output only; does not touch source files. |
+
+**Known issue in research-opening output**: §5b says `src/hooks/useOpeningTreeState.js → OPENING_COLORS` — that file path is **wrong**. The correct file is `src/data/openingColors.js`.
+
 ## Architecture
 
 Single-page React app that renders an interactive chess opening tree using ReactFlow.
 
 ### Data flow
 
-```
+```bash
 src/data/openings.js          → Static tree of opening nodes
 src/utils/chessPath.js        → findPathToNode / getActivePathIds (tree traversal)
 src/components/OpeningTree.jsx → buildGraph() converts the tree to RF nodes/edges; owns all state
@@ -56,11 +66,10 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 {
   id: string,          // unique, used as ReactFlow node id
   move: string,        // SAN (English) — fed directly to chess.js
-  name: string | null, // apertura name shown under the pill
-  annotation: string | null, // shown in tooltip on hover
-  color: "white" | "black",  // whose turn it is
-  opening: string,     // key into OPENING_COLORS (root/scandinavian/spanish/italian/sicilian)
+  color: "white" | "black",  // whose turn made this move
+  opening: string,     // key into OPENING_COLORS — e.g. "slav", "dutch", "queens_gambit"
   children: Node[]
+  // NO name or annotation — those live in src/locales/*/openings.json
 }
 ```
 
@@ -69,9 +78,16 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 - Minimum font size: **14px** for any readable text.
 - All color choices must have sufficient contrast against the dark background (`#0f1117`). Never use opacity hacks (`color60`, `color30`) on readable text — reserve low opacity for decorative/border elements only.
 
-## Adding Premium Openings
+## Adding Openings
 
-Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access — all premium content visible. Set to `0` to simulate the locked experience a non-premium user sees.
+**Free vs premium**: The checklist below applies to both. The only difference is the `access` field:
+
+- `access: "free"` — visible to all users, no lock icon
+- `access: "premium"` — entry node visible, children locked unless `VITE_HAS_PREMIUM_ACCESS=1`
+
+Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access. Set to `0` to simulate the locked experience.
+
+**Before writing any code**, run the [`research-opening`](.claude/agents/research-opening.md) agent to fetch theory, validate moves, and produce all data artifacts. Implement only after the research output is reviewed.
 
 ### Step-by-step checklist
 
@@ -80,9 +96,10 @@ Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`
    - Keep structure minimal; match existing openings
    - Example ID pattern: `dutch-1`, `dutch-2`, `dutch-5a`, `dutch-7b1`, `dutch-7b2` (number = ply, letter = variant branch)
 
-2. **Add color** — `src/hooks/useOpeningTreeState.js` → `OPENING_COLORS` object
+2. **Add color** — `src/data/openingColors.js` → `OPENING_COLORS` object
    - Add entry: `opening_key: { node: "#hex", text: "#hex", border: "#hex", edge: "#hex" }`
    - Test contrast against dark bg (`#0f1117`) — use saturated colors (e.g., emerald for Dutch)
+   - All existing hues are taken; check existing entries before picking (rose, amber, violet, cyan, teal, red, orange, pink, green, indigo, magenta, blue, lime are all in use)
 
 3. **Register in catalog** — `src/data/openingCatalog.js`
    - **OPENING_CATALOG**: Add to appropriate group (`e4` or `d4`)
@@ -160,3 +177,30 @@ Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`
 - **Colors**: Emerald green (#1c3a2a node, #10b981 border)
 - **Translations**: 36 entries (3 languages × 12 concept nodes)
 - **Routes**: 4 (1 opening + 3 variants)
+
+### Example: Slav Defense (d4, nested)
+
+- **Tree**: 30 nodes — reuses existing `qg-3c` subtree (changed `opening` to `"slav"`) + 17 new nodes (Exchange + Classical branches)
+- **Variants**: 4 (Exchange `qg-4ce`, Accepted `qg-7c1`, Semi-Slav `qg-7c2`, Classical `qg-7c3`)
+- **Colors**: Deep crimson (#1c0810 node, #9f1239 border)
+- **pathIds**: `["d4", "qg-1", "qg-2"]` — lists every ancestor up to (not including) the entry node
+- **Routes**: 5 (1 opening + 4 variants)
+
+### Nested / promoted openings
+
+When an opening already exists as nodes inside another opening's tree (e.g. Slav inside Queen's Gambit):
+
+1. **Change the `opening` field** on the entry node and all its descendants from the parent key to the new key. This gives them distinct colors.
+2. **`pathIds`** in `OPENING_CATALOG` must list every ancestor node ID from the tree root down to (but NOT including) the entry node.
+3. **Keep** the existing `VARIANT_CATALOG` entry that links the node to its parent opening — it stays discoverable as a QG variant.
+4. **Add new** `VARIANT_CATALOG` entries for the opening's own variants using the new opening as `parentNodeId`.
+5. **No node ID changes needed** — reuse the existing IDs (`qg-3c`, etc.) even though the `opening` key changes.
+
+## Uso de subagentes
+
+- Antes de modificar código en archivos desconocidos, usa el subagente **Explore**
+  para entender el contexto y dependencias.
+- Para tareas que solo requieran lectura/búsqueda en el codebase, delega siempre
+  a **Explore** en lugar de leer archivos directamente.
+- Para tareas complejas multi-paso, considera usar **general-purpose**.
+- Cuando estés en modo plan, usa **Plan** para investigar el codebase.

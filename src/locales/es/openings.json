@@ -765,6 +765,15 @@
     "name": "Defensa Eslava",
     "annotation": "Refuerza d5 sin bloquear el alfil de dama"
   },
+  "qg-4c": {
+    "annotation": "Desarrollo natural del caballo hacia f3"
+  },
+  "qg-5c": {
+    "annotation": "Desarrolla el caballo y defiende d5"
+  },
+  "qg-6c": {
+    "annotation": "Presiona c5 y prepara e4"
+  },
   "qg-7c1": {
     "name": "Eslava Aceptada",
     "annotation": "Acepta el gambito con c6 de apoyo"
@@ -779,8 +788,64 @@
     "name": "Semi-Eslava",
     "annotation": "Merano y Anti-Merano, muy agudas"
   },
+  "qg-8c2": {
+    "annotation": "Abre el centro para explotar la estructura"
+  },
   "qg-13c2": {
-    "name": "Semi-Eslava meran"
+    "name": "Semi-Eslava Merano"
+  },
+  "qg-7c3": {
+    "name": "Línea Clásica",
+    "annotation": "Desarrolla el alfil antes de cerrar con e6, idea clave de la Eslava"
+  },
+  "qg-8c3": {
+    "annotation": "Consolida el centro sin cerrar aún el alfil"
+  },
+  "qg-9c3": {
+    "annotation": "Completa la estructura de peones central"
+  },
+  "qg-10c3": {
+    "annotation": "Prepara el intercambio de alfiles en d3"
+  },
+  "qg-11c3": {
+    "annotation": "Intercambia el alfil activo de dama"
+  },
+  "qg-12c3": {
+    "annotation": "Recaptura activando la dama en el centro"
+  },
+  "qg-13c3": {
+    "name": "Línea Clásica completa"
+  },
+  "qg-4ce": {
+    "name": "Variante de Cambio",
+    "annotation": "Simplifica el centro con cxd5, buscando igualdad con estructura simétrica"
+  },
+  "qg-5ce": {
+    "annotation": "Recaptura con el peón manteniendo la simetría"
+  },
+  "qg-6ce": {
+    "annotation": "Desarrolla el alfil fuera de la cadena de peones, idea clave del cambio"
+  },
+  "qg-7ce": {
+    "annotation": "Desarrolla el caballo hacia c6 con presión central"
+  },
+  "qg-8ce": {
+    "annotation": "Consolida con e3 antes de completar el desarrollo"
+  },
+  "qg-9ce": {
+    "annotation": "Termina el desarrollo menor de las negras"
+  },
+  "qg-10ce": {
+    "annotation": "Completa el desarrollo y coordina las piezas"
+  },
+  "qg-11ce": {
+    "annotation": "Desarrolla el alfil de casillas claras fuera de la cadena"
+  },
+  "qg-12ce": {
+    "annotation": "Aumenta la presión sobre d5 con el caballo"
+  },
+  "qg-13ce": {
+    "name": "Variante de Cambio completa"
   },
   "lon-2": {
     "name": "Sistema Londres",

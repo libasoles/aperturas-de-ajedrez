@@ -304,67 +304,67 @@ export const D4_TREE = {
               "id": "qg-3c",
               "move": "c6",
               "color": "black",
-              "opening": "queens_gambit",
+              "opening": "slav",
               "children": [
                 {
                   "id": "qg-4c",
                   "move": "Nf3",
                   "color": "white",
-                  "opening": "queens_gambit",
+                  "opening": "slav",
                   "children": [
                     {
                       "id": "qg-5c",
                       "move": "Nf6",
                       "color": "black",
-                      "opening": "queens_gambit",
+                      "opening": "slav",
                       "children": [
                         {
                           "id": "qg-6c",
                           "move": "Nc3",
                           "color": "white",
-                          "opening": "queens_gambit",
+                          "opening": "slav",
                           "children": [
                             {
                               "id": "qg-7c1",
                               "move": "dxc4",
                               "color": "black",
-                              "opening": "queens_gambit",
+                              "opening": "slav",
                               "children": [
                                 {
                                   "id": "qg-8c1",
                                   "move": "e4",
                                   "color": "white",
-                                  "opening": "queens_gambit",
+                                  "opening": "slav",
                                   "children": [
                                     {
                                       "id": "qg-9c1",
                                       "move": "b5",
                                       "color": "black",
-                                      "opening": "queens_gambit",
+                                      "opening": "slav",
                                       "children": [
                                         {
                                           "id": "qg-10c1",
                                           "move": "a4",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "slav",
                                           "children": [
                                             {
                                               "id": "qg-11c1",
                                               "move": "b4",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "slav",
                                               "children": [
                                                 {
                                                   "id": "qg-12c1",
                                                   "move": "Na2",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "slav",
                                                   "children": [
                                                     {
                                                       "id": "qg-13c1",
                                                       "move": "e6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "slav",
                                                       "children": []
                                                     }
                                                   ]
@@ -383,43 +383,177 @@ export const D4_TREE = {
                               "id": "qg-7c2",
                               "move": "e6",
                               "color": "black",
-                              "opening": "queens_gambit",
+                              "opening": "slav",
                               "children": [
                                 {
                                   "id": "qg-8c2",
                                   "move": "e4",
                                   "color": "white",
-                                  "opening": "queens_gambit",
+                                  "opening": "slav",
                                   "children": [
                                     {
                                       "id": "qg-9c2",
                                       "move": "dxe4",
                                       "color": "black",
-                                      "opening": "queens_gambit",
+                                      "opening": "slav",
                                       "children": [
                                         {
                                           "id": "qg-10c2",
                                           "move": "Nxe4",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "slav",
                                           "children": [
                                             {
                                               "id": "qg-11c2",
                                               "move": "Bb4+",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "slav",
                                               "children": [
                                                 {
                                                   "id": "qg-12c2",
                                                   "move": "Bd2",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "slav",
                                                   "children": [
                                                     {
                                                       "id": "qg-13c2",
                                                       "move": "Qxd4",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "slav",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "qg-7c3",
+                              "move": "Bf5",
+                              "color": "black",
+                              "opening": "slav",
+                              "children": [
+                                {
+                                  "id": "qg-8c3",
+                                  "move": "e3",
+                                  "color": "white",
+                                  "opening": "slav",
+                                  "children": [
+                                    {
+                                      "id": "qg-9c3",
+                                      "move": "e6",
+                                      "color": "black",
+                                      "opening": "slav",
+                                      "children": [
+                                        {
+                                          "id": "qg-10c3",
+                                          "move": "Bd3",
+                                          "color": "white",
+                                          "opening": "slav",
+                                          "children": [
+                                            {
+                                              "id": "qg-11c3",
+                                              "move": "Bxd3",
+                                              "color": "black",
+                                              "opening": "slav",
+                                              "children": [
+                                                {
+                                                  "id": "qg-12c3",
+                                                  "move": "Qxd3",
+                                                  "color": "white",
+                                                  "opening": "slav",
+                                                  "children": [
+                                                    {
+                                                      "id": "qg-13c3",
+                                                      "move": "Nbd7",
+                                                      "color": "black",
+                                                      "opening": "slav",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "qg-4ce",
+                  "move": "cxd5",
+                  "color": "white",
+                  "opening": "slav",
+                  "children": [
+                    {
+                      "id": "qg-5ce",
+                      "move": "cxd5",
+                      "color": "black",
+                      "opening": "slav",
+                      "children": [
+                        {
+                          "id": "qg-6ce",
+                          "move": "Bf4",
+                          "color": "white",
+                          "opening": "slav",
+                          "children": [
+                            {
+                              "id": "qg-7ce",
+                              "move": "Nc6",
+                              "color": "black",
+                              "opening": "slav",
+                              "children": [
+                                {
+                                  "id": "qg-8ce",
+                                  "move": "e3",
+                                  "color": "white",
+                                  "opening": "slav",
+                                  "children": [
+                                    {
+                                      "id": "qg-9ce",
+                                      "move": "Nf6",
+                                      "color": "black",
+                                      "opening": "slav",
+                                      "children": [
+                                        {
+                                          "id": "qg-10ce",
+                                          "move": "Nf3",
+                                          "color": "white",
+                                          "opening": "slav",
+                                          "children": [
+                                            {
+                                              "id": "qg-11ce",
+                                              "move": "Bf5",
+                                              "color": "black",
+                                              "opening": "slav",
+                                              "children": [
+                                                {
+                                                  "id": "qg-12ce",
+                                                  "move": "Nc3",
+                                                  "color": "white",
+                                                  "opening": "slav",
+                                                  "children": [
+                                                    {
+                                                      "id": "qg-13ce",
+                                                      "move": "e6",
+                                                      "color": "black",
+                                                      "opening": "slav",
                                                       "children": []
                                                     }
                                                   ]

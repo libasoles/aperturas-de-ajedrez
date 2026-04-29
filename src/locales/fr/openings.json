@@ -765,6 +765,15 @@
     "name": "Défense Slave",
     "annotation": "Renforce d5 sans bloquer le fou dame"
   },
+  "qg-4c": {
+    "annotation": "Développement naturel du cavalier vers f3"
+  },
+  "qg-5c": {
+    "annotation": "Développe le cavalier et défend d5"
+  },
+  "qg-6c": {
+    "annotation": "Pression sur c5 et préparation de e4"
+  },
   "qg-7c1": {
     "name": "Slave Acceptée",
     "annotation": "Accepte le gambit avec soutien de c6"
@@ -779,8 +788,64 @@
     "name": "Semi-Slave",
     "annotation": "Merano et Anti-Merano, très aiguës"
   },
+  "qg-8c2": {
+    "annotation": "Ouvre le centre pour exploiter la structure"
+  },
   "qg-13c2": {
     "name": "Semi-Slave Merano"
+  },
+  "qg-7c3": {
+    "name": "Variante Classique",
+    "annotation": "Développe le fou avant de fermer avec e6, idée clé de la Slave"
+  },
+  "qg-8c3": {
+    "annotation": "Consolide le centre sans fermer encore le fou"
+  },
+  "qg-9c3": {
+    "annotation": "Complète la structure de pions centrale"
+  },
+  "qg-10c3": {
+    "annotation": "Prépare l'échange de fous en d3"
+  },
+  "qg-11c3": {
+    "annotation": "Échange le fou actif côté dame"
+  },
+  "qg-12c3": {
+    "annotation": "Reprend en activant la dame au centre"
+  },
+  "qg-13c3": {
+    "name": "Variante Classique complète"
+  },
+  "qg-4ce": {
+    "name": "Variante d'Échange",
+    "annotation": "Simplifie le centre avec cxd5, cherchant l'égalité avec une structure symétrique"
+  },
+  "qg-5ce": {
+    "annotation": "Reprend avec le pion en maintenant la symétrie"
+  },
+  "qg-6ce": {
+    "annotation": "Développe le fou hors de la chaîne de pions, idée clé de l'Échange"
+  },
+  "qg-7ce": {
+    "annotation": "Développe le cavalier vers c6 avec pression centrale"
+  },
+  "qg-8ce": {
+    "annotation": "Consolide avec e3 avant de compléter le développement"
+  },
+  "qg-9ce": {
+    "annotation": "Complète le développement des pièces mineures des Noirs"
+  },
+  "qg-10ce": {
+    "annotation": "Complète le développement et coordonne les pièces"
+  },
+  "qg-11ce": {
+    "annotation": "Développe le fou de cases blanches hors de la chaîne"
+  },
+  "qg-12ce": {
+    "annotation": "Augmente la pression sur d5 avec le cavalier"
+  },
+  "qg-13ce": {
+    "name": "Variante d'Échange complète"
   },
   "lon-2": {
     "name": "Système Londres",

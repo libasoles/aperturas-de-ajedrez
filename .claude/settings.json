@@ -12,7 +12,8 @@
       "Bash(curl -s http://localhost:5174/en/dutch-defense)",
       "Bash(pkill -f \"npm run dev\")",
       "WebFetch(domain:es.wikipedia.org)",
-      "Bash(curl -s http://localhost:5173)"
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(grep -E \"\\\\.\\(js|ts\\)$\")"
     ],
     "additionalDirectories": [
       "/tmp",

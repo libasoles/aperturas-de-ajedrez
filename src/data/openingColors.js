@@ -89,6 +89,12 @@ export const OPENING_COLORS = {
     border: "#10b981",
     edge: "#34d399",
   },
+  slav: {
+    node: "#1c0810",
+    text: "#ffe4e6",
+    border: "#9f1239",
+    edge: "#e11d48",
+  },
   modern: {
     node: "#1a2600",
     text: "#d9f99d",
