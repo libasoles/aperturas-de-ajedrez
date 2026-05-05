@@ -151,23 +151,23 @@ async function run() {
   }
 
   const homeAlts = [
-    { hreflang: "es", href: `${BASE_URL}/` },
+    { hreflang: "es", href: `${BASE_URL}` },
     { hreflang: "en", href: `${BASE_URL}/en/` },
     { hreflang: "fr", href: `${BASE_URL}/fr/` },
-    { hreflang: "x-default", href: `${BASE_URL}/` },
+    { hreflang: "x-default", href: `${BASE_URL}` },
   ];
 
   // ── 1. Home pages (ES / EN / FR) ───────────────────────────────────────────
   const homeHtml = injectMeta(rendered, {
     title: HOME_TITLE,
     description: HOME_DESC,
-    canonical: `${BASE_URL}/`,
+    canonical: `${BASE_URL}`,
     lang: "es",
     alternates: homeAlts,
   });
   await fs.writeFile(path.join(distDir, "index.html"), homeHtml, "utf8");
   process.stdout.write("Prerendered /\n");
-  addSitemapUrl(`${BASE_URL}/`, "1.0", "weekly");
+  addSitemapUrl(`${BASE_URL}`, "1.0", "weekly");
 
   const homeEnHtml = injectMeta(rendered, {
     title: HOME_TITLE_EN,

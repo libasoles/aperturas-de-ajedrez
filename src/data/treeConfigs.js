@@ -218,7 +218,7 @@ export function applyLocaleRedirectForTreeConfigs() {
   if (config && config !== defaultOpeningTreeConfig && !localizedSlug) return;
 
   const nextPath = localizedSlug
-    ? `/${locale}/${localizedSlug}`
+    ? `/${locale}/${localizedSlug}/`
     : `/${locale}/`;
   history.replaceState(null, "", nextPath);
   try {

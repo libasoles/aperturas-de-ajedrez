@@ -22,21 +22,21 @@ function detectLocale() {
 
 // Build a URL for a given route slug, preserving the current locale prefix
 function buildOpeningUrl(route, locale) {
-  if (locale === "en") return `/en/${route.slugEn}`;
-  if (locale === "fr") return `/fr/${route.slugFr}`;
-  return `/${route.slug}`;
+  if (locale === "en") return `/en/${route.slugEn}/`;
+  if (locale === "fr") return `/fr/${route.slugFr}/`;
+  return `/${route.slug}/`;
 }
 
 function buildHelpUrlForRoute(helpRoute, locale) {
-  if (locale === "en") return `/en/${helpRoute.slugEn}`;
-  if (locale === "fr") return `/fr/${helpRoute.slugFr}`;
-  return `/${helpRoute.slug}`;
+  if (locale === "en") return `/en/${helpRoute.slugEn}/`;
+  if (locale === "fr") return `/fr/${helpRoute.slugFr}/`;
+  return `/${helpRoute.slug}/`;
 }
 
 function buildVariantUrl(variantRoute, locale) {
-  if (locale === "en") return `/en/${variantRoute.slugEn}`;
-  if (locale === "fr") return `/fr/${variantRoute.slugFr}`;
-  return `/${variantRoute.slug}`;
+  if (locale === "en") return `/en/${variantRoute.slugEn}/`;
+  if (locale === "fr") return `/fr/${variantRoute.slugFr}/`;
+  return `/${variantRoute.slug}/`;
 }
 
 export function buildHelpUrl(locale) {

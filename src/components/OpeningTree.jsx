@@ -132,7 +132,7 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, toggl
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
         }}
       >
-        <a href={i18n.language === "en" ? "/en" : i18n.language === "fr" ? "/fr" : "/"} className="flex flex-col gap-0.5 no-underline">
+        <a href={i18n.language === "en" ? "/en/" : i18n.language === "fr" ? "/fr/" : "/"} className="flex flex-col gap-0.5 no-underline">
           <div className="neon-title">{t("title")}</div>
           <div className="neon-subtitle">{t("subtitle")}</div>
         </a>
