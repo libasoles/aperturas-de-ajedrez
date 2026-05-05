@@ -1106,5 +1106,36 @@
   "nw-7c": {
     "name": "Variante Kennedy",
     "annotation": "Développement du cavalier, préparant le roque et le contre-jeu dynamique"
+  },
+  "nf3": {
+    "name": "Ouverture Zukertort",
+    "annotation": "Ouverture hypermoderne : les Blancs développent le cavalier sans engager le centre, avec l'option 2.b3 (Zukertort propre) ou de nombreuses transpositions"
+  },
+  "zuk-2": {
+    "name": "Fianchetto Dame",
+    "annotation": "Avec 2.b3, les Blancs préparent Fb2 et adoptent le Zukertort propre : contrôle du centre de loin, sans l'occuper directement"
+  },
+  "zuk-4a": {
+    "annotation": "Le fou en b2 presse la grande diagonale vers e5 et d4. Les Blancs complètent le développement avant de décider d'avancer e3 ou g3"
+  },
+  "zuk-8a": {
+    "name": "Variante Classique",
+    "annotation": "Après 1.Cf3 d5 2.b3 Cf6 3.Fb2 e6 4.e3 Fe7 5.d4, les Blancs établissent une structure solide. Plan : Cd2-e5 suivi d'une pression centrale"
+  },
+  "zuk-8b": {
+    "name": "Double Fianchetto (Nimzo-Larsen)",
+    "annotation": "Avec 3...g6 et 4.g3, les deux camps fianchettent le fou de roi. Positions stratégiques fermées où le contrôle des grandes diagonales est la clé"
+  },
+  "zuk-8c": {
+    "name": "Pirc Inversé",
+    "annotation": "Après 2.b3 c5 3.Fb2 Cc6 4.e3 e5 5.d4, les Noirs occupent le centre agressivement. Les Blancs répondent avec d4, initiant une tension centrale tactique"
+  },
+  "zuk-1b": {
+    "name": "Gambit Ross",
+    "annotation": "Avec 1...e5, les Noirs offrent le pion roi dans un gambit discutable. Audacieux mais théoriquement inférieur : les Blancs capturent simplement avec un avantage matériel"
+  },
+  "zuk-4c": {
+    "name": "Gambit Ross Accepté",
+    "annotation": "Après 1.Cf3 e5 2.Cxe5 d6 3.Cf3, les Blancs consolident l'avantage matériel. Les Noirs cherchent une compensation par un développement rapide, mais la position est objectivement favorable aux Blancs"
   }
 }

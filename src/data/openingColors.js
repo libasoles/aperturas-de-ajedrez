@@ -107,4 +107,10 @@ export const OPENING_COLORS = {
     border: "#0284c7",
     edge: "#0ea5e9",
   },
+  zukertort: {
+    node: "#1c1800",
+    text: "#fef9c3",
+    border: "#c8a800",
+    edge: "#d4b400",
+  },
 };

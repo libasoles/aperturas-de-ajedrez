@@ -179,6 +179,21 @@ export const OPENING_CATALOG = [
       },
     ],
   },
+  {
+    group: "nf3",
+    openings: [
+      {
+        label: "Zukertort",
+        nodeId: "nf3",
+        pathIds: [],
+        color: "#c8a800",
+        glow: "#d4b400",
+        text: "#fef9c3",
+        access: "premium",
+        discoverable: true,
+      },
+    ],
+  },
 ];
 
 export const VARIANT_CATALOG = [
@@ -533,6 +548,30 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "nw-7c",
     parentNodeId: "nw-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "zuk-8a",
+    parentNodeId: "nf3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "zuk-8b",
+    parentNodeId: "nf3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "zuk-8c",
+    parentNodeId: "nf3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "zuk-4c",
+    parentNodeId: "nf3",
     access: "premium",
     discoverable: true,
   },

@@ -4,6 +4,11 @@
   "openings_panel": {
     "header": "Aperturas"
   },
+  "panel_groups": {
+    "e4": "e4",
+    "d4": "d4",
+    "nf3": "Cf3"
+  },
   "panel_openings": {
     "scan-1": "Escandinava",
     "span-4": "Española",
@@ -21,7 +26,8 @@
     "ki-3a": "India de Rey",
     "nim-3b": "Nimzo-India",
     "dutch-1": "Holandesa",
-    "qg-3c": "Eslava"
+    "qg-3c": "Eslava",
+    "nf3": "Apertura Zukertort"
   },
   "chess_panel": {
     "position": "Posición",

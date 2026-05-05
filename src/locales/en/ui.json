@@ -4,6 +4,11 @@
   "openings_panel": {
     "header": "Openings"
   },
+  "panel_groups": {
+    "e4": "e4",
+    "d4": "d4",
+    "nf3": "Nf3"
+  },
   "panel_openings": {
     "scan-1": "Scandinavian",
     "span-4": "Spanish",
@@ -21,7 +26,8 @@
     "ki-3a": "King's Indian",
     "nim-3b": "Nimzo-Indian",
     "dutch-1": "Dutch Defense",
-    "qg-3c": "Slav"
+    "qg-3c": "Slav",
+    "nf3": "Zukertort Opening"
   },
   "chess_panel": {
     "position": "Position",

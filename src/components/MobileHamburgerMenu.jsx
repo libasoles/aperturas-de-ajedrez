@@ -209,172 +209,191 @@ export default function MobileHamburgerMenu({
                 WebkitOverflowScrolling: "touch",
               }}
             >
-              {openings.map((group, groupIndex) => (
-                <div
-                  key={group.group}
-                  style={{
-                    flex: 1,
-                    borderRight:
-                      groupIndex < openings.length - 1
-                        ? "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)"
-                        : "none",
-                    padding: "8px 0",
-                  }}
-                >
-                  {/* Group label */}
+              {[openings.slice(0, 1), openings.slice(1)].map(
+                (columnGroups, colIndex) => (
                   <div
-                    className="font-mono uppercase"
+                    key={colIndex}
                     style={{
-                      fontSize: 10,
-                      letterSpacing: "0.3em",
-                      padding: "4px 12px 8px",
-                      color:
-                        "color-mix(in srgb, var(--color-neon-cyan) 50%, transparent)",
+                      flex: 1,
+                      borderRight:
+                        colIndex === 0
+                          ? "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)"
+                          : "none",
+                      padding: "8px 0",
                     }}
                   >
-                    {group.group}
-                  </div>
-
-                  {group.openings.map((opening) => {
-                    const isOpeningActive = activeOpening === opening.nodeId;
-                    const variants =
-                      variantsByParent.get(opening.nodeId) ?? [];
-
-                    return (
-                      <div key={opening.nodeId}>
-                        {/* Opening row */}
-                        <button
-                          onClick={() => handleOpeningClick(opening)}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 8,
-                            width: "100%",
-                            minHeight: 40,
-                            padding: "0 12px",
-                            background: isOpeningActive
-                              ? `${opening.color}20`
-                              : "transparent",
-                            border: "none",
-                            borderLeft: `3px solid ${
-                              isOpeningActive
-                                ? opening.glow
-                                : `${opening.color}40`
-                            }`,
-                            cursor: "pointer",
-                            textAlign: "left",
-                          }}
-                        >
-                          <span
+                    {columnGroups.map((group, gIdx) => (
+                      <div key={group.group}>
+                        {gIdx > 0 && (
+                          <div
                             style={{
-                              width: 8,
-                              height: 8,
-                              flexShrink: 0,
-                              background: isOpeningActive
-                                ? opening.color
-                                : "transparent",
-                              border: `1px solid ${opening.color}`,
-                              boxShadow: isOpeningActive
-                                ? `0 0 6px ${opening.glow}`
-                                : "none",
+                              height: 1,
+                              background:
+                                "color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+                              margin: "4px 12px",
                             }}
                           />
-                          <span
-                            className="font-mono"
-                            style={{
-                              fontSize: 14,
-                              color: isOpeningActive
-                                ? opening.text
-                                : `${opening.text}cc`,
-                              textShadow: isOpeningActive
-                                ? `0 0 6px ${opening.glow}80`
-                                : "none",
-                            }}
-                          >
-                            {t(
-                              `panel_openings.${opening.nodeId}`,
-                              opening.label,
-                            )}
-                          </span>
-                          {opening.access === "premium" &&
-                            !hasPremiumAccess() && (
-                              <PremiumLockIcon
-                                className="w-3.5 h-3.5 shrink-0"
-                                title="Contenido premium"
-                              />
-                            )}
-                        </button>
+                        )}
+                        {/* Group label */}
+                        <div
+                          className="font-mono uppercase"
+                          style={{
+                            fontSize: 10,
+                            letterSpacing: "0.3em",
+                            padding: "4px 12px 8px",
+                            color:
+                              "color-mix(in srgb, var(--color-neon-cyan) 50%, transparent)",
+                          }}
+                        >
+                          {t(`panel_groups.${group.group}`, group.group)}
+                        </div>
 
-                        {/* Variant rows — indented under parent opening */}
-                        {variants.map((variant) => {
-                          const isVariantActive =
-                            activeVariant === variant.variantNodeId;
-                          const label = getVariantLabel(variant, locale);
+                        {group.openings.map((opening) => {
+                          const isOpeningActive =
+                            activeOpening === opening.nodeId;
+                          const variants =
+                            variantsByParent.get(opening.nodeId) ?? [];
 
                           return (
-                            <button
-                              key={variant.variantNodeId}
-                              onClick={() => handleVariantClick(variant)}
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: 6,
-                                width: "100%",
-                                minHeight: 36,
-                                paddingLeft: 28,
-                                paddingRight: 12,
-                                background: isVariantActive
-                                  ? `${opening.color}18`
-                                  : "transparent",
-                                border: "none",
-                                borderLeft: `3px solid ${
-                                  isVariantActive ? opening.glow : "transparent"
-                                }`,
-                                cursor: "pointer",
-                                textAlign: "left",
-                              }}
-                            >
-                              <span
+                            <div key={opening.nodeId}>
+                              {/* Opening row */}
+                              <button
+                                onClick={() => handleOpeningClick(opening)}
                                 style={{
-                                  width: 4,
-                                  height: 4,
-                                  flexShrink: 0,
-                                  borderRadius: "50%",
-                                  background: isVariantActive
-                                    ? opening.glow
-                                    : `${opening.color}60`,
-                                }}
-                              />
-                              <span
-                                className="font-mono"
-                                style={{
-                                  fontSize: 13,
-                                  color: isVariantActive
-                                    ? opening.text
-                                    : `${opening.text}80`,
-                                  textShadow: isVariantActive
-                                    ? `0 0 6px ${opening.glow}60`
-                                    : "none",
-                                  lineHeight: 1.3,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 8,
+                                  width: "100%",
+                                  minHeight: 40,
+                                  padding: "0 12px",
+                                  background: isOpeningActive
+                                    ? `${opening.color}20`
+                                    : "transparent",
+                                  border: "none",
+                                  borderLeft: `3px solid ${
+                                    isOpeningActive
+                                      ? opening.glow
+                                      : `${opening.color}40`
+                                  }`,
+                                  cursor: "pointer",
+                                  textAlign: "left",
                                 }}
                               >
-                                {label}
-                              </span>
-                              {variant.access === "premium" &&
-                                !hasPremiumAccess() && (
-                                  <PremiumLockIcon
-                                    className="w-3.5 h-3.5 shrink-0"
-                                    title="Contenido premium"
-                                  />
-                                )}
-                            </button>
+                                <span
+                                  style={{
+                                    width: 8,
+                                    height: 8,
+                                    flexShrink: 0,
+                                    background: isOpeningActive
+                                      ? opening.color
+                                      : "transparent",
+                                    border: `1px solid ${opening.color}`,
+                                    boxShadow: isOpeningActive
+                                      ? `0 0 6px ${opening.glow}`
+                                      : "none",
+                                  }}
+                                />
+                                <span
+                                  className="font-mono"
+                                  style={{
+                                    fontSize: 14,
+                                    color: isOpeningActive
+                                      ? opening.text
+                                      : `${opening.text}cc`,
+                                    textShadow: isOpeningActive
+                                      ? `0 0 6px ${opening.glow}80`
+                                      : "none",
+                                  }}
+                                >
+                                  {t(
+                                    `panel_openings.${opening.nodeId}`,
+                                    opening.label,
+                                  )}
+                                </span>
+                                {opening.access === "premium" &&
+                                  !hasPremiumAccess() && (
+                                    <PremiumLockIcon
+                                      className="w-3.5 h-3.5 shrink-0"
+                                      title="Contenido premium"
+                                    />
+                                  )}
+                              </button>
+
+                              {/* Variant rows — indented under parent opening */}
+                              {variants.map((variant) => {
+                                const isVariantActive =
+                                  activeVariant === variant.variantNodeId;
+                                const label = getVariantLabel(variant, locale);
+
+                                return (
+                                  <button
+                                    key={variant.variantNodeId}
+                                    onClick={() => handleVariantClick(variant)}
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 6,
+                                      width: "100%",
+                                      minHeight: 36,
+                                      paddingLeft: 28,
+                                      paddingRight: 12,
+                                      background: isVariantActive
+                                        ? `${opening.color}18`
+                                        : "transparent",
+                                      border: "none",
+                                      borderLeft: `3px solid ${
+                                        isVariantActive
+                                          ? opening.glow
+                                          : "transparent"
+                                      }`,
+                                      cursor: "pointer",
+                                      textAlign: "left",
+                                    }}
+                                  >
+                                    <span
+                                      style={{
+                                        width: 4,
+                                        height: 4,
+                                        flexShrink: 0,
+                                        borderRadius: "50%",
+                                        background: isVariantActive
+                                          ? opening.glow
+                                          : `${opening.color}60`,
+                                      }}
+                                    />
+                                    <span
+                                      className="font-mono"
+                                      style={{
+                                        fontSize: 13,
+                                        color: isVariantActive
+                                          ? opening.text
+                                          : `${opening.text}80`,
+                                        textShadow: isVariantActive
+                                          ? `0 0 6px ${opening.glow}60`
+                                          : "none",
+                                        lineHeight: 1.3,
+                                      }}
+                                    >
+                                      {label}
+                                    </span>
+                                    {variant.access === "premium" &&
+                                      !hasPremiumAccess() && (
+                                        <PremiumLockIcon
+                                          className="w-3.5 h-3.5 shrink-0"
+                                          title="Contenido premium"
+                                        />
+                                      )}
+                                  </button>
+                                );
+                              })}
+                            </div>
                           );
                         })}
                       </div>
-                    );
-                  })}
-                </div>
-              ))}
+                    ))}
+                  </div>
+                ),
+              )}
             </div>
           </div>
         </div>

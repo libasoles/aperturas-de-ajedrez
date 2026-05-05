@@ -1106,5 +1106,36 @@
   "nw-7c": {
     "name": "Kennedy Variation",
     "annotation": "Knight development, preparing castling and dynamic counterplay"
+  },
+  "nf3": {
+    "name": "Zukertort Opening",
+    "annotation": "Hypermodern opening: White develops the knight without committing the center, with the option of 2.b3 (Zukertort proper) or many transpositions"
+  },
+  "zuk-2": {
+    "name": "Queenside Fianchetto",
+    "annotation": "With 2.b3, White prepares Bb2 and adopts the Zukertort proper: center control from a distance, without directly occupying it"
+  },
+  "zuk-4a": {
+    "annotation": "The bishop on b2 pressures the long diagonal toward e5 and d4. White completes development before deciding whether to advance e3 or g3"
+  },
+  "zuk-8a": {
+    "name": "Classical Variation",
+    "annotation": "After 1.Nf3 d5 2.b3 Nf6 3.Bb2 e6 4.e3 Be7 5.d4, White establishes a solid structure. Plan: Nd2-e5 followed by central pressure"
+  },
+  "zuk-8b": {
+    "name": "Double Fianchetto (Nimzo-Larsen)",
+    "annotation": "With 3...g6 and 4.g3, both sides fianchetto their kingside bishops. Closed strategic positions where control of the long diagonals is the key"
+  },
+  "zuk-8c": {
+    "name": "Reversed Pirc",
+    "annotation": "After 2.b3 c5 3.Bb2 Nc6 4.e3 e5 5.d4, Black aggressively seizes the center. White responds with d4, initiating tactical central tension"
+  },
+  "zuk-1b": {
+    "name": "Ross Gambit",
+    "annotation": "With 1...e5, Black offers the king pawn in a questionable gambit. Bold but theoretically inferior: White simply captures with a material advantage"
+  },
+  "zuk-4c": {
+    "name": "Ross Gambit Accepted",
+    "annotation": "After 1.Nf3 e5 2.Nxe5 d6 3.Nf3, White consolidates the material advantage. Black seeks compensation through rapid development, but the position is objectively favorable for White"
   }
 }

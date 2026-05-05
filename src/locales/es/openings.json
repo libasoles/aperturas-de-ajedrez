@@ -1106,5 +1106,36 @@
   "nw-7c": {
     "name": "Variante Kennedy",
     "annotation": "Desarrollo del caballo, preparando enroque y contrajuego dinámico"
+  },
+  "nf3": {
+    "name": "Apertura Zukertort",
+    "annotation": "Apertura hipermoderna: blancas desarrollan el caballo sin comprometer el centro, con opción a 2.b3 (Zukertort propio) o múltiples transposiciones"
+  },
+  "zuk-2": {
+    "name": "Fiancheto de Dama",
+    "annotation": "Con 2.b3, blancas preparan Ab2 y adoptan el Zukertort propio: control del centro desde lejos, sin ocuparlo directamente"
+  },
+  "zuk-4a": {
+    "annotation": "El alfil en b2 presiona la diagonal larga hacia e5 y d4. Blancas completan el desarrollo antes de decidir si avanzar e3 o g3"
+  },
+  "zuk-8a": {
+    "name": "Variante Clásica",
+    "annotation": "Tras 1.Cf3 d5 2.b3 Cf6 3.Ab2 e6 4.e3 Ae7 5.d4, blancas establecen una sólida estructura. Plan: Ce5 seguido de presión central"
+  },
+  "zuk-8b": {
+    "name": "Doble Fiancheto (Nimzo-Larsen)",
+    "annotation": "Con 3...g6 y 4.g3, ambos bandos fianchetan el alfil de rey. Posiciones estratégicas cerradas donde el control de las diagonales largas es la clave"
+  },
+  "zuk-8c": {
+    "name": "Pirc Invertido",
+    "annotation": "Tras 2.b3 c5 3.Ab2 Cc6 4.e3 e5 5.d4, negras ocupan el centro agresivamente. Blancas responden con d4 iniciando tensión central táctica"
+  },
+  "zuk-1b": {
+    "name": "Gambito Ross",
+    "annotation": "Con 1...e5, negras ofrecen el peón de rey de forma cuestionable. Audaz pero teóricamente inferior: blancas simplemente capturan con ventaja material"
+  },
+  "zuk-4c": {
+    "name": "Gambito Ross Aceptado",
+    "annotation": "Tras 1.Cf3 e5 2.Cxe5 d6 3.Cf3, blancas consolidan la ventaja material. Negras buscan compensación por desarrollo rápido, pero la posición es objetivamente favorable a blancas"
   }
 }

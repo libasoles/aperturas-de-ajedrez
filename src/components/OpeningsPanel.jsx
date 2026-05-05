@@ -110,11 +110,11 @@ export default function OpeningsPanel({
 
       {/* Body */}
       {!collapsed && (
-        <div className="flex flex-col gap-3 px-4 pb-4">
+        <div className="flex flex-col gap-3 px-4 pb-4 overflow-y-auto" style={{ maxHeight: 260 }}>
           {openings.map((group, groupIndex) => (
             <div key={group.group} className="flex flex-col gap-1.5">
               <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-cyan/50">
-                {group.group}
+                {t(`panel_groups.${group.group}`, group.group)}
               </span>
               <div className="flex flex-wrap items-center gap-2">
                 {group.openings.map((opening, openingIndex) => {

@@ -279,6 +279,22 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Maîtrisez la Défense Slave (1.d4 d5 2.c4 c6) : variante d'échange, ligne classique, slave acceptée et semi-slave dans un arbre interactif avec échiquier animé.",
   },
+  // ── Apertura Zukertort ────────────────────────────────────
+  {
+    slug: "apertura-zukertort",
+    slugEn: "zukertort-opening",
+    slugFr: "ouverture-zukertort",
+    nodeId: "nf3",
+    title: "Apertura Zukertort | Aperturas de Ajedrez",
+    titleEn: "Zukertort Opening | Chess Openings",
+    titleFr: "Ouverture Zukertort | Ouvertures d'Échecs",
+    description:
+      "Aprende la Apertura Zukertort (1.Cf3 d5 2.b3): apertura hipermoderna que controla el centro desde la distancia con el fiancheto de dama y el alfil en b2.",
+    descriptionEn:
+      "Learn the Zukertort Opening (1.Nf3 d5 2.b3): a hypermodern opening that controls the center from a distance with the queenside fianchetto and bishop on b2.",
+    descriptionFr:
+      "Apprenez l'Ouverture Zukertort (1.Cf3 d5 2.b3) : une ouverture hypermoderne qui contrôle le centre de loin avec le fianchetto de dame et le fou en b2.",
+  },
 ];
 
 /**
@@ -1260,6 +1276,71 @@ const VARIANT_ROUTE_DEFS = [
       "Learn the Kennedy Variation of the Nimzowitsch Defense (2...e5): Black immediately counterattacks the center with e5, seeking dynamic and unbalanced play.",
     descriptionFr:
       "Apprenez la Variante Kennedy de la Défense Nimzowitsch (2...e5) : les Noirs contre-attaquent immédiatement le centre avec e5, cherchant un jeu dynamique et déséquilibré.",
+  },
+  // ── Apertura Zukertort ────────────────────────────────────
+  {
+    slug: "apertura-zukertort/variante-clasica",
+    slugEn: "zukertort-opening/classical-variation",
+    slugFr: "ouverture-zukertort/variante-classique",
+    variantNodeId: "zuk-8a",
+    parentNodeId: "nf3",
+    title: "Variante Clásica | Apertura Zukertort | Aperturas de Ajedrez",
+    titleEn: "Classical Variation | Zukertort Opening | Chess Openings",
+    titleFr: "Variante Classique | Ouverture Zukertort | Ouvertures d'Échecs",
+    description:
+      "Estudia la Variante Clásica de la Apertura Zukertort (1.Cf3 d5 2.b3 Cf6 3.Ab2 e6 4.e3 Ae7 5.d4): juego posicional sólido con estructura equilibrada y plan de Ce5.",
+    descriptionEn:
+      "Study the Classical Variation of the Zukertort Opening (1.Nf3 d5 2.b3 Nf6 3.Bb2 e6 4.e3 Be7 5.d4): solid positional play with a balanced structure and the Nd2-e5 plan.",
+    descriptionFr:
+      "Étudiez la Variante Classique de l'Ouverture Zukertort (1.Cf3 d5 2.b3 Cf6 3.Fb2 e6 4.e3 Fe7 5.d4) : jeu positionnel solide avec une structure équilibrée et le plan Cd2-e5.",
+  },
+  {
+    slug: "apertura-zukertort/doble-fiancheto",
+    slugEn: "zukertort-opening/double-fianchetto",
+    slugFr: "ouverture-zukertort/double-fianchetto",
+    variantNodeId: "zuk-8b",
+    parentNodeId: "nf3",
+    title: "Doble Fiancheto | Apertura Zukertort | Aperturas de Ajedrez",
+    titleEn: "Double Fianchetto | Zukertort Opening | Chess Openings",
+    titleFr: "Double Fianchetto | Ouverture Zukertort | Ouvertures d'Échecs",
+    description:
+      "Explora el Doble Fiancheto Nimzo-Larsen de la Apertura Zukertort (1.Cf3 d5 2.b3 Cf6 3.Ab2 g6 4.g3 Ag7 5.Ag2): ambos bandos fianchetan el alfil de rey en posiciones cerradas.",
+    descriptionEn:
+      "Explore the Nimzo-Larsen Double Fianchetto of the Zukertort Opening (1.Nf3 d5 2.b3 Nf6 3.Bb2 g6 4.g3 Bg7 5.Bg2): both sides fianchetto the kingside bishop in closed strategic positions.",
+    descriptionFr:
+      "Explorez le Double Fianchetto Nimzo-Larsen de l'Ouverture Zukertort (1.Cf3 d5 2.b3 Cf6 3.Fb2 g6 4.g3 Fg7 5.Fg2) : les deux camps fianchettent le fou de roi dans des positions stratégiques fermées.",
+  },
+  {
+    slug: "apertura-zukertort/pirc-invertido",
+    slugEn: "zukertort-opening/reversed-pirc",
+    slugFr: "ouverture-zukertort/pirc-inverse",
+    variantNodeId: "zuk-8c",
+    parentNodeId: "nf3",
+    title: "Pirc Invertido | Apertura Zukertort | Aperturas de Ajedrez",
+    titleEn: "Reversed Pirc | Zukertort Opening | Chess Openings",
+    titleFr: "Pirc Inversé | Ouverture Zukertort | Ouvertures d'Échecs",
+    description:
+      "Aprende el Pirc Invertido de la Apertura Zukertort (1.Cf3 d5 2.b3 c5 3.Ab2 Cc6 4.e3 e5 5.d4): negras ocupan el centro agresivamente, blancas responden con d4.",
+    descriptionEn:
+      "Learn the Reversed Pirc of the Zukertort Opening (1.Nf3 d5 2.b3 c5 3.Bb2 Nc6 4.e3 e5 5.d4): Black aggressively seizes the center, White responds with d4.",
+    descriptionFr:
+      "Apprenez le Pirc Inversé de l'Ouverture Zukertort (1.Cf3 d5 2.b3 c5 3.Fb2 Cc6 4.e3 e5 5.d4) : les Noirs occupent le centre agressivement, les Blancs répondent avec d4.",
+  },
+  {
+    slug: "apertura-zukertort/gambito-ross",
+    slugEn: "zukertort-opening/ross-gambit",
+    slugFr: "ouverture-zukertort/gambit-ross",
+    variantNodeId: "zuk-4c",
+    parentNodeId: "nf3",
+    title: "Gambito Ross | Apertura Zukertort | Aperturas de Ajedrez",
+    titleEn: "Ross Gambit | Zukertort Opening | Chess Openings",
+    titleFr: "Gambit Ross | Ouverture Zukertort | Ouvertures d'Échecs",
+    description:
+      "Estudia el Gambito Ross de la Apertura Zukertort (1.Cf3 e5 2.Cxe5 d6 3.Cf3): blancas aceptan el peón negro con ventaja material mientras negras buscan compensación posicional.",
+    descriptionEn:
+      "Study the Ross Gambit of the Zukertort Opening (1.Nf3 e5 2.Nxe5 d6 3.Nf3): White accepts Black's pawn with a material advantage while Black seeks positional compensation.",
+    descriptionFr:
+      "Étudiez le Gambit Ross de l'Ouverture Zukertort (1.Cf3 e5 2.Cxe5 d6 3.Cf3) : les Blancs acceptent le pion noir avec un avantage matériel tandis que les Noirs cherchent une compensation positionnelle.",
   },
 ];
 
