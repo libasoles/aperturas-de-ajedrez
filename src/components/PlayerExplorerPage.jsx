@@ -436,6 +436,7 @@ function PlayerExplorerContent({ player, locale }) {
         selectedNode={state.selectedNode}
         continuations={state.continuations}
         transpositions={state.transpositions}
+        activeSequence={moves}
         gameDetails={state.gameDetails}
         onLoadGame={state.loadGame}
         locale={locale}
