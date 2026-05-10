@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Background, Controls, MarkerType, ReactFlow, ReactFlowProvider } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ChessNode from "./ChessNode";
@@ -15,6 +16,7 @@ const PLAYER_COLORS = {
   black: { node: "#111111", text: "#f8fafc", border: "#bf5fff", edge: "#bf5fff" },
 };
 const nodeTypes = { chess: ChessNode };
+const PREFETCH_CHILD_LIMIT = 8;
 
 function apiUrl(name, params) {
   const search = new URLSearchParams(params);
@@ -24,7 +26,11 @@ function apiUrl(name, params) {
 async function fetchJson(name, params) {
   const response = await fetch(apiUrl(name, params));
   const payload = await response.json();
-  if (!response.ok) throw new Error(payload.error ?? `Error loading ${name}`);
+  if (!response.ok) {
+    const error = new Error(payload.error ?? `Error loading ${name}`);
+    error.status = response.status;
+    throw error;
+  }
   return payload;
 }
 
@@ -106,7 +112,7 @@ function buildGraph(nodesById, nodeId, expandedIds, depth = 0, yOffset = 0) {
   return { nodes, edges, height: Y_STEP };
 }
 
-function usePlayerExplorer(player) {
+export function usePlayerExplorer(player) {
   const playerKey = player.keyName ?? player.name;
   const [color, setColor] = useState("white");
   const [nodesById, setNodesById] = useState(initialNodes);
@@ -120,15 +126,19 @@ function usePlayerExplorer(player) {
   const cacheRef = useRef(new Map());
   const loadingRef = useRef(new Set());
   const failedRef = useRef(new Set());
+  const generationRef = useRef(0);
   // Read nodesById without adding it as a dependency of loadFen
   const nodesByIdRef = useRef(nodesById);
   useEffect(() => { nodesByIdRef.current = nodesById; });
 
   const resetTree = useCallback(() => {
+    generationRef.current += 1;
     cacheRef.current.clear();
     loadingRef.current.clear();
     failedRef.current.clear();
-    setNodesById(initialNodes());
+    const nextNodes = initialNodes();
+    nodesByIdRef.current = nextNodes;
+    setNodesById(nextNodes);
     setExpandedIds(new Set(["root"]));
     setSelectedNodeId("root");
     setTranspositions([]);
@@ -145,17 +155,31 @@ function usePlayerExplorer(player) {
       .catch((err) => setError(err.message));
   }, [playerKey]);
 
-  const loadFen = useCallback(
-    async (nodeId) => {
+  const loadPosition = useCallback(
+    async (nodeId, { prefetch = false } = {}) => {
       const source = nodesByIdRef.current[nodeId];
-      if (!source || source.loaded || loadingRef.current.has(nodeId) || failedRef.current.has(nodeId)) return;
-      loadingRef.current.add(nodeId);
-      setNodesById((current) => ({
-        ...current,
-        [nodeId]: { ...current[nodeId], loading: true },
-      }));
+      if (!source) return;
+      const cacheKey = `${color}:${source.fen}`;
+      if (
+        source.loaded ||
+        loadingRef.current.has(cacheKey) ||
+        failedRef.current.has(cacheKey)
+      )
+        return;
+
+      const generation = generationRef.current;
+      loadingRef.current.add(cacheKey);
+      if (!prefetch) {
+        const current = nodesByIdRef.current;
+        const node = current[nodeId];
+        if (node) {
+          const next = { ...current, [nodeId]: { ...node, loading: true } };
+          nodesByIdRef.current = next;
+          setNodesById(next);
+        }
+      }
+
       try {
-        const cacheKey = `${color}:${source.fen}`;
         const payload =
           cacheRef.current.get(cacheKey) ??
           (await fetchJson("player-explorer", {
@@ -163,41 +187,83 @@ function usePlayerExplorer(player) {
             color,
             fen: source.fen,
           }));
+        if (generation !== generationRef.current) return;
         cacheRef.current.set(cacheKey, payload);
-        setNodesById((current) => {
-          const parent = current[nodeId];
-          if (!parent) return current;
-          const next = { ...current };
-          const children = payload.moves.map((move, index) => {
-            const id = childId(nodeId, `${index}-${move.san}`, move.fen);
-            next[id] = {
-              ...move,
-              id,
-              parentId: nodeId,
-              move: move.san,
-              color: (parent.ply + 1) % 2 === 1 ? "white" : "black",
-              ply: parent.ply + 1,
-              children: current[id]?.children ?? [],
-              loaded: current[id]?.loaded ?? false,
-              loading: false,
-            };
-            return id;
-          });
-          next[nodeId] = { ...parent, children, loaded: true, loading: false };
-          return next;
+        const childIdsToPrefetch = payload.moves.map((move, index) =>
+          childId(nodeId, `${index}-${move.san}`, move.fen),
+        );
+        const current = nodesByIdRef.current;
+        const parent = current[nodeId];
+        if (!parent) return;
+        const next = { ...current };
+        payload.moves.forEach((move, index) => {
+          const id = childIdsToPrefetch[index];
+          next[id] = {
+            ...move,
+            id,
+            parentId: nodeId,
+            move: move.san,
+            color: (parent.ply + 1) % 2 === 1 ? "white" : "black",
+            ply: parent.ply + 1,
+            children: current[id]?.children ?? [],
+            loaded: current[id]?.loaded ?? false,
+            loading: false,
+          };
         });
+        next[nodeId] = {
+          ...parent,
+          children: childIdsToPrefetch,
+          loaded: true,
+          loading: false,
+        };
+        nodesByIdRef.current = next;
+        setNodesById(next);
+
+        if (!prefetch && childIdsToPrefetch.length > 0) {
+          window.queueMicrotask(() => {
+            childIdsToPrefetch
+              .slice(0, PREFETCH_CHILD_LIMIT)
+              .forEach((childNodeId) => {
+                loadPosition(childNodeId, { prefetch: true });
+              });
+          });
+        }
       } catch (err) {
-        failedRef.current.add(nodeId);
-        setError(err.message);
-        setNodesById((current) => ({
-          ...current,
-          [nodeId]: { ...current[nodeId], loading: false },
-        }));
+        if (generation !== generationRef.current) return;
+        if (prefetch && err.status === 404) {
+          cacheRef.current.set(cacheKey, { fen: source.fen, moves: [] });
+          const current = nodesByIdRef.current;
+          const node = current[nodeId];
+          if (node) {
+            const next = {
+              ...current,
+              [nodeId]: { ...node, children: [], loaded: true, loading: false },
+            };
+            nodesByIdRef.current = next;
+            setNodesById(next);
+          }
+          return;
+        }
+
+        failedRef.current.add(cacheKey);
+        if (!prefetch) setError(err.message);
+        const current = nodesByIdRef.current;
+        const node = current[nodeId];
+        if (node) {
+          const next = { ...current, [nodeId]: { ...node, loading: false } };
+          nodesByIdRef.current = next;
+          setNodesById(next);
+        }
       } finally {
-        loadingRef.current.delete(nodeId);
+        loadingRef.current.delete(cacheKey);
       }
     },
     [color, playerKey],
+  );
+
+  const loadFen = useCallback(
+    (nodeId) => loadPosition(nodeId, { prefetch: false }),
+    [loadPosition],
   );
 
   useEffect(() => {
@@ -237,6 +303,56 @@ function usePlayerExplorer(player) {
     [loadFen],
   );
 
+  const expandToNextFork = useCallback(
+    (nodeId) => {
+      const idsToExpand = [];
+      let currentId = nodeId;
+      const currentNodes = nodesByIdRef.current;
+
+      while (currentId) {
+        const node = currentNodes[currentId];
+        if (!node) break;
+
+        idsToExpand.push(currentId);
+        if (!node.loaded || node.children.length !== 1) break;
+        currentId = node.children[0];
+      }
+
+      if (idsToExpand.length > 0) {
+        setExpandedIds((current) => new Set([...current, ...idsToExpand]));
+      }
+      loadFen(nodeId);
+    },
+    [loadFen],
+  );
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key !== " " || !selectedNodeId) return;
+
+      const target = event.target;
+      const isEditable =
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT");
+      if (isEditable) return;
+
+      const node = nodesByIdRef.current[selectedNodeId];
+      if (!node) return;
+      const hasChildren = node.loaded ? node.children.length > 0 : true;
+      if (!hasChildren) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      expandToNextFork(selectedNodeId);
+    }
+
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [expandToNextFork, selectedNodeId]);
+
   const loadGame = useCallback(async (gameId) => {
     if (gameDetails[gameId]) return;
     const payload = await fetchJson("game-detail", { game_id: gameId });
@@ -264,11 +380,12 @@ function usePlayerExplorer(player) {
           ...node.data,
           onToggle: toggleNode,
           onSelect: selectNode,
+          onExpandToFork: expandToNextFork,
           isSelected: node.id === selectedNodeId,
           isInActivePath: activePathIds.has(node.id),
         },
       })),
-    [activePathIds, graph.nodes, selectNode, selectedNodeId, toggleNode],
+    [activePathIds, expandToNextFork, graph.nodes, selectNode, selectedNodeId, toggleNode],
   );
 
   return {
