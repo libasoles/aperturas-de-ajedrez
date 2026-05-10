@@ -1,0 +1,22 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  node_bundler = "esbuild"
+
+# API routes → Netlify Functions (must come before SPA fallback)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# HTTP → HTTPS canonical redirect
+[[redirects]]
+  from = "http://aperturasdeajedrez.com.ar/*"
+  to = "https://aperturasdeajedrez.com.ar/:splat"
+  status = 301
+  force = true
