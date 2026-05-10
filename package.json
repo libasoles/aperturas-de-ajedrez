@@ -14,7 +14,8 @@
     "hooks:install": "git config core.hooksPath .githooks",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "download:player": "node scripts/download-player-pgn.js"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -23,6 +24,7 @@
     "@xyflow/react": "^12.10.1",
     "chess.js": "^1.4.0",
     "i18next": "^25.8.18",
+    "neo4j-driver": "^6.0.1",
     "react": "^19.2.0",
     "react-chessboard": "^5.10.0",
     "react-dom": "^19.2.0",

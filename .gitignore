@@ -25,6 +25,8 @@ dist-ssr
 *.sw?
 
 .playwright-mcp
+pgn/
+PlayerAnalysis.*
 
 .netlify
 *.pgn
