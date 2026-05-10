@@ -19,6 +19,7 @@ Skills are in `.claude/skills/`. They are invoked **automatically** — read the
 | Skill                                                                | Trigger                                                                         |
 | -------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`sync-opening-routes`](.claude/skills/sync-opening-routes/SKILL.md) | Any edit to `src/data/openings.js` that adds a new opening node or variant node |
+| [`ingest-player`](.claude/skills/ingest-player/SKILL.md)             | Ingesting a player's games into Neo4j, downloading PGN, cargar partidas, ingestar jugador |
 
 ## Agents (on demand)
 
@@ -27,6 +28,7 @@ Agents are in `.claude/agents/`. They are **not** invoked automatically — spaw
 | Agent                                                    | When to use                                                                                                                                                                              |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`research-opening`](.claude/agents/research-opening.md) | Before adding any new opening — fetches theory, validates moves, produces all data artifacts (node tree, colors, catalog, translations, routes). Output only; does not touch source files. |
+| [`lookup-player-source`](.claude/agents/lookup-player-source.md) | Spawned by `ingest-player` when PGNMentor returns 404 — finds correct name or Lichess fallback URL. Output only; does not touch source files. |
 
 **Known issue in research-opening output**: §5b says `src/hooks/useOpeningTreeState.js → OPENING_COLORS` — that file path is **wrong**. The correct file is `src/data/openingColors.js`.
 

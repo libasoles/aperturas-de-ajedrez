@@ -15,9 +15,25 @@ const outDir = 'pgn'
 
 console.log(`Downloading ${url}...`)
 const res = await fetch(url)
-if (!res.ok) throw new Error(`HTTP ${res.status} — player not found on PGNMentor?`)
+if (!res.ok) {
+  console.error(`Error: HTTP ${res.status} — jugador no encontrado en PGNMentor.`)
+  process.exit(1)
+}
 
 writeFileSync(tmpZip, Buffer.from(await res.arrayBuffer()))
 
 mkdirSync(outDir, { recursive: true })
-execSync(`unzip -o "${tmpZip}" -d "${outDir}"`, { stdio: 'inherit' })
+const unzipOutput = execSync(`unzip -o "${tmpZip}" -d "${outDir}"`, { encoding: 'utf8' })
+
+const extracted = unzipOutput
+  .split('\n')
+  .filter(l => /^\s*(inflating|extracting):/.test(l))
+  .map(l => l.replace(/^\s*(inflating|extracting):\s*/, '').trim())
+  .filter(f => f.toLowerCase().endsWith('.pgn'))
+
+if (extracted.length === 0) {
+  console.error('No se encontraron archivos .pgn en el ZIP.')
+  process.exit(1)
+}
+
+extracted.forEach(f => console.log(`EXTRACTED_PGN=${f}`))
