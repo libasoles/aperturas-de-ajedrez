@@ -1,5 +1,7 @@
 import MobileOpeningTree from "./components/MobileOpeningTree";
 import OpeningTree from "./components/OpeningTree";
+import PlayerExplorerPage from "./components/PlayerExplorerPage";
+import { resolvePlayerRoute } from "./data/players";
 import {
   applyLocaleRedirectForTreeConfigs,
   resolveTreeConfigFromPathname,
@@ -7,11 +9,9 @@ import {
 import { useIsMobile } from "./hooks/useIsMobile";
 import { useOpeningTreeState } from "./hooks/useOpeningTreeState";
 
-export default function App() {
+function OpeningApp({ pathname }) {
   applyLocaleRedirectForTreeConfigs();
-  const config = resolveTreeConfigFromPathname(
-    typeof window === "undefined" ? "/" : window.location.pathname,
-  );
+  const config = resolveTreeConfigFromPathname(pathname);
   const state = useOpeningTreeState(config);
   const isMobile = useIsMobile();
 
@@ -19,5 +19,18 @@ export default function App() {
     <MobileOpeningTree state={state} />
   ) : (
     <OpeningTree state={state} />
+  );
+}
+
+export default function App() {
+  const pathname = typeof window === "undefined" ? "/" : window.location.pathname;
+  const playerRoute = resolvePlayerRoute(pathname);
+  return playerRoute ? (
+    <PlayerExplorerPage
+      player={playerRoute.player}
+      locale={playerRoute.locale}
+    />
+  ) : (
+    <OpeningApp pathname={pathname} />
   );
 }

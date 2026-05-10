@@ -2,6 +2,13 @@
   publish = "dist"
   command = "npm run build"
 
+[dev]
+  command = "npm run dev"
+  publish = "public"
+  port = 8888
+  targetPort = 5173
+  framework = "#custom"
+
 [build.environment]
   NODE_VERSION = "20"
 

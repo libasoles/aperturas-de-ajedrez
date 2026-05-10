@@ -26,7 +26,8 @@ dist-ssr
 
 .playwright-mcp
 pgn/
+*.pgn
 PlayerAnalysis.*
 
+# Local Netlify folder
 .netlify
-*.pgn
