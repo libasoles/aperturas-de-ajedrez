@@ -12,12 +12,28 @@ export const PLAYER_CATALOG = [
       fr: "joueurs/capablanca",
     },
   },
+  {
+    id: "alekhine",
+    slug: "alekhine",
+    name: "Alexander Alekhine",
+    keyName: "Alekhine, Alexander",
+    displayName: "Alexander Alekhine",
+    title: "Alexander Alekhine",
+    routes: {
+      es: "jugadores/alekhine",
+      en: "players/alekhine",
+      fr: "joueurs/alekhine",
+    },
+  },
 ];
 
 export const PLAYER_BY_SLUG = Object.fromEntries(
   PLAYER_CATALOG.flatMap((player) => [
     [player.slug, player],
-    ...Object.values(player.routes).map((route) => [route.split("/").at(-1), player]),
+    ...Object.values(player.routes).map((route) => [
+      route.split("/").at(-1),
+      player,
+    ]),
   ]),
 );
 
@@ -34,7 +50,9 @@ export function stripLocalePrefix(pathname) {
 export function resolvePlayerRoute(pathname) {
   const { locale, path } = stripLocalePrefix(pathname);
   const slug = path.replace(/^\/|\/$/g, "");
-  const player = PLAYER_CATALOG.find((candidate) => candidate.routes[locale] === slug);
+  const player = PLAYER_CATALOG.find(
+    (candidate) => candidate.routes[locale] === slug,
+  );
   return player ? { locale, player } : null;
 }
 

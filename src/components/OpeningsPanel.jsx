@@ -46,7 +46,7 @@ export default function OpeningsPanel({
 
       {!collapsed && (
         <div
-          className="flex flex-col gap-3 px-4 pb-4 overflow-y-auto"
+          className="min-h-0 flex flex-col gap-3 px-4 pb-4 overflow-y-auto"
           style={{ maxHeight: 260 }}
         >
           {openings.map((group, groupIndex) => (

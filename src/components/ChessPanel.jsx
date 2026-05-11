@@ -4,6 +4,10 @@ import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import PremiumContentGate from "./PremiumContentGate";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
+import {
+  clampPanelToViewport,
+  getPanelViewportBoundsStyle,
+} from "./floatingPanelBounds";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 460;
@@ -182,10 +186,21 @@ export default function ChessPanel({
       if (!dragRef.current.dragging) return;
       const dx = e.clientX - dragRef.current.startX;
       const dy = e.clientY - dragRef.current.startY;
-      setPos({
+      const rect = panelRef.current?.getBoundingClientRect();
+      const nextPos = {
         x: dragRef.current.originX + dx,
         y: dragRef.current.originY + dy,
-      });
+      };
+
+      setPos(
+        rect
+          ? clampPanelToViewport({
+              ...nextPos,
+              width: rect.width,
+              height: rect.height,
+            })
+          : nextPos,
+      );
     }
     function onMouseUp() {
       dragRef.current.dragging = false;
@@ -201,12 +216,19 @@ export default function ChessPanel({
   const positionStyle = pos
     ? { left: pos.x, top: pos.y, bottom: "auto", right: "auto" }
     : { bottom: DESKTOP_CHESS_PANEL_BOTTOM, right: DESKTOP_PANEL_RIGHT };
+  const viewportBoundsStyle = getPanelViewportBoundsStyle({
+    pos,
+    defaultPosition: {
+      bottom: DESKTOP_CHESS_PANEL_BOTTOM,
+      right: DESKTOP_PANEL_RIGHT,
+    },
+  });
 
   return (
     <div
       ref={panelRef}
-      className="panel absolute z-20 flex flex-col gap-3 pt-2 px-4 pb-4"
-      style={{ ...positionStyle, width: BOARD_SIZE + 32 }}
+      className="panel absolute z-20 flex flex-col gap-3 overflow-hidden pt-2 px-4 pb-4"
+      style={{ ...positionStyle, width: BOARD_SIZE + 32, ...viewportBoundsStyle }}
     >
       {/* Drag handle bar — centered at top */}
       <div

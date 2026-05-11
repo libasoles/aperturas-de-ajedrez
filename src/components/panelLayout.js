@@ -1,4 +1,5 @@
 export const DESKTOP_PANEL_RIGHT = 24;
+export const DESKTOP_PANEL_HEADER_OFFSET = 86;
 export const DESKTOP_CHESS_PANEL_BOTTOM = 12;
 export const DESKTOP_PANEL_STACK_GAP = 16;
 export const MOBILE_BOARD_PANEL_HEIGHT = 310;

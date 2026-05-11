@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
+import {
+  clampPanelToViewport,
+  getPanelViewportBoundsStyle,
+} from "./floatingPanelBounds";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 380;
@@ -44,10 +48,21 @@ export default function PlayerChessBoard({ fen, moves, locale, orientation, onFl
   useEffect(() => {
     function onMouseMove(event) {
       if (!dragRef.current.dragging) return;
-      setPos({
+      const rect = panelRef.current?.getBoundingClientRect();
+      const nextPos = {
         x: dragRef.current.originX + event.clientX - dragRef.current.startX,
         y: dragRef.current.originY + event.clientY - dragRef.current.startY,
-      });
+      };
+
+      setPos(
+        rect
+          ? clampPanelToViewport({
+              ...nextPos,
+              width: rect.width,
+              height: rect.height,
+            })
+          : nextPos,
+      );
     }
     function onMouseUp() {
       dragRef.current.dragging = false;
@@ -63,12 +78,19 @@ export default function PlayerChessBoard({ fen, moves, locale, orientation, onFl
   const positionStyle = pos
     ? { left: pos.x, top: pos.y, bottom: "auto", right: "auto" }
     : { bottom: DESKTOP_CHESS_PANEL_BOTTOM, right: DESKTOP_PANEL_RIGHT };
+  const viewportBoundsStyle = getPanelViewportBoundsStyle({
+    pos,
+    defaultPosition: {
+      bottom: DESKTOP_CHESS_PANEL_BOTTOM,
+      right: DESKTOP_PANEL_RIGHT,
+    },
+  });
 
   return (
     <div
       ref={panelRef}
-      className="panel absolute z-20 flex flex-col gap-3 pt-2 px-4 pb-4"
-      style={{ ...positionStyle, width: BOARD_SIZE + 32 }}
+      className="panel absolute z-20 flex flex-col gap-3 overflow-hidden pt-2 px-4 pb-4"
+      style={{ ...positionStyle, width: BOARD_SIZE + 32, ...viewportBoundsStyle }}
     >
       <div className="panel-divider flex justify-center py-1 -mx-4 cursor-grab" onMouseDown={onMouseDown}>
         <span className="flex gap-0.75 opacity-40 hover:opacity-70 transition-opacity">

@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 import FloatingPanel from "./FloatingPanel";
 import {
-  DESKTOP_OPENINGS_PANEL_BOTTOM,
+  DESKTOP_PANEL_HEADER_OFFSET,
   DESKTOP_PANEL_RIGHT,
 } from "./panelLayout";
 
@@ -59,10 +59,11 @@ export default function PlayerAnalysisPanel({
   return (
     <FloatingPanel
       defaultPosition={{
-        bottom: DESKTOP_OPENINGS_PANEL_BOTTOM,
+        top: DESKTOP_PANEL_HEADER_OFFSET,
         right: DESKTOP_PANEL_RIGHT,
       }}
-      className="max-h-[calc(100vh-8rem)]"
+      fillAvailableHeight
+      resizable
       aria-label="Análisis del jugador"
     >
       <div className="flex items-start justify-between gap-4 px-4 py-3">
@@ -79,7 +80,7 @@ export default function PlayerAnalysisPanel({
         ) : null}
       </div>
 
-      <div className="min-h-0 overflow-y-auto px-4 pb-4">
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
         <section className="mt-4 grid grid-cols-4 gap-2 text-center font-mono">
           <div className="border border-neon-purple/20 p-2">
             <div className="text-[10px] uppercase text-neon-cyan/55">Veces</div>
