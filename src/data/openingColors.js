@@ -113,4 +113,10 @@ export const OPENING_COLORS = {
     border: "#c8a800",
     edge: "#d4b400",
   },
+  marshall: {
+    node: "#191c00",
+    text: "#e2e87c",
+    border: "#7a8c00",
+    edge: "#98b000",
+  },
 };

@@ -1137,5 +1137,57 @@
   "zuk-4c": {
     "name": "Gambit Ross Accepté",
     "annotation": "Après 1.Cf3 e5 2.Cxe5 d6 3.Cf3, les Blancs consolident l'avantage matériel. Les Noirs cherchent une compensation par un développement rapide, mais la position est objectivement favorable aux Blancs"
+  },
+  "marshall-1": {
+    "name": "Défense Marshall",
+    "annotation": "Avec 2...Cf6, les Noirs défendent d5 avec une pièce plutôt qu'un pion. Cette réponse peu orthodoxe au Gambit de la Dame échange le contrôle central contre une activité rapide des pièces."
+  },
+  "marshall-2": {
+    "annotation": "La prise 3.cxd5 est la réponse la plus directe des Blancs. Les Blancs gagnent de l'espace central et forcent les Noirs à décider comment reprendre."
+  },
+  "marshall-3a": {
+    "name": "Ligne Principale",
+    "annotation": "Avec 3...Cxd5, les Noirs reprennent avec le cavalier, maintenant une structure flexible mais permettant aux Blancs de gagner un temps avec 4.e4."
+  },
+  "marshall-4a": {
+    "annotation": "L'avance 4.e4 attaque le cavalier en d5 et établit un centre de pions dominant. Les Blancs obtiennent un avantage d'espace significatif."
+  },
+  "marshall-5a": {
+    "annotation": "Le cavalier doit reculer. 4...Cf6 est la retraite la plus naturelle, retournant en f6 pour poursuivre le développement."
+  },
+  "marshall-6a": {
+    "name": "Variante Classique",
+    "annotation": "5.Cc3 développe naturellement et prépare e5 pour chasser à nouveau le cavalier noir. Les Blancs conservent un avantage d'espace central clair."
+  },
+  "marshall-3b": {
+    "name": "Gambit Tan",
+    "annotation": "Avec 3...c6, les Noirs sacrifient un pion pour un développement rapide et une pression centrale. C'est la réponse la plus agressive à 3.cxd5."
+  },
+  "marshall-4b": {
+    "annotation": "Les Blancs acceptent le sacrifice en prenant en c6. Les Noirs vont reprendre avec le cavalier, obtenant un développement rapide en échange."
+  },
+  "marshall-5b": {
+    "annotation": "Avec 4...Cxc6, les Noirs récupèrent le matériel et activent le cavalier de dame, visant e5 pour créer une tension centrale."
+  },
+  "marshall-6b": {
+    "annotation": "5.Cf3 est le développement le plus solide des Blancs. Les Blancs se préparent à compléter leur développement et à maintenir l'avantage matériel."
+  },
+  "marshall-7b": {
+    "annotation": "5...e5 est la poussée centrale qui justifie le sacrifice de pion des Noirs. Les Noirs cherchent l'égalité par l'activité des pièces."
+  },
+  "marshall-8b": {
+    "annotation": "6.e3 freine l'avance centrale des Noirs et prépare la reprise en d4 avec un avantage positionnel."
+  },
+  "marshall-9b": {
+    "name": "Gambit Tan — Ligne Principale",
+    "annotation": "Après 6...exd4 7.exd4, les Blancs conservent un léger avantage matériel mais les Noirs ont une compensation active. La position est relativement équilibrée."
+  },
+  "marshall-3c": {
+    "name": "Tentative Grünfeld",
+    "annotation": "Avec 3...g6, les Noirs tentent une transposition vers le Grünfeld. Cependant, les Blancs peuvent l'éviter avec précision."
+  },
+  "marshall-4c": {
+    "name": "Réfutation par Da4+",
+    "annotation": "4.Da4+ est la réponse précise qui déjoue la tentative de transposition. Les Noirs ne peuvent pas récupérer le pion d5 et se retrouvent avec une structure affaiblie côté roi."
   }
 }

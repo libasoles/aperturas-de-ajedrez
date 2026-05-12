@@ -177,6 +177,16 @@ export const OPENING_CATALOG = [
         access: "free",
         discoverable: true,
       },
+      {
+        label: "Defensa Marshall",
+        nodeId: "marshall-1",
+        pathIds: ["d4", "qg-1", "qg-2"],
+        color: "#7a8c00",
+        glow: "#98b000",
+        text: "#e2e87c",
+        access: "premium",
+        discoverable: true,
+      },
     ],
   },
   {
@@ -572,6 +582,24 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "zuk-4c",
     parentNodeId: "nf3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "marshall-6a",
+    parentNodeId: "marshall-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "marshall-9b",
+    parentNodeId: "marshall-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "marshall-4c",
+    parentNodeId: "marshall-1",
     access: "premium",
     discoverable: true,
   },

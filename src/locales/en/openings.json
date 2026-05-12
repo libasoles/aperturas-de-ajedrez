@@ -1137,5 +1137,57 @@
   "zuk-4c": {
     "name": "Ross Gambit Accepted",
     "annotation": "After 1.Nf3 e5 2.Nxe5 d6 3.Nf3, White consolidates the material advantage. Black seeks compensation through rapid development, but the position is objectively favorable for White"
+  },
+  "marshall-1": {
+    "name": "Marshall Defense",
+    "annotation": "With 2...Nf6, Black defends d5 with a piece instead of a pawn. This unorthodox response to the Queen's Gambit trades central control for piece activity and quick development."
+  },
+  "marshall-2": {
+    "annotation": "The capture 3.cxd5 is White's most direct response. White gains central space and forces Black to decide how to recapture."
+  },
+  "marshall-3a": {
+    "name": "Main Line",
+    "annotation": "With 3...Nxd5, Black recaptures with the knight, maintaining a flexible structure but allowing White to gain a tempo with 4.e4."
+  },
+  "marshall-4a": {
+    "annotation": "The advance 4.e4 attacks the knight on d5 and establishes a dominant pawn center. White achieves a significant space advantage."
+  },
+  "marshall-5a": {
+    "annotation": "The knight must retreat. 4...Nf6 is the most natural square, returning to f6 to continue development."
+  },
+  "marshall-6a": {
+    "name": "Classical Variation",
+    "annotation": "5.Nc3 develops naturally and prepares e5 to drive the Black knight again. White holds a clear central space advantage with good piece coordination."
+  },
+  "marshall-3b": {
+    "name": "Tan Gambit",
+    "annotation": "With 3...c6, Black sacrifices a pawn for quick development and central pressure. This is the most aggressive and ambitious response to 3.cxd5."
+  },
+  "marshall-4b": {
+    "annotation": "White accepts the sacrifice by capturing on c6. Black will recapture with the knight, gaining rapid development in return."
+  },
+  "marshall-5b": {
+    "annotation": "With 4...Nxc6, Black recovers the material and activates the queen's knight, targeting e5 for central tension."
+  },
+  "marshall-6b": {
+    "annotation": "5.Nf3 is White's most solid development. White prepares to complete development and maintain the material advantage."
+  },
+  "marshall-7b": {
+    "annotation": "5...e5 is the central thrust that justifies Black's pawn sacrifice. Black seeks equality through piece activity."
+  },
+  "marshall-8b": {
+    "annotation": "6.e3 restrains Black's central advance and prepares to recapture on d4 with a positional advantage."
+  },
+  "marshall-9b": {
+    "name": "Tan Gambit — Main Line",
+    "annotation": "After 6...exd4 7.exd4, White retains a small extra pawn but Black has active compensation. The position is roughly balanced with White holding a slight edge."
+  },
+  "marshall-3c": {
+    "name": "Grünfeld Attempt",
+    "annotation": "With 3...g6, Black tries to transpose into Grünfeld territory, seeking a more familiar position. However, White can prevent the transposition precisely."
+  },
+  "marshall-4c": {
+    "name": "Qa4+ Refutation",
+    "annotation": "4.Qa4+ is the precise response that frustrates the transposition attempt. Black cannot recover the d5 pawn and is left with a weakened kingside structure."
   }
 }

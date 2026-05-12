@@ -27,7 +27,8 @@
     "nim-3b": "Nimzo-Indienne",
     "dutch-1": "Défense Hollandaise",
     "qg-3c": "Slave",
-    "nf3": "Ouverture Zukertort"
+    "nf3": "Ouverture Zukertort",
+    "marshall-1": "Défense Marshall"
   },
   "chess_panel": {
     "position": "Position",

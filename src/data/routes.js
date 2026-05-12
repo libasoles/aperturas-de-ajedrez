@@ -295,6 +295,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez l'Ouverture Zukertort (1.Cf3 d5 2.b3) : une ouverture hypermoderne qui contrôle le centre de loin avec le fianchetto de dame et le fou en b2.",
   },
+  {
+    slug: "defensa-marshall",
+    slugEn: "marshall-defense",
+    slugFr: "defense-marshall",
+    nodeId: "marshall-1",
+    title: "Defensa Marshall | Aperturas de Ajedrez",
+    titleEn: "Marshall Defense | Chess Openings",
+    titleFr: "Défense Marshall | Ouvertures d'Échecs",
+    description:
+      "Aprende la Defensa Marshall (1.d4 d5 2.c4 Cf6): respuesta poco ortodoxa al Gambito de Dama donde las negras defienden d5 con el caballo, buscando dinamismo a cambio de ceder el centro.",
+    descriptionEn:
+      "Learn the Marshall Defense (1.d4 d5 2.c4 Nf6): an unorthodox response to the Queen's Gambit where Black defends d5 with the knight, seeking dynamic play at the cost of ceding the center.",
+    descriptionFr:
+      "Apprenez la Défense Marshall (1.d4 d5 2.c4 Cf6) : une réponse peu orthodoxe au Gambit de la Dame où les Noirs défendent d5 avec le cavalier, cherchant le dynamisme au prix du centre.",
+  },
 ];
 
 /**
@@ -1341,6 +1356,55 @@ const VARIANT_ROUTE_DEFS = [
       "Study the Ross Gambit of the Zukertort Opening (1.Nf3 e5 2.Nxe5 d6 3.Nf3): White accepts Black's pawn with a material advantage while Black seeks positional compensation.",
     descriptionFr:
       "Étudiez le Gambit Ross de l'Ouverture Zukertort (1.Cf3 e5 2.Cxe5 d6 3.Cf3) : les Blancs acceptent le pion noir avec un avantage matériel tandis que les Noirs cherchent une compensation positionnelle.",
+  },
+  // ── Defensa Marshall ─────────────────────────────────────
+  {
+    slug: "defensa-marshall/variante-clasica",
+    slugEn: "marshall-defense/classical-variation",
+    slugFr: "defense-marshall/variante-classique",
+    variantNodeId: "marshall-6a",
+    parentNodeId: "marshall-1",
+    title: "Variante Clásica | Defensa Marshall | Aperturas de Ajedrez",
+    titleEn: "Classical Variation | Marshall Defense | Chess Openings",
+    titleFr: "Variante Classique | Défense Marshall | Ouvertures d'Échecs",
+    description:
+      "La Variante Clásica de la Defensa Marshall (3...Cxd5 4.e4 Cf6 5.Cc3): las blancas construyen un centro dominante mientras las negras buscan contrajuego activo.",
+    descriptionEn:
+      "The Classical Variation of the Marshall Defense (3...Nxd5 4.e4 Nf6 5.Nc3): White builds a dominant pawn center while Black seeks active counterplay.",
+    descriptionFr:
+      "La Variante Classique de la Défense Marshall (3...Cxd5 4.e4 Cf6 5.Cc3) : les Blancs construisent un centre dominant tandis que les Noirs cherchent un contre-jeu actif.",
+  },
+  {
+    slug: "defensa-marshall/gambito-tan",
+    slugEn: "marshall-defense/tan-gambit",
+    slugFr: "defense-marshall/gambit-tan",
+    variantNodeId: "marshall-9b",
+    parentNodeId: "marshall-1",
+    title: "Gambito Tan | Defensa Marshall | Aperturas de Ajedrez",
+    titleEn: "Tan Gambit | Marshall Defense | Chess Openings",
+    titleFr: "Gambit Tan | Défense Marshall | Ouvertures d'Échecs",
+    description:
+      "El Gambito Tan de la Defensa Marshall (3...c6 4.dxc6 Cxc6 5.Cf3 e5 6.e3 exd4): las negras sacrifican un peón para obtener desarrollo activo y presión central.",
+    descriptionEn:
+      "The Tan Gambit of the Marshall Defense (3...c6 4.dxc6 Nxc6 5.Nf3 e5 6.e3 exd4): Black sacrifices a pawn for quick development and central pressure.",
+    descriptionFr:
+      "Le Gambit Tan de la Défense Marshall (3...c6 4.dxc6 Cxc6 5.Cf3 e5 6.e3 exd4) : les Noirs sacrifient un pion pour un développement rapide et une pression centrale.",
+  },
+  {
+    slug: "defensa-marshall/intento-grunfeld",
+    slugEn: "marshall-defense/grunfeld-attempt",
+    slugFr: "defense-marshall/tentative-grunfeld",
+    variantNodeId: "marshall-4c",
+    parentNodeId: "marshall-1",
+    title: "Intento Grünfeld | Defensa Marshall | Aperturas de Ajedrez",
+    titleEn: "Grünfeld Attempt | Marshall Defense | Chess Openings",
+    titleFr: "Tentative Grünfeld | Défense Marshall | Ouvertures d'Échecs",
+    description:
+      "El Intento Grünfeld en la Defensa Marshall (3...g6 4.Da4+): las negras intentan transponer al Grünfeld pero las blancas lo evitan con una jaque de dama que gana ventaja decisiva.",
+    descriptionEn:
+      "The Grünfeld Attempt in the Marshall Defense (3...g6 4.Qa4+): Black tries to transpose into the Grünfeld but White prevents it with a queen check that secures a decisive advantage.",
+    descriptionFr:
+      "La Tentative Grünfeld dans la Défense Marshall (3...g6 4.Da4+) : les Noirs tentent une transposition vers le Grünfeld mais les Blancs l'évitent avec un échec de dame qui assure un avantage décisif.",
   },
 ];
 

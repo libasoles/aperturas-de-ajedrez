@@ -27,7 +27,8 @@
     "nim-3b": "Nimzo-India",
     "dutch-1": "Holandesa",
     "qg-3c": "Eslava",
-    "nf3": "Apertura Zukertort"
+    "nf3": "Apertura Zukertort",
+    "marshall-1": "Defensa Marshall"
   },
   "chess_panel": {
     "position": "Posición",

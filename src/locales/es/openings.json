@@ -1137,5 +1137,57 @@
   "zuk-4c": {
     "name": "Gambito Ross Aceptado",
     "annotation": "Tras 1.Cf3 e5 2.Cxe5 d6 3.Cf3, blancas consolidan la ventaja material. Negras buscan compensación por desarrollo rápido, pero la posición es objetivamente favorable a blancas"
+  },
+  "marshall-1": {
+    "name": "Defensa Marshall",
+    "annotation": "Con 2...Cf6, las negras defienden el peón d5 con una pieza en lugar de con un peón. Es una variante poco ortodoxa del Gambito de Dama que cede el centro a cambio de desarrollo activo."
+  },
+  "marshall-2": {
+    "annotation": "La captura 3.cxd5 es la respuesta más directa. Las blancas ganan espacio en el centro y obligan a las negras a decidir cómo recuperar el peón."
+  },
+  "marshall-3a": {
+    "name": "Línea Principal",
+    "annotation": "Con 3...Cxd5, las negras recuperan el peón con el caballo, manteniendo una estructura flexible pero permitiendo a las blancas ganar tempo con 4.e4."
+  },
+  "marshall-4a": {
+    "annotation": "El avance 4.e4 ataca el caballo en d5 y establece un centro de peones dominante. Las blancas logran una ventaja de espacio significativa."
+  },
+  "marshall-5a": {
+    "annotation": "El caballo debe retirarse. 4...Cf6 es la retirada más natural, regresando a f6 para continuar el desarrollo."
+  },
+  "marshall-6a": {
+    "name": "Variante Clásica",
+    "annotation": "5.Cc3 desarrolla con naturalidad y prepara e5 para expulsar al caballo negro nuevamente. Las blancas tienen una ventaja de espacio clara en el centro."
+  },
+  "marshall-3b": {
+    "name": "Gambito Tan",
+    "annotation": "Con 3...c6, las negras sacrifican un peón para obtener desarrollo activo y presión central. Es la respuesta más agresiva y ambiciosa a 3.cxd5."
+  },
+  "marshall-4b": {
+    "annotation": "Las blancas aceptan el sacrificio capturando en c6. Ahora las negras recuperarán el peón con el caballo, obteniendo un avance rápido en el desarrollo."
+  },
+  "marshall-5b": {
+    "annotation": "Con 4...Cxc6, las negras recuperan el material y activan el caballo de dama, apuntando a e5 para crear tensión central."
+  },
+  "marshall-6b": {
+    "annotation": "5.Cf3 es el desarrollo más sólido. Las blancas se preparan para completar su desarrollo y mantener la ventaja de material."
+  },
+  "marshall-7b": {
+    "annotation": "5...e5 es el golpe central que justifica el sacrificio de peón. Las negras buscan igualar con actividad de piezas."
+  },
+  "marshall-8b": {
+    "annotation": "6.e3 frena el avance central negro y prepara la recaptura del peón en d4 con ventaja posicional."
+  },
+  "marshall-9b": {
+    "name": "Gambito Tan — Línea Principal",
+    "annotation": "Tras 6...exd4 7.exd4, las blancas conservan una ligera ventaja pero las negras tienen compensación activa. La posición es relativamente equilibrada."
+  },
+  "marshall-3c": {
+    "name": "Intento Grünfeld",
+    "annotation": "Con 3...g6, las negras intentan una transposición al Grünfeld, buscando una posición más familiar. Sin embargo, las blancas pueden evitarla con precisión."
+  },
+  "marshall-4c": {
+    "name": "Refutación con Da4+",
+    "annotation": "4.Da4+ es la respuesta precisa que frustra el intento de transposición. Las negras no pueden recuperar el peón d5 y quedan con una estructura debilitada en la ala del rey."
   }
 }
