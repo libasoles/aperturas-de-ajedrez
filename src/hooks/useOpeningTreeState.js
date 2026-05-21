@@ -812,6 +812,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     initialMobileViewport,
     initialViewport,
     tree,
+    variantCatalog,
     variantRoutes: routeData.variantRoutes ?? [],
     lockedContentId,
     isPremiumRouteLocked,

@@ -26,8 +26,104 @@ const getVariantLabelForLocale = (variantRoute, locale) => {
   return title.split(" | ")[0];
 };
 
+const getVariantNodeLabel = (variantNode, locale) =>
+  variantNode.route
+    ? getVariantLabelForLocale(variantNode.route, locale)
+    : variantNode.variantNodeId;
+
+const createVariantNode = (variant, variantRouteById, childrenByParent) => ({
+  ...variant,
+  route: variantRouteById.get(variant.variantNodeId) ?? null,
+  children: (childrenByParent.get(variant.variantNodeId) ?? []).map((child) =>
+    createVariantNode(child, variantRouteById, childrenByParent),
+  ),
+});
+
+const filterVariantNodes = (nodes, query, locale) =>
+  nodes
+    .map((node) => {
+      const children = filterVariantNodes(node.children, query, locale);
+      const matches = normalizeSearchText(
+        getVariantNodeLabel(node, locale),
+        locale,
+      ).includes(query);
+
+      if (!matches && children.length === 0) {
+        return null;
+      }
+
+      return matches ? node : { ...node, children };
+    })
+    .filter(Boolean);
+
+function VariantMenuNode({
+  node,
+  depth,
+  opening,
+  activeVariant,
+  locale,
+  onVariantClick,
+  premiumAccess,
+}) {
+  const isVariantActive = activeVariant === node.variantNodeId;
+
+  return (
+    <div className="flex flex-col gap-0.5">
+      <button
+        onClick={() => onVariantClick(node)}
+        className="flex min-h-8 items-center gap-2 border-l px-3 py-1.5 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
+        style={{
+          marginLeft: `${depth * 20}px`,
+          borderColor: isVariantActive ? opening.glow : "transparent",
+          background: isVariantActive ? `${opening.color}18` : "transparent",
+          outlineColor: opening.glow,
+        }}
+      >
+        <span
+          className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+          style={{
+            backgroundColor: isVariantActive
+              ? opening.glow
+              : `${opening.color}70`,
+            boxShadow: isVariantActive ? `0 0 6px ${opening.glow}` : "none",
+          }}
+        />
+        <span
+          className="min-w-0 flex-1 font-mono text-[12px] leading-snug"
+          style={{
+            color: isVariantActive ? opening.text : `${opening.text}90`,
+            textShadow: isVariantActive ? `0 0 6px ${opening.glow}60` : "none",
+          }}
+        >
+          {getVariantNodeLabel(node, locale)}
+        </span>
+        {node.access === "premium" && !premiumAccess && (
+          <PremiumLockIcon
+            className="w-3.5 h-3.5 shrink-0"
+            title="Contenido premium"
+          />
+        )}
+      </button>
+
+      {node.children.map((child) => (
+        <VariantMenuNode
+          key={child.variantNodeId}
+          node={child}
+          depth={depth + 1}
+          opening={opening}
+          activeVariant={activeVariant}
+          locale={locale}
+          onVariantClick={onVariantClick}
+          premiumAccess={premiumAccess}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function OpeningsPanel({
   openings,
+  variantCatalog = [],
   variantRoutes = [],
   activeOpening,
   activeVariant = null,
@@ -39,33 +135,45 @@ export default function OpeningsPanel({
   const [collapsed, setCollapsed] = useState(false);
   const [searchText, setSearchText] = useState("");
   const locale = detectLocale();
-  const variantsByParent = useMemo(() => {
+  const premiumAccess = hasPremiumAccess();
+  const variantRouteById = useMemo(
+    () =>
+      new Map(
+        variantRoutes.map((variantRoute) => [
+          variantRoute.variantNodeId,
+          variantRoute,
+        ]),
+      ),
+    [variantRoutes],
+  );
+  const variantChildrenByParent = useMemo(() => {
     const map = new Map();
-    for (const variant of variantRoutes) {
+    for (const variant of variantCatalog) {
       if (!map.has(variant.parentNodeId)) {
         map.set(variant.parentNodeId, []);
       }
       map.get(variant.parentNodeId).push(variant);
     }
     return map;
-  }, [variantRoutes]);
+  }, [variantCatalog]);
 
   const getOpeningLabel = (opening) =>
     t(`panel_openings.${opening.nodeId}`, opening.label);
 
-  const getVariantLabel = (variantRoute) =>
-    getVariantLabelForLocale(variantRoute, locale);
-
   const filteredGroups = useMemo(() => {
     const query = normalizeSearchText(searchText.trim(), locale);
+    const withVariantTree = (opening) => ({
+      ...opening,
+      variants: (variantChildrenByParent.get(opening.nodeId) ?? []).map(
+        (variant) =>
+          createVariantNode(variant, variantRouteById, variantChildrenByParent),
+      ),
+    });
 
     if (!query) {
       return openings.map((group) => ({
         ...group,
-        openings: group.openings.map((opening) => ({
-          ...opening,
-          variants: variantsByParent.get(opening.nodeId) ?? [],
-        })),
+        openings: group.openings.map(withVariantTree),
       }));
     }
 
@@ -73,26 +181,21 @@ export default function OpeningsPanel({
       .map((group) => {
         const matchingOpenings = group.openings
           .map((opening) => {
-            const variants = variantsByParent.get(opening.nodeId) ?? [];
+            const openingWithVariants = withVariantTree(opening);
             const openingMatches = normalizeSearchText(
               t(`panel_openings.${opening.nodeId}`, opening.label),
               locale,
             ).includes(query);
             const matchingVariants = openingMatches
-              ? variants
-              : variants.filter((variant) =>
-                  normalizeSearchText(
-                    getVariantLabelForLocale(variant, locale),
-                    locale,
-                  ).includes(query),
-                );
+              ? openingWithVariants.variants
+              : filterVariantNodes(openingWithVariants.variants, query, locale);
 
             if (!openingMatches && matchingVariants.length === 0) {
               return null;
             }
 
             return {
-              ...opening,
+              ...openingWithVariants,
               variants: matchingVariants,
             };
           })
@@ -103,7 +206,14 @@ export default function OpeningsPanel({
           : null;
       })
       .filter(Boolean);
-  }, [locale, openings, searchText, t, variantsByParent]);
+  }, [
+    locale,
+    openings,
+    searchText,
+    t,
+    variantChildrenByParent,
+    variantRouteById,
+  ]);
 
   const handleOpeningClick = (opening) => {
     if (opening.access === "premium") {
@@ -112,7 +222,7 @@ export default function OpeningsPanel({
         opening_id: opening.nodeId,
         surface: "desktop_panel_opening",
         locale,
-        has_access: hasPremiumAccess(),
+        has_access: premiumAccess,
       });
     }
 
@@ -124,13 +234,16 @@ export default function OpeningsPanel({
   };
 
   const handleVariantClick = (variant) => {
+    const variantRoute =
+      variant.route ?? variantRouteById.get(variant.variantNodeId);
+
     if (variant.access === "premium") {
       trackPremiumMenuClick("premium_menu_variant_click", {
         variant_node_id: variant.variantNodeId,
-        opening_id: variant.parentNodeId,
+        opening_id: variantRoute?.parentNodeId ?? variant.parentNodeId,
         surface: "desktop_panel_variant",
         locale,
-        has_access: hasPremiumAccess(),
+        has_access: premiumAccess,
       });
     }
 
@@ -243,7 +356,7 @@ export default function OpeningsPanel({
                           {getOpeningLabel(opening)}
                         </span>
                         {opening.access === "premium" &&
-                          !hasPremiumAccess() && (
+                          !premiumAccess && (
                             <PremiumLockIcon
                               className="w-3.5 h-3.5 shrink-0"
                               title="Contenido premium"
@@ -251,59 +364,18 @@ export default function OpeningsPanel({
                           )}
                       </button>
 
-                      {variants.map((variant) => {
-                        const isVariantActive =
-                          activeVariant === variant.variantNodeId;
-
-                        return (
-                          <button
-                            key={variant.variantNodeId}
-                            onClick={() => handleVariantClick(variant)}
-                            className="ml-5 flex min-h-8 items-center gap-2 border-l px-3 py-1.5 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
-                            style={{
-                              borderColor: isVariantActive
-                                ? opening.glow
-                                : "transparent",
-                              background: isVariantActive
-                                ? `${opening.color}18`
-                                : "transparent",
-                              outlineColor: opening.glow,
-                            }}
-                          >
-                            <span
-                              className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
-                              style={{
-                                backgroundColor: isVariantActive
-                                  ? opening.glow
-                                  : `${opening.color}70`,
-                                boxShadow: isVariantActive
-                                  ? `0 0 6px ${opening.glow}`
-                                  : "none",
-                              }}
-                            />
-                            <span
-                              className="min-w-0 flex-1 font-mono text-[12px] leading-snug"
-                              style={{
-                                color: isVariantActive
-                                  ? opening.text
-                                  : `${opening.text}90`,
-                                textShadow: isVariantActive
-                                  ? `0 0 6px ${opening.glow}60`
-                                  : "none",
-                              }}
-                            >
-                              {getVariantLabel(variant)}
-                            </span>
-                            {variant.access === "premium" &&
-                              !hasPremiumAccess() && (
-                                <PremiumLockIcon
-                                  className="w-3.5 h-3.5 shrink-0"
-                                  title="Contenido premium"
-                                />
-                              )}
-                          </button>
-                        );
-                      })}
+                      {variants.map((variant) => (
+                        <VariantMenuNode
+                          key={variant.variantNodeId}
+                          node={variant}
+                          depth={1}
+                          opening={opening}
+                          activeVariant={activeVariant}
+                          locale={locale}
+                          onVariantClick={handleVariantClick}
+                          premiumAccess={premiumAccess}
+                        />
+                      ))}
                     </div>
                   );
                 })}

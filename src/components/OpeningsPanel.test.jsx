@@ -68,6 +68,13 @@ const MOCK_OPENINGS = [
 
 const MOCK_VARIANT_ROUTES = [
   {
+    variantNodeId: 'ital-2a',
+    parentNodeId: 'ital-1',
+    title: 'Giuoco Piano | Apertura Italiana | Aperturas de Ajedrez',
+    titleEn: 'Giuoco Piano | Italian Game | Chess Openings',
+    titleFr: 'Giuoco Piano | Partie Italienne | Ouvertures',
+  },
+  {
     variantNodeId: 'evans-1',
     parentNodeId: 'ital-1',
     title: 'Gambito Evans | Apertura Italiana | Aperturas de Ajedrez',
@@ -82,6 +89,37 @@ const MOCK_VARIANT_ROUTES = [
     titleEn: 'Fried Liver Attack | Italian Game | Chess Openings',
     titleFr: 'Attaque Fegatello | Partie Italienne | Ouvertures',
   },
+  {
+    variantNodeId: 'evans-8a',
+    parentNodeId: 'ital-1',
+    title: 'Defensa Mieses | Gambito Evans | Aperturas de Ajedrez',
+    titleEn: 'Mieses Defense | Evans Gambit | Chess Openings',
+    titleFr: 'Défense Mieses | Gambit Evans | Ouvertures',
+    access: 'premium',
+  },
+];
+
+const MOCK_VARIANT_CATALOG = [
+  {
+    variantNodeId: 'ital-2a',
+    parentNodeId: 'ital-1',
+    access: 'free',
+  },
+  {
+    variantNodeId: 'evans-1',
+    parentNodeId: 'ital-2a',
+    access: 'premium',
+  },
+  {
+    variantNodeId: 'fried-1',
+    parentNodeId: 'ital-1',
+    access: 'free',
+  },
+  {
+    variantNodeId: 'evans-8a',
+    parentNodeId: 'evans-1',
+    access: 'premium',
+  },
 ];
 
 function renderPanel({
@@ -90,11 +128,13 @@ function renderPanel({
   onToggleOpening = vi.fn(),
   onToggleVariant = vi.fn(),
   openings = MOCK_OPENINGS,
+  variantCatalog = [],
   variantRoutes = [],
 } = {}) {
   return render(
     <OpeningsPanel
       openings={openings}
+      variantCatalog={variantCatalog}
       variantRoutes={variantRoutes}
       activeOpening={activeOpening}
       activeVariant={activeVariant}
@@ -172,11 +212,44 @@ describe('OpeningsPanel', () => {
           ],
         },
       ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
       variantRoutes: MOCK_VARIANT_ROUTES,
     });
 
     expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Giuoco Piano')).toBeInTheDocument();
     expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+  });
+
+  it('indents nested variants according to their hierarchy depth', () => {
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+          ],
+        },
+      ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
+      variantRoutes: MOCK_VARIANT_ROUTES,
+    });
+
+    expect(screen.getByText('Giuoco Piano').closest('button')).toHaveStyle({
+      marginLeft: '20px',
+    });
+    expect(screen.getByText('Gambito Evans').closest('button')).toHaveStyle({
+      marginLeft: '40px',
+    });
+    expect(screen.getByText('Defensa Mieses').closest('button')).toHaveStyle({
+      marginLeft: '60px',
+    });
   });
 
   it('calls onToggleVariant when a variant is clicked', async () => {
@@ -197,6 +270,7 @@ describe('OpeningsPanel', () => {
           ],
         },
       ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
       variantRoutes: MOCK_VARIANT_ROUTES,
       onToggleVariant,
     });
@@ -229,6 +303,7 @@ describe('OpeningsPanel', () => {
           ],
         },
       ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
       variantRoutes: MOCK_VARIANT_ROUTES,
     });
 
@@ -238,6 +313,7 @@ describe('OpeningsPanel', () => {
     );
 
     expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Giuoco Piano')).toBeInTheDocument();
     expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
     expect(screen.getByText('Ataque Fegatello')).toBeInTheDocument();
     expect(screen.queryByText('Escandinava')).not.toBeInTheDocument();
@@ -260,6 +336,7 @@ describe('OpeningsPanel', () => {
           ],
         },
       ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
       variantRoutes: MOCK_VARIANT_ROUTES,
     });
 
@@ -269,7 +346,42 @@ describe('OpeningsPanel', () => {
     );
 
     expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Giuoco Piano')).toBeInTheDocument();
     expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+    expect(screen.getByText('Defensa Mieses')).toBeInTheDocument();
+    expect(screen.queryByText('Ataque Fegatello')).not.toBeInTheDocument();
+  });
+
+  it('keeps ancestors visible when a deep variant matches search', async () => {
+    const user = userEvent.setup();
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+          ],
+        },
+      ],
+      variantCatalog: MOCK_VARIANT_CATALOG,
+      variantRoutes: MOCK_VARIANT_ROUTES,
+    });
+
+    await user.type(
+      screen.getByRole('searchbox', { name: 'openings_panel.search_label' }),
+      'mieses',
+    );
+
+    expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Giuoco Piano')).toBeInTheDocument();
+    expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+    expect(screen.getByText('Defensa Mieses')).toBeInTheDocument();
     expect(screen.queryByText('Ataque Fegatello')).not.toBeInTheDocument();
   });
 });

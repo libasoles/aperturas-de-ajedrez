@@ -297,7 +297,7 @@ export const VARIANT_CATALOG = [
   },
   {
     variantNodeId: "evans-1",
-    parentNodeId: "ital-1",
+    parentNodeId: "ital-2a",
     access: "premium",
     discoverable: true,
   },
