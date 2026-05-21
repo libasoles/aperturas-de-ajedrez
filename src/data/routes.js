@@ -310,6 +310,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez la Défense Marshall (1.d4 d5 2.c4 Cf6) : une réponse peu orthodoxe au Gambit de la Dame où les Noirs défendent d5 avec le cavalier, cherchant le dynamisme au prix du centre.",
   },
+  {
+    slug: "defensa-philidor",
+    slugEn: "philidor-defense",
+    slugFr: "defense-philidor",
+    nodeId: "philidor-3",
+    title: "Defensa Philidor | Aperturas de Ajedrez",
+    titleEn: "Philidor Defense | Chess Openings",
+    titleFr: "Défense Philidor | Ouvertures d'Échecs",
+    description:
+      "Aprende la Defensa Philidor (1.e4 e5 2.Nf3 d6): respuesta sólida y clásica al peón de rey que prioriza la solidez estructural, con variantes como Hanham, Antoshin y la Variante del León.",
+    descriptionEn:
+      "Learn the Philidor Defense (1.e4 e5 2.Nf3 d6): a solid, classical response to 1.e4 that prioritizes structural soundness, with variations including Hanham, Antoshin, and the Lion.",
+    descriptionFr:
+      "Apprenez la Défense Philidor (1.e4 e5 2.Cf3 d6) : une réponse solide et classique au pion roi qui privilégie la solidité structurelle, avec les variantes Hanham, Antoshin et la Variante du Lion.",
+  },
 ];
 
 /**
@@ -1502,6 +1517,70 @@ const VARIANT_ROUTE_DEFS = [
       "The Showalter Variation (4...Bb6 5.a4 a6 6.Nc3) of the Evans Gambit Declined: White switches plans to the queenside to exploit Black's bishop position.",
     descriptionFr:
       "La Variante Showalter (4...Fb6 5.a4 a6 6.Cc3) du Gambit Evans Refusé : les Blancs changent de plan vers l'aile dame pour exploiter la position du fou noir.",
+  },
+  {
+    slug: "defensa-philidor/variante-de-cambio",
+    slugEn: "philidor-defense/exchange-variation",
+    slugFr: "defense-philidor/variante-echange",
+    variantNodeId: "philidor-17a1",
+    parentNodeId: "philidor-3",
+    title: "Variante de Cambio | Defensa Philidor | Aperturas de Ajedrez",
+    titleEn: "Exchange Variation | Philidor Defense | Chess Openings",
+    titleFr: "Variante d'Échange | Défense Philidor | Ouvertures d'Échecs",
+    description:
+      "La Variante de Cambio de la Defensa Philidor (3...exd4 4.Nxd4 Nf6 5.Nc3 Be7 6.Bf4): el blanco obtiene espacio central; el negro busca contrajuego con ...Nc6 y ...Be6.",
+    descriptionEn:
+      "The Exchange Variation of the Philidor Defense (3...exd4 4.Nxd4 Nf6 5.Nc3 Be7 6.Bf4) grants White central space; Black seeks counterplay with ...Nc6 and ...Be6.",
+    descriptionFr:
+      "La Variante d'Échange de la Défense Philidor (3...exd4 4.Cxd4 Cf6 5.Cc3 Fe7 6.Ff4) accorde aux Blancs l'espace central ; les Noirs cherchent un contrejeu avec ...Cc6 et ...Fe6.",
+  },
+  {
+    slug: "defensa-philidor/variante-antoshin",
+    slugEn: "philidor-defense/antoshin-variation",
+    slugFr: "defense-philidor/variante-antoshin",
+    variantNodeId: "philidor-14a2",
+    parentNodeId: "philidor-3",
+    title: "Variante Antoshin | Defensa Philidor | Aperturas de Ajedrez",
+    titleEn: "Antoshin Variation | Philidor Defense | Chess Openings",
+    titleFr: "Variante Antoshin | Défense Philidor | Ouvertures d'Échecs",
+    description:
+      "La Variante Antoshin (3...exd4 4.Nxd4 Nf6 5.Nc3 Be7 6.Be2 O-O 7.O-O Re8 8.f4): línea sólida que explota gradualmente la ventaja espacial del blanco.",
+    descriptionEn:
+      "The Antoshin Variation (3...exd4 4.Nxd4 Nf6 5.Nc3 Be7 6.Be2 O-O 7.O-O Re8 8.f4) is the solid line favored by positional players looking to gradually exploit the spatial advantage.",
+    descriptionFr:
+      "La Variante Antoshin (3...exd4 4.Cxd4 Cf6 5.Cc3 Fe7 6.Fe2 O-O 7.O-O Te8 8.f4) est la ligne solide privilégiée par les joueurs positionnels cherchant à exploiter graduellement l'avantage d'espace.",
+  },
+  {
+    slug: "defensa-philidor/variante-hanham",
+    slugEn: "philidor-defense/hanham-variation",
+    slugFr: "defense-philidor/variante-hanham",
+    variantNodeId: "philidor-12b",
+    parentNodeId: "philidor-3",
+    title: "Variante Hanham | Defensa Philidor | Aperturas de Ajedrez",
+    titleEn: "Hanham Variation | Philidor Defense | Chess Openings",
+    titleFr: "Variante Hanham | Défense Philidor | Ouvertures d'Échecs",
+    description:
+      "La Variante Hanham (3...Nd7 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5): posición clásica con caballos sólidos y juego paciente para el negro.",
+    descriptionEn:
+      "The Hanham Variation (3...Nd7 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5) defines the classical Philidor setup: solid central knights and patient play for Black.",
+    descriptionFr:
+      "La Variante Hanham (3...Cd7 4.Fc4 c6 5.O-O Fe7 6.dxe5 dxe5 7.Cg5) définit la configuration classique de la Défense Philidor : cavaliers centraux solides et jeu patient pour les Noirs.",
+  },
+  {
+    slug: "defensa-philidor/variante-del-leon",
+    slugEn: "philidor-defense/lion-variation",
+    slugFr: "defense-philidor/variante-du-lion",
+    variantNodeId: "philidor-11c1",
+    parentNodeId: "philidor-3",
+    title: "Variante del León | Defensa Philidor | Aperturas de Ajedrez",
+    titleEn: "Lion Variation | Philidor Defense | Chess Openings",
+    titleFr: "Variante du Lion | Défense Philidor | Ouvertures d'Échecs",
+    description:
+      "La Variante del León (3...Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O): fortaleza ultradefensiva de dos caballos en el centro.",
+    descriptionEn:
+      "The Lion Variation (3...Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O) is an ultra-defensive line where Black constructs a two-knight fortress in the center.",
+    descriptionFr:
+      "La Variante du Lion (3...Cf6 4.Cc3 Cbd7 5.Fc4 Fe7 6.O-O O-O) est une ligne ultra-défensive où les Noirs construisent une forteresse à deux cavaliers au centre.",
   },
 ];
 

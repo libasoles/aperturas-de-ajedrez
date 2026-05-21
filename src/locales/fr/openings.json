@@ -1264,5 +1264,49 @@
   "evans-5d": {
     "name": "Variante Showalter",
     "annotation": "6.Cc3 complète la Variante Showalter. Les Blancs développent avec pression sur l'aile dame, et les Noirs doivent jouer avec précision pour maintenir l'équilibre."
+  },
+  "philidor-3": {
+    "name": "Défense Philidor",
+    "annotation": "Avec 1.e4 e5 2.Cf3 d6, les Noirs renforcent le pion e5 de façon solide mais passive. L'idée centrale est de maintenir la chaîne de pions et de développer avec ...Cd7 ou ...Cf6, acceptant une position légèrement resserrée en échange d'une grande solidité structurelle."
+  },
+  "philidor-5a": {
+    "name": "Variante d'Échange",
+    "annotation": "3...exd4 libère immédiatement la tension centrale. Les Blancs récupèrent avec 4.Cxd4 et obtiennent un léger avantage d'espace tandis que les Noirs cherchent l'égalité par un développement rapide."
+  },
+  "philidor-9a": {
+    "name": "Ligne du Fou-Roi",
+    "annotation": "5...Fe7 est la réponse la plus solide des Noirs. Elle prépare le petit roque et maintient une structure compacte avant de choisir un plan de développement."
+  },
+  "philidor-17a1": {
+    "name": "Variante d'Échange — Ligne Principale",
+    "annotation": "Après 6.Ff4 O-O 7.Dd2 Cc6 8.O-O-O Cxd4 9.Dxd4 Fe6, les Blancs ont roqué côté dame avec un léger avantage d'espace. Les Noirs disposent d'un contrejeu actif avec ...a6 et ...Cd7 pour contester l'aile dame."
+  },
+  "philidor-10a2": {
+    "name": "Variante Antoshin",
+    "annotation": "6.Fe2 prépare le petit roque et évite les complications avec Ff4. Nommée d'après le grand maître soviétique Vladimir Antoshin, cette variante vise des positions solides où les Blancs exploitent graduellement leur léger avantage d'espace."
+  },
+  "philidor-14a2": {
+    "name": "Variante Antoshin — Ligne f4",
+    "annotation": "Après 6.Fe2 O-O 7.O-O Te8 8.f4, les Blancs adoptent une avance agressive de pion côté roi. Les Noirs contre-attaquent au centre avec ...d5 ou côté dame."
+  },
+  "philidor-5b": {
+    "name": "Variante Hanham",
+    "annotation": "3...Cd7 est le coup caractéristique de la Variante Hanham. Le cavalier défend le pion e5 sans bloquer le fou en c8, maintenant une position compacte et flexible."
+  },
+  "philidor-12b": {
+    "name": "Variante Hanham — Attaque Cg5",
+    "annotation": "Après 4.Fc4 c6 5.O-O Fe7 6.dxe5 dxe5 7.Cg5, les Blancs attaquent directement f7. Cette position tactique exige de la précision des Noirs ; la continuation principale est 7...Fxg5, rendant du matériel pour stabiliser."
+  },
+  "philidor-5c": {
+    "name": "Variante Nimzowitsch",
+    "annotation": "3...Cf6, nommée d'après Aaron Nimzowitsch, attaque immédiatement le pion e4. C'est la deuxième réponse la plus populaire dans la Défense Philidor, conduisant à des positions plus actives pour les Noirs."
+  },
+  "philidor-7c1": {
+    "name": "Variante du Lion",
+    "annotation": "4.Cc3 Cbd7 forme la Variante du Lion, où les Noirs construisent une position très solide avec deux cavaliers gardant le centre. Les Blancs doivent jouer avec soin pour maintenir leur avantage d'espace."
+  },
+  "philidor-11c1": {
+    "name": "Variante du Lion — Roqué",
+    "annotation": "Après 4.Cc3 Cbd7 5.Fc4 Fe7 6.O-O O-O, les deux camps ont complété leur développement de base. Les Noirs ont une position solide mais quelque peu passive ; le plan typique comprend ...c6 et ...Te8 pour presser le centre."
   }
 }

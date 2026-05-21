@@ -125,4 +125,10 @@ export const OPENING_COLORS = {
     border: "#ca8a04",
     edge: "#eab308",
   },
+  philidor: {
+    node: "#1c0e06",
+    text: "#fde8c8",
+    border: "#7b3a0e",
+    edge: "#9a4c14",
+  },
 };

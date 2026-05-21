@@ -1621,6 +1621,305 @@ export const E4_TREE = {
                   ]
                 }
               ]
+            },
+            {
+              "id": "philidor-3",
+              "move": "d6",
+              "color": "black",
+              "opening": "philidor",
+              "children": [
+                {
+                  "id": "philidor-4",
+                  "move": "d4",
+                  "color": "white",
+                  "opening": "philidor",
+                  "children": [
+                    {
+                      "id": "philidor-5a",
+                      "move": "exd4",
+                      "color": "black",
+                      "opening": "philidor",
+                      "children": [
+                        {
+                          "id": "philidor-6a",
+                          "move": "Nxd4",
+                          "color": "white",
+                          "opening": "philidor",
+                          "children": [
+                            {
+                              "id": "philidor-7a",
+                              "move": "Nf6",
+                              "color": "black",
+                              "opening": "philidor",
+                              "children": [
+                                {
+                                  "id": "philidor-8a",
+                                  "move": "Nc3",
+                                  "color": "white",
+                                  "opening": "philidor",
+                                  "children": [
+                                    {
+                                      "id": "philidor-9a",
+                                      "move": "Be7",
+                                      "color": "black",
+                                      "opening": "philidor",
+                                      "children": [
+                                        {
+                                          "id": "philidor-10a1",
+                                          "move": "Bf4",
+                                          "color": "white",
+                                          "opening": "philidor",
+                                          "children": [
+                                            {
+                                              "id": "philidor-11a1",
+                                              "move": "O-O",
+                                              "color": "black",
+                                              "opening": "philidor",
+                                              "children": [
+                                                {
+                                                  "id": "philidor-12a1",
+                                                  "move": "Qd2",
+                                                  "color": "white",
+                                                  "opening": "philidor",
+                                                  "children": [
+                                                    {
+                                                      "id": "philidor-13a1",
+                                                      "move": "Nc6",
+                                                      "color": "black",
+                                                      "opening": "philidor",
+                                                      "children": [
+                                                        {
+                                                          "id": "philidor-14a1",
+                                                          "move": "O-O-O",
+                                                          "color": "white",
+                                                          "opening": "philidor",
+                                                          "children": [
+                                                            {
+                                                              "id": "philidor-15a1",
+                                                              "move": "Nxd4",
+                                                              "color": "black",
+                                                              "opening": "philidor",
+                                                              "children": [
+                                                                {
+                                                                  "id": "philidor-16a1",
+                                                                  "move": "Qxd4",
+                                                                  "color": "white",
+                                                                  "opening": "philidor",
+                                                                  "children": [
+                                                                    {
+                                                                      "id": "philidor-17a1",
+                                                                      "move": "Be6",
+                                                                      "color": "black",
+                                                                      "opening": "philidor",
+                                                                      "children": []
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "id": "philidor-10a2",
+                                          "move": "Be2",
+                                          "color": "white",
+                                          "opening": "philidor",
+                                          "children": [
+                                            {
+                                              "id": "philidor-11a2",
+                                              "move": "O-O",
+                                              "color": "black",
+                                              "opening": "philidor",
+                                              "children": [
+                                                {
+                                                  "id": "philidor-12a2",
+                                                  "move": "O-O",
+                                                  "color": "white",
+                                                  "opening": "philidor",
+                                                  "children": [
+                                                    {
+                                                      "id": "philidor-13a2",
+                                                      "move": "Re8",
+                                                      "color": "black",
+                                                      "opening": "philidor",
+                                                      "children": [
+                                                        {
+                                                          "id": "philidor-14a2",
+                                                          "move": "f4",
+                                                          "color": "white",
+                                                          "opening": "philidor",
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "philidor-5b",
+                      "move": "Nd7",
+                      "color": "black",
+                      "opening": "philidor",
+                      "children": [
+                        {
+                          "id": "philidor-6b",
+                          "move": "Bc4",
+                          "color": "white",
+                          "opening": "philidor",
+                          "children": [
+                            {
+                              "id": "philidor-7b",
+                              "move": "c6",
+                              "color": "black",
+                              "opening": "philidor",
+                              "children": [
+                                {
+                                  "id": "philidor-8b",
+                                  "move": "O-O",
+                                  "color": "white",
+                                  "opening": "philidor",
+                                  "children": [
+                                    {
+                                      "id": "philidor-9b",
+                                      "move": "Be7",
+                                      "color": "black",
+                                      "opening": "philidor",
+                                      "children": [
+                                        {
+                                          "id": "philidor-10b",
+                                          "move": "dxe5",
+                                          "color": "white",
+                                          "opening": "philidor",
+                                          "children": [
+                                            {
+                                              "id": "philidor-11b",
+                                              "move": "dxe5",
+                                              "color": "black",
+                                              "opening": "philidor",
+                                              "children": [
+                                                {
+                                                  "id": "philidor-12b",
+                                                  "move": "Ng5",
+                                                  "color": "white",
+                                                  "opening": "philidor",
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "philidor-5c",
+                      "move": "Nf6",
+                      "color": "black",
+                      "opening": "philidor",
+                      "children": [
+                        {
+                          "id": "philidor-6c",
+                          "move": "Nc3",
+                          "color": "white",
+                          "opening": "philidor",
+                          "children": [
+                            {
+                              "id": "philidor-7c1",
+                              "move": "Nbd7",
+                              "color": "black",
+                              "opening": "philidor",
+                              "children": [
+                                {
+                                  "id": "philidor-8c1",
+                                  "move": "Bc4",
+                                  "color": "white",
+                                  "opening": "philidor",
+                                  "children": [
+                                    {
+                                      "id": "philidor-9c1",
+                                      "move": "Be7",
+                                      "color": "black",
+                                      "opening": "philidor",
+                                      "children": [
+                                        {
+                                          "id": "philidor-10c1",
+                                          "move": "O-O",
+                                          "color": "white",
+                                          "opening": "philidor",
+                                          "children": [
+                                            {
+                                              "id": "philidor-11c1",
+                                              "move": "O-O",
+                                              "color": "black",
+                                              "opening": "philidor",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "philidor-7c2",
+                              "move": "exd4",
+                              "color": "black",
+                              "opening": "philidor",
+                              "children": [
+                                {
+                                  "id": "philidor-8c2",
+                                  "move": "Nxd4",
+                                  "color": "white",
+                                  "opening": "philidor",
+                                  "children": [
+                                    {
+                                      "id": "philidor-9c2",
+                                      "move": "Be7",
+                                      "color": "black",
+                                      "opening": "philidor",
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

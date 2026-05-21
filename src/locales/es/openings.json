@@ -1264,5 +1264,49 @@
   "evans-5d": {
     "name": "Variante Showalter",
     "annotation": "6.Cc3 completa la Variante Showalter. Las Blancas desarrollan con presión en el flanco de dama, y las Negras deben jugar con precisión para mantener el equilibrio."
+  },
+  "philidor-3": {
+    "name": "Defensa Philidor",
+    "annotation": "Con 1.e4 e5 2.Nf3 d6, el negro refuerza el peón de e5 de forma sólida pero pasiva. La idea central es mantener la cadena de peones intacta y desarrollar con ...Nd7 o ...Nf6, aceptando una posición ligeramente restrictiva a cambio de gran solidez estructural."
+  },
+  "philidor-5a": {
+    "name": "Variante de Cambio",
+    "annotation": "3...exd4 alivia la tensión central de inmediato. El blanco recupera con 4.Nxd4 y obtiene un ligero espacio, mientras el negro busca igualdad mediante desarrollo rápido."
+  },
+  "philidor-9a": {
+    "name": "Línea del Alfil de Rey",
+    "annotation": "5...Be7 es el movimiento más sólido del negro. Prepara el enroque corto y mantiene una estructura compacta antes de decidir el plan de desarrollo."
+  },
+  "philidor-17a1": {
+    "name": "Variante de Cambio Principal",
+    "annotation": "Tras 6.Bf4 O-O 7.Qd2 Nc6 8.O-O-O Nxd4 9.Qxd4 Be6, el blanco ha enrocado largo y tiene un ligero espacio. El negro dispone de juego activo con ...a6 y ...Nd7 para contrarrestar en el flanco de dama."
+  },
+  "philidor-10a2": {
+    "name": "Variante Antoshin",
+    "annotation": "6.Be2 prepara el enroque corto y evita complicaciones con el alfil en f4. Bautizada por el gran maestro soviético Vladimir Antoshin, esta variante busca posiciones sólidas donde el blanco explota gradualmente su ligera ventaja espacial."
+  },
+  "philidor-14a2": {
+    "name": "Variante Antoshin — Línea f4",
+    "annotation": "Tras 6.Be2 O-O 7.O-O Re8 8.f4, el blanco adopta una formación agresiva con avance de peón en el flanco de rey. El negro contraataca en el centro con ...d5 o en el flanco de dama."
+  },
+  "philidor-5b": {
+    "name": "Variante Hanham",
+    "annotation": "3...Nd7 es el movimiento característico de la Variante Hanham. El caballo protege el peón de e5 sin bloquear el alfil de c8, manteniendo una posición compacta y flexible."
+  },
+  "philidor-12b": {
+    "name": "Variante Hanham — Ataque Ng5",
+    "annotation": "Tras 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5, el blanco ataca f7 directamente. Esta posición táctica exige precisión del negro; la continuación normal es 7...Bxg5, devolviendo material para estabilizar."
+  },
+  "philidor-5c": {
+    "name": "Variante Nimzowitsch",
+    "annotation": "3...Nf6, bautizada por Aaron Nimzowitsch, ataca de inmediato el peón de e4. Es la segunda respuesta más popular en la Defensa Philidor y conduce a posiciones más activas para el negro."
+  },
+  "philidor-7c1": {
+    "name": "Variante del León",
+    "annotation": "4.Nc3 Nbd7 forma la Variante del León, donde el negro construye una posición muy sólida con dos caballos protegiendo el centro. El blanco necesita jugar con cuidado para mantener la ventaja espacial."
+  },
+  "philidor-11c1": {
+    "name": "Variante del León — Enroque",
+    "annotation": "Tras 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O, ambos bandos han completado el desarrollo básico. El negro tiene una posición sólida aunque algo pasiva; el plan típico incluye ...c6 y ...Re8 para presionar el centro."
   }
 }

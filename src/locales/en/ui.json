@@ -32,7 +32,8 @@
     "dutch-1": "Dutch Defense",
     "qg-3c": "Slav",
     "nf3": "Zukertort Opening",
-    "marshall-1": "Marshall Defense"
+    "marshall-1": "Marshall Defense",
+    "philidor-3": "Philidor Defense"
   },
   "chess_panel": {
     "position": "Position",

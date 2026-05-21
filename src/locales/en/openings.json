@@ -1264,5 +1264,49 @@
   "evans-5d": {
     "name": "Showalter Variation",
     "annotation": "6.Nc3 completes the Showalter Variation. White develops with queenside pressure, and Black must play accurately to maintain balance."
+  },
+  "philidor-3": {
+    "name": "Philidor Defense",
+    "annotation": "With 1.e4 e5 2.Nf3 d6, Black reinforces the e5-pawn in a solid but passive manner. The central idea is to maintain the pawn chain and develop with ...Nd7 or ...Nf6, accepting a slightly cramped position in exchange for great structural solidity."
+  },
+  "philidor-5a": {
+    "name": "Exchange Variation",
+    "annotation": "3...exd4 immediately releases the central tension. White recaptures with 4.Nxd4 and gains a small space advantage while Black seeks equality through quick development."
+  },
+  "philidor-9a": {
+    "name": "King's Bishop Line",
+    "annotation": "5...Be7 is Black's most solid response. It prepares short castling and maintains a compact structure before committing to a development plan."
+  },
+  "philidor-17a1": {
+    "name": "Exchange Variation Main Line",
+    "annotation": "After 6.Bf4 O-O 7.Qd2 Nc6 8.O-O-O Nxd4 9.Qxd4 Be6, White has castled queenside with a slight space edge. Black has active counterplay with ...a6 and ...Nd7 to challenge the queenside."
+  },
+  "philidor-10a2": {
+    "name": "Antoshin Variation",
+    "annotation": "6.Be2 prepares short castling and avoids complications with Bf4. Named after Soviet grandmaster Vladimir Antoshin, this variation aims for solid positions where White gradually exploits a small spatial advantage."
+  },
+  "philidor-14a2": {
+    "name": "Antoshin Variation — f4 Line",
+    "annotation": "After 6.Be2 O-O 7.O-O Re8 8.f4, White adopts an aggressive kingside pawn advance. Black counterattacks in the center with ...d5 or on the queenside."
+  },
+  "philidor-5b": {
+    "name": "Hanham Variation",
+    "annotation": "3...Nd7 is the hallmark move of the Hanham Variation. The knight defends the e5-pawn without blocking the c8-bishop, keeping a compact and flexible position."
+  },
+  "philidor-12b": {
+    "name": "Hanham Variation — Ng5 Attack",
+    "annotation": "After 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5, White directly attacks f7. This tactical position demands precision from Black; the main continuation is 7...Bxg5, returning material to stabilize."
+  },
+  "philidor-5c": {
+    "name": "Nimzowitsch Variation",
+    "annotation": "3...Nf6, named for Aaron Nimzowitsch, immediately attacks the e4-pawn. It is the second most popular response in the Philidor Defense, leading to more active positions for Black."
+  },
+  "philidor-7c1": {
+    "name": "Lion Variation",
+    "annotation": "4.Nc3 Nbd7 forms the Lion Variation, where Black builds a very solid position with two knights guarding the center. White must play carefully to maintain the space advantage."
+  },
+  "philidor-11c1": {
+    "name": "Lion Variation — Castled",
+    "annotation": "After 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O, both sides have completed basic development. Black has a solid though somewhat passive position; the typical plan involves ...c6 and ...Re8 to press the center."
   }
 }

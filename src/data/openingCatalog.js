@@ -112,6 +112,16 @@ export const OPENING_CATALOG = [
         access: "premium",
         discoverable: true,
       },
+      {
+        label: "Philidor",
+        nodeId: "philidor-3",
+        pathIds: ["e4", "span-1", "span-2"],
+        color: "#7b3a0e",
+        glow: "#9a4c14",
+        text: "#fde8c8",
+        access: "premium",
+        discoverable: true,
+      },
     ],
   },
   {
@@ -636,6 +646,30 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "marshall-4c",
     parentNodeId: "marshall-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "philidor-17a1",
+    parentNodeId: "philidor-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "philidor-14a2",
+    parentNodeId: "philidor-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "philidor-12b",
+    parentNodeId: "philidor-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "philidor-11c1",
+    parentNodeId: "philidor-3",
     access: "premium",
     discoverable: true,
   },
