@@ -11,6 +11,7 @@ export default function FloatingPanel({
   children,
   defaultPosition,
   width = 492,
+  defaultHeight,
   className = "",
   style,
   ariaLabel,
@@ -158,6 +159,7 @@ export default function FloatingPanel({
       style={{
         ...positionStyle,
         width,
+        ...(defaultHeight ? { height: defaultHeight } : null),
         ...viewportBoundsStyle,
         ...(size
           ? {

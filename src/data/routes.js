@@ -310,21 +310,6 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez la Défense Marshall (1.d4 d5 2.c4 Cf6) : une réponse peu orthodoxe au Gambit de la Dame où les Noirs défendent d5 avec le cavalier, cherchant le dynamisme au prix du centre.",
   },
-  {
-    slug: "gambito-evans",
-    slugEn: "evans-gambit",
-    slugFr: "gambit-evans",
-    nodeId: "evans-1",
-    title: "Gambito Evans | Aperturas de Ajedrez",
-    titleEn: "Evans Gambit | Chess Openings",
-    titleFr: "Gambit Evans | Ouvertures d'Échecs",
-    description:
-      "Aprende el Gambito Evans (1.e4 e5 2.Cf3 Cc6 3.Ac4 Ac5 4.b4): la apertura romántica más brillante, donde las Blancas sacrifican un peón para obtener una iniciativa devastadora en el centro.",
-    descriptionEn:
-      "Learn the Evans Gambit (1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4): the most brilliant Romantic-era opening, where White sacrifices a pawn for a devastating central initiative.",
-    descriptionFr:
-      "Apprenez le Gambit Evans (1.e4 e5 2.Cf3 Cc6 3.Fc4 Fc5 4.b4) : l'ouverture romantique la plus brillante, où les Blancs sacrifient un pion pour une initiative centrale dévastatrice.",
-  },
 ];
 
 /**
@@ -1423,11 +1408,27 @@ const VARIANT_ROUTE_DEFS = [
   },
   // ── Gambito Evans ─────────────────────────────────────────
   {
+    slug: "gambito-evans",
+    slugEn: "evans-gambit",
+    slugFr: "gambit-evans",
+    variantNodeId: "evans-1",
+    parentNodeId: "ital-1",
+    title: "Gambito Evans | Apertura Italiana | Aperturas de Ajedrez",
+    titleEn: "Evans Gambit | Italian Game | Chess Openings",
+    titleFr: "Gambit Evans | Partie Italienne | Ouvertures d'Échecs",
+    description:
+      "Aprende el Gambito Evans (1.e4 e5 2.Cf3 Cc6 3.Ac4 Ac5 4.b4): la apertura romántica más brillante, donde las Blancas sacrifican un peón para obtener una iniciativa devastadora en el centro.",
+    descriptionEn:
+      "Learn the Evans Gambit (1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4): the most brilliant Romantic-era line of the Italian Game, where White sacrifices a pawn for a devastating central initiative.",
+    descriptionFr:
+      "Apprenez le Gambit Evans (1.e4 e5 2.Cf3 Cc6 3.Fc4 Fc5 4.b4) : une ligne romantique de la Partie Italienne où les Blancs sacrifient un pion pour une initiative centrale dévastatrice.",
+  },
+  {
     slug: "gambito-evans/defensa-mieses",
     slugEn: "evans-gambit/mieses-defense",
     slugFr: "gambit-evans/defense-mieses",
     variantNodeId: "evans-8a",
-    parentNodeId: "evans-1",
+    parentNodeId: "ital-1",
     title: "Defensa Mieses | Gambito Evans | Aperturas de Ajedrez",
     titleEn: "Mieses Defense | Evans Gambit | Chess Openings",
     titleFr: "Défense Mieses | Gambit Evans | Ouvertures d'Échecs",
@@ -1443,7 +1444,7 @@ const VARIANT_ROUTE_DEFS = [
     slugEn: "evans-gambit/compromised-defense",
     slugFr: "gambit-evans/defense-compromise",
     variantNodeId: "evans-10b",
-    parentNodeId: "evans-1",
+    parentNodeId: "ital-1",
     title: "Defensa Comprometida | Gambito Evans | Aperturas de Ajedrez",
     titleEn: "Compromised Defense | Evans Gambit | Chess Openings",
     titleFr: "Défense Compromise | Gambit Evans | Ouvertures d'Échecs",
@@ -1459,7 +1460,7 @@ const VARIANT_ROUTE_DEFS = [
     slugEn: "evans-gambit/tartakower-attack",
     slugFr: "gambit-evans/attaque-tartakower",
     variantNodeId: "evans-7b",
-    parentNodeId: "evans-1",
+    parentNodeId: "ital-1",
     title: "Ataque Tartakower | Gambito Evans | Aperturas de Ajedrez",
     titleEn: "Tartakower Attack | Evans Gambit | Chess Openings",
     titleFr: "Attaque Tartakower | Gambit Evans | Ouvertures d'Échecs",
@@ -1475,7 +1476,7 @@ const VARIANT_ROUTE_DEFS = [
     slugEn: "evans-gambit/lasker-defense",
     slugFr: "gambit-evans/defense-lasker",
     variantNodeId: "evans-8c",
-    parentNodeId: "evans-1",
+    parentNodeId: "ital-1",
     title: "Defensa Lasker | Gambito Evans | Aperturas de Ajedrez",
     titleEn: "Lasker Defense | Evans Gambit | Chess Openings",
     titleFr: "Défense Lasker | Gambit Evans | Ouvertures d'Échecs",
@@ -1491,7 +1492,7 @@ const VARIANT_ROUTE_DEFS = [
     slugEn: "evans-gambit/showalter-variation",
     slugFr: "gambit-evans/variante-showalter",
     variantNodeId: "evans-5d",
-    parentNodeId: "evans-1",
+    parentNodeId: "ital-1",
     title: "Variante Showalter | Gambito Evans Rehusado | Aperturas de Ajedrez",
     titleEn: "Showalter Variation | Evans Gambit Declined | Chess Openings",
     titleFr: "Variante Showalter | Gambit Evans Refusé | Ouvertures d'Échecs",

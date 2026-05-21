@@ -66,12 +66,33 @@ const MOCK_OPENINGS = [
   },
 ];
 
-function renderPanel(activeOpening = null, onToggleOpening = vi.fn()) {
+const MOCK_VARIANT_ROUTES = [
+  {
+    variantNodeId: 'evans-1',
+    parentNodeId: 'ital-1',
+    title: 'Gambito Evans | Apertura Italiana | Aperturas de Ajedrez',
+    titleEn: 'Evans Gambit | Italian Game | Chess Openings',
+    titleFr: 'Gambit Evans | Partie Italienne | Ouvertures',
+    access: 'premium',
+  },
+];
+
+function renderPanel({
+  activeOpening = null,
+  activeVariant = null,
+  onToggleOpening = vi.fn(),
+  onToggleVariant = vi.fn(),
+  openings = MOCK_OPENINGS,
+  variantRoutes = [],
+} = {}) {
   return render(
     <OpeningsPanel
-      openings={MOCK_OPENINGS}
+      openings={openings}
+      variantRoutes={variantRoutes}
       activeOpening={activeOpening}
+      activeVariant={activeVariant}
       onToggleOpening={onToggleOpening}
+      onToggleVariant={onToggleVariant}
       firstButtonRef={{ current: null }}
     />,
   );
@@ -94,7 +115,7 @@ describe('OpeningsPanel', () => {
   it('calls onToggleOpening with the correct nodeId when a button is clicked', async () => {
     const user = userEvent.setup();
     const onToggle = vi.fn();
-    renderPanel(null, onToggle);
+    renderPanel({ onToggleOpening: onToggle });
 
     await user.click(screen.getByText('Escandinava'));
     expect(onToggle).toHaveBeenCalledWith('scan-1');
@@ -103,7 +124,7 @@ describe('OpeningsPanel', () => {
   it('calls onToggleOpening with a different nodeId for a second opening', async () => {
     const user = userEvent.setup();
     const onToggle = vi.fn();
-    renderPanel(null, onToggle);
+    renderPanel({ onToggleOpening: onToggle });
 
     await user.click(screen.getByText('Gambito de Dama'));
     expect(onToggle).toHaveBeenCalledWith('qg-2');
@@ -126,5 +147,54 @@ describe('OpeningsPanel', () => {
 
     await user.click(screen.getByText('▾'));
     expect(screen.getByText('▸')).toBeInTheDocument();
+  });
+
+  it('renders variants under their parent opening', () => {
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+          ],
+        },
+      ],
+      variantRoutes: MOCK_VARIANT_ROUTES,
+    });
+
+    expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+  });
+
+  it('calls onToggleVariant when a variant is clicked', async () => {
+    const user = userEvent.setup();
+    const onToggleVariant = vi.fn();
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+          ],
+        },
+      ],
+      variantRoutes: MOCK_VARIANT_ROUTES,
+      onToggleVariant,
+    });
+
+    await user.click(screen.getByText('Gambito Evans'));
+    expect(onToggleVariant).toHaveBeenCalledWith('evans-1');
   });
 });
