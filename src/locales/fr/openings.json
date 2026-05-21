@@ -1189,5 +1189,80 @@
   "marshall-4c": {
     "name": "Réfutation par Da4+",
     "annotation": "4.Da4+ est la réponse précise qui déjoue la tentative de transposition. Les Noirs ne peuvent pas récupérer le pion d5 et se retrouvent avec une structure affaiblie côté roi."
+  },
+  "evans-1": {
+    "name": "Gambit Evans",
+    "annotation": "Avec 4.b4, les Blancs offrent un pion pour ouvrir des lignes et saisir une initiative dévastatrice. L'une des ouvertures les plus agressives du XIXe siècle, relancée par Kasparov dans les années 90."
+  },
+  "evans-2a": {
+    "name": "Gambit Evans Accepté",
+    "annotation": "Les Noirs acceptent le pion avec 4...Fxb4, entrant dans des eaux tactiques tranchées. Les Blancs récupèreront le matériel avec un avantage de développement et d'espace."
+  },
+  "evans-2b": {
+    "name": "Gambit Evans Refusé",
+    "annotation": "Avec 4...Fb6, les Noirs refusent le gambit et maintiennent leur structure, évitant les complications tactiques au prix d'un peu d'initiative."
+  },
+  "evans-3a": {
+    "annotation": "5.c3 prépare d4. Les Blancs construisent un puissant centre de pions et menacent de chasser le fou avec le temps."
+  },
+  "evans-4a": {
+    "annotation": "La retraite principale. 5...Fa5 maintient le fou actif et attend que les Blancs s'engagent au centre."
+  },
+  "evans-4b": {
+    "name": "Défense McDonnell",
+    "annotation": "5...Fc5 est la Défense McDonnell. Les Noirs ramènent le fou en c5, mais les Blancs répondent avec 6.d4 en gagnant un temps."
+  },
+  "evans-5a": {
+    "annotation": "Le coup central 6.d4 est la continuation la plus agressive. Les Blancs ouvrent la position et activent toutes leurs pièces."
+  },
+  "evans-5b": {
+    "annotation": "6.O-O prépare la Défense Lasker. Les Blancs roquent avant d4, offrant aux Noirs une opportunité de se consolider."
+  },
+  "evans-6a": {
+    "annotation": "6...exd4 accepte les complications. Les Noirs capturent au centre mais les Blancs obtiennent une énorme compensation positionnelle."
+  },
+  "evans-6b": {
+    "annotation": "6...d6 est la réponse solide de Bronstein. Les Noirs renforcent e5 et attendent le développement de la bataille tactique."
+  },
+  "evans-7a": {
+    "annotation": "7.O-O développe avec menace. Les Blancs roquent et menacent de récupérer le pion avec l'initiative d'attaque."
+  },
+  "evans-7b": {
+    "name": "Attaque Tartakower",
+    "annotation": "7.Db3 est l'Attaque Tartakower. La dame menace simultanément f7 et b4, maintenant une pression maximale sur les Noirs."
+  },
+  "evans-7c": {
+    "annotation": "7.d4 dans la ligne Lasker active le centre. Les Blancs cherchent à exploiter le retard des Noirs avant la consolidation."
+  },
+  "evans-8a": {
+    "name": "Défense Mieses",
+    "annotation": "7...Cge7 est la Défense Mieses, une approche moderne et solide. Le cavalier soutient d5 et évite les tactiques directes sur l'aile roi."
+  },
+  "evans-8b": {
+    "annotation": "7...dxc3 est la Défense Compromise. Les Noirs conservent le matériel supplémentaire mais la position subit une énorme pression tactique."
+  },
+  "evans-8c": {
+    "name": "Défense Lasker",
+    "annotation": "7...Fb6 est la célèbre Défense Lasker. Le fou recule pour équilibrer la position et les Noirs cherchent à simplifier."
+  },
+  "evans-8d": {
+    "annotation": "La position normale de la Défense McDonnell après 8...d6. Les Noirs ont une position solide mais les Blancs maintiennent l'initiative."
+  },
+  "evans-9b": {
+    "annotation": "8.Db3 attaque f7 et a4 simultanément. Les Blancs récupèrent du matériel tout en maintenant l'attaque dans la Défense Compromise."
+  },
+  "evans-10b": {
+    "name": "Défense Compromise",
+    "annotation": "8...Df6 défend f7 dans la Défense Compromise. Les Noirs ont deux pions supplémentaires mais la position est extrêmement difficile à défendre."
+  },
+  "evans-3b": {
+    "annotation": "5.a4 menace d'emprisonner le fou en b6. Les Blancs changent de plan vers l'aile dame pour exploiter la position du fou noir."
+  },
+  "evans-4c": {
+    "annotation": "5...a6 est la réponse de la Variante Showalter, stoppant a5. Les Noirs freinent l'avance blanche et préparent leur propre contre-jeu."
+  },
+  "evans-5d": {
+    "name": "Variante Showalter",
+    "annotation": "6.Cc3 complète la Variante Showalter. Les Blancs développent avec pression sur l'aile dame, et les Noirs doivent jouer avec précision pour maintenir l'équilibre."
   }
 }

@@ -112,6 +112,16 @@ export const OPENING_CATALOG = [
         access: "premium",
         discoverable: true,
       },
+      {
+        label: "Gambito Evans",
+        nodeId: "evans-1",
+        pathIds: ["e4", "span-1", "span-2", "span-3", "ital-1", "ital-2a"],
+        color: "#2d2200",
+        glow: "#eab308",
+        text: "#fde68a",
+        access: "premium",
+        discoverable: true,
+      },
     ],
   },
   {
@@ -582,6 +592,36 @@ export const VARIANT_CATALOG = [
   {
     variantNodeId: "zuk-4c",
     parentNodeId: "nf3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "evans-8a",
+    parentNodeId: "evans-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "evans-10b",
+    parentNodeId: "evans-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "evans-7b",
+    parentNodeId: "evans-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "evans-8c",
+    parentNodeId: "evans-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "evans-5d",
+    parentNodeId: "evans-1",
     access: "premium",
     discoverable: true,
   },

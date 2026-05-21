@@ -1189,5 +1189,80 @@
   "marshall-4c": {
     "name": "Qa4+ Refutation",
     "annotation": "4.Qa4+ is the precise response that frustrates the transposition attempt. Black cannot recover the d5 pawn and is left with a weakened kingside structure."
+  },
+  "evans-1": {
+    "name": "Evans Gambit",
+    "annotation": "With 4.b4, White offers a pawn to open lines and seize a devastating initiative. One of the most aggressive openings of the 19th century, revived by Kasparov in the 1990s."
+  },
+  "evans-2a": {
+    "name": "Evans Gambit Accepted",
+    "annotation": "Black accepts the pawn with 4...Bxb4, entering sharp tactical waters. White will regain material with a development and space advantage."
+  },
+  "evans-2b": {
+    "name": "Evans Gambit Declined",
+    "annotation": "With 4...Bb6, Black refuses the gambit and maintains structure, avoiding tactical complications at the cost of some initiative."
+  },
+  "evans-3a": {
+    "annotation": "5.c3 prepares d4. White builds a powerful pawn center and threatens to drive the bishop away with tempo."
+  },
+  "evans-4a": {
+    "annotation": "The main retreat. 5...Ba5 keeps the bishop active and waits for White to commit the center."
+  },
+  "evans-4b": {
+    "name": "McDonnell Defense",
+    "annotation": "5...Bc5 is the McDonnell Defense. Black returns the bishop to c5, but White responds with 6.d4 gaining tempo."
+  },
+  "evans-5a": {
+    "annotation": "The central strike 6.d4 is the most aggressive continuation. White opens the position and activates all the pieces."
+  },
+  "evans-5b": {
+    "annotation": "6.O-O prepares the Lasker Defense. White castles before d4, giving Black an opportunity to consolidate."
+  },
+  "evans-6a": {
+    "annotation": "6...exd4 accepts complications. Black captures in the center but White obtains enormous positional compensation."
+  },
+  "evans-6b": {
+    "annotation": "6...d6 is Bronstein's solid response. Black reinforces e5 and waits for the tactical battle to develop."
+  },
+  "evans-7a": {
+    "annotation": "7.O-O develops with a threat. White castles and threatens to regain the pawn with attacking initiative."
+  },
+  "evans-7b": {
+    "name": "Tartakower Attack",
+    "annotation": "7.Qb3 is the Tartakower Attack. The queen simultaneously threatens f7 and b4, maintaining maximum pressure on Black."
+  },
+  "evans-7c": {
+    "annotation": "7.d4 in the Lasker line activates the center. White seeks to exploit Black's delay before consolidation."
+  },
+  "evans-8a": {
+    "name": "Mieses Defense",
+    "annotation": "7...Nge7 is the Mieses Defense, a modern and solid approach. The knight supports d5 and avoids direct kingside tactics."
+  },
+  "evans-8b": {
+    "annotation": "7...dxc3 is the Compromised Defense. Black keeps the extra material but the position comes under enormous tactical pressure."
+  },
+  "evans-8c": {
+    "name": "Lasker Defense",
+    "annotation": "7...Bb6 is the famous Lasker Defense. The bishop retreats to balance the position and Black seeks simplification."
+  },
+  "evans-8d": {
+    "annotation": "The normal McDonnell Defense position after 8...d6. Black has a solid position but White retains the initiative."
+  },
+  "evans-9b": {
+    "annotation": "8.Qb3 attacks f7 and a4 simultaneously. White regains material while maintaining the attack in the Compromised Defense."
+  },
+  "evans-10b": {
+    "name": "Compromised Defense",
+    "annotation": "8...Qf6 defends f7 in the Compromised Defense. Black has two extra pawns but the position is extremely difficult to defend."
+  },
+  "evans-3b": {
+    "annotation": "5.a4 threatens to trap the bishop on b6. White switches plans to the queenside to exploit the bishop's position."
+  },
+  "evans-4c": {
+    "annotation": "5...a6 is the Showalter Variation response, stopping a5. Black halts White's advance and prepares counterplay."
+  },
+  "evans-5d": {
+    "name": "Showalter Variation",
+    "annotation": "6.Nc3 completes the Showalter Variation. White develops with queenside pressure, and Black must play accurately to maintain balance."
   }
 }

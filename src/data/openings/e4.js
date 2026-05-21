@@ -1098,6 +1098,208 @@ export const E4_TREE = {
                               ]
                             }
                           ]
+                        },
+                        {
+                          "id": "evans-1",
+                          "move": "b4",
+                          "color": "white",
+                          "opening": "evans",
+                          "children": [
+                            {
+                              "id": "evans-2a",
+                              "move": "Bxb4",
+                              "color": "black",
+                              "opening": "evans",
+                              "children": [
+                                {
+                                  "id": "evans-3a",
+                                  "move": "c3",
+                                  "color": "white",
+                                  "opening": "evans",
+                                  "children": [
+                                    {
+                                      "id": "evans-4a",
+                                      "move": "Ba5",
+                                      "color": "black",
+                                      "opening": "evans",
+                                      "children": [
+                                        {
+                                          "id": "evans-5a",
+                                          "move": "d4",
+                                          "color": "white",
+                                          "opening": "evans",
+                                          "children": [
+                                            {
+                                              "id": "evans-6a",
+                                              "move": "exd4",
+                                              "color": "black",
+                                              "opening": "evans",
+                                              "children": [
+                                                {
+                                                  "id": "evans-7a",
+                                                  "move": "O-O",
+                                                  "color": "white",
+                                                  "opening": "evans",
+                                                  "children": [
+                                                    {
+                                                      "id": "evans-8a",
+                                                      "move": "Nge7",
+                                                      "color": "black",
+                                                      "opening": "evans",
+                                                      "children": []
+                                                    },
+                                                    {
+                                                      "id": "evans-8b",
+                                                      "move": "dxc3",
+                                                      "color": "black",
+                                                      "opening": "evans",
+                                                      "children": [
+                                                        {
+                                                          "id": "evans-9b",
+                                                          "move": "Qb3",
+                                                          "color": "white",
+                                                          "opening": "evans",
+                                                          "children": [
+                                                            {
+                                                              "id": "evans-10b",
+                                                              "move": "Qf6",
+                                                              "color": "black",
+                                                              "opening": "evans",
+                                                              "children": []
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "id": "evans-6b",
+                                              "move": "d6",
+                                              "color": "black",
+                                              "opening": "evans",
+                                              "children": [
+                                                {
+                                                  "id": "evans-7b",
+                                                  "move": "Qb3",
+                                                  "color": "white",
+                                                  "opening": "evans",
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "id": "evans-5b",
+                                          "move": "O-O",
+                                          "color": "white",
+                                          "opening": "evans",
+                                          "children": [
+                                            {
+                                              "id": "evans-6c",
+                                              "move": "d6",
+                                              "color": "black",
+                                              "opening": "evans",
+                                              "children": [
+                                                {
+                                                  "id": "evans-7c",
+                                                  "move": "d4",
+                                                  "color": "white",
+                                                  "opening": "evans",
+                                                  "children": [
+                                                    {
+                                                      "id": "evans-8c",
+                                                      "move": "Bb6",
+                                                      "color": "black",
+                                                      "opening": "evans",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "id": "evans-4b",
+                                      "move": "Bc5",
+                                      "color": "black",
+                                      "opening": "evans",
+                                      "children": [
+                                        {
+                                          "id": "evans-5c",
+                                          "move": "d4",
+                                          "color": "white",
+                                          "opening": "evans",
+                                          "children": [
+                                            {
+                                              "id": "evans-6d",
+                                              "move": "exd4",
+                                              "color": "black",
+                                              "opening": "evans",
+                                              "children": [
+                                                {
+                                                  "id": "evans-7d",
+                                                  "move": "O-O",
+                                                  "color": "white",
+                                                  "opening": "evans",
+                                                  "children": [
+                                                    {
+                                                      "id": "evans-8d",
+                                                      "move": "d6",
+                                                      "color": "black",
+                                                      "opening": "evans",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "evans-2b",
+                              "move": "Bb6",
+                              "color": "black",
+                              "opening": "evans",
+                              "children": [
+                                {
+                                  "id": "evans-3b",
+                                  "move": "a4",
+                                  "color": "white",
+                                  "opening": "evans",
+                                  "children": [
+                                    {
+                                      "id": "evans-4c",
+                                      "move": "a6",
+                                      "color": "black",
+                                      "opening": "evans",
+                                      "children": [
+                                        {
+                                          "id": "evans-5d",
+                                          "move": "Nc3",
+                                          "color": "white",
+                                          "opening": "evans",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },

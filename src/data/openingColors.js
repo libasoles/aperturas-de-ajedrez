@@ -119,4 +119,10 @@ export const OPENING_COLORS = {
     border: "#7a8c00",
     edge: "#98b000",
   },
+  evans: {
+    node: "#2d2200",
+    text: "#fde68a",
+    border: "#ca8a04",
+    edge: "#eab308",
+  },
 };

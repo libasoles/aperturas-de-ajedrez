@@ -310,6 +310,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez la Défense Marshall (1.d4 d5 2.c4 Cf6) : une réponse peu orthodoxe au Gambit de la Dame où les Noirs défendent d5 avec le cavalier, cherchant le dynamisme au prix du centre.",
   },
+  {
+    slug: "gambito-evans",
+    slugEn: "evans-gambit",
+    slugFr: "gambit-evans",
+    nodeId: "evans-1",
+    title: "Gambito Evans | Aperturas de Ajedrez",
+    titleEn: "Evans Gambit | Chess Openings",
+    titleFr: "Gambit Evans | Ouvertures d'Échecs",
+    description:
+      "Aprende el Gambito Evans (1.e4 e5 2.Cf3 Cc6 3.Ac4 Ac5 4.b4): la apertura romántica más brillante, donde las Blancas sacrifican un peón para obtener una iniciativa devastadora en el centro.",
+    descriptionEn:
+      "Learn the Evans Gambit (1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4): the most brilliant Romantic-era opening, where White sacrifices a pawn for a devastating central initiative.",
+    descriptionFr:
+      "Apprenez le Gambit Evans (1.e4 e5 2.Cf3 Cc6 3.Fc4 Fc5 4.b4) : l'ouverture romantique la plus brillante, où les Blancs sacrifient un pion pour une initiative centrale dévastatrice.",
+  },
 ];
 
 /**
@@ -1405,6 +1420,87 @@ const VARIANT_ROUTE_DEFS = [
       "The Grünfeld Attempt in the Marshall Defense (3...g6 4.Qa4+): Black tries to transpose into the Grünfeld but White prevents it with a queen check that secures a decisive advantage.",
     descriptionFr:
       "La Tentative Grünfeld dans la Défense Marshall (3...g6 4.Da4+) : les Noirs tentent une transposition vers le Grünfeld mais les Blancs l'évitent avec un échec de dame qui assure un avantage décisif.",
+  },
+  // ── Gambito Evans ─────────────────────────────────────────
+  {
+    slug: "gambito-evans/defensa-mieses",
+    slugEn: "evans-gambit/mieses-defense",
+    slugFr: "gambit-evans/defense-mieses",
+    variantNodeId: "evans-8a",
+    parentNodeId: "evans-1",
+    title: "Defensa Mieses | Gambito Evans | Aperturas de Ajedrez",
+    titleEn: "Mieses Defense | Evans Gambit | Chess Openings",
+    titleFr: "Défense Mieses | Gambit Evans | Ouvertures d'Échecs",
+    description:
+      "La Defensa Mieses (7...Cge7) en el Gambito Evans Aceptado: un enfoque moderno y sólido donde el caballo apoya d5 y evita las tácticas directas sobre el flanco de rey.",
+    descriptionEn:
+      "The Mieses Defense (7...Nge7) in the Evans Gambit Accepted: a modern, solid approach where the knight supports d5 and avoids direct kingside tactics.",
+    descriptionFr:
+      "La Défense Mieses (7...Cge7) dans le Gambit Evans Accepté : une approche moderne et solide où le cavalier soutient d5 et évite les tactiques directes sur l'aile roi.",
+  },
+  {
+    slug: "gambito-evans/defensa-comprometida",
+    slugEn: "evans-gambit/compromised-defense",
+    slugFr: "gambit-evans/defense-compromise",
+    variantNodeId: "evans-10b",
+    parentNodeId: "evans-1",
+    title: "Defensa Comprometida | Gambito Evans | Aperturas de Ajedrez",
+    titleEn: "Compromised Defense | Evans Gambit | Chess Openings",
+    titleFr: "Défense Compromise | Gambit Evans | Ouvertures d'Échecs",
+    description:
+      "La Defensa Comprometida del Gambito Evans: las Negras conservan el material extra con 7...dxc3 y 8...Df6, pero enfrentan una presión táctica extrema.",
+    descriptionEn:
+      "The Compromised Defense of the Evans Gambit: Black keeps the extra material with 7...dxc3 and 8...Qf6 but faces extreme tactical pressure.",
+    descriptionFr:
+      "La Défense Compromise du Gambit Evans : les Noirs conservent le matériel supplémentaire avec 7...dxc3 et 8...Df6 mais font face à une pression tactique extrême.",
+  },
+  {
+    slug: "gambito-evans/ataque-tartakower",
+    slugEn: "evans-gambit/tartakower-attack",
+    slugFr: "gambit-evans/attaque-tartakower",
+    variantNodeId: "evans-7b",
+    parentNodeId: "evans-1",
+    title: "Ataque Tartakower | Gambito Evans | Aperturas de Ajedrez",
+    titleEn: "Tartakower Attack | Evans Gambit | Chess Openings",
+    titleFr: "Attaque Tartakower | Gambit Evans | Ouvertures d'Échecs",
+    description:
+      "El Ataque Tartakower (7.Db3) en el Gambito Evans: la dama amenaza f7 y b4 simultáneamente, manteniendo la máxima presión tras 6...d6.",
+    descriptionEn:
+      "The Tartakower Attack (7.Qb3) in the Evans Gambit: the queen simultaneously threatens f7 and b4, maintaining maximum pressure after 6...d6.",
+    descriptionFr:
+      "L'Attaque Tartakower (7.Db3) dans le Gambit Evans : la dame menace simultanément f7 et b4, maintenant une pression maximale après 6...d6.",
+  },
+  {
+    slug: "gambito-evans/defensa-lasker",
+    slugEn: "evans-gambit/lasker-defense",
+    slugFr: "gambit-evans/defense-lasker",
+    variantNodeId: "evans-8c",
+    parentNodeId: "evans-1",
+    title: "Defensa Lasker | Gambito Evans | Aperturas de Ajedrez",
+    titleEn: "Lasker Defense | Evans Gambit | Chess Openings",
+    titleFr: "Défense Lasker | Gambit Evans | Ouvertures d'Échecs",
+    description:
+      "La Defensa Lasker (6.O-O d6 7.d4 Ab6) en el Gambito Evans: la respuesta ideada por Emanuel Lasker para neutralizar la iniciativa blanca y simplificar el juego.",
+    descriptionEn:
+      "The Lasker Defense (6.O-O d6 7.d4 Bb6) in the Evans Gambit: Emanuel Lasker's antidote to neutralize White's initiative and simplify the game.",
+    descriptionFr:
+      "La Défense Lasker (6.O-O d6 7.d4 Fb6) dans le Gambit Evans : la réponse d'Emanuel Lasker pour neutraliser l'initiative des Blancs et simplifier le jeu.",
+  },
+  {
+    slug: "gambito-evans/variante-showalter",
+    slugEn: "evans-gambit/showalter-variation",
+    slugFr: "gambit-evans/variante-showalter",
+    variantNodeId: "evans-5d",
+    parentNodeId: "evans-1",
+    title: "Variante Showalter | Gambito Evans Rehusado | Aperturas de Ajedrez",
+    titleEn: "Showalter Variation | Evans Gambit Declined | Chess Openings",
+    titleFr: "Variante Showalter | Gambit Evans Refusé | Ouvertures d'Échecs",
+    description:
+      "La Variante Showalter (4...Ab6 5.a4 a6 6.Cc3) del Gambito Evans Rehusado: las Blancas cambian el plan al flanco de dama para explotar la posición del alfil negro.",
+    descriptionEn:
+      "The Showalter Variation (4...Bb6 5.a4 a6 6.Nc3) of the Evans Gambit Declined: White switches plans to the queenside to exploit Black's bishop position.",
+    descriptionFr:
+      "La Variante Showalter (4...Fb6 5.a4 a6 6.Cc3) du Gambit Evans Refusé : les Blancs changent de plan vers l'aile dame pour exploiter la position du fou noir.",
   },
 ];
 

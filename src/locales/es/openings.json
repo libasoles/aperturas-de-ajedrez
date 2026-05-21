@@ -1189,5 +1189,80 @@
   "marshall-4c": {
     "name": "Refutación con Da4+",
     "annotation": "4.Da4+ es la respuesta precisa que frustra el intento de transposición. Las negras no pueden recuperar el peón d5 y quedan con una estructura debilitada en la ala del rey."
+  },
+  "evans-1": {
+    "name": "Gambito Evans",
+    "annotation": "Con 4.b4, las Blancas ofrecen un peón para abrir líneas y ganar una iniciativa devastadora. Es una de las aperturas más agresivas del siglo XIX, revivida por Kasparov en los años 90."
+  },
+  "evans-2a": {
+    "name": "Gambito Evans Aceptado",
+    "annotation": "Las Negras aceptan el peón con 4...Axb4, entrando en aguas tácticas. Las Blancas recuperarán el material con ventaja de desarrollo y espacio central."
+  },
+  "evans-2b": {
+    "name": "Gambito Evans Rehusado",
+    "annotation": "Con 4...Ab6, las Negras rechazan el gambit y mantienen la estructura, evitando las complicaciones tácticas a costa de ceder algo de iniciativa."
+  },
+  "evans-3a": {
+    "annotation": "5.c3 prepara d4. Las Blancas construyen un poderoso centro de peones y amenazan expulsar al alfil con ventaja de tempo."
+  },
+  "evans-4a": {
+    "annotation": "La retirada principal. 5...Aa5 mantiene el alfil activo y espera que las Blancas comprometan su centro."
+  },
+  "evans-4b": {
+    "name": "Defensa McDonnell",
+    "annotation": "5...Ac5 es la Defensa McDonnell. Las Negras devuelven el alfil a c5, pero las Blancas responden con 6.d4 ganando tempo."
+  },
+  "evans-5a": {
+    "annotation": "El golpe central 6.d4 es la continuación más agresiva. Las Blancas abren la posición y activan todas sus piezas."
+  },
+  "evans-5b": {
+    "annotation": "6.O-O es la preparación de la Defensa Lasker. Las Blancas castean antes de d4, dando a las Negras la oportunidad de consolidar."
+  },
+  "evans-6a": {
+    "annotation": "6...exd4 acepta las complicaciones. Las Negras capturan en el centro, pero las Blancas obtienen enorme compensación posicional."
+  },
+  "evans-6b": {
+    "annotation": "6...d6 es la respuesta sólida de Bronstein. Las Negras refuerzan e5 y esperan el desarrollo de la lucha táctica."
+  },
+  "evans-7a": {
+    "annotation": "7.O-O desarrolla con amenaza. Las Blancas castean y amenazan recuperar el peón con iniciativa de ataque."
+  },
+  "evans-7b": {
+    "name": "Ataque Tartakower",
+    "annotation": "7.Db3 es el Ataque Tartakower. La dama amenaza f7 y b4 simultáneamente, manteniendo la presión máxima sobre las Negras."
+  },
+  "evans-7c": {
+    "annotation": "7.d4 en la línea Lasker activa el centro. Las Blancas buscan aprovechar el retraso negro antes de que pueda consolidar."
+  },
+  "evans-8a": {
+    "name": "Defensa Mieses",
+    "annotation": "7...Cge7 es la Defensa Mieses, un enfoque moderno y sólido. El caballo apoya d5 y evita las tácticas directas sobre el flanco de rey."
+  },
+  "evans-8b": {
+    "annotation": "7...dxc3 es la Defensa Comprometida. Las Negras conservan el material extra pero su posición queda bajo enorme presión táctica."
+  },
+  "evans-8c": {
+    "name": "Defensa Lasker",
+    "annotation": "7...Ab6 es la célebre Defensa Lasker. El alfil se retira para equilibrar posición y las Negras buscan simplificar el juego."
+  },
+  "evans-8d": {
+    "annotation": "La posición normal de la Defensa McDonnell tras 8...d6. Las Negras tienen una posición sólida pero las Blancas mantienen iniciativa."
+  },
+  "evans-9b": {
+    "annotation": "8.Db3 ataca f7 y a4 simultáneamente. Las Blancas recuperan material mientras mantienen el ataque en la Defensa Comprometida."
+  },
+  "evans-10b": {
+    "name": "Defensa Comprometida",
+    "annotation": "8...Df6 defiende f7 en la Defensa Comprometida. Las Negras tienen dos peones extra pero su posición es extremadamente difícil de defender."
+  },
+  "evans-3b": {
+    "annotation": "5.a4 amenaza atrapar al alfil en b6. Las Blancas cambian el plan al flanco de dama para explotar la posición del alfil negro."
+  },
+  "evans-4c": {
+    "annotation": "5...a6 es la respuesta de la Variante Showalter, deteniendo a5. Las Negras frenan el avance blanco y preparan su propia contrapartida."
+  },
+  "evans-5d": {
+    "name": "Variante Showalter",
+    "annotation": "6.Cc3 completa la Variante Showalter. Las Blancas desarrollan con presión en el flanco de dama, y las Negras deben jugar con precisión para mantener el equilibrio."
   }
 }
