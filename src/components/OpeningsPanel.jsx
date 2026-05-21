@@ -10,6 +10,8 @@ import {
   DESKTOP_PANEL_RIGHT,
 } from "./panelLayout";
 
+const OPENINGS_PANEL_DEFAULT_HEIGHT = 300;
+
 const normalizeSearchText = (value, locale) =>
   value
     .normalize("NFD")
@@ -253,12 +255,14 @@ export default function OpeningsPanel({
   return (
     <FloatingPanel
       defaultPosition={{
-        bottom: DESKTOP_OPENINGS_PANEL_BOTTOM,
+        top: `calc(100dvh - ${
+          DESKTOP_OPENINGS_PANEL_BOTTOM + OPENINGS_PANEL_DEFAULT_HEIGHT
+        }px)`,
         right: DESKTOP_PANEL_RIGHT,
       }}
       width={492}
-      defaultHeight={collapsed ? undefined : 300}
-      resizable
+      defaultHeight={collapsed ? undefined : OPENINGS_PANEL_DEFAULT_HEIGHT}
+      resizable={!collapsed}
       minWidth={420}
       minHeight={220}
     >
@@ -282,14 +286,29 @@ export default function OpeningsPanel({
 
       {!collapsed && (
         <div className="min-h-0 flex-1 flex flex-col gap-3 px-4 pb-4 overflow-y-auto">
-          <input
-            type="search"
-            value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
-            placeholder={t("openings_panel.search_placeholder")}
-            aria-label={t("openings_panel.search_label")}
-            className="min-h-9 w-full border border-neon-purple/30 bg-black/30 px-3 py-2 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
-          />
+          <div className="relative">
+            <input
+              type="search"
+              value={searchText}
+              onChange={(event) => setSearchText(event.target.value)}
+              placeholder={t("openings_panel.search_placeholder")}
+              aria-label={t("openings_panel.search_label")}
+              className="min-h-9 w-full border border-neon-purple/30 bg-black/30 py-2 pr-9 pl-3 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
+            />
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m16 16 4 4" />
+            </svg>
+          </div>
 
           {filteredGroups.length === 0 ? (
             <p className="px-1 py-4 text-center font-mono text-[11px] tracking-wide text-neon-purple/50">

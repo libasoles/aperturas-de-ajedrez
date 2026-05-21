@@ -37,6 +37,7 @@ export default function FloatingPanel({
     originX: 0,
     originY: 0,
   });
+  const inactiveSizeRef = useRef(null);
   const [pos, setPos] = useState(null);
   const [size, setSize] = useState(null);
 
@@ -143,6 +144,23 @@ export default function FloatingPanel({
     };
   }, [minHeight, minWidth]);
 
+  useEffect(() => {
+    if (resizable || fillAvailableHeight) {
+      if (inactiveSizeRef.current) {
+        setSize(inactiveSizeRef.current);
+        inactiveSizeRef.current = null;
+      }
+      return;
+    }
+
+    setSize((currentSize) => {
+      if (!currentSize) return currentSize;
+
+      inactiveSizeRef.current = currentSize;
+      return { width: currentSize.width };
+    });
+  }, [fillAvailableHeight, resizable]);
+
   const positionStyle = pos
     ? { left: pos.x, top: pos.y, bottom: "auto", right: "auto" }
     : defaultPosition;
@@ -164,7 +182,7 @@ export default function FloatingPanel({
         ...(size
           ? {
               width: size.width,
-              height: size.height,
+              ...(size.height ? { height: size.height } : null),
             }
           : null),
         ...style,

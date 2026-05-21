@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import OpeningsPanel from './OpeningsPanel';
@@ -194,6 +194,64 @@ describe('OpeningsPanel', () => {
 
     await user.click(screen.getByText('▾'));
     expect(screen.getByText('▸')).toBeInTheDocument();
+  });
+
+  it('keeps the top edge anchored while collapsed', async () => {
+    const user = userEvent.setup();
+    const { container } = renderPanel();
+    const panel = container.querySelector('aside');
+
+    expect(panel.style.top).toBe('calc(100dvh - 320px)');
+
+    await user.click(screen.getByText('▾'));
+
+    expect(panel.style.top).toBe('calc(100dvh - 320px)');
+    expect(panel.style.bottom).toBe('');
+  });
+
+  it('hides the resize handle while collapsed', async () => {
+    const user = userEvent.setup();
+    renderPanel();
+
+    expect(screen.getByLabelText('Redimensionar panel')).toBeInTheDocument();
+
+    await user.click(screen.getByText('▾'));
+
+    expect(
+      screen.queryByLabelText('Redimensionar panel'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('collapses to its natural height without changing width after being dragged', async () => {
+    const user = userEvent.setup();
+    const { container } = renderPanel();
+    const panel = container.querySelector('aside');
+    const dragHandle = container.querySelector('.panel-divider');
+
+    panel.getBoundingClientRect = () => ({
+      left: 300,
+      top: 120,
+      width: 492,
+      height: 300,
+      right: 792,
+      bottom: 420,
+      x: 300,
+      y: 120,
+      toJSON: () => {},
+    });
+
+    fireEvent.mouseDown(dragHandle, { button: 0, clientX: 320, clientY: 140 });
+    fireEvent.mouseMove(window, { clientX: 340, clientY: 160 });
+    fireEvent.mouseUp(window);
+
+    expect(panel.style.height).toBe('300px');
+
+    await user.click(screen.getByText('▾'));
+
+    await waitFor(() => {
+      expect(panel.style.height).toBe('');
+    });
+    expect(panel.style.width).toBe('492px');
   });
 
   it('renders variants under their parent opening', () => {

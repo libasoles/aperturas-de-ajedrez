@@ -31,6 +31,10 @@ export function getAvailablePanelHeight({ pos, defaultPosition }) {
     }px)`;
   }
 
+  if (typeof defaultPosition?.top === "string") {
+    return `calc(100dvh - (${defaultPosition.top}) - ${FLOATING_PANEL_VIEWPORT_INSET}px)`;
+  }
+
   if (typeof defaultPosition?.bottom === "number") {
     return `calc(100dvh - ${
       defaultPosition.bottom + FLOATING_PANEL_VIEWPORT_INSET
