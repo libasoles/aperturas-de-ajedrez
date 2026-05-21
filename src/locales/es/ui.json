@@ -2,7 +2,10 @@
   "title": "Árbol de Aperturas",
   "subtitle": "Explora variantes, compara desarrollos",
   "openings_panel": {
-    "header": "Aperturas"
+    "header": "Aperturas",
+    "search_label": "Buscar aperturas y variantes",
+    "search_placeholder": "Buscar apertura o variante",
+    "no_results": "Sin resultados"
   },
   "panel_groups": {
     "e4": "e4",

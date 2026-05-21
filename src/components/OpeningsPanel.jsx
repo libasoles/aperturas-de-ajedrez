@@ -10,6 +10,22 @@ import {
   DESKTOP_PANEL_RIGHT,
 } from "./panelLayout";
 
+const normalizeSearchText = (value, locale) =>
+  value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase(locale);
+
+const getVariantLabelForLocale = (variantRoute, locale) => {
+  const title =
+    locale === "en"
+      ? variantRoute.titleEn
+      : locale === "fr"
+        ? variantRoute.titleFr
+        : variantRoute.title;
+  return title.split(" | ")[0];
+};
+
 export default function OpeningsPanel({
   openings,
   variantRoutes = [],
@@ -21,6 +37,7 @@ export default function OpeningsPanel({
 }) {
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const locale = detectLocale();
   const variantsByParent = useMemo(() => {
     const map = new Map();
@@ -32,6 +49,61 @@ export default function OpeningsPanel({
     }
     return map;
   }, [variantRoutes]);
+
+  const getOpeningLabel = (opening) =>
+    t(`panel_openings.${opening.nodeId}`, opening.label);
+
+  const getVariantLabel = (variantRoute) =>
+    getVariantLabelForLocale(variantRoute, locale);
+
+  const filteredGroups = useMemo(() => {
+    const query = normalizeSearchText(searchText.trim(), locale);
+
+    if (!query) {
+      return openings.map((group) => ({
+        ...group,
+        openings: group.openings.map((opening) => ({
+          ...opening,
+          variants: variantsByParent.get(opening.nodeId) ?? [],
+        })),
+      }));
+    }
+
+    return openings
+      .map((group) => {
+        const matchingOpenings = group.openings
+          .map((opening) => {
+            const variants = variantsByParent.get(opening.nodeId) ?? [];
+            const openingMatches = normalizeSearchText(
+              t(`panel_openings.${opening.nodeId}`, opening.label),
+              locale,
+            ).includes(query);
+            const matchingVariants = openingMatches
+              ? variants
+              : variants.filter((variant) =>
+                  normalizeSearchText(
+                    getVariantLabelForLocale(variant, locale),
+                    locale,
+                  ).includes(query),
+                );
+
+            if (!openingMatches && matchingVariants.length === 0) {
+              return null;
+            }
+
+            return {
+              ...opening,
+              variants: matchingVariants,
+            };
+          })
+          .filter(Boolean);
+
+        return matchingOpenings.length > 0
+          ? { ...group, openings: matchingOpenings }
+          : null;
+      })
+      .filter(Boolean);
+  }, [locale, openings, searchText, t, variantsByParent]);
 
   const handleOpeningClick = (opening) => {
     if (opening.access === "premium") {
@@ -63,16 +135,6 @@ export default function OpeningsPanel({
     }
 
     onToggleVariant(variant.variantNodeId);
-  };
-
-  const getVariantLabel = (variantRoute) => {
-    const title =
-      locale === "en"
-        ? variantRoute.titleEn
-        : locale === "fr"
-          ? variantRoute.titleFr
-          : variantRoute.title;
-    return title.split(" | ")[0];
   };
 
   return (
@@ -107,7 +169,22 @@ export default function OpeningsPanel({
 
       {!collapsed && (
         <div className="min-h-0 flex-1 flex flex-col gap-3 px-4 pb-4 overflow-y-auto">
-          {openings.map((group, groupIndex) => (
+          <input
+            type="search"
+            value={searchText}
+            onChange={(event) => setSearchText(event.target.value)}
+            placeholder={t("openings_panel.search_placeholder")}
+            aria-label={t("openings_panel.search_label")}
+            className="min-h-9 w-full border border-neon-purple/30 bg-black/30 px-3 py-2 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
+          />
+
+          {filteredGroups.length === 0 ? (
+            <p className="px-1 py-4 text-center font-mono text-[11px] tracking-wide text-neon-purple/50">
+              {t("openings_panel.no_results")}
+            </p>
+          ) : null}
+
+          {filteredGroups.map((group, groupIndex) => (
             <div key={group.group} className="flex flex-col gap-1.5">
               <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-cyan/50">
                 {t(`panel_groups.${group.group}`, group.group)}
@@ -115,7 +192,7 @@ export default function OpeningsPanel({
               <div className="flex flex-col gap-1">
                 {group.openings.map((opening, openingIndex) => {
                   const isActive = activeOpening === opening.nodeId;
-                  const variants = variantsByParent.get(opening.nodeId) ?? [];
+                  const variants = opening.variants;
 
                   return (
                     <div key={opening.nodeId} className="flex flex-col gap-0.5">
@@ -163,7 +240,7 @@ export default function OpeningsPanel({
                               : "none",
                           }}
                         >
-                          {t(`panel_openings.${opening.nodeId}`, opening.label)}
+                          {getOpeningLabel(opening)}
                         </span>
                         {opening.access === "premium" &&
                           !hasPremiumAccess() && (

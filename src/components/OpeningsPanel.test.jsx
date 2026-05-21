@@ -75,6 +75,13 @@ const MOCK_VARIANT_ROUTES = [
     titleFr: 'Gambit Evans | Partie Italienne | Ouvertures',
     access: 'premium',
   },
+  {
+    variantNodeId: 'fried-1',
+    parentNodeId: 'ital-1',
+    title: 'Ataque Fegatello | Apertura Italiana | Aperturas de Ajedrez',
+    titleEn: 'Fried Liver Attack | Italian Game | Chess Openings',
+    titleFr: 'Attaque Fegatello | Partie Italienne | Ouvertures',
+  },
 ];
 
 function renderPanel({
@@ -196,5 +203,73 @@ describe('OpeningsPanel', () => {
 
     await user.click(screen.getByText('Gambito Evans'));
     expect(onToggleVariant).toHaveBeenCalledWith('evans-1');
+  });
+
+  it('shows a matching opening with all of its variants', async () => {
+    const user = userEvent.setup();
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+            {
+              label: 'Escandinava',
+              nodeId: 'scan-1',
+              color: '#16a34a',
+              glow: '#22c55e',
+              text: '#bbf7d0',
+            },
+          ],
+        },
+      ],
+      variantRoutes: MOCK_VARIANT_ROUTES,
+    });
+
+    await user.type(
+      screen.getByRole('searchbox', { name: 'openings_panel.search_label' }),
+      'italiana',
+    );
+
+    expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+    expect(screen.getByText('Ataque Fegatello')).toBeInTheDocument();
+    expect(screen.queryByText('Escandinava')).not.toBeInTheDocument();
+  });
+
+  it('shows a matching variant with its parent opening and hides sibling variants', async () => {
+    const user = userEvent.setup();
+    renderPanel({
+      openings: [
+        {
+          group: 'e4',
+          openings: [
+            {
+              label: 'Italiana',
+              nodeId: 'ital-1',
+              color: '#ea580c',
+              glow: '#f97316',
+              text: '#fed7aa',
+            },
+          ],
+        },
+      ],
+      variantRoutes: MOCK_VARIANT_ROUTES,
+    });
+
+    await user.type(
+      screen.getByRole('searchbox', { name: 'openings_panel.search_label' }),
+      'evans',
+    );
+
+    expect(screen.getByText('Italiana')).toBeInTheDocument();
+    expect(screen.getByText('Gambito Evans')).toBeInTheDocument();
+    expect(screen.queryByText('Ataque Fegatello')).not.toBeInTheDocument();
   });
 });

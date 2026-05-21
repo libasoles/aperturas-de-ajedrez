@@ -2,7 +2,10 @@
   "title": "Chess Openings",
   "subtitle": "Explore variations, compare developments",
   "openings_panel": {
-    "header": "Openings"
+    "header": "Openings",
+    "search_label": "Search openings and variations",
+    "search_placeholder": "Search opening or variation",
+    "no_results": "No results"
   },
   "panel_groups": {
     "e4": "e4",
