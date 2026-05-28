@@ -196,6 +196,11 @@ export function applyLocaleRedirectForTreeConfigs() {
     path.startsWith("/fr/");
   if (hasLocalePrefix) return;
 
+  // If SSR set html[lang] to a non-ES locale but the URL has no prefix,
+  // we're on a domain-based locale (chessopenings.com.ar) — no redirect needed.
+  const htmlLang = document.documentElement.getAttribute("lang");
+  if (htmlLang && htmlLang !== "es") return;
+
   const slug = normalizeSlug(path);
   const locale = getPreferredLocale();
   if (locale === "es") return;

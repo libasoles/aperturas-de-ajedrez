@@ -140,11 +140,35 @@ async function run() {
     throw new Error("dist/server/entry-server.js does not export render().");
   }
 
-  const appHtml = serverEntry.render();
-  const rendered = template.replace(
-    '<div id="root"></div>',
-    `<div id="root">${appHtml}</div>`,
-  );
+  // Load all locale translation files for inline injection
+  const locales = {};
+  for (const lng of ["es", "en", "fr"]) {
+    const [ui, openings] = await Promise.all([
+      fs.readFile(path.resolve(rootDir, "src", "locales", lng, "ui.json"), "utf8").then(JSON.parse),
+      fs.readFile(path.resolve(rootDir, "src", "locales", lng, "openings.json"), "utf8").then(JSON.parse),
+    ]);
+    locales[lng] = { ui, openings };
+  }
+
+  // Render app HTML for each locale (sequential — i18n is a singleton)
+  const appHtmlEs = await serverEntry.render("/", locales.es);
+  const appHtmlEn = await serverEntry.render("/en/", locales.en);
+  const appHtmlFr = await serverEntry.render("/fr/", locales.fr);
+
+  const renderedByLang = {
+    es: template.replace('<div id="root"></div>', `<div id="root">${appHtmlEs}</div>`),
+    en: template.replace('<div id="root"></div>', `<div id="root">${appHtmlEn}</div>`),
+    fr: template.replace('<div id="root"></div>', `<div id="root">${appHtmlFr}</div>`),
+  };
+
+  // Build a page: inject SEO meta + inline i18n resources for zero-flash hydration
+  function buildPage(metaOpts) {
+    const lang = metaOpts.lang || "es";
+    let html = injectMeta(renderedByLang[lang], metaOpts);
+    const i18nData = JSON.stringify({ lng: lang, ...locales[lang] });
+    html = html.replace("</head>", `  <script>window.__I18N__=${i18nData};</script>\n</head>`);
+    return html;
+  }
 
   const sitemapUrls = [];
   const enSitemapUrls = [];
@@ -165,36 +189,25 @@ async function run() {
   ];
 
   // ── 1. Home pages (ES / EN / FR) ───────────────────────────────────────────
-  const homeHtml = injectMeta(rendered, {
-    title: HOME_TITLE,
-    description: HOME_DESC,
-    canonical: `${BASE_URL}`,
-    lang: "es",
-    alternates: homeAlts,
-  });
-  await fs.writeFile(path.join(distDir, "index.html"), homeHtml, "utf8");
+  await fs.writeFile(
+    path.join(distDir, "index.html"),
+    buildPage({ title: HOME_TITLE, description: HOME_DESC, canonical: `${BASE_URL}`, lang: "es", alternates: homeAlts }),
+    "utf8",
+  );
   process.stdout.write("Prerendered /\n");
   addSitemapUrl(`${BASE_URL}`, "1.0", "weekly");
 
-  const homeEnHtml = injectMeta(rendered, {
-    title: HOME_TITLE_EN,
-    description: HOME_DESC_EN,
-    canonical: `${EN_BASE_URL}/en/`,
-    lang: "en",
-    alternates: homeAlts,
-  });
-  await writePageAndDir(path.join(distDir, "en", "index.html"), homeEnHtml);
+  await writePageAndDir(
+    path.join(distDir, "en", "index.html"),
+    buildPage({ title: HOME_TITLE_EN, description: HOME_DESC_EN, canonical: `${EN_BASE_URL}/en/`, lang: "en", alternates: homeAlts }),
+  );
   process.stdout.write("Prerendered /en/\n");
   addEnSitemapUrl(`${EN_BASE_URL}/en/`, "1.0", "weekly");
 
-  const homeFrHtml = injectMeta(rendered, {
-    title: HOME_TITLE_FR,
-    description: HOME_DESC_FR,
-    canonical: `${BASE_URL}/fr/`,
-    lang: "fr",
-    alternates: homeAlts,
-  });
-  await writePageAndDir(path.join(distDir, "fr", "index.html"), homeFrHtml);
+  await writePageAndDir(
+    path.join(distDir, "fr", "index.html"),
+    buildPage({ title: HOME_TITLE_FR, description: HOME_DESC_FR, canonical: `${BASE_URL}/fr/`, lang: "fr", alternates: homeAlts }),
+  );
   process.stdout.write("Prerendered /fr/\n");
   addSitemapUrl(`${BASE_URL}/fr/`, "1.0", "weekly");
 
@@ -208,39 +221,21 @@ async function run() {
 
   await writePageAndDir(
     path.join(distDir, HELP_ROUTE.slug, "index.html"),
-    injectMeta(rendered, {
-      title: HELP_ROUTE.title,
-      description: HELP_ROUTE.description,
-      canonical: `${BASE_URL}/${HELP_ROUTE.slug}/`,
-      lang: "es",
-      alternates: helpAlts,
-    }),
+    buildPage({ title: HELP_ROUTE.title, description: HELP_ROUTE.description, canonical: `${BASE_URL}/${HELP_ROUTE.slug}/`, lang: "es", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /${HELP_ROUTE.slug}\n`);
   addSitemapUrl(`${BASE_URL}/${HELP_ROUTE.slug}/`, "0.5");
 
   await writePageAndDir(
     path.join(distDir, "en", HELP_ROUTE.slugEn, "index.html"),
-    injectMeta(rendered, {
-      title: HELP_ROUTE.titleEn,
-      description: HELP_ROUTE.descriptionEn,
-      canonical: `${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/`,
-      lang: "en",
-      alternates: helpAlts,
-    }),
+    buildPage({ title: HELP_ROUTE.titleEn, description: HELP_ROUTE.descriptionEn, canonical: `${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/`, lang: "en", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /en/${HELP_ROUTE.slugEn}\n`);
   addEnSitemapUrl(`${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/`, "0.5");
 
   await writePageAndDir(
     path.join(distDir, "fr", HELP_ROUTE.slugFr, "index.html"),
-    injectMeta(rendered, {
-      title: HELP_ROUTE.titleFr,
-      description: HELP_ROUTE.descriptionFr,
-      canonical: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}/`,
-      lang: "fr",
-      alternates: helpAlts,
-    }),
+    buildPage({ title: HELP_ROUTE.titleFr, description: HELP_ROUTE.descriptionFr, canonical: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}/`, lang: "fr", alternates: helpAlts }),
   );
   process.stdout.write(`Prerendered /fr/${HELP_ROUTE.slugFr}\n`);
   addSitemapUrl(`${BASE_URL}/fr/${HELP_ROUTE.slugFr}/`, "0.5");
@@ -259,28 +254,14 @@ async function run() {
 
     await writePageAndDir(
       path.join(distDir, route.slug, "index.html"),
-      injectMeta(rendered, {
-        title: route.title,
-        description: route.description,
-        canonical: `${BASE_URL}/${route.slug}/`,
-        lang: "es",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}/`, lang: "es", alternates, robots }),
     );
     process.stdout.write(`Prerendered /${route.slug}\n`);
     if (route.discoverable) addSitemapUrl(`${BASE_URL}/${route.slug}/`, "0.8");
 
     await writePageAndDir(
       path.join(distDir, "en", route.slugEn, "index.html"),
-      injectMeta(rendered, {
-        title: route.titleEn,
-        description: route.descriptionEn,
-        canonical: `${EN_BASE_URL}/en/${route.slugEn}/`,
-        lang: "en",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.titleEn, description: route.descriptionEn, canonical: `${EN_BASE_URL}/en/${route.slugEn}/`, lang: "en", alternates, robots }),
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
     if (route.discoverable)
@@ -288,14 +269,7 @@ async function run() {
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
-      injectMeta(rendered, {
-        title: route.titleFr,
-        description: route.descriptionFr,
-        canonical: `${BASE_URL}/fr/${route.slugFr}/`,
-        lang: "fr",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}/`, lang: "fr", alternates, robots }),
     );
     process.stdout.write(`Prerendered /fr/${route.slugFr}\n`);
     if (route.discoverable)
@@ -317,28 +291,14 @@ async function run() {
 
     await writePageAndDir(
       path.join(distDir, route.slug, "index.html"),
-      injectMeta(rendered, {
-        title: route.title,
-        description: route.description,
-        canonical: `${BASE_URL}/${route.slug}/`,
-        lang: "es",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}/`, lang: "es", alternates, robots }),
     );
     process.stdout.write(`Prerendered /${route.slug}\n`);
     if (route.discoverable) addSitemapUrl(`${BASE_URL}/${route.slug}/`, "0.6");
 
     await writePageAndDir(
       path.join(distDir, "en", route.slugEn, "index.html"),
-      injectMeta(rendered, {
-        title: route.titleEn,
-        description: route.descriptionEn,
-        canonical: `${EN_BASE_URL}/en/${route.slugEn}/`,
-        lang: "en",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.titleEn, description: route.descriptionEn, canonical: `${EN_BASE_URL}/en/${route.slugEn}/`, lang: "en", alternates, robots }),
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
     if (route.discoverable)
@@ -346,14 +306,7 @@ async function run() {
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
-      injectMeta(rendered, {
-        title: route.titleFr,
-        description: route.descriptionFr,
-        canonical: `${BASE_URL}/fr/${route.slugFr}/`,
-        lang: "fr",
-        alternates,
-        robots,
-      }),
+      buildPage({ title: route.titleFr, description: route.descriptionFr, canonical: `${BASE_URL}/fr/${route.slugFr}/`, lang: "fr", alternates, robots }),
     );
     process.stdout.write(`Prerendered /fr/${route.slugFr}\n`);
     if (route.discoverable)
@@ -368,13 +321,7 @@ async function run() {
 
     await writePageAndDir(
       path.join(distDir, route.slug, "index.html"),
-      injectMeta(rendered, {
-        title: route.title,
-        description: route.description,
-        canonical: `${BASE_URL}/${route.slug}/`,
-        lang: "es",
-        robots,
-      }),
+      buildPage({ title: route.title, description: route.description, canonical: `${BASE_URL}/${route.slug}/`, lang: "es", robots }),
     );
     process.stdout.write(`Prerendered /${route.slug}\n`);
     if (route.discoverable) addSitemapUrl(`${BASE_URL}/${route.slug}/`, "0.4");

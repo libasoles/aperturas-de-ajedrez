@@ -53,10 +53,31 @@
   status = 301
   force = true
 
+# chessopenings.com.ar: canonical English domain — no /en/ prefix in URL.
+# Redirect any /en/* URLs to canonical (e.g. links from aperturasdeajedrez.com.ar).
 [[redirects]]
-  from = "https://chessopenings.com.ar/"
-  to = "https://chessopenings.com.ar/en/"
+  from = "https://chessopenings.com.ar/en"
+  to = "https://chessopenings.com.ar/"
   status = 301
+  force = true
+
+[[redirects]]
+  from = "https://chessopenings.com.ar/en/"
+  to = "https://chessopenings.com.ar/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://chessopenings.com.ar/en/*"
+  to = "https://chessopenings.com.ar/:splat"
+  status = 301
+  force = true
+
+# Serve /en/* pre-rendered content at /* — URL stays clean (no /en/ shown).
+[[redirects]]
+  from = "https://chessopenings.com.ar/*"
+  to = "/en/:splat"
+  status = 200
   force = true
 
 # HTTP → HTTPS canonical redirect
