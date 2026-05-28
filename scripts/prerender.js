@@ -9,6 +9,7 @@ const templatePath = path.join(distDir, "index.html");
 const serverEntryPath = path.join(distDir, "server", "entry-server.js");
 
 const BASE_URL = "https://aperturasdeajedrez.com.ar";
+const EN_BASE_URL = "https://chessopenings.com.ar";
 const HOME_TITLE = "Árbol de Aperturas de Ajedrez | Explora Variantes";
 const HOME_DESC =
   "Explora y compara las principales aperturas de ajedrez en un árbol interactivo. Siciliana, Italiana, Ruy López, Francesa, Caro-Kann y Gambito de Dama. Visualiza variantes con tablero animado.";
@@ -102,6 +103,7 @@ function injectMeta(
     /"name":\s*"[^"]*"(\s*,\s*"url")/,
     `"name": "${SITE_NAME[lang]}"$1`,
   );
+  html = html.replace(/"url":\s*"[^"]*"/, `"url": "${canonical}"`);
   html = html.replace(/"inLanguage":\s*"[^"]*"/, `"inLanguage": "${lang}"`);
 
   // Inject hreflang alternate links before </head>
@@ -145,14 +147,19 @@ async function run() {
   );
 
   const sitemapUrls = [];
+  const enSitemapUrls = [];
 
   function addSitemapUrl(loc, priority, changefreq = "monthly") {
     sitemapUrls.push({ loc, priority, changefreq });
   }
 
+  function addEnSitemapUrl(loc, priority, changefreq = "monthly") {
+    enSitemapUrls.push({ loc, priority, changefreq });
+  }
+
   const homeAlts = [
     { hreflang: "es", href: `${BASE_URL}` },
-    { hreflang: "en", href: `${BASE_URL}/en/` },
+    { hreflang: "en", href: `${EN_BASE_URL}/en/` },
     { hreflang: "fr", href: `${BASE_URL}/fr/` },
     { hreflang: "x-default", href: `${BASE_URL}` },
   ];
@@ -172,13 +179,13 @@ async function run() {
   const homeEnHtml = injectMeta(rendered, {
     title: HOME_TITLE_EN,
     description: HOME_DESC_EN,
-    canonical: `${BASE_URL}/en/`,
+    canonical: `${EN_BASE_URL}/en/`,
     lang: "en",
     alternates: homeAlts,
   });
   await writePageAndDir(path.join(distDir, "en", "index.html"), homeEnHtml);
   process.stdout.write("Prerendered /en/\n");
-  addSitemapUrl(`${BASE_URL}/en/`, "1.0", "weekly");
+  addEnSitemapUrl(`${EN_BASE_URL}/en/`, "1.0", "weekly");
 
   const homeFrHtml = injectMeta(rendered, {
     title: HOME_TITLE_FR,
@@ -194,7 +201,7 @@ async function run() {
   // ── 2. Help pages (ES / EN / FR) ──────────────────────────────────────────
   const helpAlts = [
     { hreflang: "es", href: `${BASE_URL}/${HELP_ROUTE.slug}/` },
-    { hreflang: "en", href: `${BASE_URL}/en/${HELP_ROUTE.slugEn}/` },
+    { hreflang: "en", href: `${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/` },
     { hreflang: "fr", href: `${BASE_URL}/fr/${HELP_ROUTE.slugFr}/` },
     { hreflang: "x-default", href: `${BASE_URL}/${HELP_ROUTE.slug}/` },
   ];
@@ -217,13 +224,13 @@ async function run() {
     injectMeta(rendered, {
       title: HELP_ROUTE.titleEn,
       description: HELP_ROUTE.descriptionEn,
-      canonical: `${BASE_URL}/en/${HELP_ROUTE.slugEn}/`,
+      canonical: `${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/`,
       lang: "en",
       alternates: helpAlts,
     }),
   );
   process.stdout.write(`Prerendered /en/${HELP_ROUTE.slugEn}\n`);
-  addSitemapUrl(`${BASE_URL}/en/${HELP_ROUTE.slugEn}/`, "0.5");
+  addEnSitemapUrl(`${EN_BASE_URL}/en/${HELP_ROUTE.slugEn}/`, "0.5");
 
   await writePageAndDir(
     path.join(distDir, "fr", HELP_ROUTE.slugFr, "index.html"),
@@ -242,7 +249,7 @@ async function run() {
   for (const route of OPENING_ROUTES) {
     const alts = [
       { hreflang: "es", href: `${BASE_URL}/${route.slug}/` },
-      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}/` },
+      { hreflang: "en", href: `${EN_BASE_URL}/en/${route.slugEn}/` },
       { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}/` },
     ];
     const robots = route.discoverable
@@ -269,7 +276,7 @@ async function run() {
       injectMeta(rendered, {
         title: route.titleEn,
         description: route.descriptionEn,
-        canonical: `${BASE_URL}/en/${route.slugEn}/`,
+        canonical: `${EN_BASE_URL}/en/${route.slugEn}/`,
         lang: "en",
         alternates,
         robots,
@@ -277,7 +284,7 @@ async function run() {
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
     if (route.discoverable)
-      addSitemapUrl(`${BASE_URL}/en/${route.slugEn}/`, "0.8");
+      addEnSitemapUrl(`${EN_BASE_URL}/en/${route.slugEn}/`, "0.8");
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
@@ -299,7 +306,7 @@ async function run() {
   for (const route of VARIANT_ROUTES) {
     const alts = [
       { hreflang: "es", href: `${BASE_URL}/${route.slug}/` },
-      { hreflang: "en", href: `${BASE_URL}/en/${route.slugEn}/` },
+      { hreflang: "en", href: `${EN_BASE_URL}/en/${route.slugEn}/` },
       { hreflang: "fr", href: `${BASE_URL}/fr/${route.slugFr}/` },
       { hreflang: "x-default", href: `${BASE_URL}/${route.slug}/` },
     ];
@@ -327,7 +334,7 @@ async function run() {
       injectMeta(rendered, {
         title: route.titleEn,
         description: route.descriptionEn,
-        canonical: `${BASE_URL}/en/${route.slugEn}/`,
+        canonical: `${EN_BASE_URL}/en/${route.slugEn}/`,
         lang: "en",
         alternates,
         robots,
@@ -335,7 +342,7 @@ async function run() {
     );
     process.stdout.write(`Prerendered /en/${route.slugEn}\n`);
     if (route.discoverable)
-      addSitemapUrl(`${BASE_URL}/en/${route.slugEn}/`, "0.6");
+      addEnSitemapUrl(`${EN_BASE_URL}/en/${route.slugEn}/`, "0.6");
 
     await writePageAndDir(
       path.join(distDir, "fr", route.slugFr, "index.html"),
@@ -374,13 +381,28 @@ async function run() {
   }
 
   // ── 6. Sitemap ─────────────────────────────────────────────────────────────
-  const sitemapEntries = sitemapUrls.map(
-    ({ loc, priority, changefreq }) =>
-      `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+  const formatSitemap = (urls) => {
+    const entries = urls.map(
+      ({ loc, priority, changefreq }) =>
+        `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+    );
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`;
+  };
+
+  await fs.writeFile(
+    path.join(distDir, "sitemap.xml"),
+    formatSitemap(sitemapUrls),
+    "utf8",
   );
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`;
-  await fs.writeFile(path.join(distDir, "sitemap.xml"), sitemap, "utf8");
+  await fs.writeFile(
+    path.join(distDir, "sitemap-en.xml"),
+    formatSitemap(enSitemapUrls),
+    "utf8",
+  );
   process.stdout.write(`Generated sitemap.xml (${sitemapUrls.length} URLs)\n`);
+  process.stdout.write(
+    `Generated sitemap-en.xml (${enSitemapUrls.length} URLs)\n`,
+  );
 }
 
 run().catch((err) => {

@@ -21,9 +21,54 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Host-specific robots.txt files so each domain advertises only its own sitemap.
+[[redirects]]
+  from = "https://aperturasdeajedrez.com.ar/robots.txt"
+  to = "/robots-aperturas.txt"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://chessopenings.com.ar/robots.txt"
+  to = "/robots-chessopenings.txt"
+  status = 200
+  force = true
+
+# Keep English pages on the English domain.
+[[redirects]]
+  from = "https://aperturasdeajedrez.com.ar/en"
+  to = "https://chessopenings.com.ar/en/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://aperturasdeajedrez.com.ar/en/"
+  to = "https://chessopenings.com.ar/en/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://aperturasdeajedrez.com.ar/en/*"
+  to = "https://chessopenings.com.ar/en/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://chessopenings.com.ar/"
+  to = "https://chessopenings.com.ar/en/"
+  status = 301
+  force = true
+
 # HTTP → HTTPS canonical redirect
 [[redirects]]
   from = "http://aperturasdeajedrez.com.ar/*"
   to = "https://aperturasdeajedrez.com.ar/:splat"
+  status = 301
+  force = true
+
+# chessopenings.com.ar: HTTP → HTTPS only (no redirect to main domain)
+[[redirects]]
+  from = "http://chessopenings.com.ar/*"
+  to = "https://chessopenings.com.ar/:splat"
   status = 301
   force = true
