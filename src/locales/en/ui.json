@@ -45,6 +45,7 @@
   },
   "evaluation": {
     "label": "Stockfish evaluation",
+    "depth": "depth",
     "white": "White",
     "black": "Black",
     "equal": "Equal"
@@ -84,7 +85,8 @@
         "label": "▶ Play",
         "desc": "Animate moves one by one"
       }
-    }
+    },
+    "footer": "Evaluations computed with <strong>Stockfish 18</strong> at depth 14. Opening theory based on ECO and public sources."
   },
   "mobile_gate": {
     "warning": "Warning",

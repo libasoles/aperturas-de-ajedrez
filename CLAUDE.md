@@ -59,6 +59,8 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 
 - **react-chessboard v5**: uses a single `options={{...}}` prop — NOT individual props. Passing `position={fen}` directly is silently ignored.
 - **chess.js v1**: SAN notation is always English internally (K, Q, R, B, N). Use `toSpanishSAN()` exported from `ChessNode.jsx` for display.
+- **Localized SAN in human text**: `move` values in opening nodes must stay English SAN for chess.js, but any user-facing Spanish/French text (`src/locales/{es,fr}/openings.json`, `ui.json`, routes/descriptions, docs) must use localized piece letters. Spanish: `R` rey, `D` dama, `T` torre, `A` alfil, `C` caballo. French: `R` roi, `D` dame, `T` tour, `F` fou, `C` cavalier. Never leave English `K/Q/R/B/N` piece initials in Spanish or French annotations/names such as `Nf6`, `Bb4`, `Qxd4`, `Re8`; write `Cf6`/`Ab4`/`Dxd4`/`Te8` in Spanish and `Cf6`/`Fb4`/`Dxd4`/`Te8` in French.
+- **Stockfish 18**: opening tree nodes include precomputed local evaluations at depth 14 in their `stockfish` field.
 - **@xyflow/react v12**: Do NOT add a `key` prop to `<ReactFlow>` — it forces a full remount (and fitView) on every state change.
 - **Tailwind v4**: configured via `@tailwindcss/vite` plugin, no `tailwind.config.js`.
 
@@ -70,6 +72,7 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
   move: string,        // SAN (English) — fed directly to chess.js
   color: "white" | "black",  // whose turn made this move
   opening: string,     // key into OPENING_COLORS — e.g. "slav", "dutch", "queens_gambit"
+  stockfish: { depth: 14, score: number }, // Stockfish 18 eval in pawns from White's perspective
   children: Node[]
   // NO name or annotation — those live in src/locales/*/openings.json
 }
@@ -135,6 +138,7 @@ Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`
    - For every node with a concept, add `"node-id": { "name": "...", "annotation": "..." }`
    - Entry nodes (e.g., `dutch-1`) MUST have `name` — displayed on pill
    - Other nodes: `name` optional (shows on pill if present), `annotation` optional (tooltip)
+   - Use localized SAN in Spanish and French names/annotations. The source `move` remains English SAN, but explanatory text must not say `Nf6`, `Bb4`, `Qxd4`, etc. in Spanish/French.
    - Example:
 
    ```json

@@ -3,7 +3,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { buildHelpUrl, detectLocale } from "../../hooks/useOpeningTreeState";
 
-const ROW_KEYS = ["click", "flecha", "tab", "space", "arrows-lr", "arrows-ud", "flip", "play"];
+const ROW_KEYS = [
+  "click",
+  "flecha",
+  "tab",
+  "space",
+  "arrows-lr",
+  "arrows-ud",
+  "flip",
+  "play",
+];
 
 function isHelpPath(pathname) {
   const p = pathname.replace(/\/$/, "");
@@ -17,7 +26,7 @@ function getHelpPath() {
 export default function HelpDialog() {
   const { t } = useTranslation();
   const [isHelpOpen, setIsHelpOpen] = useState(
-    () => typeof window !== "undefined" && isHelpPath(window.location.pathname)
+    () => typeof window !== "undefined" && isHelpPath(window.location.pathname),
   );
   const previousPathRef = useRef("/");
 
@@ -51,7 +60,11 @@ export default function HelpDialog() {
       const fallbackPath =
         previousPathRef.current && !isHelpPath(previousPathRef.current)
           ? previousPathRef.current
-          : locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/";
+          : locale === "en"
+            ? "/en/"
+            : locale === "fr"
+              ? "/fr/"
+              : "/";
       history.pushState(null, "", fallbackPath);
     }
     setIsHelpOpen(false);
@@ -111,7 +124,8 @@ export default function HelpDialog() {
                 key={key}
                 className="flex items-start gap-4 py-3"
                 style={{
-                  borderTop: "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+                  borderTop:
+                    "1px solid color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                 }}
               >
                 <span
@@ -129,6 +143,18 @@ export default function HelpDialog() {
               </div>
             ))}
           </div>
+
+          {/* Footer */}
+          <p
+            className="font-sans text-[13px] leading-relaxed border-t pt-4"
+            style={{
+              color:
+                "color-mix(in srgb, var(--color-neon-purple) 50%, #c8bfe0)",
+              borderColor:
+                "color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+            }}
+            dangerouslySetInnerHTML={{ __html: t("help.footer") }}
+          />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

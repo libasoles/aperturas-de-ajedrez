@@ -164,6 +164,13 @@ Output each artifact as a clearly labeled code block.
 
 ### 5d — Translations
 
+SAN localization rule:
+
+- Keep node `move` fields in English SAN for chess.js.
+- In user-facing Spanish translations, convert piece initials to Spanish SAN: `K->R`, `Q->D`, `R->T`, `B->A`, `N->C`.
+- In user-facing French translations, convert piece initials to French SAN: `K->R`, `Q->D`, `R->T`, `B->F`, `N->C`.
+- Do not output English SAN piece initials in Spanish/French `name`, `annotation`, `ui.json`, route `title`, or route `description` text. Examples: Spanish `Nf6` becomes `Cf6`, `Bb4` becomes `Ab4`, `Qxd4` becomes `Dxd4`, `Re8` becomes `Te8`; French `Bb4` becomes `Fb4`.
+
 For each of `es`, `en`, `fr`:
 
 ```jsonc

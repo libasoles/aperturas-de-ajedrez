@@ -35,7 +35,7 @@
     "annotation": "Alfil en g7"
   },
   "scan-10a1a": {
-    "annotation": "Previene Bg4"
+    "annotation": "Previene Ag4"
   },
   "scan-13a1a": {
     "name": "Fianchetto completo",
@@ -58,7 +58,7 @@
     "annotation": "Clavada activa"
   },
   "scan-13a2a": {
-    "name": "Clásica Qa5",
+    "name": "Clásica Da5",
     "annotation": "Negras completan el desarrollo"
   },
   "scan-9a2b": {
@@ -251,7 +251,7 @@
     "annotation": "Alfil activo en c5"
   },
   "scot-7b": {
-    "name": "Escocesa con Be3",
+    "name": "Escocesa con Ae3",
     "annotation": "Desarrollo sólido y control del centro"
   },
   "ital-1": {
@@ -292,7 +292,7 @@
     "annotation": "Agresivo, ignora la amenaza"
   },
   "ital-3b": {
-    "annotation": "Amenaza Nxf7"
+    "annotation": "Amenaza Cxf7"
   },
   "ital-4b": {
     "annotation": "Única defensa"
@@ -493,7 +493,7 @@
     "annotation": "Clásico de Grand Prix"
   },
   "sic-9d": {
-    "annotation": "Prepara e5 o Nf6"
+    "annotation": "Prepara e5 o Cf6"
   },
   "sic-10d": {
     "annotation": "Refuerza el centro"
@@ -571,7 +571,7 @@
   },
   "fr-4d": {
     "name": "Variante Tarrasch",
-    "annotation": "Evita la clavada Bb4"
+    "annotation": "Evita la clavada Ab4"
   },
   "fr-5d1": {
     "name": "Tarrasch Abierta",
@@ -600,7 +600,7 @@
   },
   "ck-7a": {
     "name": "Clásica principal",
-    "annotation": "El alfil se activa antes de Nd7"
+    "annotation": "El alfil se activa antes de Cd7"
   },
   "ck-16a": {
     "name": "Caro-Kann Clásica completa"
@@ -756,7 +756,7 @@
   },
   "qg-7b2": {
     "name": "Cambridge Springs",
-    "annotation": "Prepara Bb4 y amenazas activas"
+    "annotation": "Prepara Ab4 y amenazas activas"
   },
   "qg-13b2": {
     "name": "Cambridge Springs completa"
@@ -924,7 +924,7 @@
   },
   "nim-3b": {
     "name": "Nimzo-India / India de Dama",
-    "annotation": "Prepara Bb4 clavando el caballo de c3"
+    "annotation": "Prepara Ab4 clavando el caballo de c3"
   },
   "nim-5b": {
     "name": "Nimzo-India",
@@ -1267,46 +1267,46 @@
   },
   "philidor-3": {
     "name": "Defensa Philidor",
-    "annotation": "Con 1.e4 e5 2.Nf3 d6, el negro refuerza el peón de e5 de forma sólida pero pasiva. La idea central es mantener la cadena de peones intacta y desarrollar con ...Nd7 o ...Nf6, aceptando una posición ligeramente restrictiva a cambio de gran solidez estructural."
+    "annotation": "Con 1.e4 e5 2.Cf3 d6, el negro refuerza el peón de e5 de forma sólida pero pasiva. La idea central es mantener la cadena de peones intacta y desarrollar con ...Cd7 o ...Cf6, aceptando una posición ligeramente restrictiva a cambio de gran solidez estructural."
   },
   "philidor-5a": {
     "name": "Variante de Cambio",
-    "annotation": "3...exd4 alivia la tensión central de inmediato. El blanco recupera con 4.Nxd4 y obtiene un ligero espacio, mientras el negro busca igualdad mediante desarrollo rápido."
+    "annotation": "3...exd4 alivia la tensión central de inmediato. El blanco recupera con 4.Cxd4 y obtiene un ligero espacio, mientras el negro busca igualdad mediante desarrollo rápido."
   },
   "philidor-9a": {
     "name": "Línea del Alfil de Rey",
-    "annotation": "5...Be7 es el movimiento más sólido del negro. Prepara el enroque corto y mantiene una estructura compacta antes de decidir el plan de desarrollo."
+    "annotation": "5...Ae7 es el movimiento más sólido del negro. Prepara el enroque corto y mantiene una estructura compacta antes de decidir el plan de desarrollo."
   },
   "philidor-17a1": {
     "name": "Variante de Cambio Principal",
-    "annotation": "Tras 6.Bf4 O-O 7.Qd2 Nc6 8.O-O-O Nxd4 9.Qxd4 Be6, el blanco ha enrocado largo y tiene un ligero espacio. El negro dispone de juego activo con ...a6 y ...Nd7 para contrarrestar en el flanco de dama."
+    "annotation": "Tras 6.Af4 O-O 7.Dd2 Cc6 8.O-O-O Cxd4 9.Dxd4 Ae6, el blanco ha enrocado largo y tiene un ligero espacio. El negro dispone de juego activo con ...a6 y ...Cd7 para contrarrestar en el flanco de dama."
   },
   "philidor-10a2": {
     "name": "Variante Antoshin",
-    "annotation": "6.Be2 prepara el enroque corto y evita complicaciones con el alfil en f4. Bautizada por el gran maestro soviético Vladimir Antoshin, esta variante busca posiciones sólidas donde el blanco explota gradualmente su ligera ventaja espacial."
+    "annotation": "6.Ae2 prepara el enroque corto y evita complicaciones con el alfil en f4. Bautizada por el gran maestro soviético Vladimir Antoshin, esta variante busca posiciones sólidas donde el blanco explota gradualmente su ligera ventaja espacial."
   },
   "philidor-14a2": {
     "name": "Variante Antoshin — Línea f4",
-    "annotation": "Tras 6.Be2 O-O 7.O-O Re8 8.f4, el blanco adopta una formación agresiva con avance de peón en el flanco de rey. El negro contraataca en el centro con ...d5 o en el flanco de dama."
+    "annotation": "Tras 6.Ae2 O-O 7.O-O Te8 8.f4, el blanco adopta una formación agresiva con avance de peón en el flanco de rey. El negro contraataca en el centro con ...d5 o en el flanco de dama."
   },
   "philidor-5b": {
     "name": "Variante Hanham",
-    "annotation": "3...Nd7 es el movimiento característico de la Variante Hanham. El caballo protege el peón de e5 sin bloquear el alfil de c8, manteniendo una posición compacta y flexible."
+    "annotation": "3...Cd7 es el movimiento característico de la Variante Hanham. El caballo protege el peón de e5 sin bloquear el alfil de c8, manteniendo una posición compacta y flexible."
   },
   "philidor-12b": {
-    "name": "Variante Hanham — Ataque Ng5",
-    "annotation": "Tras 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5, el blanco ataca f7 directamente. Esta posición táctica exige precisión del negro; la continuación normal es 7...Bxg5, devolviendo material para estabilizar."
+    "name": "Variante Hanham — Ataque Cg5",
+    "annotation": "Tras 4.Ac4 c6 5.O-O Ae7 6.dxe5 dxe5 7.Cg5, el blanco ataca f7 directamente. Esta posición táctica exige precisión del negro; la continuación normal es 7...Axg5, devolviendo material para estabilizar."
   },
   "philidor-5c": {
     "name": "Variante Nimzowitsch",
-    "annotation": "3...Nf6, bautizada por Aaron Nimzowitsch, ataca de inmediato el peón de e4. Es la segunda respuesta más popular en la Defensa Philidor y conduce a posiciones más activas para el negro."
+    "annotation": "3...Cf6, bautizada por Aaron Nimzowitsch, ataca de inmediato el peón de e4. Es la segunda respuesta más popular en la Defensa Philidor y conduce a posiciones más activas para el negro."
   },
   "philidor-7c1": {
     "name": "Variante del León",
-    "annotation": "4.Nc3 Nbd7 forma la Variante del León, donde el negro construye una posición muy sólida con dos caballos protegiendo el centro. El blanco necesita jugar con cuidado para mantener la ventaja espacial."
+    "annotation": "4.Cc3 Cbd7 forma la Variante del León, donde el negro construye una posición muy sólida con dos caballos protegiendo el centro. El blanco necesita jugar con cuidado para mantener la ventaja espacial."
   },
   "philidor-11c1": {
     "name": "Variante del León — Enroque",
-    "annotation": "Tras 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O, ambos bandos han completado el desarrollo básico. El negro tiene una posición sólida aunque algo pasiva; el plan típico incluye ...c6 y ...Re8 para presionar el centro."
+    "annotation": "Tras 4.Cc3 Cbd7 5.Ac4 Ae7 6.O-O O-O, ambos bandos han completado el desarrollo básico. El negro tiene una posición sólida aunque algo pasiva; el plan típico incluye ...c6 y ...Te8 para presionar el centro."
   }
 }

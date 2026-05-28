@@ -13,6 +13,7 @@ Explorador interactivo de aperturas de ajedrez. Visualiza las principales línea
 - **Árbol navegable** — expande y colapsa ramas con los botones `+` / `−` de cada nodo
 - **Filtros por apertura** — los botones del menú lateral (Escandinava, Española, Italiana, Siciliana, Francesa, Caro-Kann, Pirc, Alekhine, Gambito de Dama, Londres, India de Rey, Nimzo-India, Holandesa, Moderna, Nimzowitsch, Eslava, Zukertort, Marshall, Gambito Evans, Philidor) muestran únicamente esa línea completa
 - **Tablero de visualización** — al hacer clic en un nodo se muestra la posición resultante en el panel lateral; el botón **▶ Reproducir** anima los movimientos uno a uno.
+- **Evaluación Stockfish** — cada nodo del árbol incluye una evaluación generada con Stockfish 18 a profundidad 14.
 
 ## Desarrollo
 
@@ -36,6 +37,7 @@ VITE_HAS_PREMIUM_ACCESS=1
 - [React 19](https://react.dev) + [Vite 5](https://vite.dev)
 - [@xyflow/react](https://reactflow.dev) — renderizado del grafo
 - [chess.js](https://github.com/jhlywa/chess.js) — validación de movimientos y generación de FEN
+- [Stockfish 18](https://stockfishchess.org/) — evaluación local de posiciones a profundidad 14
 - [react-chessboard](https://github.com/Clariity/react-chessboard) v5 — visualización del tablero
 - [Tailwind CSS v4](https://tailwindcss.com)
 - [@radix-ui](https://www.radix-ui.com) — componentes accesibles

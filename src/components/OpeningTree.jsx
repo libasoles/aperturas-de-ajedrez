@@ -1,4 +1,10 @@
-import { Background, Controls, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
+import {
+  Background,
+  Controls,
+  ReactFlow,
+  ReactFlowProvider,
+  useReactFlow,
+} from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import ChessNode from "./ChessNode";
@@ -11,7 +17,25 @@ import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
 
-function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, firstOpeningBtnRef, lockedContentId, premiumOverlayVersion, catalog, initialViewport, tree, subtitle, variantCatalog, variantRoutes }) {
+function OpeningTreeContent({
+  nodes,
+  edges,
+  selectedNodeId,
+  activeOpening,
+  activeVariant,
+  toggleNode,
+  toggleOpening,
+  toggleVariant,
+  firstOpeningBtnRef,
+  lockedContentId,
+  premiumOverlayVersion,
+  catalog,
+  initialViewport,
+  tree,
+  subtitle,
+  variantCatalog,
+  variantRoutes,
+}) {
   const { t, i18n } = useTranslation();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
@@ -87,14 +111,15 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activ
   );
 
   const nodesWithAnchor = useMemo(
-    () => nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
+    () =>
+      nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
     [nodes, handleToggle],
   );
   const selectedNode = useMemo(
     () => (selectedNodeId ? findPathToNode(tree, selectedNodeId).at(-1) : null),
     [selectedNodeId, tree],
   );
-  const stockfishDepth = selectedNode?.stockfish?.depth ?? 10;
+  const stockfishDepth = selectedNode?.stockfish?.depth ?? 14;
   const stockfishScore = formatStockfishScore(selectedNode?.stockfish);
 
   return (
@@ -150,13 +175,22 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activ
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
         }}
       >
-        <a href={i18n.language === "en" ? "/en/" : i18n.language === "fr" ? "/fr/" : "/"} className="flex flex-col gap-0.5 no-underline">
+        <a
+          href={
+            i18n.language === "en"
+              ? "/en/"
+              : i18n.language === "fr"
+                ? "/fr/"
+                : "/"
+          }
+          className="flex flex-col gap-0.5 no-underline"
+        >
           <div className="neon-title">{t("title")}</div>
           <div className="neon-subtitle">{t("subtitle")}</div>
         </a>
         <div className="flex flex-col items-end gap-1 text-right">
           <div className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-white-soft/80">
-            Stockfish 18 · depth {stockfishDepth}
+            Stockfish 18 · {t("evaluation.depth")} {stockfishDepth}
           </div>
           <div className="font-mono text-[12px] font-bold leading-none text-white-soft">
             {stockfishScore}

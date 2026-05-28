@@ -45,6 +45,7 @@
   },
   "evaluation": {
     "label": "Evaluación Stockfish",
+    "depth": "profundidad",
     "white": "Blancas",
     "black": "Negras",
     "equal": "Igual"
@@ -84,7 +85,8 @@
         "label": "▶ Reproducir",
         "desc": "Anima las jugadas una por una"
       }
-    }
+    },
+    "footer": "Evaluaciones calculadas con <strong>Stockfish 18</strong> a profundidad 14. Teoría de aperturas basada en la ECO y fuentes públicas."
   },
   "mobile_gate": {
     "warning": "Advertencia",
