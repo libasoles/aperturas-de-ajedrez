@@ -1,5 +1,5 @@
 import { executeRead } from './lib/neo4j.js';
-import { ok, badRequest, notFound, serverError, preflight } from './lib/response.js';
+import { ok, notFound, serverError, preflight } from './lib/response.js';
 
 // FEN inicial estándar (sin contadores de semi-movimiento ni número de jugada)
 const INITIAL_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -';
