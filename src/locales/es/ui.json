@@ -43,6 +43,12 @@
     "playing": "jugando...",
     "flip_board": "Girar tablero"
   },
+  "evaluation": {
+    "label": "Evaluación Stockfish",
+    "white": "Blancas",
+    "black": "Negras",
+    "equal": "Igual"
+  },
   "help": {
     "title": "Ayuda",
     "rows": {

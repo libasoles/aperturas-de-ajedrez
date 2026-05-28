@@ -28,6 +28,7 @@ dist-ssr
 pgn/
 *.pgn
 PlayerAnalysis.*
+.local/
 
 # Local Netlify folder
 .netlify

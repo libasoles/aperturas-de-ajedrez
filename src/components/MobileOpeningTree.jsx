@@ -3,7 +3,9 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
+import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
+import { findPathToNode } from "../utils/chessPath";
 
 const nodeTypes = { chess: MobileChessNode };
 
@@ -76,6 +78,10 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
       })),
     [mobileNodes, handleToggle, handleExpandToFork],
   );
+  const selectedNode = useMemo(
+    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId).at(-1) : null),
+    [selectedNodeId, tree],
+  );
 
   return (
     <div
@@ -98,6 +104,11 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           onToggleVariant={toggleVariant}
         />
       )}
+      <StockfishEvaluationBar
+        stockfish={selectedNode?.stockfish}
+        orientation="horizontal"
+        className="fixed left-0 right-0 top-0 z-40"
+      />
       <div
         className="panel"
         style={{

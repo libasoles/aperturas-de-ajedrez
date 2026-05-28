@@ -4,7 +4,10 @@ import { useTranslation } from "react-i18next";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
+import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import HelpDialog from "./ui/HelpDialog";
+import { findPathToNode } from "../utils/chessPath";
+import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
 
@@ -87,6 +90,12 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activ
     () => nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
     [nodes, handleToggle],
   );
+  const selectedNode = useMemo(
+    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId).at(-1) : null),
+    [selectedNodeId, tree],
+  );
+  const stockfishDepth = selectedNode?.stockfish?.depth ?? 10;
+  const stockfishScore = formatStockfishScore(selectedNode?.stockfish);
 
   return (
     <div className="w-screen h-screen bg-app">
@@ -128,6 +137,11 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activ
         premiumOverlayVersion={premiumOverlayVersion}
       />
 
+      <StockfishEvaluationBar
+        stockfish={selectedNode?.stockfish}
+        className="absolute right-0 top-0 bottom-0 z-10"
+      />
+
       {/* Top bar */}
       <div
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-10 border-b border-neon-purple/[0.14]"
@@ -140,7 +154,15 @@ function OpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activ
           <div className="neon-title">{t("title")}</div>
           <div className="neon-subtitle">{t("subtitle")}</div>
         </a>
-        {subtitle && <div className="neon-subtitle text-right">{subtitle}</div>}
+        <div className="flex flex-col items-end gap-1 text-right">
+          <div className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-white-soft/80">
+            Stockfish 18 · depth {stockfishDepth}
+          </div>
+          <div className="font-mono text-[12px] font-bold leading-none text-white-soft">
+            {stockfishScore}
+          </div>
+          {subtitle && <div className="neon-subtitle">{subtitle}</div>}
+        </div>
       </div>
 
       {/* Help button — fixed bottom-left */}

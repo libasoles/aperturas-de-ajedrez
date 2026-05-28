@@ -43,6 +43,12 @@
     "playing": "playing...",
     "flip_board": "Flip board"
   },
+  "evaluation": {
+    "label": "Stockfish evaluation",
+    "white": "White",
+    "black": "Black",
+    "equal": "Equal"
+  },
   "help": {
     "title": "Help",
     "rows": {

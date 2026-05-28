@@ -43,6 +43,12 @@
     "playing": "en cours...",
     "flip_board": "Retourner l'échiquier"
   },
+  "evaluation": {
+    "label": "Évaluation Stockfish",
+    "white": "Blancs",
+    "black": "Noirs",
+    "equal": "Égal"
+  },
   "help": {
     "title": "Aide",
     "rows": {
