@@ -3,6 +3,7 @@ import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
+import { formatStockfishScore } from "../utils/stockfishEvaluation";
 import PremiumLockIcon from "./PremiumLockIcon";
 import { Tooltip } from "./ui/Tooltip";
 
@@ -40,6 +41,7 @@ function ChessNode({ id, data }) {
     onExpandToFork,
     isPremium,
     isLocked,
+    showStockfishLabel,
   } = data;
 
   const name =
@@ -208,6 +210,24 @@ function ChessNode({ id, data }) {
           }}
         >
           →
+        </span>
+      )}
+
+      {/* Engine-source label — absolutely positioned above pill, outside node bounds */}
+      {showStockfishLabel && (
+        <span
+          style={{
+            color: colors.text,
+            position: "absolute",
+            bottom: "100%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            marginBottom: "4px",
+            whiteSpace: "nowrap",
+          }}
+          className="text-[13px] font-sans opacity-70 text-center leading-tight"
+        >
+          Stockfish {formatStockfishScore(data.stockfish)}
         </span>
       )}
 

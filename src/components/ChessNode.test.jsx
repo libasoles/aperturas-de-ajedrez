@@ -152,6 +152,24 @@ describe('ChessNode — piece icons', () => {
   });
 });
 
+describe('ChessNode — Stockfish label', () => {
+  it('shows the upper Stockfish label when requested', () => {
+    render(
+      <ChessNode
+        id="engine-node"
+        data={makeData({ showStockfishLabel: true })}
+      />,
+    );
+
+    expect(screen.getByText(/Stockfish/)).toBeInTheDocument();
+  });
+
+  it('does not show the upper Stockfish label by default', () => {
+    render(<ChessNode id="human-node" data={makeData()} />);
+    expect(screen.queryByText(/Stockfish/)).not.toBeInTheDocument();
+  });
+});
+
 describe('ChessNode — keyboard interaction', () => {
   it('does not call onSelect when Enter is pressed (reserved for board flip)', async () => {
     const user = userEvent.setup();

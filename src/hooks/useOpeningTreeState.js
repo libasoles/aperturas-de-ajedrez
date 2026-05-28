@@ -10,6 +10,10 @@ import {
   getPathToNextFork,
   getVerticalNavigationTarget,
 } from "../utils/chessPath";
+import {
+  isSignificantEngineGeneratedStockfishNode,
+  resolveStockfishLabelThreshold,
+} from "../utils/stockfishEvaluation";
 
 // Detect locale from URL prefix — server falls back to "es"
 function detectLocale() {
@@ -98,6 +102,10 @@ function buildGraph(
   const isExpanded = expandedIds.has(treeNode.id);
   const hasChildren = treeNode.children && treeNode.children.length > 0;
   const isPremium = options.isPremiumNode?.(treeNode.id) ?? false;
+  const showStockfishLabel = isSignificantEngineGeneratedStockfishNode(
+    treeNode,
+    options.stockfishLabelThreshold,
+  );
 
   const rfNode = {
     id: treeNode.id,
@@ -113,6 +121,8 @@ function buildGraph(
       hasChildren,
       colors,
       isPremium,
+      showStockfishLabel,
+      stockfish: treeNode.stockfish,
     },
   };
 
@@ -297,6 +307,8 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
   const premium = config.premium;
   const premiumAccess = resolvePremiumAccess(premium);
   const premiumCanAccess = resolvePremiumCanAccess(premium, premiumAccess);
+  const stockfishLabelThreshold =
+    config.stockfishLabelThreshold ?? resolveStockfishLabelThreshold();
   const premiumNodeIds = useMemo(
     () =>
       premium?.enabled
@@ -364,8 +376,8 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     ],
   );
   const graphOptions = useMemo(
-    () => ({ colors, isPremiumNode }),
-    [colors, isPremiumNode],
+    () => ({ colors, isPremiumNode, stockfishLabelThreshold }),
+    [colors, isPremiumNode, stockfishLabelThreshold],
   );
   const initGraph = useMemo(
     () => buildGraph(tree, initialDisplayIds, graphOptions),
