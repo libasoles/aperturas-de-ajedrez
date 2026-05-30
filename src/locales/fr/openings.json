@@ -1308,5 +1308,28 @@
   "philidor-11c1": {
     "name": "Variante du Lion — Roqué",
     "annotation": "Après 4.Cc3 Cbd7 5.Fc4 Fe7 6.O-O O-O, les deux camps ont complété leur développement de base. Les Noirs ont une position solide mais quelque peu passive ; le plan typique comprend ...c6 et ...Te8 pour presser le centre."
-  }
+  },
+  "pon-1":   { "name": "Partie Ponziani", "annotation": "Avec 3.c3, les Blancs préparent l'avance centrale 4.d4. L'une des plus anciennes ouvertures, favorisée par Ponziani au XVIIIe siècle." },
+  "pon-2a":  { "name": "Contre-attaque Jaenisch", "annotation": "3...Cf6 cible e4 en exploitant l'impossibilité pour les Blancs de jouer Cc3 à cause du pion en c3." },
+  "pon-3a":  { "annotation": "4.d4 crée une tension centrale immédiate." },
+  "pon-4a":  { "annotation": "4...Cxe4 capture le pion central." },
+  "pon-5a":  { "annotation": "5.d5 chasse le cavalier de c6 et gagne de l'espace." },
+  "pon-6a":  { "annotation": "5...Ce7 est la retraite solide du cavalier de c6." },
+  "pon-7a":  { "name": "Contre-attaque Jaenisch", "annotation": "6.Cxe5 capture avec l'initiative. Les Blancs détiennent des avantages matériels et spatiaux." },
+  "pon-2b":  { "annotation": "3...d5 contre-attaque immédiatement au centre." },
+  "pon-3b":  { "annotation": "4.Da4 cloue le cavalier de c6 contre le roi noir." },
+  "pon-4ba": { "annotation": "4...f6 (variante Steinitz) défend e5 avec un pion, affaiblissant la diagonale a2-g8." },
+  "pon-5ba": { "annotation": "5.Fb5 augmente la pression sur le cavalier de c6." },
+  "pon-6ba": { "annotation": "5...Cge7 développe le cavalier du roi en préparant Dxd5." },
+  "pon-7ba": { "annotation": "6.exd5 ouvre la position." },
+  "pon-8ba": { "name": "Variante Steinitz", "annotation": "6...Dxd5 centralise la dame. Les Noirs ont une position active mais font toujours face à une pression sur c6." },
+  "pon-4bb": { "annotation": "4...Cf6 (variante Leonhardt) développe le cavalier et attaque e4." },
+  "pon-5bb": { "annotation": "5.Cxe5 capture e5 en exploitant le clouage du cavalier de c6 par Da4." },
+  "pon-6bb": { "annotation": "5...Fd6 attaque le cavalier de e5 et développe le fou." },
+  "pon-7bb": { "annotation": "6.Cxc6 double les pions noirs sur la colonne c." },
+  "pon-8bb": { "name": "Variante Leonhardt", "annotation": "6...bxc6 ouvre la colonne b. Les Noirs obtiennent la paire de fous comme compensation." },
+  "pon-2c":  { "name": "Contre-gambit Ponziani", "annotation": "3...f5 offre un pion pour saisir l'initiative immédiate et déséquilibrer la position." },
+  "pon-3c":  { "annotation": "4.d4 lutte pour le centre plutôt que d'accepter le gambit." },
+  "pon-4c":  { "annotation": "4...fxe4 accepte le gambit, créant une tension tactique immédiate." },
+  "pon-5c":  { "name": "Contre-gambit Ponziani", "annotation": "5.Cxe5 mène au jeu le plus aiguisé. La position est tactiquement complexe et déséquilibrée." }
 }

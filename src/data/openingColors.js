@@ -1,3 +1,4 @@
+// TODO: extract colors to constants
 export const OPENING_COLORS = {
   root: {
     node: "#3a2a1e",
@@ -130,5 +131,11 @@ export const OPENING_COLORS = {
     text: "#fde8c8",
     border: "#7b3a0e",
     edge: "#9a4c14",
+  },
+  ponziani: {
+    node: "#0c2033",
+    text: "#bae6fd",
+    border: "#38bdf8",
+    edge: "#0ea5e9",
   },
 };

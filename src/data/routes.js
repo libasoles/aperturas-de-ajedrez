@@ -311,6 +311,21 @@ const OPENING_ROUTE_DEFS = [
       "Apprenez la Défense Marshall (1.d4 d5 2.c4 Cf6) : une réponse peu orthodoxe au Gambit de la Dame où les Noirs défendent d5 avec le cavalier, cherchant le dynamisme au prix du centre.",
   },
   {
+    slug: "apertura-ponziani",
+    slugEn: "ponziani-opening",
+    slugFr: "partie-ponziani",
+    nodeId: "pon-1",
+    title: "Apertura Ponziani | Aperturas de Ajedrez",
+    titleEn: "Ponziani Opening | Chess Openings",
+    titleFr: "Partie Ponziani | Ouvertures d'Échecs",
+    description:
+      "Aprende la Apertura Ponziani (1.e4 e5 2.Cf3 Cc6 3.c3): las blancas preparan el avance d4 para construir un sólido centro de peones en una de las aperturas más antiguas del ajedrez.",
+    descriptionEn:
+      "Learn the Ponziani Opening (1.e4 e5 2.Nf3 Nc6 3.c3): White prepares the d4 advance to build a solid pawn center in one of chess's oldest recorded openings.",
+    descriptionFr:
+      "Apprenez la Partie Ponziani (1.e4 e5 2.Cf3 Cc6 3.c3) : les Blancs préparent l'avance d4 pour construire un solide centre de pions dans l'une des plus anciennes ouvertures du jeu d'échecs.",
+  },
+  {
     slug: "defensa-philidor",
     slugEn: "philidor-defense",
     slugFr: "defense-philidor",
@@ -1581,6 +1596,71 @@ const VARIANT_ROUTE_DEFS = [
       "The Lion Variation (3...Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.O-O O-O) is an ultra-defensive line where Black constructs a two-knight fortress in the center.",
     descriptionFr:
       "La Variante du Lion (3...Cf6 4.Cc3 Cbd7 5.Fc4 Fe7 6.O-O O-O) est une ligne ultra-défensive où les Noirs construisent une forteresse à deux cavaliers au centre.",
+  },
+  // ── Ponziani ──────────────────────────────────────────
+  {
+    slug: "apertura-ponziani/contraataque-jaenisch",
+    slugEn: "ponziani-opening/jaenisch-counterattack",
+    slugFr: "partie-ponziani/contre-attaque-jaenisch",
+    variantNodeId: "pon-7a",
+    parentNodeId: "pon-1",
+    title: "Contraataque Jaenisch | Apertura Ponziani | Aperturas de Ajedrez",
+    titleEn: "Jaenisch Counterattack | Ponziani Opening | Chess Openings",
+    titleFr: "Contre-attaque Jaenisch | Partie Ponziani | Ouvertures d'Échecs",
+    description:
+      "Contraataque Jaenisch de la Apertura Ponziani (3...Cf6 4.d4 Cxe4 5.d5 Ce7 6.Cxe5): las negras atacan e4 de inmediato aprovechando que c3 impide Cc3.",
+    descriptionEn:
+      "Jaenisch Counterattack of the Ponziani Opening (3...Nf6 4.d4 Nxe4 5.d5 Ne7 6.Nxe5): Black immediately targets e4, exploiting the fact that c3 prevents White from playing Nc3.",
+    descriptionFr:
+      "Contre-attaque Jaenisch de la Partie Ponziani (3...Cf6 4.d4 Cxe4 5.d5 Ce7 6.Cxe5) : les Noirs ciblent immédiatement e4, exploitant le fait que c3 empêche les Blancs de jouer Cc3.",
+  },
+  {
+    slug: "apertura-ponziani/variante-steinitz",
+    slugEn: "ponziani-opening/steinitz-variation",
+    slugFr: "partie-ponziani/variante-steinitz",
+    variantNodeId: "pon-8ba",
+    parentNodeId: "pon-1",
+    title: "Variante Steinitz | Apertura Ponziani | Aperturas de Ajedrez",
+    titleEn: "Steinitz Variation | Ponziani Opening | Chess Openings",
+    titleFr: "Variante Steinitz | Partie Ponziani | Ouvertures d'Échecs",
+    description:
+      "Variante Steinitz de la Apertura Ponziani (3...d5 4.Da4 f6 5.Ab5 Cge7 6.exd5 Dxd5): las negras contraatacan en el centro y defienden e5 activamente con el peón f.",
+    descriptionEn:
+      "Steinitz Variation of the Ponziani Opening (3...d5 4.Qa4 f6 5.Bb5 Nge7 6.exd5 Qxd5): Black counterattacks in the center and actively defends e5 with the f-pawn.",
+    descriptionFr:
+      "Variante Steinitz de la Partie Ponziani (3...d5 4.Da4 f6 5.Fb5 Cge7 6.exd5 Dxd5) : les Noirs contre-attaquent au centre et défendent activement e5 avec le pion f.",
+  },
+  {
+    slug: "apertura-ponziani/variante-leonhardt",
+    slugEn: "ponziani-opening/leonhardt-variation",
+    slugFr: "partie-ponziani/variante-leonhardt",
+    variantNodeId: "pon-8bb",
+    parentNodeId: "pon-1",
+    title: "Variante Leonhardt | Apertura Ponziani | Aperturas de Ajedrez",
+    titleEn: "Leonhardt Variation | Ponziani Opening | Chess Openings",
+    titleFr: "Variante Leonhardt | Partie Ponziani | Ouvertures d'Échecs",
+    description:
+      "Variante Leonhardt de la Apertura Ponziani (3...d5 4.Da4 Cf6 5.Cxe5 Ad6 6.Cxc6 bxc6): las negras desarrollan activamente y obtienen la pareja de alfiles como compensación.",
+    descriptionEn:
+      "Leonhardt Variation of the Ponziani Opening (3...d5 4.Qa4 Nf6 5.Nxe5 Bd6 6.Nxc6 bxc6): Black develops actively and obtains the bishop pair as compensation for doubled pawns.",
+    descriptionFr:
+      "Variante Leonhardt de la Partie Ponziani (3...d5 4.Da4 Cf6 5.Cxe5 Fd6 6.Cxc6 bxc6) : les Noirs se développent activement et obtiennent la paire de fous comme compensation pour les pions doublés.",
+  },
+  {
+    slug: "apertura-ponziani/contragambito-ponziani",
+    slugEn: "ponziani-opening/ponziani-countergambit",
+    slugFr: "partie-ponziani/contre-gambit-ponziani",
+    variantNodeId: "pon-5c",
+    parentNodeId: "pon-1",
+    title: "Contragambito Ponziani | Apertura Ponziani | Aperturas de Ajedrez",
+    titleEn: "Ponziani Countergambit | Ponziani Opening | Chess Openings",
+    titleFr: "Contre-gambit Ponziani | Partie Ponziani | Ouvertures d'Échecs",
+    description:
+      "Contragambito Ponziani (3...f5 4.d4 fxe4 5.Cxe5): las negras ofrecen un peón para obtener iniciativa y contrajuego agresivo desde la apertura.",
+    descriptionEn:
+      "Ponziani Countergambit (3...f5 4.d4 fxe4 5.Nxe5): Black offers a pawn to gain initiative and aggressive counterplay from the very start.",
+    descriptionFr:
+      "Contre-gambit Ponziani (3...f5 4.d4 fxe4 5.Cxe5) : les Noirs offrent un pion pour obtenir l'initiative et un contre-jeu agressif côté roi dès le début.",
   },
 ];
 

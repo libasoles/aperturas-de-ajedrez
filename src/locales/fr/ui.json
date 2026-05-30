@@ -33,7 +33,8 @@
     "qg-3c": "Slave",
     "nf3": "Ouverture Zukertort",
     "marshall-1": "Défense Marshall",
-    "philidor-3": "Défense Philidor"
+    "philidor-3": "Défense Philidor",
+    "pon-1": "Partie Ponziani"
   },
   "chess_panel": {
     "position": "Position",

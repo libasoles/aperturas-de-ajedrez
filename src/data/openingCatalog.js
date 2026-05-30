@@ -43,6 +43,16 @@ export const OPENING_CATALOG = [
         discoverable: false,
       },
       {
+        label: "Ponziani",
+        nodeId: "pon-1",
+        pathIds: ["e4", "span-1", "span-2", "span-3"],
+        color: "#0c2033",
+        glow: "#38bdf8",
+        text: "#bae6fd",
+        access: "premium",
+        discoverable: true,
+      },
+      {
         label: "Siciliana",
         nodeId: "sic-1",
         pathIds: ["e4"],
@@ -673,6 +683,10 @@ export const VARIANT_CATALOG = [
     access: "premium",
     discoverable: true,
   },
+  { variantNodeId: "pon-7a",  parentNodeId: "pon-1", access: "premium", discoverable: true },
+  { variantNodeId: "pon-8ba", parentNodeId: "pon-1", access: "premium", discoverable: true },
+  { variantNodeId: "pon-8bb", parentNodeId: "pon-1", access: "premium", discoverable: true },
+  { variantNodeId: "pon-5c",  parentNodeId: "pon-1", access: "premium", discoverable: true },
 ];
 
 export const OPENING_ENTRY_BY_NODE_ID = Object.fromEntries(

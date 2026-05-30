@@ -1308,5 +1308,28 @@
   "philidor-11c1": {
     "name": "Variante del León — Enroque",
     "annotation": "Tras 4.Cc3 Cbd7 5.Ac4 Ae7 6.O-O O-O, ambos bandos han completado el desarrollo básico. El negro tiene una posición sólida aunque algo pasiva; el plan típico incluye ...c6 y ...Te8 para presionar el centro."
-  }
+  },
+  "pon-1":   { "name": "Apertura Ponziani", "annotation": "Con 3.c3, las blancas preparan el avance 4.d4 para dominar el centro. Una de las aperturas más antiguas del registro histórico, favorita de Ponziani en el siglo XVIII." },
+  "pon-2a":  { "name": "Contraataque Jaenisch", "annotation": "3...Cf6 ataca el peón e4 aprovechando que c3 impide la defensa Cc3." },
+  "pon-3a":  { "annotation": "4.d4 crea tensión central inmediata." },
+  "pon-4a":  { "annotation": "4...Cxe4 captura el peón central." },
+  "pon-5a":  { "annotation": "5.d5 expulsa el caballo de c6 y gana espacio." },
+  "pon-6a":  { "annotation": "5...Ce7 es la retirada más sólida del caballo de c6." },
+  "pon-7a":  { "name": "Contraataque Jaenisch", "annotation": "6.Cxe5 captura con iniciativa. Las blancas tienen ventaja material y espacial." },
+  "pon-2b":  { "annotation": "3...d5 contraataca en el centro de inmediato." },
+  "pon-3b":  { "annotation": "4.Da4 clava el caballo de c6 contra el rey negro." },
+  "pon-4ba": { "annotation": "4...f6 (Variante Steinitz) defiende e5 con el peón, aunque debilita la diagonal a2-g8." },
+  "pon-5ba": { "annotation": "5.Ab5 aumenta la presión sobre el caballo de c6." },
+  "pon-6ba": { "annotation": "5...Cge7 desarrolla el caballo de rey preparando Dxd5." },
+  "pon-7ba": { "annotation": "6.exd5 abre la posición." },
+  "pon-8ba": { "name": "Variante Steinitz", "annotation": "6...Dxd5 centraliza la dama. Las negras tienen posición activa pero siguen bajo presión en c6." },
+  "pon-4bb": { "annotation": "4...Cf6 (Variante Leonhardt) desarrolla el caballo y ataca e4." },
+  "pon-5bb": { "annotation": "5.Cxe5 captura e5 aprovechando la clavada sobre el caballo de c6." },
+  "pon-6bb": { "annotation": "5...Ad6 ataca el caballo de e5 y desarrolla el alfil." },
+  "pon-7bb": { "annotation": "6.Cxc6 dobla los peones negros en la columna c." },
+  "pon-8bb": { "name": "Variante Leonhardt", "annotation": "6...bxc6 abre la columna b. Las negras obtienen la pareja de alfiles como compensación." },
+  "pon-2c":  { "name": "Contragambito Ponziani", "annotation": "3...f5 ofrece un peón para obtener iniciativa inmediata y desequilibrar la posición." },
+  "pon-3c":  { "annotation": "4.d4 lucha por el centro en lugar de aceptar el gambito." },
+  "pon-4c":  { "annotation": "4...fxe4 acepta el gambito creando tensión táctica." },
+  "pon-5c":  { "name": "Contragambito Ponziani", "annotation": "5.Cxe5 conduce al juego más agudo. Posición tácticamente compleja y desequilibrada." }
 }
