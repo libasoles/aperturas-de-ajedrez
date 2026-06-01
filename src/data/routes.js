@@ -340,6 +340,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez la Défense Philidor (1.e4 e5 2.Cf3 d6) : une réponse solide et classique au pion roi qui privilégie la solidité structurelle, avec les variantes Hanham, Antoshin et la Variante du Lion.",
   },
+  {
+    slug: "contragambito-de-falkbeer",
+    slugEn: "falkbeer-countergambit",
+    slugFr: "contregambit-de-falkbeer",
+    nodeId: "falk-1",
+    title: "Contragambito de Falkbeer | Aperturas de Ajedrez",
+    titleEn: "Falkbeer Countergambit | Chess Openings",
+    titleFr: "Contregambit de Falkbeer | Ouvertures d'Échecs",
+    description:
+      "Aprende el Contragambito de Falkbeer (1.e4 e5 2.f4 d5): defensa agresiva contra el Gambito de Rey con juego táctico dinámico.",
+    descriptionEn:
+      "Learn the Falkbeer Countergambit (1.e4 e5 2.f4 d5): an aggressive response to the King's Gambit with dynamic tactical play.",
+    descriptionFr:
+      "Apprenez le Contregambit de Falkbeer (1.e4 e5 2.f4 d5) : une réponse agressive au Gambit du Roi avec un jeu tactique dynamique.",
+  },
 ];
 
 /**
@@ -1661,6 +1676,55 @@ const VARIANT_ROUTE_DEFS = [
       "Ponziani Countergambit (3...f5 4.d4 fxe4 5.Nxe5): Black offers a pawn to gain initiative and aggressive counterplay from the very start.",
     descriptionFr:
       "Contre-gambit Ponziani (3...f5 4.d4 fxe4 5.Cxe5) : les Noirs offrent un pion pour obtenir l'initiative et un contre-jeu agressif côté roi dès le début.",
+  },
+  // ── Contragambito de Falkbeer ──────────────────────────────────────────
+  {
+    slug: "contragambito-de-falkbeer/gambito-charousek",
+    slugEn: "falkbeer-countergambit/charousek-gambit",
+    slugFr: "contregambit-de-falkbeer/gambit-charousek",
+    variantNodeId: "falk-13a",
+    parentNodeId: "falk-1",
+    title: "Gambito de Charousek | Contragambito de Falkbeer | Aperturas de Ajedrez",
+    titleEn: "Charousek Gambit | Falkbeer Countergambit | Chess Openings",
+    titleFr: "Gambit Charousek | Contregambit de Falkbeer | Ouvertures d'Échecs",
+    description:
+      "Línea principal moderna del Contragambito de Falkbeer. Las Blancas tienen ventaja espacial con un juego estratégico.",
+    descriptionEn:
+      "Modern main line of the Falkbeer Countergambit. White has a spatial advantage with strategic play.",
+    descriptionFr:
+      "Ligne principale moderne du Contregambit de Falkbeer. Les Blancs ont un avantage spatial avec un jeu stratégique.",
+  },
+  {
+    slug: "contragambito-de-falkbeer/defensa-nimzowitsch-marshall",
+    slugEn: "falkbeer-countergambit/nimzowitsch-marshall-defense",
+    slugFr: "contregambit-de-falkbeer/defense-nimzowitsch-marshall",
+    variantNodeId: "falk-11b",
+    parentNodeId: "falk-1",
+    title: "Defensa Nimzowitsch-Marshall | Contragambito de Falkbeer | Aperturas de Ajedrez",
+    titleEn: "Nimzowitsch-Marshall Defense | Falkbeer Countergambit | Chess Openings",
+    titleFr: "Défense Nimzowitsch-Marshall | Contregambit de Falkbeer | Ouvertures d'Échecs",
+    description:
+      "Variante defensiva de las Negras buscando actividad de piezas mediante 3...c6. Juego dinámico para ambos bandos.",
+    descriptionEn:
+      "Defensive variation where Black seeks piece activity via 3...c6. Dynamic play for both sides.",
+    descriptionFr:
+      "Variante défensive où les Noirs cherchent une activité de pièces via 3...c6. Jeu dynamique pour les deux camps.",
+  },
+  {
+    slug: "contragambito-de-falkbeer/ataque-anderssen",
+    slugEn: "falkbeer-countergambit/anderssen-attack",
+    slugFr: "contregambit-de-falkbeer/attaque-anderssen",
+    variantNodeId: "falk-11c",
+    parentNodeId: "falk-1",
+    title: "Ataque de Anderssen | Contragambito de Falkbeer | Aperturas de Ajedrez",
+    titleEn: "Anderssen Attack | Falkbeer Countergambit | Chess Openings",
+    titleFr: "Attaque d'Anderssen | Contregambit de Falkbeer | Ouvertures d'Échecs",
+    description:
+      "Línea alternativa agresiva con 4.Bb5+. Ambos bandos tienen recursos tácticos en esta posición compleja.",
+    descriptionEn:
+      "Aggressive alternative line with 4.Bb5+. Both sides have tactical resources in this complex position.",
+    descriptionFr:
+      "Ligne alternative agressive avec 4.Fb5+. Les deux camps ont des ressources tactiques dans cette position complexe.",
   },
 ];
 

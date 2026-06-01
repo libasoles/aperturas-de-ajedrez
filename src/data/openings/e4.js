@@ -5752,6 +5752,223 @@ export const E4_TREE = {
       ]
     },
     {
+      "id": "falk-1",
+      "move": "e5",
+      "color": "black",
+      "opening": "falkbeer",
+      "stockfish": {
+        "depth": 14,
+        "score": 0.36
+      },
+      "children": [
+        {
+          "id": "falk-2",
+          "move": "f4",
+          "color": "white",
+          "opening": "falkbeer",
+          "children": [
+            {
+              "id": "falk-3",
+              "move": "d5",
+              "color": "black",
+              "opening": "falkbeer",
+              "children": [
+                {
+                  "id": "falk-4",
+                  "move": "exd5",
+                  "color": "white",
+                  "opening": "falkbeer",
+                  "children": [
+                    {
+                      "id": "falk-5a",
+                      "move": "e4",
+                      "color": "black",
+                      "opening": "falkbeer",
+                      "children": [
+                        {
+                          "id": "falk-6a",
+                          "move": "d3",
+                          "color": "white",
+                          "opening": "falkbeer",
+                          "children": [
+                            {
+                              "id": "falk-7a",
+                              "move": "Nf6",
+                              "color": "black",
+                              "opening": "falkbeer",
+                              "children": [
+                                {
+                                  "id": "falk-8a",
+                                  "move": "dxe4",
+                                  "color": "white",
+                                  "opening": "falkbeer",
+                                  "children": [
+                                    {
+                                      "id": "falk-9a",
+                                      "move": "Nxe4",
+                                      "color": "black",
+                                      "opening": "falkbeer",
+                                      "children": [
+                                        {
+                                          "id": "falk-10a",
+                                          "move": "Nf3",
+                                          "color": "white",
+                                          "opening": "falkbeer",
+                                          "children": [
+                                            {
+                                              "id": "falk-11a",
+                                              "move": "Bc5",
+                                              "color": "black",
+                                              "opening": "falkbeer",
+                                              "children": [
+                                                {
+                                                  "id": "falk-12a",
+                                                  "move": "Qe2",
+                                                  "color": "white",
+                                                  "opening": "falkbeer",
+                                                  "children": [
+                                                    {
+                                                      "id": "falk-13a",
+                                                      "move": "Bf5",
+                                                      "color": "black",
+                                                      "opening": "falkbeer",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "falk-5b",
+                      "move": "c6",
+                      "color": "black",
+                      "opening": "falkbeer",
+                      "children": [
+                        {
+                          "id": "falk-6b",
+                          "move": "dxc6",
+                          "color": "white",
+                          "opening": "falkbeer",
+                          "children": [
+                            {
+                              "id": "falk-7b",
+                              "move": "Nxc6",
+                              "color": "black",
+                              "opening": "falkbeer",
+                              "children": [
+                                {
+                                  "id": "falk-8b",
+                                  "move": "Nf3",
+                                  "color": "white",
+                                  "opening": "falkbeer",
+                                  "children": [
+                                    {
+                                      "id": "falk-9b",
+                                      "move": "Bg4",
+                                      "color": "black",
+                                      "opening": "falkbeer",
+                                      "children": [
+                                        {
+                                          "id": "falk-10b",
+                                          "move": "Be2",
+                                          "color": "white",
+                                          "opening": "falkbeer",
+                                          "children": [
+                                            {
+                                              "id": "falk-11b",
+                                              "move": "exf4",
+                                              "color": "black",
+                                              "opening": "falkbeer",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "falk-5c",
+                      "move": "e4",
+                      "color": "black",
+                      "opening": "falkbeer",
+                      "children": [
+                        {
+                          "id": "falk-6c",
+                          "move": "Bb5+",
+                          "color": "white",
+                          "opening": "falkbeer",
+                          "children": [
+                            {
+                              "id": "falk-7c",
+                              "move": "Bd7",
+                              "color": "black",
+                              "opening": "falkbeer",
+                              "children": [
+                                {
+                                  "id": "falk-8c",
+                                  "move": "Bxd7+",
+                                  "color": "white",
+                                  "opening": "falkbeer",
+                                  "children": [
+                                    {
+                                      "id": "falk-9c",
+                                      "move": "Qxd7",
+                                      "color": "black",
+                                      "opening": "falkbeer",
+                                      "children": [
+                                        {
+                                          "id": "falk-10c",
+                                          "move": "d3",
+                                          "color": "white",
+                                          "opening": "falkbeer",
+                                          "children": [
+                                            {
+                                              "id": "falk-11c",
+                                              "move": "exd3",
+                                              "color": "black",
+                                              "opening": "falkbeer",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "sic-1",
       "move": "c5",
       "color": "black",

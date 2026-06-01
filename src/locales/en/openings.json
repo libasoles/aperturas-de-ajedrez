@@ -1331,5 +1331,92 @@
   "pon-2c":  { "name": "Ponziani Countergambit", "annotation": "3...f5 offers a pawn to seize immediate initiative and unbalance the position." },
   "pon-3c":  { "annotation": "4.d4 fights for the center rather than accepting the gambit." },
   "pon-4c":  { "annotation": "4...fxe4 accepts the gambit, creating immediate tactical tension." },
-  "pon-5c":  { "name": "Ponziani Countergambit", "annotation": "5.Nxe5 leads to the sharpest play. The position is tactically complex and double-edged." }
+  "pon-5c":  { "name": "Ponziani Countergambit", "annotation": "5.Nxe5 leads to the sharpest play. The position is tactically complex and double-edged." },
+  "falk-1": {
+    "name": "Falkbeer Countergambit",
+    "annotation": "Black's aggressive response to the King's Gambit. With 2...d5, Black creates immediate central tension and tactical compensation."
+  },
+  "falk-3": {
+    "annotation": "The classic King's Gambit pawn sacrifice."
+  },
+  "falk-4": {
+    "annotation": "The Falkbeer Countergambit: Black sacrifices d5 to seize the initiative."
+  },
+  "falk-5": {
+    "annotation": "Accepting the countergambit. The alternative 3.fxe5?? loses to 3...Qh4+."
+  },
+  "falk-5a": {
+    "annotation": "Pawn sacrifice for rapid development."
+  },
+  "falk-6a": {
+    "name": "Charousek Gambit",
+    "annotation": "Modern main line. White stabilizes with d3."
+  },
+  "falk-7a": {
+    "annotation": "Natural knight development."
+  },
+  "falk-8a": {
+    "annotation": "White captures the central pawn."
+  },
+  "falk-9a": {
+    "annotation": "Black recaptures with the knight."
+  },
+  "falk-10a": {
+    "annotation": "Knight develops to f3."
+  },
+  "falk-11a": {
+    "annotation": "Bishop to c5, attacking f2."
+  },
+  "falk-12a": {
+    "annotation": "Queen active on e2."
+  },
+  "falk-13a": {
+    "name": "Charousek Main Line",
+    "annotation": "Standard position with bishop on f5. White has space advantage; Black has dynamic compensation."
+  },
+  "falk-5b": {
+    "annotation": "Nimzowitsch-Marshall Defense: Black seeks piece activity via 3...c6."
+  },
+  "falk-6b": {
+    "annotation": "Capture on c6."
+  },
+  "falk-7b": {
+    "annotation": "Black recaptures with the knight."
+  },
+  "falk-8b": {
+    "annotation": "Natural knight development."
+  },
+  "falk-9b": {
+    "annotation": "Bishop to g4, pressuring the knight."
+  },
+  "falk-10b": {
+    "annotation": "Knight defense."
+  },
+  "falk-11b": {
+    "name": "Nimzowitsch-Marshall Variation",
+    "annotation": "Black pushes e5, seeking centralization. Dynamic play for both sides."
+  },
+  "falk-5c": {
+    "annotation": "Follows the Charousek move order."
+  },
+  "falk-6c": {
+    "name": "Anderssen Attack",
+    "annotation": "Active alternative: Bishop to b5+ instead of d3."
+  },
+  "falk-7c": {
+    "annotation": "Defense to the check."
+  },
+  "falk-8c": {
+    "annotation": "Capture eliminating the bishop."
+  },
+  "falk-9c": {
+    "annotation": "Black recaptures with the queen."
+  },
+  "falk-10c": {
+    "annotation": "Centralizing push."
+  },
+  "falk-11c": {
+    "name": "Anderssen Attack Main Line",
+    "annotation": "Black captures the pawn. Complex position with resources for both sides."
+  }
 }

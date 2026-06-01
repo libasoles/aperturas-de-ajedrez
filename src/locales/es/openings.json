@@ -1331,5 +1331,92 @@
   "pon-2c":  { "name": "Contragambito Ponziani", "annotation": "3...f5 ofrece un peón para obtener iniciativa inmediata y desequilibrar la posición." },
   "pon-3c":  { "annotation": "4.d4 lucha por el centro en lugar de aceptar el gambito." },
   "pon-4c":  { "annotation": "4...fxe4 acepta el gambito creando tensión táctica." },
-  "pon-5c":  { "name": "Contragambito Ponziani", "annotation": "5.Cxe5 conduce al juego más agudo. Posición tácticamente compleja y desequilibrada." }
+  "pon-5c":  { "name": "Contragambito Ponziani", "annotation": "5.Cxe5 conduce al juego más agudo. Posición tácticamente compleja y desequilibrada." },
+  "falk-1": {
+    "name": "Contragambito de Falkbeer",
+    "annotation": "Defensa agresiva de las Negras contra el Gambito de Rey. Con 2...d5, las Negras crean tensión central inmediata y compensación táctica."
+  },
+  "falk-3": {
+    "annotation": "Oferecimiento clásico del Gambito de Rey."
+  },
+  "falk-4": {
+    "annotation": "Contragambito de Falkbeer: las Negras sacrifican d5 para ganar la iniciativa."
+  },
+  "falk-5": {
+    "annotation": "Aceptando el contragambito. La alternativa 3.fxe5?? es un error por 3...Dh4+."
+  },
+  "falk-5a": {
+    "annotation": "Sacrificio de peón para desarrollo rápido."
+  },
+  "falk-6a": {
+    "name": "Gambito de Charousek",
+    "annotation": "Línea principal moderna. Las Blancas estabilizan con d3."
+  },
+  "falk-7a": {
+    "annotation": "Desarrollo natural del Caballo."
+  },
+  "falk-8a": {
+    "annotation": "Captura del peón central."
+  },
+  "falk-9a": {
+    "annotation": "Las Negras retoman con el Caballo."
+  },
+  "falk-10a": {
+    "annotation": "Desarrollo del Caballo hacia f3."
+  },
+  "falk-11a": {
+    "annotation": "Alfil a c5, atacando f2."
+  },
+  "falk-12a": {
+    "annotation": "Dama activa en e2."
+  },
+  "falk-13a": {
+    "name": "Línea Principal de Charousek",
+    "annotation": "Posición estándar con Alfil en f5. Las Blancas tienen ventaja espacial; las Negras compensación dinámica."
+  },
+  "falk-5b": {
+    "annotation": "Defensa de Nimzowitsch-Marshall: las Negras buscan actividad pieza mediante 3...c6."
+  },
+  "falk-6b": {
+    "annotation": "Captura en c6."
+  },
+  "falk-7b": {
+    "annotation": "Las Negras retoman de Caballo."
+  },
+  "falk-8b": {
+    "annotation": "Desarrollo natural del Caballo."
+  },
+  "falk-9b": {
+    "annotation": "Alfil a g4, presionando el Caballo."
+  },
+  "falk-10b": {
+    "annotation": "Defensa del Caballo."
+  },
+  "falk-11b": {
+    "name": "Variante de Nimzowitsch-Marshall",
+    "annotation": "Las Negras avanzan e5, buscando centralizarse. Juego dinámico para ambos bandos."
+  },
+  "falk-5c": {
+    "annotation": "Sigue el orden de Charousek."
+  },
+  "falk-6c": {
+    "name": "Ataque de Anderssen",
+    "annotation": "Alternativa activa: Alfil a b5+ en lugar de d3."
+  },
+  "falk-7c": {
+    "annotation": "Defensa del jaque."
+  },
+  "falk-8c": {
+    "annotation": "Captura eliminando el Alfil."
+  },
+  "falk-9c": {
+    "annotation": "Las Negras retoman con la Dama."
+  },
+  "falk-10c": {
+    "annotation": "Empuje centralista."
+  },
+  "falk-11c": {
+    "name": "Ataque de Anderssen (Principal)",
+    "annotation": "Las Negras toman el peón. Posición complicada con ambos bandos con recursos."
+  }
 }

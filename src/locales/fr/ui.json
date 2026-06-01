@@ -34,7 +34,8 @@
     "nf3": "Ouverture Zukertort",
     "marshall-1": "Défense Marshall",
     "philidor-3": "Défense Philidor",
-    "pon-1": "Partie Ponziani"
+    "pon-1": "Partie Ponziani",
+    "falk-1": "Contregambit de Falkbeer"
   },
   "chess_panel": {
     "position": "Position",

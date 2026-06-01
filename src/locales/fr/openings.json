@@ -1331,5 +1331,92 @@
   "pon-2c":  { "name": "Contre-gambit Ponziani", "annotation": "3...f5 offre un pion pour saisir l'initiative immédiate et déséquilibrer la position." },
   "pon-3c":  { "annotation": "4.d4 lutte pour le centre plutôt que d'accepter le gambit." },
   "pon-4c":  { "annotation": "4...fxe4 accepte le gambit, créant une tension tactique immédiate." },
-  "pon-5c":  { "name": "Contre-gambit Ponziani", "annotation": "5.Cxe5 mène au jeu le plus aiguisé. La position est tactiquement complexe et déséquilibrée." }
+  "pon-5c":  { "name": "Contre-gambit Ponziani", "annotation": "5.Cxe5 mène au jeu le plus aiguisé. La position est tactiquement complexe et déséquilibrée." },
+  "falk-1": {
+    "name": "Contregambit de Falkbeer",
+    "annotation": "Réponse agressive des Noirs au Gambit du Roi. Avec 2...d5, les Noirs créent une tension centrale immédiate et une compensation tactique."
+  },
+  "falk-3": {
+    "annotation": "Le sacrifice classique du Gambit du Roi."
+  },
+  "falk-4": {
+    "annotation": "Le Contregambit de Falkbeer : les Noirs sacrifient d5 pour saisir l'initiative."
+  },
+  "falk-5": {
+    "annotation": "Acceptant le contregambit. L'alternative 3.fxe5?? perd après 3...Dh4+."
+  },
+  "falk-5a": {
+    "annotation": "Sacrifice de pion pour un développement rapide."
+  },
+  "falk-6a": {
+    "name": "Gambit Charousek",
+    "annotation": "Ligne principale moderne. Les Blancs stabilisent avec d3."
+  },
+  "falk-7a": {
+    "annotation": "Développement naturel du Cavalier."
+  },
+  "falk-8a": {
+    "annotation": "Les Blancs capturent le pion central."
+  },
+  "falk-9a": {
+    "annotation": "Les Noirs reprennent avec le Cavalier."
+  },
+  "falk-10a": {
+    "annotation": "Le Cavalier se développe vers f3."
+  },
+  "falk-11a": {
+    "annotation": "Fou en c5, attaquant f2."
+  },
+  "falk-12a": {
+    "annotation": "Dame active en e2."
+  },
+  "falk-13a": {
+    "name": "Ligne Principale Charousek",
+    "annotation": "Position standard avec fou en f5. Les Blancs ont l'avantage spatial; les Noirs ont une compensation dynamique."
+  },
+  "falk-5b": {
+    "annotation": "Défense Nimzowitsch-Marshall : les Noirs cherchent une activité pièce via 3...c6."
+  },
+  "falk-6b": {
+    "annotation": "Capture en c6."
+  },
+  "falk-7b": {
+    "annotation": "Les Noirs reprennent avec le Cavalier."
+  },
+  "falk-8b": {
+    "annotation": "Développement naturel du Cavalier."
+  },
+  "falk-9b": {
+    "annotation": "Fou en g4, pressant le Cavalier."
+  },
+  "falk-10b": {
+    "annotation": "Défense du Cavalier."
+  },
+  "falk-11b": {
+    "name": "Variante Nimzowitsch-Marshall",
+    "annotation": "Les Noirs avancent e5, cherchant la centralisation. Jeu dynamique pour les deux camps."
+  },
+  "falk-5c": {
+    "annotation": "Suit l'ordre Charousek."
+  },
+  "falk-6c": {
+    "name": "Attaque d'Anderssen",
+    "annotation": "Alternative active : Fou en b5+ au lieu de d3."
+  },
+  "falk-7c": {
+    "annotation": "Défense au coup."
+  },
+  "falk-8c": {
+    "annotation": "Capture éliminant le Fou."
+  },
+  "falk-9c": {
+    "annotation": "Les Noirs reprennent avec la Dame."
+  },
+  "falk-10c": {
+    "annotation": "Avancée centraliste."
+  },
+  "falk-11c": {
+    "name": "Attaque d'Anderssen (Principale)",
+    "annotation": "Les Noirs prennent le pion. Position compliquée avec des ressources pour les deux camps."
+  }
 }

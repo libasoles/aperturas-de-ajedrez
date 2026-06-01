@@ -53,6 +53,16 @@ export const OPENING_CATALOG = [
         discoverable: true,
       },
       {
+        label: "Contragambito de Falkbeer",
+        nodeId: "falk-1",
+        pathIds: ["e4"],
+        color: "#ea580c",
+        glow: "#f97316",
+        text: "#fed7aa",
+        access: "premium",
+        discoverable: true,
+      },
+      {
         label: "Siciliana",
         nodeId: "sic-1",
         pathIds: ["e4"],
@@ -687,6 +697,9 @@ export const VARIANT_CATALOG = [
   { variantNodeId: "pon-8ba", parentNodeId: "pon-1", access: "premium", discoverable: true },
   { variantNodeId: "pon-8bb", parentNodeId: "pon-1", access: "premium", discoverable: true },
   { variantNodeId: "pon-5c",  parentNodeId: "pon-1", access: "premium", discoverable: true },
+  { variantNodeId: "falk-13a", parentNodeId: "falk-1", access: "premium", discoverable: true },
+  { variantNodeId: "falk-11b", parentNodeId: "falk-1", access: "premium", discoverable: true },
+  { variantNodeId: "falk-11c", parentNodeId: "falk-1", access: "premium", discoverable: true },
 ];
 
 export const OPENING_ENTRY_BY_NODE_ID = Object.fromEntries(

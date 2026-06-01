@@ -34,7 +34,8 @@
     "nf3": "Zukertort Opening",
     "marshall-1": "Marshall Defense",
     "philidor-3": "Philidor Defense",
-    "pon-1": "Ponziani Opening"
+    "pon-1": "Ponziani Opening",
+    "falk-1": "Falkbeer Countergambit"
   },
   "chess_panel": {
     "position": "Position",
