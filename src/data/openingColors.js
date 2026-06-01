@@ -1,141 +1,174 @@
-// TODO: extract colors to constants
-export const OPENING_COLORS = {
-  root: {
+// Color palette constants
+const PALETTE = {
+  BROWN: {
     node: "#3a2a1e",
     text: "#e8d5bc",
     border: "#6b4f3a",
     edge: "#8b6a50",
   },
-  scandinavian: {
+  GREEN: {
     node: "#14532d",
     text: "#bbf7d0",
     border: "#16a34a",
     edge: "#22c55e",
   },
-  spanish: {
+  BLUE: {
     node: "#1e3a5f",
     text: "#bfdbfe",
     border: "#2563eb",
     edge: "#3b82f6",
   },
-  italian: {
+  ORANGE: {
     node: "#431407",
     text: "#fed7aa",
     border: "#ea580c",
     edge: "#f97316",
   },
-  scotch: {
+  AMBER: {
     node: "#3f2305",
     text: "#fde68a",
     border: "#b45309",
     edge: "#d97706",
   },
-  sicilian: {
+  RED: {
     node: "#4c1d2e",
     text: "#fecdd3",
     border: "#dc2626",
     edge: "#ef4444",
   },
-  queens_gambit: {
+  PURPLE: {
     node: "#1e1a3a",
     text: "#ddd6fe",
     border: "#7c3aed",
     edge: "#8b5cf6",
   },
-  london: {
+  CYAN: {
     node: "#1a2a2a",
     text: "#a5f3fc",
     border: "#0891b2",
     edge: "#06b6d4",
   },
-  kings_indian: {
+  YELLOW: {
     node: "#2a1a00",
     text: "#fde68a",
     border: "#d97706",
     edge: "#f59e0b",
   },
-  nimzo: {
+  MAGENTA: {
     node: "#2a1a2a",
     text: "#f5d0fe",
     border: "#a21caf",
     edge: "#c026d3",
   },
-  french: {
+  INDIGO: {
     node: "#1a1a3a",
     text: "#c7d2fe",
     border: "#4f46e5",
     edge: "#6366f1",
   },
-  caro_kann: {
+  TEAL: {
     node: "#042f2e",
     text: "#99f6e4",
     border: "#0d9488",
     edge: "#14b8a6",
   },
-  pirc: {
+  ROSE: {
     node: "#2a1515",
     text: "#fde8d8",
     border: "#9a3412",
     edge: "#c2410c",
   },
-  alekhine: {
+  PINK: {
     node: "#2d0a1e",
     text: "#fda4c8",
     border: "#db2777",
     edge: "#ec4899",
   },
-  dutch: {
+  EMERALD: {
     node: "#1c3a2a",
     text: "#6ee7b7",
     border: "#10b981",
     edge: "#34d399",
   },
-  slav: {
+  CRIMSON: {
     node: "#1c0810",
     text: "#ffe4e6",
     border: "#9f1239",
     edge: "#e11d48",
   },
-  modern: {
+  LIME: {
     node: "#1a2600",
     text: "#d9f99d",
     border: "#65a30d",
     edge: "#84cc16",
   },
-  nimzowitsch: {
+  SKY: {
     node: "#082030",
     text: "#bae6fd",
     border: "#0284c7",
     edge: "#0ea5e9",
   },
-  zukertort: {
+  GOLD: {
     node: "#1c1800",
     text: "#fef9c3",
     border: "#c8a800",
     edge: "#d4b400",
   },
-  marshall: {
+  LIME_DARK: {
     node: "#191c00",
     text: "#e2e87c",
     border: "#7a8c00",
     edge: "#98b000",
   },
-  evans: {
+  YELLOW_DARK: {
     node: "#2d2200",
     text: "#fde68a",
     border: "#ca8a04",
     edge: "#eab308",
   },
-  philidor: {
+  ORANGE_DARK: {
+    node: "#7c2d12",
+    text: "#fed7aa",
+    border: "#ea580c",
+    edge: "#f97316",
+  },
+  BROWN_DARK: {
     node: "#1c0e06",
     text: "#fde8c8",
     border: "#7b3a0e",
     edge: "#9a4c14",
   },
-  ponziani: {
+  SKY_DARK: {
     node: "#0c2033",
     text: "#bae6fd",
     border: "#38bdf8",
     edge: "#0ea5e9",
   },
+};
+
+export const OPENING_COLORS = {
+  root: PALETTE.BROWN,
+  scandinavian: PALETTE.GREEN,
+  spanish: PALETTE.BLUE,
+  italian: PALETTE.ORANGE,
+  scotch: PALETTE.AMBER,
+  sicilian: PALETTE.RED,
+  queens_gambit: PALETTE.PURPLE,
+  london: PALETTE.CYAN,
+  kings_indian: PALETTE.YELLOW,
+  nimzo: PALETTE.MAGENTA,
+  french: PALETTE.INDIGO,
+  caro_kann: PALETTE.TEAL,
+  pirc: PALETTE.ROSE,
+  alekhine: PALETTE.PINK,
+  dutch: PALETTE.EMERALD,
+  slav: PALETTE.CRIMSON,
+  modern: PALETTE.LIME,
+  nimzowitsch: PALETTE.SKY,
+  zukertort: PALETTE.GOLD,
+  marshall: PALETTE.LIME_DARK,
+  evans: PALETTE.YELLOW_DARK,
+  falkbeer: PALETTE.ORANGE_DARK,
+  philidor: PALETTE.BROWN_DARK,
+  ponziani: PALETTE.SKY_DARK,
 };
