@@ -12,6 +12,8 @@ const nodeTypes = { chess: MobileChessNode };
 function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
+  const flowWrapperRef = useRef(null);
+  const pendingMenuCenterNodeIdRef = useRef(null);
 
   const mobileNodes = useMemo(
     () =>
@@ -43,6 +45,36 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
     });
   }, [mobileNodes, getViewport, setViewport]);
 
+  // Mobile menu selections use the rotated canvas coordinates. Place the node
+  // in the landscape reading area: horizontally centered, vertically lower.
+  useEffect(() => {
+    const nodeId = pendingMenuCenterNodeIdRef.current;
+    if (!nodeId || selectedNodeId !== nodeId) return;
+
+    const node = mobileNodes.find((n) => n.id === nodeId);
+    const wrapper = flowWrapperRef.current;
+    if (!node || !wrapper) return;
+
+    pendingMenuCenterNodeIdRef.current = null;
+
+    const frameId = window.requestAnimationFrame(() => {
+      const bounds = wrapper.getBoundingClientRect();
+      const vp = getViewport();
+      const nodeWidth = node.measured?.width ?? node.width ?? 0;
+      const nodeHeight = node.measured?.height ?? node.height ?? 0;
+      const nodeCenterX = node.position.x + nodeWidth / 2;
+      const nodeCenterY = node.position.y + nodeHeight / 2;
+
+      setViewport({
+        x: bounds.width * 0.5 - nodeCenterX * vp.zoom,
+        y: bounds.height * 0.65 - nodeCenterY * vp.zoom,
+        zoom: vp.zoom,
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [mobileNodes, selectedNodeId, getViewport, setViewport]);
+
   // Capture the node's screen position (using rotated coords) before layout changes
   const makeAnchoredHandler = useCallback(
     (callback) => (id) => {
@@ -68,6 +100,24 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
   const handleExpandToFork = useMemo(
     () => makeAnchoredHandler(expandToNextFork),
     [makeAnchoredHandler, expandToNextFork],
+  );
+
+  const handleToggleOpening = useCallback(
+    (nodeId) => {
+      pendingMenuCenterNodeIdRef.current =
+        activeOpening === nodeId && activeVariant == null ? null : nodeId;
+      toggleOpening(nodeId);
+    },
+    [activeOpening, activeVariant, toggleOpening],
+  );
+
+  const handleToggleVariant = useCallback(
+    (nodeId) => {
+      pendingMenuCenterNodeIdRef.current =
+        activeVariant === nodeId ? null : nodeId;
+      toggleVariant(nodeId);
+    },
+    [activeVariant, toggleVariant],
   );
 
   const mobileNodesWithAnchor = useMemo(
@@ -100,8 +150,8 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           variantRoutes={variantRoutes}
           activeOpening={activeOpening}
           activeVariant={activeVariant}
-          onToggleOpening={toggleOpening}
-          onToggleVariant={toggleVariant}
+          onToggleOpening={handleToggleOpening}
+          onToggleVariant={handleToggleVariant}
         />
       )}
       <StockfishEvaluationBar
@@ -127,6 +177,7 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
       </div>
 
       <div
+        ref={flowWrapperRef}
         style={{
           flex: 1,
           minHeight: 0,

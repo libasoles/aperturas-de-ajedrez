@@ -40,6 +40,8 @@ function OpeningTreeContent({
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
+  const flowWrapperRef = useRef(null);
+  const pendingPanelCenterNodeIdRef = useRef(null);
 
   useEffect(() => {
     if (didFocusRootRef.current) return;
@@ -93,6 +95,36 @@ function OpeningTreeContent({
     });
   }, [nodes, getViewport, setViewport]);
 
+  // Opening-panel selections should land in the useful reading area of the
+  // canvas: vertically centered and shifted left from horizontal center.
+  useEffect(() => {
+    const nodeId = pendingPanelCenterNodeIdRef.current;
+    if (!nodeId || selectedNodeId !== nodeId) return;
+
+    const node = nodes.find((n) => n.id === nodeId);
+    const wrapper = flowWrapperRef.current;
+    if (!node || !wrapper) return;
+
+    pendingPanelCenterNodeIdRef.current = null;
+
+    const frameId = window.requestAnimationFrame(() => {
+      const bounds = wrapper.getBoundingClientRect();
+      const vp = getViewport();
+      const nodeWidth = node.measured?.width ?? node.width ?? 0;
+      const nodeHeight = node.measured?.height ?? node.height ?? 0;
+      const nodeCenterX = node.position.x + nodeWidth / 2;
+      const nodeCenterY = node.position.y + nodeHeight / 2;
+
+      setViewport({
+        x: bounds.width * 0.25 - nodeCenterX * vp.zoom,
+        y: bounds.height * 0.5 - nodeCenterY * vp.zoom,
+        zoom: vp.zoom,
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [nodes, selectedNodeId, getViewport, setViewport]);
+
   // Wrap toggleNode to capture the node's screen position before layout changes
   const handleToggle = useCallback(
     (id) => {
@@ -108,6 +140,24 @@ function OpeningTreeContent({
       toggleNode(id);
     },
     [nodes, getViewport, toggleNode],
+  );
+
+  const handleToggleOpening = useCallback(
+    (nodeId) => {
+      pendingPanelCenterNodeIdRef.current =
+        activeOpening === nodeId && activeVariant == null ? null : nodeId;
+      toggleOpening(nodeId);
+    },
+    [activeOpening, activeVariant, toggleOpening],
+  );
+
+  const handleToggleVariant = useCallback(
+    (nodeId) => {
+      pendingPanelCenterNodeIdRef.current =
+        activeVariant === nodeId ? null : nodeId;
+      toggleVariant(nodeId);
+    },
+    [activeVariant, toggleVariant],
   );
 
   const nodesWithAnchor = useMemo(
@@ -132,13 +182,13 @@ function OpeningTreeContent({
           variantRoutes={variantRoutes}
           activeOpening={activeOpening}
           activeVariant={activeVariant}
-          onToggleOpening={toggleOpening}
-          onToggleVariant={toggleVariant}
+          onToggleOpening={handleToggleOpening}
+          onToggleVariant={handleToggleVariant}
           firstButtonRef={firstOpeningBtnRef}
         />
       )}
 
-      <div className="absolute inset-0">
+      <div ref={flowWrapperRef} className="absolute inset-0">
         <ReactFlow
           nodes={nodesWithAnchor}
           edges={edges}
