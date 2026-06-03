@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Explore and compare the main chess openings in an interactive tree. Sicilian, Italian, Ruy López, French, Caro-Kann, and Queen's Gambit. Every variation includes a Stockfish 18 evaluation.",
   robots: 'index,follow,max-image-preview:large',
-  alternates: buildAlternates('en', { es: '', en: '', fr: '' }),
+  alternates: buildAlternates('en'),
   openGraph: {
     title: 'Chess Opening Tree | Explore Variations',
     description:

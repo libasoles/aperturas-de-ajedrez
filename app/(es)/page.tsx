@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     'Explora y compara las principales aperturas de ajedrez en un árbol interactivo. Siciliana, Italiana, Ruy López, Francesa, Caro-Kann y Gambito de Dama. Cada variante incluye evaluación de Stockfish 18.',
   robots: 'index,follow,max-image-preview:large',
-  alternates: buildAlternates('es', { es: '', en: '', fr: '' }),
+  alternates: buildAlternates('es'),
   openGraph: {
     title: 'Árbol de Aperturas de Ajedrez | Explora Variantes',
     description:

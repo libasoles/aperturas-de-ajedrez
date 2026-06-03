@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Explorez et comparez les principales ouvertures d'échecs dans un arbre interactif. Sicilienne, Italienne, Ruy López, Française, Caro-Kann et Gambit Dame. Chaque variante inclut une évaluation de Stockfish 18.",
   robots: 'index,follow,max-image-preview:large',
-  alternates: buildAlternates('fr', { es: '', en: '', fr: '' }),
+  alternates: buildAlternates('fr'),
   openGraph: {
     title: "Arbre des Ouvertures d'Échecs | Explorer les Variantes",
     description:

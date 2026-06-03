@@ -11,6 +11,7 @@ export const SITE_URL = {
 export const DEFAULT_OG_IMAGE = `${SITE_URL.es}/demo.png`
 
 type LocalizedSlugs = Partial<Record<MetadataLocale, string>>
+const HOME_SLUGS: LocalizedSlugs = { es: '', en: '', fr: '' }
 
 function normalizeSlug(slug = ''): string {
   return slug.replace(/^\/+|\/+$/g, '')
@@ -22,7 +23,7 @@ export function urlForLocale(locale: MetadataLocale, slug = ''): string {
   return `${SITE_URL[locale]}/${localizedPath ? `${localizedPath}/` : ''}`
 }
 
-export function buildAlternates(locale: MetadataLocale, slugs: LocalizedSlugs): Metadata['alternates'] {
+export function buildAlternates(locale: MetadataLocale, slugs: LocalizedSlugs = HOME_SLUGS): Metadata['alternates'] {
   const canonicalSlug = slugs[locale] ?? ''
   const canonical = urlForLocale(locale, canonicalSlug)
 
