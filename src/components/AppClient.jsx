@@ -8,28 +8,28 @@ import { resolveTreeConfigFromPathname } from '../data/treeConfigs'
 import { useOpeningTreeState } from '../hooks/useOpeningTreeState'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { initAnalytics } from '../lib/analytics'
-import esUi from '../locales/es/ui.json'
-import esOpenings from '../locales/es/openings.json'
-import enUi from '../locales/en/ui.json'
-import enOpenings from '../locales/en/openings.json'
-import frUi from '../locales/fr/ui.json'
-import frOpenings from '../locales/fr/openings.json'
-
-const localeResources = {
-  es: { ui: esUi, openings: esOpenings },
-  en: { ui: enUi, openings: enOpenings },
-  fr: { ui: frUi, openings: frOpenings },
-}
 
 const OpeningTreeDynamic = dynamic(() => import('./OpeningTree'), { ssr: false })
 const MobileOpeningTreeDynamic = dynamic(() => import('./MobileOpeningTree'), { ssr: false })
 
 export default function AppClient({ locale, pathname, initialNodeId }) {
-  const [i18nReady] = useState(() => {
+  // Fast path: if i18n is already initialized with this locale (subsequent navigations
+  // within the same language), skip the async chunk load entirely.
+  const [i18nReady, setI18nReady] = useState(() => {
     initAnalytics()
-    const resources = localeResources[locale] ?? localeResources.es
-    return initI18nSync(locale, resources)
+    return i18n.isInitialized && i18n.language === locale
   })
+
+  useEffect(() => {
+    if (i18nReady) return
+    Promise.all([
+      import(`../locales/${locale}/ui.json`),
+      import(`../locales/${locale}/openings.json`),
+    ]).then(([{ default: ui }, { default: openings }]) => {
+      initI18nSync(locale, { ui, openings })
+      setI18nReady(true)
+    })
+  }, [locale, i18nReady])
 
   const config = resolveTreeConfigFromPathname(pathname)
   const state = useOpeningTreeState(config, { locale, pathname, initialNodeId })
