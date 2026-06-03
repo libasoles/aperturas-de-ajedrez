@@ -43,7 +43,33 @@ Read `src/data/openings.js` and identify the new nodes. Collect:
 - **Move sequence** — the path of SAN moves from root to this node
 - Whether this is a **new top-level opening** or a **variant within an existing opening**
 
-### Step 2 — Check existing routes
+### Step 2 — Validate tree structure
+
+**Critical**: Before proceeding, validate that `src/data/openings.js` has no duplicate sibling moves:
+
+- For each parent node, all children must have unique `move` values
+- If two openings share the same initial move sequence (e.g., both respond to d4 with d5), they must nest under the **same shared node**, not as separate siblings
+- **Duplicate sibling moves are invalid** — they break the tree invariant and cause rendering errors
+
+**Example of WRONG**:
+```
+d4
+├── d5 [Gambito de Dama]
+├── d5 [Sistema Colle] ← INVALID: same move as sibling
+```
+
+**Example of CORRECT**:
+```
+d4
+└── d5 [shared node]
+    ├── c4 [Gambito de Dama]
+    ├── Nf3 [Sistema Colle]
+    └── Bd3 [Sistema Londres]
+```
+
+If duplicates are found, flag them as a blocker and ask the developer to fix the tree structure before syncing routes.
+
+### Step 3 — Check existing routes
 
 Read `src/data/routes.js` and compare against the new nodes. Check:
 - Is there already an `OPENING_ROUTES` entry with this `nodeId`?

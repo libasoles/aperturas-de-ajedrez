@@ -50,6 +50,7 @@ Agents are in `.claude/agents/`. They are **not** invoked automatically — spaw
 | Agent                                                    | When to use                                                                                                                                                                              |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`research-opening`](.claude/agents/research-opening.md) | Before adding any new opening — fetches theory, validates moves, produces all data artifacts (node tree, colors, catalog, translations, routes). Output only; does not touch source files. |
+| [`stockfish-eval`](.claude/agents/stockfish-eval.md) | After `research-opening` provides the node tree — computes Stockfish 18 depth-14 evaluations for every node, then outputs the tree ready for implementation. Output only; does not touch source files. |
 | [`lookup-player-source`](.claude/agents/lookup-player-source.md) | Spawned by `ingest-player` when PGNMentor returns 404 — finds correct name or Lichess fallback URL. Output only; does not touch source files. |
 | [`a11y-specialist`](.claude/agents/a11y-specialist.md) | When you need an accessibility audit/review (WCAG 2.2 AA), including keyboard navigation, focus management, contrast, semantics/ARIA, and screen reader usability. Output only by default. |
 
@@ -204,18 +205,24 @@ No additional configuration needed — sitemaps rebuild on every `npm run build`
 
 Premium gating is controlled by `NEXT_PUBLIC_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access. Set to `0` to simulate the locked experience.
 
-**Before writing any code**, run the [`research-opening`](.claude/agents/research-opening.md) agent to fetch theory, validate moves, and produce all data artifacts. Implement only after the research output is reviewed.
+**Before writing any code**, follow this two-agent workflow:
+
+1. **Research opening theory** — Run [`research-opening`](.claude/agents/research-opening.md) to fetch theory, validate moves, and produce all data artifacts (node tree, colors, catalog, translations, routes).
+2. **Compute Stockfish evaluations** — Run [`stockfish-eval`](.claude/agents/stockfish-eval.md) on the node tree to calculate depth-14 evaluations for every node.
+3. **Implement** — Use both outputs to fill in the checklist below.
 
 ### Step-by-step checklist
 
 1. **Add nodes to tree** — `src/data/openings/d4.js` or `src/data/openings/e4.js`
-   - Node schema: `{ id, move, color, opening, children }` — NO `name` or `annotation` fields (those come from i18n)
+   - Node schema: `{ id, move, color, opening, stockfish, children }` — NO `name` or `annotation` fields (those come from i18n)
+   - Use the annotated tree from `stockfish-eval` agent output (includes `stockfish: { depth: 14, score: ... }` on every node)
    - Keep structure minimal; match existing openings
    - Example ID pattern: `dutch-1`, `dutch-2`, `dutch-5a`, `dutch-7b1`, `dutch-7b2` (number = ply, letter = variant branch)
 
 2. **Add color** — `src/data/openingColors.js` → `OPENING_COLORS` object
    - Add entry: `opening_key: { node: "#hex", text: "#hex", border: "#hex", edge: "#hex" }`
    - Test contrast against dark bg (`#0f1117`) — use saturated colors (e.g., emerald for Dutch)
+   - **Brown color is reserved for first-level nodes only** (e4, d4, Kf3) — do not use for sub-openings
    - All existing hues are taken; check existing entries before picking (rose, amber, violet, cyan, teal, red, orange, pink, green, indigo, magenta, blue, lime are all in use)
 
 3. **Register in catalog** — `src/data/openingCatalog.js`

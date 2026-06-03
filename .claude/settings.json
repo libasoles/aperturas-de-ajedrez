@@ -28,7 +28,11 @@
       "Bash(curl -s http://localhost:5176/)",
       "Bash(npx lighthouse *)",
       "Bash(npm start *)",
-      "Bash(npm audit *)"
+      "Bash(npm audit *)",
+      "Bash(node -e ' *)",
+      "Bash(node)",
+      "Bash(find /Users/guillermoperez/.claude -name \"*colle*\" -o -name \"*research*colle*\" 2>/dev/null | head -10)",
+      "Read(//Users/guillermoperez/.claude/**)"
     ],
     "additionalDirectories": [
       "/tmp",
