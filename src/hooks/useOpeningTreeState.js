@@ -14,33 +14,37 @@ import {
   isSignificantEngineGeneratedStockfishNode,
   resolveStockfishLabelThreshold,
 } from "../utils/stockfishEvaluation";
+import { detectLocaleFromPathname, localizedPath } from "../utils/locale";
 
-// Detect locale from URL prefix — server falls back to "es"
 function detectLocale() {
   if (typeof window === "undefined") return "es";
-  const p = window.location.pathname;
-  if (p === "/en" || p.startsWith("/en/")) return "en";
-  if (p === "/fr" || p.startsWith("/fr/")) return "fr";
-  return "es";
+  return detectLocaleFromPathname(window.location.pathname);
 }
 
-// Build a URL for a given route slug, preserving the current locale prefix
 function buildOpeningUrl(route, locale) {
-  if (locale === "en") return `/en/${route.slugEn}/`;
-  if (locale === "fr") return `/fr/${route.slugFr}/`;
-  return `/${route.slug}/`;
+  const slug =
+    locale === "en" ? route.slugEn : locale === "fr" ? route.slugFr : route.slug;
+  return localizedPath({ locale, slug });
 }
 
 function buildHelpUrlForRoute(helpRoute, locale) {
-  if (locale === "en") return `/en/${helpRoute.slugEn}/`;
-  if (locale === "fr") return `/fr/${helpRoute.slugFr}/`;
-  return `/${helpRoute.slug}/`;
+  const slug =
+    locale === "en"
+      ? helpRoute.slugEn
+      : locale === "fr"
+        ? helpRoute.slugFr
+        : helpRoute.slug;
+  return localizedPath({ locale, slug });
 }
 
 function buildVariantUrl(variantRoute, locale) {
-  if (locale === "en") return `/en/${variantRoute.slugEn}/`;
-  if (locale === "fr") return `/fr/${variantRoute.slugFr}/`;
-  return `/${variantRoute.slug}/`;
+  const slug =
+    locale === "en"
+      ? variantRoute.slugEn
+      : locale === "fr"
+        ? variantRoute.slugFr
+        : variantRoute.slug;
+  return localizedPath({ locale, slug });
 }
 
 export function buildHelpUrl(locale) {
@@ -638,11 +642,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
       const locale = detectLocale();
       const url = route
         ? buildOpeningUrl(route, locale)
-        : locale === "en"
-          ? "/en/"
-          : locale === "fr"
-            ? "/fr/"
-            : "/";
+        : localizedPath({ locale });
       history.pushState(null, "", url);
     }
   }, [premiumCanAccess, routeData.routeByNodeId]);
@@ -704,11 +704,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     setActiveOpening(null);
     if (typeof window !== "undefined") {
       const locale = detectLocale();
-      history.pushState(
-        null,
-        "",
-        locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/",
-      );
+      history.pushState(null, "", localizedPath({ locale }));
     }
   }, [activateOpening, activeOpening]);
 
@@ -726,11 +722,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
       const openingRoute = routeData.routeByNodeId?.[variantRoute.parentNodeId];
       const url = openingRoute
         ? buildOpeningUrl(openingRoute, locale)
-        : locale === "en"
-          ? "/en/"
-          : locale === "fr"
-            ? "/fr/"
-            : "/";
+        : localizedPath({ locale });
       history.pushState(null, "", url);
     }
   }, [

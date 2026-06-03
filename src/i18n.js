@@ -1,15 +1,10 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { detectLocaleFromPathname } from "./utils/locale";
 
 export function detectLng() {
   if (typeof window === "undefined") return "es";
-  // Trust the html[lang] set by SSR — handles domain-based locale (chessopenings.com.ar)
-  const htmlLang = document.documentElement.getAttribute("lang");
-  if (htmlLang === "en" || htmlLang === "fr") return htmlLang;
-  const path = window.location.pathname;
-  if (path === "/en" || path.startsWith("/en/")) return "en";
-  if (path === "/fr" || path.startsWith("/fr/")) return "fr";
-  return "es";
+  return detectLocaleFromPathname(window.location.pathname);
 }
 
 export async function initI18n(lng, resources) {

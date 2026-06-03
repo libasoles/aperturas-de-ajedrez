@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { buildHelpUrl, detectLocale } from "../../hooks/useOpeningTreeState";
+import { localizedPath } from "../../utils/locale";
 import { Tooltip } from "./Tooltip";
 
 const ROW_KEYS = [
@@ -61,11 +62,7 @@ export default function HelpDialog() {
       const fallbackPath =
         previousPathRef.current && !isHelpPath(previousPathRef.current)
           ? previousPathRef.current
-          : locale === "en"
-            ? "/en/"
-            : locale === "fr"
-              ? "/fr/"
-              : "/";
+          : localizedPath({ locale });
       history.pushState(null, "", fallbackPath);
     }
     setIsHelpOpen(false);

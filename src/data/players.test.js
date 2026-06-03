@@ -19,5 +19,13 @@ describe("players catalog", () => {
       locale: "fr",
       player: { name: "Jose Raul Capablanca" },
     });
+    expect(
+      resolvePlayerRoute("/players/capablanca/", {
+        location: { hostname: "chessopenings.com.ar" },
+      }),
+    ).toMatchObject({
+      locale: "en",
+      player: { name: "Jose Raul Capablanca" },
+    });
   });
 });

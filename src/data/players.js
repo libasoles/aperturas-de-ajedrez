@@ -1,3 +1,5 @@
+import { stripLocalePrefix } from "../utils/locale";
+
 export const PLAYER_CATALOG = [
   {
     id: "capablanca",
@@ -37,18 +39,8 @@ export const PLAYER_BY_SLUG = Object.fromEntries(
   ]),
 );
 
-export function stripLocalePrefix(pathname) {
-  if (pathname === "/en" || pathname.startsWith("/en/")) {
-    return { locale: "en", path: pathname.slice(3) || "/" };
-  }
-  if (pathname === "/fr" || pathname.startsWith("/fr/")) {
-    return { locale: "fr", path: pathname.slice(3) || "/" };
-  }
-  return { locale: "es", path: pathname };
-}
-
-export function resolvePlayerRoute(pathname) {
-  const { locale, path } = stripLocalePrefix(pathname);
+export function resolvePlayerRoute(pathname, options) {
+  const { locale, path } = stripLocalePrefix(pathname, options);
   const slug = path.replace(/^\/|\/$/g, "");
   const player = PLAYER_CATALOG.find(
     (candidate) => candidate.routes[locale] === slug,

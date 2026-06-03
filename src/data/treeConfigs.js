@@ -1,6 +1,7 @@
 import i18n from "../i18n";
 import { trackPremiumMenuClick, trackPremiumNodeClick } from "../lib/analytics";
 import { canAccessContent, hasPremiumAccess } from "../lib/access";
+import { getDomainLocale, stripLocalePrefix } from "../utils/locale";
 import { OPENING_CATALOG, VARIANT_CATALOG } from "./openingCatalog";
 import { OPENING_COLORS } from "./openingColors";
 import { OPENING_TREE } from "./openings";
@@ -147,16 +148,6 @@ export const TREE_CONFIGS = [
   londonStudyTreeConfig,
 ];
 
-function stripLocalePrefix(pathname) {
-  if (pathname === "/en" || pathname.startsWith("/en/")) {
-    return { locale: "en", path: pathname.slice(3) || "/" };
-  }
-  if (pathname === "/fr" || pathname.startsWith("/fr/")) {
-    return { locale: "fr", path: pathname.slice(3) || "/" };
-  }
-  return { locale: "es", path: pathname };
-}
-
 function normalizeSlug(pathname) {
   return pathname.replace(/^\/|\/$/g, "");
 }
@@ -195,6 +186,8 @@ export function applyLocaleRedirectForTreeConfigs() {
     path === "/fr" ||
     path.startsWith("/fr/");
   if (hasLocalePrefix) return;
+
+  if (getDomainLocale()) return;
 
   // If SSR set html[lang] to a non-ES locale but the URL has no prefix,
   // we're on a domain-based locale (chessopenings.com.ar) — no redirect needed.

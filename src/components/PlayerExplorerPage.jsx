@@ -6,6 +6,7 @@ import HelpDialog from "./ui/HelpDialog";
 import PlayerAnalysisPanel from "./PlayerAnalysisPanel";
 import PlayerChessBoard from "./PlayerChessBoard";
 import { PLAYER_CATALOG } from "../data/players";
+import { localizedPath } from "../utils/locale";
 
 const INITIAL_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -";
 const X_STEP = 170;
@@ -458,7 +459,7 @@ function PlayerExplorerContent({ player, locale }) {
             "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
         }}
       >
-        <a href={locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/"} className="flex flex-col gap-0.5 no-underline">
+        <a href={localizedPath({ locale })} className="flex flex-col gap-0.5 no-underline">
           <div className="neon-title">Capablanca</div>
           <div className="neon-subtitle">explorador por posiciones</div>
         </a>
@@ -468,7 +469,7 @@ function PlayerExplorerContent({ player, locale }) {
             className="border border-neon-cyan/25 bg-panel px-3 py-2 font-mono text-xs text-neon-cyan"
             onChange={(event) => {
               const next = PLAYER_CATALOG.find((item) => item.id === event.target.value);
-              if (next) window.location.href = `/${next.routes[locale]}/`;
+              if (next) window.location.href = localizedPath({ locale, slug: next.routes[locale] });
             }}
           >
             {PLAYER_CATALOG.map((item) => (

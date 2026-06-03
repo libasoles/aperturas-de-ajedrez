@@ -18,6 +18,7 @@ import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import HelpDialog from "./ui/HelpDialog";
 import { Tooltip } from "./ui/Tooltip";
 import { findPathToNode } from "../utils/chessPath";
+import { localizedPath } from "../utils/locale";
 import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
@@ -283,13 +284,7 @@ function OpeningTreeContent({
         }}
       >
         <a
-          href={
-            i18n.language === "en"
-              ? "/en/"
-              : i18n.language === "fr"
-                ? "/fr/"
-                : "/"
-          }
+          href={localizedPath({ locale: i18n.language })}
           className="flex flex-col gap-0.5 no-underline"
         >
           <div className="neon-title">{t("title")}</div>
