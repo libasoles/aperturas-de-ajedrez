@@ -43,7 +43,9 @@
     "play": "play",
     "pause": "pause",
     "playing": "playing...",
-    "flip_board": "Flip board"
+    "flip_board": "Flip board",
+    "hide_board": "Hide board",
+    "show_board": "Show board"
   },
   "evaluation": {
     "label": "Stockfish evaluation",
@@ -80,7 +82,7 @@
         "desc": "Navigate between adjacent branches"
       },
       "flip": {
-        "label": "Enter or ↻ button",
+        "label": "Enter or flip button",
         "desc": "Flip the board perspective"
       },
       "play": {

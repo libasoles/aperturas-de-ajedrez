@@ -5,6 +5,7 @@ import {
   clampPanelToViewport,
   getPanelViewportBoundsStyle,
 } from "./floatingPanelBounds";
+import FlipBoardIcon from "./FlipBoardIcon";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 380;
@@ -28,6 +29,12 @@ export default function PlayerChessBoard({ fen, moves, locale, orientation, onFl
   const panelRef = useRef(null);
   const dragRef = useRef({ dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 });
   const [pos, setPos] = useState(null);
+  const flipTitle =
+    locale === "en"
+      ? "Flip board"
+      : locale === "fr"
+        ? "Retourner l'échiquier"
+        : "Girar tablero";
 
   const renderedFen = useMemo(() => toRenderableFen(fen), [fen]);
   const formattedMoves = useMemo(() => formatMoveSequence(moves, locale), [moves, locale]);
@@ -109,10 +116,10 @@ export default function PlayerChessBoard({ fen, moves, locale, orientation, onFl
         <button
           onClick={onFlip}
           onMouseDown={(event) => event.stopPropagation()}
-          title="Girar tablero"
-          className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+          title={flipTitle}
+          className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
         >
-          <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
+          <FlipBoardIcon />
         </button>
       </div>
       <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>

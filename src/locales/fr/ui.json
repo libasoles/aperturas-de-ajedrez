@@ -43,7 +43,9 @@
     "play": "jouer",
     "pause": "pause",
     "playing": "en cours...",
-    "flip_board": "Retourner l'échiquier"
+    "flip_board": "Retourner l'échiquier",
+    "hide_board": "Masquer l'échiquier",
+    "show_board": "Afficher l'échiquier"
   },
   "evaluation": {
     "label": "Évaluation Stockfish",
@@ -80,7 +82,7 @@
         "desc": "Navigue entre les branches adjacentes"
       },
       "flip": {
-        "label": "Entrée ou bouton ↻",
+        "label": "Entrée ou bouton retourner",
         "desc": "Inverse la perspective de l'échiquier"
       },
       "play": {

@@ -40,10 +40,12 @@
   "chess_panel": {
     "position": "Posición",
     "initial": "Inicial",
-    "play": "reproducir",
-    "pause": "pausar",
-    "playing": "jugando...",
-    "flip_board": "Girar tablero"
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "playing": "...",
+    "flip_board": "Girar tablero",
+    "hide_board": "Ocultar tablero",
+    "show_board": "Mostrar tablero"
   },
   "evaluation": {
     "label": "Evaluación Stockfish",
@@ -80,7 +82,7 @@
         "desc": "Navega entre ramas adyacentes"
       },
       "flip": {
-        "label": "Enter o botón ↻",
+        "label": "Enter o botón de girar",
         "desc": "Invierte la perspectiva del tablero"
       },
       "play": {

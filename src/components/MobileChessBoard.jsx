@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import PremiumContentGate from "./PremiumContentGate";
+import FlipBoardIcon from "./FlipBoardIcon";
 import Toast from "./ui/Toast";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 
@@ -198,8 +199,10 @@ export default function MobileChessBoard({
               {moves.length > 0 && (
                 <button
                   onClick={isPlaying ? pause : play}
+                  aria-label={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
+                  title={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
                   className={[
-                    "flex items-center justify-center gap-2 px-3 py-1.5 min-w-19 font-mono text-[11px] tracking-widest uppercase border",
+                    "flex h-8 w-8 items-center justify-center border font-mono",
                     "transition-all duration-150 active:scale-95 cursor-pointer",
                     isPlaying
                       ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
@@ -220,9 +223,6 @@ export default function MobileChessBoard({
                   >
                     {isPlaying ? "⏸\uFE0E" : "▶\uFE0E"}
                   </span>
-                  {isPlaying
-                    ? t("chess_panel.pause", { defaultValue: "pause" })
-                    : t("chess_panel.play")}
                 </button>
               )}
               <button
@@ -230,9 +230,9 @@ export default function MobileChessBoard({
                   setOrientation((o) => (o === "white" ? "black" : "white"))
                 }
                 title={t("chess_panel.flip_board")}
-                className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+                className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
               >
-                <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
+                <FlipBoardIcon />
               </button>
             </div>
 

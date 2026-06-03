@@ -24,6 +24,11 @@ vi.mock('react-chessboard', () => ({
   ),
 }));
 
+vi.mock('./ui/Tooltip', () => ({
+  Tooltip: ({ children }) => children,
+  TooltipProvider: ({ children }) => children,
+}));
+
 vi.mock('./panelLayout', () => ({
   DESKTOP_CHESS_PANEL_BOTTOM: 20,
   DESKTOP_PANEL_RIGHT: 20,
@@ -56,8 +61,47 @@ describe('ChessPanel — board position', () => {
     render(<ChessPanel tree={OPENING_TREE} selectedNodeId={null} />);
     const board = screen.getByTestId('chessboard');
     expect(board.dataset.orientation).toBe('white');
-    await user.click(screen.getByTitle('chess_panel.flip_board'));
+    await user.click(screen.getByLabelText('chess_panel.flip_board'));
     expect(board.dataset.orientation).toBe('black');
+  });
+
+  it('hides the board controls when the board visibility button is clicked', async () => {
+    const user = userEvent.setup();
+    render(<ChessPanel tree={OPENING_TREE} selectedNodeId="span-2" />);
+
+    await user.click(screen.getByLabelText('chess_panel.hide_board'));
+
+    expect(screen.queryByTestId('chessboard')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('chess_panel.pause')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('chess_panel.play')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('chess_panel.flip_board')).not.toBeInTheDocument();
+    expect(screen.getByText('chess_panel.position')).toBeInTheDocument();
+    expect(document.body.innerHTML).toMatch(/e4/);
+    expect(document.body.innerHTML).toMatch(/e5/);
+    expect(screen.getByLabelText('chess_panel.show_board')).toBeInTheDocument();
+  });
+
+  it('keeps the top edge anchored when hiding the board', async () => {
+    const user = userEvent.setup();
+    const { container } = render(<ChessPanel tree={OPENING_TREE} selectedNodeId="span-2" />);
+    const panel = container.querySelector('.panel');
+
+    panel.getBoundingClientRect = () => ({
+      left: 880,
+      top: 96,
+      width: 492,
+      height: 620,
+      right: 1372,
+      bottom: 716,
+      x: 880,
+      y: 96,
+      toJSON: () => {},
+    });
+
+    await user.click(screen.getByLabelText('chess_panel.hide_board'));
+
+    expect(panel.style.top).toBe('96px');
+    expect(panel.style.bottom).toBe('auto');
   });
 });
 

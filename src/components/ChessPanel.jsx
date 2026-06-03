@@ -8,7 +8,10 @@ import {
   clampPanelToViewport,
   getPanelViewportBoundsStyle,
 } from "./floatingPanelBounds";
+import BoardVisibilityIcon from "./BoardVisibilityIcon";
+import FlipBoardIcon from "./FlipBoardIcon";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
+import { Tooltip } from "./ui/Tooltip";
 
 const BOARD_SIZE = 460;
 const MOVES_HEIGHT = 48; // fixed height for move sequence area
@@ -36,7 +39,15 @@ export default function ChessPanel({
   premiumOverlayVersion,
 }) {
   const { t, i18n } = useTranslation();
-  const san = useCallback((move) => i18n.language === "en" ? move : i18n.language === "fr" ? toFrenchSAN(move) : toSpanishSAN(move), [i18n.language]);
+  const san = useCallback(
+    (move) =>
+      i18n.language === "en"
+        ? move
+        : i18n.language === "fr"
+          ? toFrenchSAN(move)
+          : toSpanishSAN(move),
+    [i18n.language],
+  );
 
   const path = useMemo(
     () => (selectedNodeId ? findPathToNode(tree, selectedNodeId) : []),
@@ -50,6 +61,7 @@ export default function ChessPanel({
 
   const [orientation, setOrientation] = useState("white");
   const [dismissedGateId, setDismissedGateId] = useState(null);
+  const [boardHidden, setBoardHidden] = useState(false);
 
   const [anim, setAnim] = useState({
     nodeId: selectedNodeId,
@@ -86,20 +98,18 @@ export default function ChessPanel({
     }
 
     const startFrom = playedCount >= moves.length ? 0 : playedCount;
-    const ts = moves
-      .slice(startFrom)
-      .map((_, i) =>
-        setTimeout(
-          () => {
-            setAnim((p) => ({
-              ...p,
-              playedCount: startFrom + i + 1,
-              isPlaying: startFrom + i + 1 < moves.length,
-            }));
-          },
-          (i + 1) * MOVE_DELAY,
-        ),
-      );
+    const ts = moves.slice(startFrom).map((_, i) =>
+      setTimeout(
+        () => {
+          setAnim((p) => ({
+            ...p,
+            playedCount: startFrom + i + 1,
+            isPlaying: startFrom + i + 1 < moves.length,
+          }));
+        },
+        (i + 1) * MOVE_DELAY,
+      ),
+    );
 
     timeoutsRef.current = ts;
 
@@ -223,12 +233,30 @@ export default function ChessPanel({
       right: DESKTOP_PANEL_RIGHT,
     },
   });
+  const toggleBoardHidden = useCallback(() => {
+    const rect = panelRef.current?.getBoundingClientRect();
+    if (!boardHidden && !pos && rect) {
+      setPos({ x: rect.left, y: rect.top });
+    }
+    setBoardHidden((current) => !current);
+  }, [boardHidden, pos]);
+  const playbackLabel = isPlaying
+    ? t("chess_panel.pause")
+    : t("chess_panel.play");
+  const boardVisibilityLabel = boardHidden
+    ? t("chess_panel.show_board")
+    : t("chess_panel.hide_board");
+  const flipBoardLabel = t("chess_panel.flip_board");
 
   return (
     <div
       ref={panelRef}
       className="panel absolute z-20 flex flex-col gap-3 overflow-hidden pt-2 px-4 pb-4"
-      style={{ ...positionStyle, width: BOARD_SIZE + 32, ...viewportBoundsStyle }}
+      style={{
+        ...positionStyle,
+        width: BOARD_SIZE + 32,
+        ...viewportBoundsStyle,
+      }}
     >
       {/* Drag handle bar — centered at top */}
       <div
@@ -261,8 +289,11 @@ export default function ChessPanel({
                 "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
             }}
           >
-            {(selectedNode && t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
-              (selectedNode?.move ? san(selectedNode.move) : t("chess_panel.initial"))}
+            {(selectedNode &&
+              t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
+              (selectedNode?.move
+                ? san(selectedNode.move)
+                : t("chess_panel.initial"))}
           </span>
         </div>
 
@@ -272,70 +303,93 @@ export default function ChessPanel({
           onMouseDown={(e) => e.stopPropagation()}
         >
           {/* Play button */}
-          {moves.length > 0 && (
-            <button
-              onClick={isPlaying ? pause : play}
-              onMouseDown={(e) => e.stopPropagation()}
-              className={[
-                "flex items-center justify-center gap-2 px-3 py-1.5 min-w-19 font-mono text-[11px] tracking-widest uppercase border",
-                "transition-all duration-150 active:scale-95 cursor-pointer",
-                isPlaying
-                  ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
-                  : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
-              ].join(" ")}
-              style={{
-                boxShadow: isPlaying
-                  ? "0 0 14px color-mix(in srgb, var(--color-neon-purple) 26%, transparent)"
-                  : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
-              }}
-              title={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
-            >
-              <span style={{ fontSize: "13px", lineHeight: 1 }}>
-                {isPlaying ? "⏸" : "▶"}
-              </span>
-              {isPlaying
-                ? t("chess_panel.pause", { defaultValue: "pause" })
-                : t("chess_panel.play")}
-            </button>
+          {!boardHidden && moves.length > 0 && (
+            <Tooltip content={playbackLabel}>
+              <button
+                onClick={isPlaying ? pause : play}
+                onMouseDown={(e) => e.stopPropagation()}
+                aria-label={playbackLabel}
+                className={[
+                  "flex h-8 w-8 items-center justify-center border font-mono",
+                  "transition-all duration-150 active:scale-95 cursor-pointer",
+                  isPlaying
+                    ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
+                    : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
+                ].join(" ")}
+                style={{
+                  boxShadow: isPlaying
+                    ? "0 0 14px color-mix(in srgb, var(--color-neon-purple) 26%, transparent)"
+                    : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
+                }}
+              >
+                <span style={{ fontSize: "13px", lineHeight: 1 }}>
+                  {isPlaying ? "⏸" : "▶"}
+                </span>
+              </button>
+            </Tooltip>
           )}
-          <button
-            onClick={() =>
-              setOrientation((o) => (o === "white" ? "black" : "white"))
-            }
-            title={t("chess_panel.flip_board")}
-            className="flex items-center justify-center w-8 h-8 border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
-          >
-            <span style={{ fontSize: "22px", lineHeight: 1 }}>↻</span>
-          </button>
+
+          <Tooltip content={boardVisibilityLabel}>
+            <button
+              type="button"
+              onClick={toggleBoardHidden}
+              aria-pressed={boardHidden}
+              aria-label={boardVisibilityLabel}
+              className={[
+                "flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer",
+                boardHidden
+                  ? "text-neon-purple border-neon-purple/60 bg-neon-purple/18"
+                  : "text-neon-purple border-neon-purple/38 hover:text-neon-purple hover:border-neon-purple/55",
+              ].join(" ")}
+            >
+              <BoardVisibilityIcon hidden={boardHidden} />
+            </button>
+          </Tooltip>
+          {!boardHidden && (
+            <Tooltip content={flipBoardLabel}>
+              <button
+                type="button"
+                onClick={() =>
+                  setOrientation((o) => (o === "white" ? "black" : "white"))
+                }
+                aria-label={flipBoardLabel}
+                className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+              >
+                <FlipBoardIcon />
+              </button>
+            </Tooltip>
+          )}
         </div>
       </div>
 
-      <div className="relative" style={{ width: BOARD_SIZE }}>
-        {/* react-chessboard v5 uses a single `options` prop */}
-        <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
-          <Chessboard
-            options={{
-              position: fen,
-              boardOrientation: orientation,
-              allowDragging: false,
-              showAnimations: false,
-              darkSquareStyle: CUSTOM_DARK,
-              lightSquareStyle: CUSTOM_LIGHT,
-              boardStyle: {
-                borderRadius: 0,
-                boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-              },
-            }}
-          />
-        </div>
+      {!boardHidden && (
+        <div className="relative" style={{ width: BOARD_SIZE }}>
+          {/* react-chessboard v5 uses a single `options` prop */}
+          <div inert style={{ width: BOARD_SIZE, height: BOARD_SIZE }}>
+            <Chessboard
+              options={{
+                position: fen,
+                boardOrientation: orientation,
+                allowDragging: false,
+                showAnimations: false,
+                darkSquareStyle: CUSTOM_DARK,
+                lightSquareStyle: CUSTOM_LIGHT,
+                boardStyle: {
+                  borderRadius: 0,
+                  boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+                },
+              }}
+            />
+          </div>
 
-        {isGateVisible ? (
-          <PremiumContentGate
-            contentId={lockedContentId}
-            onClose={() => setDismissedGateId(gateKey)}
-          />
-        ) : null}
-      </div>
+          {isGateVisible ? (
+            <PremiumContentGate
+              contentId={lockedContentId}
+              onClose={() => setDismissedGateId(gateKey)}
+            />
+          ) : null}
+        </div>
+      )}
 
       {/* Move sequence — fixed height so the panel never resizes */}
       <div
