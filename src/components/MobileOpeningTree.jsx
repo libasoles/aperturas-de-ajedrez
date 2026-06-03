@@ -1,11 +1,14 @@
 'use client'
 import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import MobileChessBoard from "./MobileChessBoard";
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
 import StockfishEvaluationBar from "./StockfishEvaluationBar";
-import { MOBILE_BOARD_PANEL_HEIGHT } from "./panelLayout";
+import {
+  MOBILE_BOARD_PANEL_COLLAPSED_HEIGHT,
+  MOBILE_BOARD_PANEL_HEIGHT,
+} from "./panelLayout";
 import { findPathToNode } from "../utils/chessPath";
 
 const nodeTypes = { chess: MobileChessNode };
@@ -16,6 +19,7 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
   const flowWrapperRef = useRef(null);
   const pendingMenuCenterNodeIdRef = useRef(null);
   const pendingFitViewRef = useRef(false);
+  const [boardHidden, setBoardHidden] = useState(false);
 
   const mobileNodes = useMemo(
     () =>
@@ -222,10 +226,13 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
       <div
         className="panel"
         style={{
-          height: MOBILE_BOARD_PANEL_HEIGHT,
+          height: boardHidden
+            ? MOBILE_BOARD_PANEL_COLLAPSED_HEIGHT
+            : MOBILE_BOARD_PANEL_HEIGHT,
           borderBottom:
             "1px solid color-mix(in srgb, var(--color-grid) 60%, transparent)",
           flexShrink: 0,
+          transition: "height 180ms ease",
         }}
       >
         <MobileChessBoard
@@ -233,6 +240,8 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           selectedNodeId={selectedNodeId}
           lockedContentId={lockedContentId}
           premiumOverlayVersion={premiumOverlayVersion}
+          boardHidden={boardHidden}
+          onBoardHiddenChange={setBoardHidden}
         />
       </div>
 

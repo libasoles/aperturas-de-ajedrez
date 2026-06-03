@@ -181,7 +181,7 @@ function getRouteFromPathname(routeData, pathname) {
   } else if (path === "/fr" || path.startsWith("/fr/")) {
     path = path.slice(3) || "/"; // remove "/fr"
   }
-  const slug = path.replace(/^\/|\/$/, "");
+  const slug = path.replace(/^\/|\/$/g, "");
   if (!slug) return { opening: null, variant: null };
   const variantRoute = routeData.variantRouteBySlug?.[slug];
   if (variantRoute) {
@@ -411,7 +411,7 @@ export function useOpeningTreeState(
     [initGraph],
   );
   const [expandedIds, setExpandedIds] = useState(
-    () => new Set([...initialExpandedIds, ...initialUrlState.extraExpanded]),
+    () => new Set(initialDisplayIds),
   );
   const [activeOpening, setActiveOpening] = useState(() => initialRoute.opening);
   const [activeVariant, setActiveVariant] = useState(() => initialRoute.variant);

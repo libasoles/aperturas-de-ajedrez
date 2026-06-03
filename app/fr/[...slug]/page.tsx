@@ -67,7 +67,7 @@ export default async function FrSlugPage({
   const sp = await searchParams
   return (
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
-      <OpeningTreePreview slug={slug} />
+      <OpeningTreePreview slug={slug} locale="fr" />
       <AppShell locale="fr" pathname={`/fr/${slug}/`} initialNodeId={sp?.node} />
     </div>
   )

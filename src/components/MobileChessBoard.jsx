@@ -31,6 +31,8 @@ export default function MobileChessBoard({
   selectedNodeId,
   lockedContentId,
   premiumOverlayVersion,
+  boardHidden: controlledBoardHidden,
+  onBoardHiddenChange,
 }) {
   const { t, i18n } = useTranslation();
   const san = useCallback(
@@ -56,7 +58,7 @@ export default function MobileChessBoard({
   );
 
   const [orientation, setOrientation] = useState("white");
-  const [boardHidden, setBoardHidden] = useState(false);
+  const [localBoardHidden, setLocalBoardHidden] = useState(false);
   const [dismissedGateId, setDismissedGateId] = useState(null);
   const [dismissedToastId, setDismissedToastId] = useState(null);
 
@@ -141,6 +143,8 @@ export default function MobileChessBoard({
     ? `${lockedContentId}:${premiumOverlayVersion}`
     : null;
   const isGateVisible = gateKey && dismissedGateId !== gateKey;
+  const boardHidden = controlledBoardHidden ?? localBoardHidden;
+  const setBoardHidden = onBoardHiddenChange ?? setLocalBoardHidden;
   const boardVisibilityLabel = boardHidden
     ? t("chess_panel.show_board")
     : t("chess_panel.hide_board");
@@ -270,27 +274,31 @@ export default function MobileChessBoard({
               )}
             </div>
 
-            <span
-              className="font-mono text-[13px] font-bold tracking-wide text-white-soft"
-              style={{
-                textShadow:
-                  "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
-              }}
-            >
-              {(selectedNode &&
-                t(`openings:${selectedNode.id}.name`, { defaultValue: "" })) ||
-                (selectedNode?.move
-                  ? san(selectedNode.move)
-                  : t("chess_panel.initial"))}
-            </span>
+            {!boardHidden && (
+              <span
+                className="font-mono text-[13px] font-bold tracking-wide text-white-soft"
+                style={{
+                  textShadow:
+                    "0 0 8px color-mix(in srgb, var(--color-neon-purple) 38%, transparent)",
+                }}
+              >
+                {(selectedNode &&
+                  t(`openings:${selectedNode.id}.name`, {
+                    defaultValue: "",
+                  })) ||
+                  (selectedNode?.move
+                    ? san(selectedNode.move)
+                    : t("chess_panel.initial"))}
+              </span>
+            )}
           </div>
 
-          <div
-            className="mobile-board-scroll flex-1 min-h-0 overflow-auto"
-            style={{ touchAction: "pan-x pan-y" }}
-          >
-            <div className="relative flex flex-col gap-1 min-h-full">
-              {!boardHidden && (
+          {!boardHidden && (
+            <div
+              className="mobile-board-scroll flex-1 min-h-0 overflow-auto"
+              style={{ touchAction: "pan-x pan-y" }}
+            >
+              <div className="relative flex flex-col gap-1 min-h-full">
                 <div className="relative" style={{ width: BOARD_SIZE }}>
                   {/* Board */}
                   <div
@@ -322,20 +330,20 @@ export default function MobileChessBoard({
                     />
                   ) : null}
                 </div>
-              )}
 
-              {/* Move sequence */}
-              <div
-                className="font-mono text-[14px] leading-relaxed wrap-break-word text-neon-cyan/50 flex-1"
-                style={{
-                  width: BOARD_SIZE,
-                  minHeight: 48,
-                  paddingBottom: "6px",
-                }}
-                dangerouslySetInnerHTML={{ __html: formattedMoves }}
-              />
+                {/* Move sequence */}
+                <div
+                  className="font-mono text-[14px] leading-relaxed wrap-break-word text-neon-cyan/50 flex-1"
+                  style={{
+                    width: BOARD_SIZE,
+                    minHeight: 48,
+                    paddingBottom: "6px",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: formattedMoves }}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

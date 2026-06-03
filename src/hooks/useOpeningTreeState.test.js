@@ -47,6 +47,39 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 
+// ── initial route state ──────────────────────────────────────────────────────
+
+describe("initial route state", () => {
+  it("expands the opening from the initial pathname", () => {
+    const { result } = renderHook(() =>
+      useOpeningTreeState(undefined, { pathname: "/defensa-escandinava/" }),
+    );
+
+    expect(result.current.activeOpening).toBe("scan-1");
+    expect(result.current.activeVariant).toBeNull();
+    expect(result.current.nodes.map((node) => node.id)).toContain("scan-5a1");
+
+    act(() => {
+      result.current.toggleOpening("scan-1");
+    });
+
+    expect(result.current.activeOpening).toBeNull();
+    expect(result.current.nodes.map((node) => node.id)).toContain("scan-5a1");
+  });
+
+  it("expands the variant from a localized initial pathname", () => {
+    const { result } = renderHook(() =>
+      useOpeningTreeState(undefined, {
+        pathname: "/en/scandinavian-defense/mieses-kotroc/",
+      }),
+    );
+
+    expect(result.current.activeOpening).toBe("scan-1");
+    expect(result.current.activeVariant).toBe("scan-5a1");
+    expect(result.current.nodes.map((node) => node.id)).toContain("scan-5a1");
+  });
+});
+
 // ── toggleOpening ─────────────────────────────────────────────────────────────
 
 describe("toggleOpening", () => {

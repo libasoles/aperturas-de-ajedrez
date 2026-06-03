@@ -2,7 +2,7 @@
  * Pure server-safe computation of opening tree nodes for SSR preview.
  * No DOM, no window, no React — safe to import in Server Components.
  */
-import { findPathToNode } from '../utils/chessPath'
+import { findPathToNode, toFrenchSAN, toSpanishSAN } from '../utils/chessPath'
 import { OPENING_TREE } from '../data/openings'
 import { OPENING_COLORS } from '../data/openingColors'
 import { ROUTE_BY_SLUG, VARIANT_ROUTE_BY_SLUG } from '../data/routes'
@@ -14,8 +14,11 @@ const Y_STEP = 90
 export type PreviewNode = {
   id: string
   move: string
+  color: string
+  hasChildren: boolean
+  isExpanded: boolean
   position: { x: number; y: number }
-  colors: { node: string; text: string; border: string }
+  colors: { node: string; text: string; border: string; edge: string }
 }
 
 function collectAllIds(node: any, acc = new Set<string>()): Set<string> {
@@ -54,15 +57,20 @@ function computeNodes(
   yOffset = 0,
 ): { nodes: PreviewNode[]; height: number } {
   const c = colorMap[node.opening] ?? colorMap.root ?? { node: '#1a1a2e', text: '#fff', border: '#555' }
+  const isExpanded = expandedIds.has(node.id)
+  const hasChildren = node.children?.length > 0
   const n: PreviewNode = {
     id: node.id,
     move: node.move,
+    color: node.color,
+    hasChildren,
+    isExpanded,
     position: { x: depth * X_STEP, y: yOffset },
-    colors: { node: c.node, text: c.text, border: c.border },
+    colors: { node: c.node, text: c.text, border: c.border, edge: c.edge },
   }
   const all: PreviewNode[] = [n]
 
-  if (expandedIds.has(node.id) && node.children?.length > 0) {
+  if (isExpanded && hasChildren) {
     let childY = yOffset
     for (const child of node.children) {
       const { nodes: cn, height } = computeNodes(child, expandedIds, colorMap, depth + 1, childY)
@@ -75,6 +83,20 @@ function computeNodes(
   }
 
   return { nodes: all, height: Y_STEP }
+}
+
+export function getPreviewMoveLabel(
+  node: PreviewNode,
+  locale: 'es' | 'en' | 'fr' = 'es',
+): string {
+  if (node.id === 'root') {
+    if (locale === 'en') return 'Initial'
+    if (locale === 'fr') return 'Initiale'
+    return 'Inicial'
+  }
+  if (locale === 'en') return node.move
+  if (locale === 'fr') return toFrenchSAN(node.move)
+  return toSpanishSAN(node.move)
 }
 
 export function getPreviewNodesForSlug(slug: string): PreviewNode[] {

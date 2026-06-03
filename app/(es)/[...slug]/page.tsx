@@ -66,7 +66,7 @@ export default async function EsSlugPage({
   const sp = await searchParams
   return (
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
-      <OpeningTreePreview slug={slug} />
+      <OpeningTreePreview slug={slug} locale="es" />
       <AppShell locale="es" pathname={`/${slug}/`} initialNodeId={sp?.node} />
     </div>
   )
