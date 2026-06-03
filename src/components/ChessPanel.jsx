@@ -310,11 +310,11 @@ export default function ChessPanel({
                 onMouseDown={(e) => e.stopPropagation()}
                 aria-label={playbackLabel}
                 className={[
-                  "flex h-8 w-8 items-center justify-center border font-mono",
+                  "flex h-8 w-8 items-center justify-center",
                   "transition-all duration-150 active:scale-95 cursor-pointer",
                   isPlaying
-                    ? "text-neon-purple border-neon-purple/60 bg-neon-purple/22"
-                    : "text-neon-purple border-neon-purple/38 bg-neon-purple/6",
+                    ? "text-neon-purple bg-neon-purple/22"
+                    : "text-neon-purple bg-neon-purple/6",
                 ].join(" ")}
                 style={{
                   boxShadow: isPlaying
@@ -322,9 +322,16 @@ export default function ChessPanel({
                     : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                 }}
               >
-                <span style={{ fontSize: "13px", lineHeight: 1 }}>
-                  {isPlaying ? "⏸" : "▶"}
-                </span>
+                {isPlaying ? (
+                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="5" y="4" width="4" height="16" rx="1" />
+                    <rect x="15" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 4.5v15l13-7.5z" />
+                  </svg>
+                )}
               </button>
             </Tooltip>
           )}
@@ -336,13 +343,13 @@ export default function ChessPanel({
               aria-pressed={boardHidden}
               aria-label={boardVisibilityLabel}
               className={[
-                "flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer",
+                "flex h-8 w-8 items-center justify-center transition-all duration-150 active:scale-95 cursor-pointer",
                 boardHidden
-                  ? "text-neon-purple border-neon-purple/60 bg-neon-purple/18"
-                  : "text-neon-purple border-neon-purple/38 hover:text-neon-purple hover:border-neon-purple/55",
+                  ? "text-neon-purple bg-neon-purple/18"
+                  : "text-neon-purple hover:text-neon-purple",
               ].join(" ")}
             >
-              <BoardVisibilityIcon hidden={boardHidden} />
+              <BoardVisibilityIcon hidden={boardHidden} className="h-6 w-6" />
             </button>
           </Tooltip>
           {!boardHidden && (
@@ -353,9 +360,12 @@ export default function ChessPanel({
                   setOrientation((o) => (o === "white" ? "black" : "white"))
                 }
                 aria-label={flipBoardLabel}
-                className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+                className="flex h-8 w-8 items-center justify-center transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 hover:text-neon-cyan"
               >
-                <FlipBoardIcon />
+                <FlipBoardIcon
+                  className="h-6 w-6 transition-transform duration-300"
+                  style={{ transform: orientation === "black" ? "rotate(180deg)" : "rotate(0deg)" }}
+                />
               </button>
             </Tooltip>
           )}

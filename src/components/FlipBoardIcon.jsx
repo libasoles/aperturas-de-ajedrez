@@ -1,8 +1,9 @@
-export default function FlipBoardIcon({ className = "h-5 w-5" }) {
+export default function FlipBoardIcon({ className = "h-5 w-5", style }) {
   return (
     <svg
       aria-hidden="true"
       className={className}
+      style={style}
       viewBox="0 0 24 24"
       focusable="false"
     >
