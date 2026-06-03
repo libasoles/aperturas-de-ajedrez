@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export function middleware(request: NextRequest) {
   const { hostname, pathname } = request.nextUrl
 
-  // Redirect .ar domain root to English
-  if (hostname?.endsWith('.ar') && pathname === '/') {
+  // Redirect chessopenings.com.ar root to English
+  if (hostname === 'chessopenings.com.ar' && pathname === '/') {
     return NextResponse.redirect(new URL('/en', request.url))
   }
 
