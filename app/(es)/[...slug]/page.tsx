@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import AppShell from '@/components/AppShell'
 import { OpeningTreePreview } from '@/components/OpeningTreePreview'
 import { StaticPanelsPreview } from '@/components/StaticPanelsPreview'
-import { TopBar } from '@/components/TopBar'
 import { OPENING_ROUTES, VARIANT_ROUTES, HELP_ROUTE } from '@/data/routes'
 import { buildAlternates, defaultOgImage, DEFAULT_OG_IMAGE, urlForLocale } from '@/lib/metadata'
 import { findRouteBySlug } from '@/lib/routes'
@@ -63,7 +62,6 @@ export default async function EsSlugPage({
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
       <OpeningTreePreview slug={slug} locale="es" />
       <StaticPanelsPreview slug={slug} locale="es" />
-      <TopBar locale="es" />
       <AppShell locale="es" pathname={`/${slug}/`} initialNodeId={sp?.node} />
     </div>
   )

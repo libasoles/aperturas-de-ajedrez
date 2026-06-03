@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import AppShell from '@/components/AppShell'
 import { StaticPanelsPreview } from '@/components/StaticPanelsPreview'
-import { TopBar } from '@/components/TopBar'
 import { buildAlternates, defaultOgImage, DEFAULT_OG_IMAGE, urlForLocale } from '@/lib/metadata'
 
 export const dynamic = 'force-static'
@@ -34,7 +33,6 @@ export default function EnHomePage() {
   return (
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
       <StaticPanelsPreview locale="en" />
-      <TopBar locale="en" />
       <AppShell locale="en" pathname="/en/" />
     </div>
   )

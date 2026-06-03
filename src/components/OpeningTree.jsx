@@ -2,73 +2,21 @@
 import dynamic from 'next/dynamic'
 import {
   Background,
-  ControlButton,
-  Panel,
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
 } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import ChessNode from "./ChessNode";
 const ChessPanel = dynamic(() => import('./ChessPanel'), { ssr: false, loading: () => null })
-import ResetViewIcon from "./icons/ResetViewIcon";
-import ZoomInIcon from "./icons/ZoomInIcon";
-import ZoomOutIcon from "./icons/ZoomOutIcon";
+import FlowControls from "./FlowControls";
 import OpeningsPanel from "./OpeningsPanel";
 import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import HelpDialog from "./ui/HelpDialog";
-import { Tooltip } from "./ui/Tooltip";
 import { findPathToNode } from "../utils/chessPath";
-import { localizedPath } from "../utils/locale";
-import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
 const FIT_VIEW_MAX_ZOOM = 1;
-
-function FlowControls({ initialX }) {
-  const { zoomIn, zoomOut, setViewport, getNodes } = useReactFlow();
-  const { t } = useTranslation();
-
-  const handleFitView = useCallback(() => {
-    const nodes = getNodes();
-    if (nodes.length === 0) return;
-
-    const minY = Math.min(...nodes.map((n) => n.position.y));
-    const maxY = Math.max(
-      ...nodes.map((n) => n.position.y + (n.measured?.height ?? n.height ?? 40)),
-    );
-    const nodesHeight = maxY - minY;
-    const centerY = (minY + maxY) / 2;
-
-    const viewH = window.innerHeight;
-    const zoom = Math.min(FIT_VIEW_MAX_ZOOM, Math.max(0.2, (viewH * 0.8) / nodesHeight));
-
-    setViewport({ x: initialX, y: viewH / 2 - centerY * zoom, zoom }, { duration: 300 });
-  }, [getNodes, setViewport, initialX]);
-
-  return (
-    <Panel position="bottom-left">
-      <div className="react-flow__controls">
-        <Tooltip content={t("controls.zoom_in")} side="right">
-          <ControlButton onClick={() => zoomIn({ duration: 300 })} aria-label={t("controls.zoom_in")}>
-            <ZoomInIcon />
-          </ControlButton>
-        </Tooltip>
-        <Tooltip content={t("controls.zoom_out")} side="right">
-          <ControlButton onClick={() => zoomOut({ duration: 300 })} aria-label={t("controls.zoom_out")}>
-            <ZoomOutIcon />
-          </ControlButton>
-        </Tooltip>
-        <Tooltip content={t("controls.reset_view")} side="right">
-          <ControlButton onClick={handleFitView} aria-label={t("controls.reset_view")}>
-            <ResetViewIcon />
-          </ControlButton>
-        </Tooltip>
-      </div>
-    </Panel>
-  );
-}
 
 function OpeningTreeContent({
   nodes,
@@ -88,11 +36,9 @@ function OpeningTreeContent({
   catalog,
   initialViewport,
   tree,
-  subtitle,
   variantCatalog,
   variantRoutes,
 }) {
-  const { t, i18n } = useTranslation();
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
@@ -217,18 +163,16 @@ function OpeningTreeContent({
     clearPins();
   }, [clearPins]);
 
+  const selectedNode = useMemo(
+    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId).at(-1) : null),
+    [selectedNodeId, tree],
+  );
+
   const nodesWithAnchor = useMemo(
     () =>
       nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
     [nodes, handleToggle],
   );
-  const selectedNode = useMemo(
-    () => (selectedNodeId ? findPathToNode(tree, selectedNodeId).at(-1) : null),
-    [selectedNodeId, tree],
-  );
-  const stockfishDepth = selectedNode?.stockfish?.depth ?? 14;
-  const stockfishScore = formatStockfishScore(selectedNode?.stockfish);
-
   return (
     <div className="w-screen h-screen bg-app">
       {/* Panels first in DOM so Tab reaches them before the ReactFlow canvas */}
@@ -276,32 +220,6 @@ function OpeningTreeContent({
         stockfish={selectedNode?.stockfish}
         className="absolute right-0 top-0 bottom-0 z-10"
       />
-
-      {/* Top bar */}
-      <div
-        className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-10 border-b border-neon-purple/[0.14]"
-        style={{
-          background:
-            "linear-gradient(180deg, color-mix(in srgb, var(--color-panel) 94%, transparent) 0%, color-mix(in srgb, var(--color-panel) 69%, transparent) 80%, transparent 100%)",
-        }}
-      >
-        <a
-          href={localizedPath({ locale: i18n.language })}
-          className="flex flex-col gap-0.5 no-underline"
-        >
-          <div className="neon-title">{t("title")}</div>
-          <div className="neon-subtitle">{t("subtitle")}</div>
-        </a>
-        <div className="flex flex-col items-end gap-1 text-right">
-          <div className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-white-soft/80">
-            Stockfish 18 · {t("evaluation.depth")} {stockfishDepth}
-          </div>
-          <div className="font-mono text-[12px] font-bold leading-none text-white-soft">
-            {stockfishScore}
-          </div>
-          {subtitle && <div className="neon-subtitle">{subtitle}</div>}
-        </div>
-      </div>
 
       {/* Help button — fixed bottom-left */}
       <div className="absolute bottom-28 left-4 z-10">

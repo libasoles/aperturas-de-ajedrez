@@ -8,6 +8,7 @@ import { resolveTreeConfigFromPathname } from '../data/treeConfigs'
 import { useOpeningTreeState } from '../hooks/useOpeningTreeState'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { initAnalytics } from '../lib/analytics'
+import { TopBar } from './TopBar'
 
 const OpeningTreeDynamic = dynamic(() => import('./OpeningTree'), { ssr: false })
 const MobileOpeningTreeDynamic = dynamic(() => import('./MobileOpeningTree'), { ssr: false })
@@ -40,7 +41,7 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
   // otherwise the static shell disappears before the client tree is visible.
   useEffect(() => {
     if (!i18nReady) return
-    const previews = document.querySelectorAll('[data-tree-preview], [data-ssg-preview], [data-topbar-static]')
+    const previews = document.querySelectorAll('[data-tree-preview], [data-ssg-preview]')
     if (!previews.length) return
     previews.forEach(el => {
       el.style.transition = 'opacity 0.2s'
@@ -55,6 +56,14 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
     <I18nextProvider i18n={i18n}>
       <TooltipProvider>
         <div className="absolute inset-0">
+          {!isMobile && (
+            <TopBar
+              locale={locale}
+              selectedNodeId={state.selectedNodeId}
+              tree={state.tree}
+              subtitle={state.subtitle}
+            />
+          )}
           {isMobile ? (
             <MobileOpeningTreeDynamic state={state} />
           ) : (
