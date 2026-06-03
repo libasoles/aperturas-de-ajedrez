@@ -3,8 +3,11 @@ import { useTranslation } from "react-i18next";
 import { detectLocale } from "../hooks/useOpeningTreeState";
 import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
-import PinStarIcon from "./icons/PinStarIcon";
 import PremiumLockIcon from "./icons/PremiumLockIcon";
+import ToggleSwitchIcon from "./icons/ToggleSwitchIcon";
+
+const MOBILE_MENU_TRIGGER_Z_INDEX = 60;
+const MOBILE_MENU_OVERLAY_Z_INDEX = 61;
 
 // Locale-aware variant label: "Variante Mieses-Kotroc | Escandinava | ..." → "Variante Mieses-Kotroc"
 function getVariantLabel(variantRoute, locale) {
@@ -26,6 +29,7 @@ export default function MobileHamburgerMenu({
   onToggleOpening,
   onToggleVariant,
   onTogglePin = () => {},
+  onClearPins = () => {},
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
@@ -39,6 +43,8 @@ export default function MobileHamburgerMenu({
   }
 
   const handleOpeningClick = (opening) => {
+    onClearPins();
+
     if (opening.access === "premium") {
       trackPremiumMenuClick("premium_menu_opening_click", {
         node_id: opening.nodeId,
@@ -62,6 +68,8 @@ export default function MobileHamburgerMenu({
   };
 
   const handleVariantClick = (variant) => {
+    onClearPins();
+
     if (variant.access === "premium") {
       trackPremiumMenuClick("premium_menu_variant_click", {
         variant_node_id: variant.variantNodeId,
@@ -90,7 +98,7 @@ export default function MobileHamburgerMenu({
           position: "fixed",
           bottom: 0,
           left: 0,
-          zIndex: 50,
+          zIndex: MOBILE_MENU_TRIGGER_Z_INDEX,
           width: 44,
           height: 44,
           display: "flex",
@@ -122,7 +130,7 @@ export default function MobileHamburgerMenu({
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 51,
+            zIndex: MOBILE_MENU_OVERLAY_Z_INDEX,
             overflow: "hidden",
             pointerEvents: "auto",
           }}
@@ -255,6 +263,9 @@ export default function MobileHamburgerMenu({
                           const isOpeningActive =
                             activeOpening === opening.nodeId;
                           const isOpeningPinned = pinnedIds.has(opening.nodeId);
+                          const openingPinLabel = isOpeningPinned
+                            ? "Quitar pin"
+                            : "Pinear apertura";
                           const variants =
                             variantsByParent.get(opening.nodeId) ?? [];
 
@@ -329,6 +340,7 @@ export default function MobileHamburgerMenu({
                                     e.stopPropagation();
                                     onTogglePin(opening.nodeId);
                                   }}
+                                  aria-label={openingPinLabel}
                                   style={{
                                     display: "flex",
                                     alignItems: "center",
@@ -340,9 +352,9 @@ export default function MobileHamburgerMenu({
                                     color: isOpeningPinned ? opening.glow : "#6b7280",
                                   }}
                                 >
-                                  <PinStarIcon
-                                    style={{ width: 14, height: 14, flexShrink: 0 }}
-                                    filled={isOpeningPinned}
+                                  <ToggleSwitchIcon
+                                    className="w-5 h-5 shrink-0"
+                                    checked={isOpeningPinned}
                                   />
                                 </button>
                               </div>
@@ -352,6 +364,9 @@ export default function MobileHamburgerMenu({
                                 const isVariantActive =
                                   activeVariant === variant.variantNodeId;
                                 const isVariantPinned = pinnedIds.has(variant.variantNodeId);
+                                const variantPinLabel = isVariantPinned
+                                  ? "Quitar pin"
+                                  : "Pinear variante";
                                 const label = getVariantLabel(variant, locale);
 
                                 return (
@@ -422,6 +437,7 @@ export default function MobileHamburgerMenu({
                                         e.stopPropagation();
                                         onTogglePin(variant.variantNodeId);
                                       }}
+                                      aria-label={variantPinLabel}
                                       style={{
                                         display: "flex",
                                         alignItems: "center",
@@ -433,9 +449,9 @@ export default function MobileHamburgerMenu({
                                         color: isVariantPinned ? opening.glow : "#6b7280",
                                       }}
                                     >
-                                      <PinStarIcon
-                                        style={{ width: 12, height: 12, flexShrink: 0 }}
-                                        filled={isVariantPinned}
+                                      <ToggleSwitchIcon
+                                        className="w-5 h-5 shrink-0"
+                                        checked={isVariantPinned}
                                       />
                                     </button>
                                   </div>

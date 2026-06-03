@@ -9,11 +9,12 @@ import { findPathToNode } from "../utils/chessPath";
 
 const nodeTypes = { chess: MobileChessNode };
 
-function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, pinnedIds, toggleNode, toggleOpening, toggleVariant, togglePin, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
+function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, pinnedIds, toggleNode, toggleOpening, toggleVariant, togglePin, clearPins, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
   const flowWrapperRef = useRef(null);
   const pendingMenuCenterNodeIdRef = useRef(null);
+  const pendingFitViewRef = useRef(false);
 
   const mobileNodes = useMemo(
     () =>
@@ -75,6 +76,53 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
     return () => window.cancelAnimationFrame(frameId);
   }, [mobileNodes, selectedNodeId, getViewport, setViewport]);
 
+  // Pin switches can radically change the filtered tree. Reframe the visible
+  // rotated graph instead of anchoring to a node that may disappear.
+  useEffect(() => {
+    if (!pendingFitViewRef.current) return;
+    pendingFitViewRef.current = false;
+
+    const wrapper = flowWrapperRef.current;
+    if (!wrapper || mobileNodes.length === 0) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      const bounds = wrapper.getBoundingClientRect();
+      const minX = Math.min(...mobileNodes.map((n) => n.position.x));
+      const maxX = Math.max(
+        ...mobileNodes.map((n) => n.position.x + (n.measured?.width ?? n.width ?? 80)),
+      );
+      const minY = Math.min(...mobileNodes.map((n) => n.position.y));
+      const maxY = Math.max(
+        ...mobileNodes.map((n) => n.position.y + (n.measured?.height ?? n.height ?? 40)),
+      );
+      const graphWidth = Math.max(maxX - minX, 1);
+      const graphHeight = Math.max(maxY - minY, 1);
+      const centerX = (minX + maxX) / 2;
+      const centerY = (minY + maxY) / 2;
+      const zoom = Math.min(
+        1,
+        Math.max(
+          0.2,
+          Math.min(
+            (bounds.width * 0.82) / graphWidth,
+            (bounds.height * 0.82) / graphHeight,
+          ),
+        ),
+      );
+
+      setViewport(
+        {
+          x: bounds.width * 0.5 - centerX * zoom,
+          y: bounds.height * 0.55 - centerY * zoom,
+          zoom,
+        },
+        { duration: 300 },
+      );
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [mobileNodes, setViewport]);
+
   // Capture the node's screen position (using rotated coords) before layout changes
   const makeAnchoredHandler = useCallback(
     (callback) => (id) => {
@@ -120,6 +168,14 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
     [activeVariant, toggleVariant],
   );
 
+  const handleTogglePin = useCallback(
+    (nodeId) => {
+      pendingFitViewRef.current = true;
+      togglePin(nodeId);
+    },
+    [togglePin],
+  );
+
   const mobileNodesWithAnchor = useMemo(
     () =>
       mobileNodes.map((n) => ({
@@ -153,7 +209,8 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           pinnedIds={pinnedIds}
           onToggleOpening={handleToggleOpening}
           onToggleVariant={handleToggleVariant}
-          onTogglePin={togglePin}
+          onTogglePin={handleTogglePin}
+          onClearPins={clearPins}
         />
       )}
       <StockfishEvaluationBar
