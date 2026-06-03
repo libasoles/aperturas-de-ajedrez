@@ -2,9 +2,7 @@
 
 ## Metodología
 
-El análisis se ejecutó el **3 de junio de 2026** usando [Lighthouse CLI](https://github.com/GoogleChrome/lighthouse) v13.3.0 contra el servidor de producción local (`npm start`, puerto 3001, build Next.js 16 SSG).
-
-Se descartó el servidor de desarrollo (`npm run dev` / Turbopack) porque sus chunks no están minificados ni tree-shakeados, lo que infla artificialmente las métricas de JS. Se realizaron dos pasadas independientes:
+Los análisis se ejecutaron usando [Lighthouse CLI](https://github.com/GoogleChrome/lighthouse) v13.3.0 contra el servidor de producción local (`npm start`, puerto 3001, build Next.js 16 SSG). Se descarta el servidor de desarrollo (Turbopack) porque sus chunks no están minificados ni tree-shakeados.
 
 ```bash
 # Desktop (CPU/red sin throttling)
@@ -18,7 +16,62 @@ Categorías auditadas: Performance, Accessibility, Best Practices, SEO.
 
 ---
 
-## Scores globales
+## Resultados — 3 de junio de 2026 (run 2)
+
+Build: Next.js 16.2.7 + Turbopack producción. ChessPanel lazy-loaded; chess.js movido fuera del bundle inicial.
+
+### Scores globales
+
+| Categoría | Desktop | Mobile | Δ Desktop | Δ Mobile |
+|---|:---:|:---:|:---:|:---:|
+| **Performance** | 🟢 100 | 🟢 99 | +1 | +14 |
+| **Accessibility** | 🟡 83 | 🟡 83 | -9 | -4 |
+| **Best Practices** | 🟡 96 | 🟡 96 | -4 | -4 |
+| **SEO** | 🟢 100 | 🟢 100 | = | = |
+
+### Core Web Vitals
+
+| Métrica | Desktop | Mobile | Δ Mobile | Umbral «Good» |
+|---|:---:|:---:|:---:|:---:|
+| **LCP** | 🟢 0.6s | 🟢 2.1s | −1.61s | < 2.5s |
+| **FCP** | 🟢 0.5s | 🟢 1.5s | −0.45s | < 1.8s |
+| **CLS** | 🟢 0 | 🟢 0 | = | < 0.1 |
+| **TBT** (proxy INP) | 🟢 0ms | 🟢 20ms | −98ms | < 200ms |
+| **TTI** | 🟢 0.6s | 🟢 2.1s | −1.61s | < 3.8s |
+| **Speed Index** | 🟢 0.8s | 🟢 1.5s | −2.86s | < 3.4s |
+
+> **Hito:** LCP mobile pasó de 🔴 3.71s a 🟢 2.1s. Todos los CWV están en verde en ambos dispositivos.
+
+### Oportunidades de mejora
+
+| Oportunidad | Ahorro estimado (mobile) |
+|---|:---:|
+| Unused JavaScript (`19k_qypfi59ft`: 39KB, `2zto07r8-lizm`: 30KB) | ~69KB / ~150ms |
+
+### Fallos de accesibilidad
+
+| Fallo | Peso | Descripción |
+|---|:---:|---|
+| `color-contrast` | 7 | Inline styles con alpha `cc` (80% opacidad) en labels de pills: `#ddd6fecc`, `#a5f3fccc`, `#f5d0fecc`, `#ffe4e6cc` sobre `#0f1117` — ratio insuficiente |
+| `landmark-one-main` | 3 | El documento no tiene elemento `<main>`. La app entera se renderiza en `<div>` sin landmark semántico. |
+
+> Comparado con el baseline: se resolvieron `aria-prohibited-attr` y `target-size`. El `color-contrast` persiste con opacidad distinta. `landmark-one-main` es nuevo.
+
+### Best Practices — regresión
+
+| Fallo | Descripción |
+|---|---|
+| `errors-in-console` | 500 HTTP en `3h44t7pvbs488.css` y `3qqqmxfpjveia.js` — chunks referenciados en el HTML pero no emitidos al disco |
+
+**Causa raíz:** Bug reproducible de Next.js 16 + Turbopack en producción (`next build` + `next start`). El servidor inyecta referencias a chunks que no existen en `.next/static/chunks/`. El app funciona visualmente pese a los errores. No se encontró workaround en esta versión.
+
+---
+
+## Baseline — 3 de junio de 2026 (run 1)
+
+> Referencia original. No editar. Build: Next.js 16 SSG sin ChessPanel lazy-load, chess.js en bundle inicial.
+
+### Scores globales
 
 | Categoría | Desktop | Mobile |
 |---|:---:|:---:|
@@ -27,45 +80,29 @@ Categorías auditadas: Performance, Accessibility, Best Practices, SEO.
 | **Best Practices** | 🟢 100 | 🟢 100 |
 | **SEO** | 🟢 100 | 🟢 100 |
 
----
-
-## Core Web Vitals
+### Core Web Vitals
 
 | Métrica | Desktop | Mobile | Umbral «Good» |
 |---|:---:|:---:|:---:|
-| **LCP** (Largest Contentful Paint) | 🟢 0.87s | 🔴 3.71s | < 2.5s |
-| **FCP** (First Contentful Paint) | 🟢 0.47s | 🟡 1.95s | < 1.8s |
-| **CLS** (Cumulative Layout Shift) | 🟢 0 | 🟢 0 | < 0.1 |
-| **TBT** (Total Blocking Time — proxy INP) | 🟢 0ms | 🟢 118ms | < 200ms |
-| **TTI** (Time to Interactive) | 🟢 0.87s | 🔴 3.71s | < 3.8s |
+| **LCP** | 🟢 0.87s | 🔴 3.71s | < 2.5s |
+| **FCP** | 🟢 0.47s | 🟡 1.95s | < 1.8s |
+| **CLS** | 🟢 0 | 🟢 0 | < 0.1 |
+| **TBT** (proxy INP) | 🟢 0ms | 🟢 118ms | < 200ms |
+| **TTI** | 🟢 0.87s | 🔴 3.71s | < 3.8s |
 | **Speed Index** | 🟢 1.04s | 🟡 4.36s | < 3.4s |
 
----
-
-## Oportunidades de mejora identificadas
-
-### Performance
+### Oportunidades de mejora
 
 | Oportunidad | Ahorro estimado (mobile) |
 |---|:---:|
-| Unused JavaScript (3 chunks: `2zto07r8`, `2jx1kb770b2zt`, `19k_qypfi59ft`) | ~390ms |
+| Unused JavaScript (3 chunks Turbopack) | ~390ms |
 
-**Causa raíz del LCP mobile (3.71s):** La app usa `AppClient` con `next/dynamic({ ssr: false })`, lo que impide al navegador pintar contenido hasta que React + ReactFlow están descargados, parseados y ejecutados. En mobile con throttling de CPU 4× y red 3G, eso acumula ~3.7s. El LCP desktop es 0.87s porque no hay throttling.
+**Causa raíz del LCP mobile (3.71s):** `AppClient` usa `next/dynamic({ ssr: false })`, impide pintar contenido hasta que React + ReactFlow estén descargados y ejecutados. `chess.js` (33KB) cargado eagerly.
 
-`ChessPanel` (tablero react-chessboard + chess.js) se sospecha que se importa estáticamente dentro de `AppClient`, aunque el usuario no lo necesita hasta hacer click en un nodo.
+### Fallos de accesibilidad (baseline)
 
-### Accesibilidad
-
-| Fallo | Elemento afectado | Descripción |
-|---|---|---|
-| `aria-prohibited-attr` | Barra de evaluación Stockfish | `<div>` con `aria-label` pero sin `role` — el atributo no está permitido en rol `generic` |
-| `color-contrast` | `<span class="... text-neon-cyan/50">` | Opacidad 50% sobre fondo `#0f1117` da ratio ~2.5:1 (mínimo 4.5:1) |
-| `target-size` | Botones del menú lateral mobile | `role="button"` con área táctil menor de 44×44px |
-
-> El link `<a href="https://reactflow.dev">` también falla contraste pero es inyectado automáticamente por `@xyflow/react` — no es código propio.
-
----
-
-## Desktop: comportamiento excelente
-
-En desktop todos los CWV están en verde con margen amplio. El único aviso es 120ms de JS no usado (insignificante). La app se comporta como un SSG puro desde el punto de vista del navegador: HTML estático → hidratación rápida → interactiva en < 1s.
+| Fallo | Descripción |
+|---|---|
+| `aria-prohibited-attr` | `<div aria-label>` sin `role` en barra Stockfish |
+| `color-contrast` | `text-neon-cyan/50` — ratio ~2.5:1 |
+| `target-size` | Botones menú lateral mobile < 44×44px |

@@ -5,58 +5,74 @@ Ver [cwv-analysis.md](cwv-analysis.md) para el análisis completo.
 
 ---
 
-## 🔴 Alta prioridad — LCP mobile (3.71s → objetivo < 2.5s)
-
-- [ ] **Mostrar skeleton/placeholder en servidor antes de hidratar AppClient**
-  - Impacto: puede reducir el LCP percibido en 1–2s sin cambiar la arquitectura de fondo
-  - Solución: añadir un `loading.tsx` en `app/(es)/`, `app/en/`, `app/fr/` que devuelva el layout vacío (sidebar + header en HTML estático). Next.js App Router lo muestra de forma inmediata mientras `AppClient` carga en cliente
-  - Alternativa más simple: pasar el contenido de la primera pantalla como `children` al `AppShell` y renderizarlo en el server component, moviéndolo fuera del `ssr:false`
-
-- [ ] **Evaluar si OpeningTree y MobileOpeningTree pueden tener un fallback visible**
-  - Impacto: medio — evita que el usuario vea pantalla en blanco durante la hidratación
-  - Solución: pasar un `loading` prop a `next/dynamic(...)` con un spinner o el primer nodo del árbol renderizado en HTML puro
-
----
-
-## 🟡 Media prioridad — JS no usado (~390ms mobile)
+## ✅ Resuelto — Performance mobile (85 → 99, LCP 3.71s → 2.1s)
 
 - [x] **Convertir ChessPanel a `next/dynamic` para diferir su bundle**
-  - Impacto: ~100–200ms en mobile según lo que pese el bundle de `react-chessboard` + `chess.js`
-  - Solución: en `AppClient.jsx`, reemplazar el import estático de `ChessPanel` por `next/dynamic(() => import('./ChessPanel'), { ssr: false, loading: () => null })`
-  - Condición: `ChessPanel` solo es visible cuando `selectedNodeId !== null`, por lo que nunca se necesita en la carga inicial
-  - Estado: **en progreso** (subagente ejecutándose)
+  - Impacto real: TBT mobile 118ms → 20ms, LCP mobile 3.71s → 2.1s
+  - `ChessPanel` solo se necesita cuando `selectedNodeId !== null`; no se carga en la pantalla inicial
 
-- [x] **Analizar los 3 chunks anónimos con mayor desperdicio**
-  - Los IDs `2zto07r8`, `2jx1kb770b2zt`, `19k_qypfi59ft` son nombres de **Turbopack** — no existen en webpack.
-  - Se corrió `ANALYZE=true npx next build --webpack` con `@next/bundle-analyzer`; ver análisis completo en [bundle-analysis.md](bundle-analysis.md)
-  - **Causa raíz encontrada:** `chess.js` (33KB) cargado eagerly porque `chessPath.js` lo importaba a nivel de módulo para `fenAfterMoves`, y `useOpeningTreeState.js` (cargado en AppClient) importa de `chessPath.js`
-  - **Fix aplicado:** `fenAfterMoves` movido a `src/utils/fenAfterMoves.js`; `chessPath.js` ya no importa `chess.js`. Ahora chess.js solo se carga cuando se abre el ChessPanel.
-  - **Pendiente:** locales (118KB / 31KB gzip) cargadas todas en el bundle inicial — ver bundle-analysis.md para detalles
+- [x] **Mover `fenAfterMoves` fuera de `chessPath.js` para eliminar chess.js del bundle inicial**
+  - Causa raíz: `chessPath.js` importaba `chess.js` a nivel de módulo; `useOpeningTreeState` lo jalaba en AppClient
+  - Fix: `fenAfterMoves` movido a `src/utils/fenAfterMoves.js`; chess.js solo carga al abrir ChessPanel
+  - Ver análisis completo en [bundle-analysis.md](bundle-analysis.md)
+
+- [x] **Analizar chunks con mayor desperdicio**
+  - IDs Turbopack `2zto07r8`, `2jx1kb770b2zt`, `19k_qypfi59ft` → ahora 69KB wasted (era ~390ms)
+  - Ver [bundle-analysis.md](bundle-analysis.md)
 
 ---
 
-## 🟢 Baja prioridad — Accesibilidad (score 87 mobile → objetivo 95+)
+## 🔴 Alta prioridad — Accesibilidad (score 83 → objetivo 95+)
 
-- [x] **`aria-prohibited-attr`: Barra Stockfish**
-  - Elemento: `<div aria-label="Evaluación Stockfish: ...">` sin `role`
-  - Solución: añadir `role="img"` al `<div>` para que `aria-label` sea semánticamente válido
-  - Estado: **en progreso** (subagente ejecutándose)
+- [ ] **`color-contrast`: labels de pills con alpha `cc` (80% opacidad)**
+  - Elementos: `<span style="color:#ddd6fecc">`, `#a5f3fccc`, `#f5d0fecc`, `#ffe4e6cc` sobre `#0f1117`
+  - Los colores son los de las aperturas (violet, cyan, fuchsia, rose) con opacidad 80% inline
+  - Solución: eliminar el canal alpha de los colores inline — usar variantes opacas con suficiente contraste (ratio ≥ 4.5:1). Por ejemplo `#ddd6fe` → verificar ratio; si no alcanza, aclarar o usar blanco `#f5f3ff`
+  - Peso en score: 7 (alto)
 
-- [x] **`color-contrast`: clase `text-neon-cyan/50`**
-  - Elemento: `<span class="... text-neon-cyan/50">` — ratio ~2.5:1, necesita ≥ 4.5:1
-  - Solución: reemplazar por color sólido con contraste suficiente sobre `#0f1117`, p. ej. `text-[#4db6c4]` o subir opacidad a `/80`
-  - Estado: **en progreso** (subagente ejecutándose)
+- [ ] **`landmark-one-main`: el documento no tiene `<main>`**
+  - Toda la app se renderiza dentro de `<div>` sin `<main>` semántico
+  - Solución: en `RootLayout.tsx` o `AppClient.jsx` envolver el contenido en `<main>` (puede ser `<main className="...">`)
+  - Alternativa: añadir `role="main"` al div raíz de la app como fix mínimo
+  - Peso en score: 3
 
-- [x] **`target-size`: Botones del menú lateral mobile**
-  - Elemento: `role="button"` en menú con área táctil < 44×44px
-  - Solución: añadir `min-w-[44px] min-h-[44px]` o aumentar padding en los botones de `MobileOpeningTree.jsx`
-  - Estado: **en progreso** (subagente ejecutándose)
+---
+
+## 🟡 Media prioridad — JS no usado (~69KB / ~150ms mobile)
+
+- [ ] **Identificar y dividir los 2 chunks con mayor desperdicio**
+  - `19k_qypfi59ft.js`: 39KB wasted (57%) — analizar qué exporta con `ANALYZE=true npx next build --webpack`
+  - `2zto07r8-lizm.js`: 30KB wasted (62%)
+  - Estos son los mismos chunks del baseline pero ahora mucho más pequeños; puede no valer la inversión
+  - Condición: solo atacar si el bundle analyzer revela una causa raíz accionable
+
+---
+
+## 🟡 Media prioridad — Best Practices (96 → objetivo 100)
+
+- [ ] **Investigar/reportar bug de chunks faltantes en Next.js 16 + Turbopack**
+  - `3h44t7pvbs488.css` y `3qqqmxfpjveia.js` son referenciados en el HTML de producción pero no existen en `.next/static/chunks/`
+  - Reproducible con clean build (`rm -rf .next && npm run build`)
+  - El servidor devuelve HTTP 500 (no 404) para estas rutas
+  - Causa probable: bug en el pipeline de emision de chunks CSS/JS de Turbopack producción (Next.js 16.2.7)
+  - Acción: monitorear si se resuelve en una siguiente versión de Next.js; reportar upstream si persiste
+
+---
+
+## 🟢 Baja prioridad — LCP mobile (2.1s → objetivo < 1.8s)
+
+- [ ] **Mostrar skeleton/placeholder en servidor antes de hidratar AppClient**
+  - Impacto potencial: puede reducir LCP percibido otros 0.5–1s
+  - Solución: `loading.tsx` en `app/(es)/`, `app/en/`, `app/fr/` con el layout vacío (sidebar + header en HTML estático)
+  - Estado: ya no es urgente (LCP mobile en verde), pero mejoraría la experiencia percibida
 
 ---
 
 ## Fuera de alcance (sin acción necesaria)
 
-- **CLS: 0** — sin layout shifts, no requiere acción
-- **TBT: 118ms mobile** — dentro del umbral bueno (< 200ms), no requiere acción
-- **FCP mobile: 1.95s** — límite del umbral «necesita mejora» (> 1.8s) pero mejorará automáticamente al resolver el LCP
+- **CLS: 0** — sin layout shifts
+- **TBT: 20ms mobile** — muy dentro del umbral bueno (< 200ms)
+- **FCP: 1.5s mobile** — green (< 1.8s)
 - **Link atribución ReactFlow** — falla contraste pero es inyectado por la librería, no es código propio
+- **`aria-prohibited-attr`** — resuelto (baseline)
+- **`target-size`** — resuelto (baseline)
