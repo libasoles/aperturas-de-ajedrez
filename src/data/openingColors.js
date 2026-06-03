@@ -150,6 +150,12 @@ const PALETTE = {
     border: "#6b9b6b",
     edge: "#7aab7a",
   },
+  GRAY: {
+    node: "#1a1a1a",
+    text: "#9ca3af",
+    border: "#374151",
+    edge: "#4b5563",
+  },
 };
 
 export const OPENING_COLORS = {
@@ -178,4 +184,5 @@ export const OPENING_COLORS = {
   philidor: PALETTE.BROWN_DARK,
   ponziani: PALETTE.SKY_DARK,
   colle: PALETTE.SAGE,
+  engine: PALETTE.GRAY,
 };

@@ -132,7 +132,7 @@ export const D4_TREE = {
                                                       "id": "qg-12a1-sf1",
                                                       "move": "b5",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -146,14 +146,14 @@ export const D4_TREE = {
                                                   "id": "qg-11a1-sf1",
                                                   "move": "dxc5",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11a1-sf1-sf1",
+                                                      "id": "qg-11a1-sf2",
                                                       "move": "Bxc5",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -253,7 +253,7 @@ export const D4_TREE = {
                                                       "id": "qg-12a2-sf1",
                                                       "move": "Qa5+",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -267,14 +267,14 @@ export const D4_TREE = {
                                                   "id": "qg-11a2-sf1",
                                                   "move": "Bxc4",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11a2-sf1-sf1",
+                                                      "id": "qg-11a2-sf2",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -296,28 +296,28 @@ export const D4_TREE = {
                                           "id": "qg-9a2-sf1",
                                           "move": "Bxc4",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-9a2-sf1-sf1",
+                                              "id": "qg-9a2-sf2",
                                               "move": "cxd4",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-9a2-sf1-sf1-sf1",
+                                                  "id": "qg-9a2-sf3",
                                                   "move": "Nxd4",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-9a2-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-9a2-sf4",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -349,35 +349,35 @@ export const D4_TREE = {
                                       "id": "qg-8a2-sf1",
                                       "move": "b5",
                                       "color": "black",
-                                      "opening": "queens_gambit",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "qg-8a2-sf1-sf1",
+                                          "id": "qg-8a2-sf2",
                                           "move": "e5",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-8a2-sf1-sf1-sf1",
+                                              "id": "qg-8a2-sf3",
                                               "move": "Nd5",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-8a2-sf1-sf1-sf1-sf1",
+                                                  "id": "qg-8a2-sf4",
                                                   "move": "Nxb5",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-8a2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-8a2-sf5",
                                                       "move": "Nb6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -550,14 +550,14 @@ export const D4_TREE = {
                                                   "id": "qg-11b1-sf1",
                                                   "move": "Rc1",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11b1-sf1-sf1",
+                                                      "id": "qg-11b1-sf2",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -656,7 +656,7 @@ export const D4_TREE = {
                                                       "id": "qg-12b2-sf1",
                                                       "move": "N7f6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -670,14 +670,14 @@ export const D4_TREE = {
                                                   "id": "qg-11b2-sf1",
                                                   "move": "Bxd8",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11b2-sf1-sf1",
+                                                      "id": "qg-11b2-sf2",
                                                       "move": "Bb4",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -697,21 +697,21 @@ export const D4_TREE = {
                                               "id": "qg-10b2-sf1",
                                               "move": "exd5",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-10b2-sf1-sf1",
+                                                  "id": "qg-10b2-sf2",
                                                   "move": "e3",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-10b2-sf1-sf1-sf1",
+                                                      "id": "qg-10b2-sf3",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -739,35 +739,35 @@ export const D4_TREE = {
                                       "id": "qg-8b2-sf1",
                                       "move": "Be7",
                                       "color": "black",
-                                      "opening": "queens_gambit",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "qg-8b2-sf1-sf1",
+                                          "id": "qg-8b2-sf2",
                                           "move": "e3",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-8b2-sf1-sf1-sf1",
+                                              "id": "qg-8b2-sf3",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-8b2-sf1-sf1-sf1-sf1",
+                                                  "id": "qg-8b2-sf4",
                                                   "move": "Rc1",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-8b2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-8b2-sf5",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -811,63 +811,63 @@ export const D4_TREE = {
                       "id": "qg-4b-sf1",
                       "move": "Bb4",
                       "color": "black",
-                      "opening": "queens_gambit",
+                      "opening": "engine",
                       "engineGenerated": true,
                       "children": [
                         {
-                          "id": "qg-4b-sf1-sf1",
+                          "id": "qg-4b-sf2",
                           "move": "cxd5",
                           "color": "white",
-                          "opening": "queens_gambit",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "qg-4b-sf1-sf1-sf1",
+                              "id": "qg-4b-sf3",
                               "move": "exd5",
                               "color": "black",
-                              "opening": "queens_gambit",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "qg-4b-sf1-sf1-sf1-sf1",
+                                  "id": "qg-4b-sf4",
                                   "move": "Bf4",
                                   "color": "white",
-                                  "opening": "queens_gambit",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "qg-4b-sf1-sf1-sf1-sf1-sf1",
+                                      "id": "qg-4b-sf5",
                                       "move": "Nf6",
                                       "color": "black",
-                                      "opening": "queens_gambit",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "qg-4b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "qg-4b-sf6",
                                           "move": "e3",
                                           "color": "white",
-                                          "opening": "queens_gambit",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-4b-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "qg-4b-sf7",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "queens_gambit",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-4b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "qg-4b-sf8",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "queens_gambit",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-4b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-4b-sf9",
                                                       "move": "c5",
                                                       "color": "black",
-                                                      "opening": "queens_gambit",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1048,28 +1048,28 @@ export const D4_TREE = {
                                           "id": "qg-9c1-sf1",
                                           "move": "Be2",
                                           "color": "white",
-                                          "opening": "slav",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-9c1-sf1-sf1",
+                                              "id": "qg-9c1-sf2",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-9c1-sf1-sf1-sf1",
+                                                  "id": "qg-9c1-sf3",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-9c1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-9c1-sf4",
                                                       "move": "Bb4",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1176,7 +1176,7 @@ export const D4_TREE = {
                                                       "id": "qg-12c2-sf1",
                                                       "move": "Bxd2+",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1190,14 +1190,14 @@ export const D4_TREE = {
                                                   "id": "qg-11c2-sf1",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11c2-sf1-sf1",
+                                                      "id": "qg-11c2-sf2",
                                                       "move": "c5",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1217,21 +1217,21 @@ export const D4_TREE = {
                                               "id": "qg-10c2-sf1",
                                               "move": "Nxe4",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-10c2-sf1-sf1",
+                                                  "id": "qg-10c2-sf2",
                                                   "move": "a3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-10c2-sf1-sf1-sf1",
+                                                      "id": "qg-10c2-sf3",
                                                       "move": "c5",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1257,28 +1257,28 @@ export const D4_TREE = {
                                           "id": "qg-9c2-sf1",
                                           "move": "Ne5",
                                           "color": "white",
-                                          "opening": "slav",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-9c2-sf1-sf1",
+                                              "id": "qg-9c2-sf2",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-9c2-sf1-sf1-sf1",
+                                                  "id": "qg-9c2-sf3",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-9c2-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-9c2-sf4",
                                                       "move": "cxd4",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1312,42 +1312,42 @@ export const D4_TREE = {
                                   "id": "qg-7c2-sf1",
                                   "move": "e3",
                                   "color": "white",
-                                  "opening": "slav",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "qg-7c2-sf1-sf1",
+                                      "id": "qg-7c2-sf2",
                                       "move": "c5",
                                       "color": "black",
-                                      "opening": "slav",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "qg-7c2-sf1-sf1-sf1",
+                                          "id": "qg-7c2-sf3",
                                           "move": "cxd5",
                                           "color": "white",
-                                          "opening": "slav",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-7c2-sf1-sf1-sf1-sf1",
+                                              "id": "qg-7c2-sf4",
                                               "move": "exd5",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-7c2-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "qg-7c2-sf5",
                                                   "move": "Bb5+",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-7c2-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-7c2-sf6",
                                                       "move": "Bd7",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1472,42 +1472,42 @@ export const D4_TREE = {
                                   "id": "qg-7c3-sf1",
                                   "move": "cxd5",
                                   "color": "white",
-                                  "opening": "slav",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "qg-7c3-sf1-sf1",
+                                      "id": "qg-7c3-sf2",
                                       "move": "Nxd5",
                                       "color": "black",
-                                      "opening": "slav",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "qg-7c3-sf1-sf1-sf1",
+                                          "id": "qg-7c3-sf3",
                                           "move": "Qb3",
                                           "color": "white",
-                                          "opening": "slav",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-7c3-sf1-sf1-sf1-sf1",
+                                              "id": "qg-7c3-sf4",
                                               "move": "Qb6",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-7c3-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "qg-7c3-sf5",
                                                   "move": "Nxd5",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-7c3-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-7c3-sf6",
                                                       "move": "Qxb3",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1660,14 +1660,14 @@ export const D4_TREE = {
                                                   "id": "qg-11ce-sf1",
                                                   "move": "Qb3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-11ce-sf1-sf1",
+                                                      "id": "qg-11ce-sf2",
                                                       "move": "Qc8",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1687,21 +1687,21 @@ export const D4_TREE = {
                                               "id": "qg-10ce-sf1",
                                               "move": "Qb6",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-10ce-sf1-sf1",
+                                                  "id": "qg-10ce-sf2",
                                                   "move": "Qb3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-10ce-sf1-sf1-sf1",
+                                                      "id": "qg-10ce-sf3",
                                                       "move": "Qxb3",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1727,28 +1727,28 @@ export const D4_TREE = {
                                           "id": "qg-9ce-sf1",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "slav",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "qg-9ce-sf1-sf1",
+                                              "id": "qg-9ce-sf2",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "slav",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "qg-9ce-sf1-sf1-sf1",
+                                                  "id": "qg-9ce-sf3",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "slav",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "qg-9ce-sf1-sf1-sf1-sf1",
+                                                      "id": "qg-9ce-sf4",
                                                       "move": "Bd6",
                                                       "color": "black",
-                                                      "opening": "slav",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1852,35 +1852,35 @@ export const D4_TREE = {
                                       "id": "marshall-6a-sf1",
                                       "move": "e5",
                                       "color": "black",
-                                      "opening": "marshall",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "marshall-6a-sf1-sf1",
+                                          "id": "marshall-6a-sf2",
                                           "move": "d5",
                                           "color": "white",
-                                          "opening": "marshall",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "marshall-6a-sf1-sf1-sf1",
+                                              "id": "marshall-6a-sf3",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "marshall",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "marshall-6a-sf1-sf1-sf1-sf1",
+                                                  "id": "marshall-6a-sf4",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "marshall",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "marshall-6a-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "marshall-6a-sf5",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "marshall",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1918,42 +1918,42 @@ export const D4_TREE = {
                                   "id": "marshall-5a-sf1",
                                   "move": "Bd3",
                                   "color": "white",
-                                  "opening": "marshall",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "marshall-5a-sf1-sf1",
+                                      "id": "marshall-5a-sf2",
                                       "move": "e5",
                                       "color": "black",
-                                      "opening": "marshall",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "marshall-5a-sf1-sf1-sf1",
+                                          "id": "marshall-5a-sf3",
                                           "move": "dxe5",
                                           "color": "white",
-                                          "opening": "marshall",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "marshall-5a-sf1-sf1-sf1-sf1",
+                                              "id": "marshall-5a-sf4",
                                               "move": "Ng4",
                                               "color": "black",
-                                              "opening": "marshall",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "marshall-5a-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "marshall-5a-sf5",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "marshall",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "marshall-5a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "marshall-5a-sf6",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "marshall",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2071,14 +2071,14 @@ export const D4_TREE = {
                                                   "id": "marshall-9b-sf1",
                                                   "move": "Nxd4",
                                                   "color": "white",
-                                                  "opening": "marshall",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "marshall-9b-sf1-sf1",
+                                                      "id": "marshall-9b-sf2",
                                                       "move": "Nxd4",
                                                       "color": "black",
-                                                      "opening": "marshall",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2100,28 +2100,28 @@ export const D4_TREE = {
                                           "id": "marshall-7b-sf1",
                                           "move": "dxe5",
                                           "color": "white",
-                                          "opening": "marshall",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "marshall-7b-sf1-sf1",
+                                              "id": "marshall-7b-sf2",
                                               "move": "Qxd1+",
                                               "color": "black",
-                                              "opening": "marshall",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "marshall-7b-sf1-sf1-sf1",
+                                                  "id": "marshall-7b-sf3",
                                                   "move": "Kxd1",
                                                   "color": "white",
-                                                  "opening": "marshall",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "marshall-7b-sf1-sf1-sf1-sf1",
+                                                      "id": "marshall-7b-sf4",
                                                       "move": "Ne4",
                                                       "color": "black",
-                                                      "opening": "marshall",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2181,49 +2181,49 @@ export const D4_TREE = {
                               "id": "marshall-4c-sf1",
                               "move": "c6",
                               "color": "black",
-                              "opening": "marshall",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "marshall-4c-sf1-sf1",
+                                  "id": "marshall-4c-sf2",
                                   "move": "dxc6",
                                   "color": "white",
-                                  "opening": "marshall",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "marshall-4c-sf1-sf1-sf1",
+                                      "id": "marshall-4c-sf3",
                                       "move": "Nxc6",
                                       "color": "black",
-                                      "opening": "marshall",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "marshall-4c-sf1-sf1-sf1-sf1",
+                                          "id": "marshall-4c-sf4",
                                           "move": "Nf3",
                                           "color": "white",
-                                          "opening": "marshall",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "marshall-4c-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "marshall-4c-sf5",
                                               "move": "Bg7",
                                               "color": "black",
-                                              "opening": "marshall",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "marshall-4c-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "marshall-4c-sf6",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "marshall",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "marshall-4c-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "marshall-4c-sf7",
                                                       "move": "Bf5",
                                                       "color": "black",
-                                                      "opening": "marshall",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2402,7 +2402,7 @@ export const D4_TREE = {
                                                       "id": "lon-12a-sf1",
                                                       "move": "Nh5",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2424,42 +2424,42 @@ export const D4_TREE = {
                                   "id": "lon-7a-sf1",
                                   "move": "Be2",
                                   "color": "white",
-                                  "opening": "london",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "lon-7a-sf1-sf1",
+                                      "id": "lon-7a-sf2",
                                       "move": "c5",
                                       "color": "black",
-                                      "opening": "london",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "lon-7a-sf1-sf1-sf1",
+                                          "id": "lon-7a-sf3",
                                           "move": "O-O",
                                           "color": "white",
-                                          "opening": "london",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "lon-7a-sf1-sf1-sf1-sf1",
+                                              "id": "lon-7a-sf4",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "london",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "lon-7a-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "lon-7a-sf5",
                                                   "move": "dxc5",
                                                   "color": "white",
-                                                  "opening": "london",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "lon-7a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "lon-7a-sf6",
                                                       "move": "Bxc5",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2563,7 +2563,7 @@ export const D4_TREE = {
                                                       "id": "lon-12b-sf1",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2579,21 +2579,21 @@ export const D4_TREE = {
                                               "id": "lon-10b-sf1",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "london",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "lon-10b-sf1-sf1",
+                                                  "id": "lon-10b-sf2",
                                                   "move": "Bg3",
                                                   "color": "white",
-                                                  "opening": "london",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "lon-10b-sf1-sf1-sf1",
+                                                      "id": "lon-10b-sf3",
                                                       "move": "c4",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2623,42 +2623,42 @@ export const D4_TREE = {
                                   "id": "lon-7b-sf1",
                                   "move": "Nbd2",
                                   "color": "white",
-                                  "opening": "london",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "lon-7b-sf1-sf1",
+                                      "id": "lon-7b-sf2",
                                       "move": "Nc6",
                                       "color": "black",
-                                      "opening": "london",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "lon-7b-sf1-sf1-sf1",
+                                          "id": "lon-7b-sf3",
                                           "move": "c3",
                                           "color": "white",
-                                          "opening": "london",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "lon-7b-sf1-sf1-sf1-sf1",
+                                              "id": "lon-7b-sf4",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "london",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "lon-7b-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "lon-7b-sf5",
                                                   "move": "Bg3",
                                                   "color": "white",
-                                                  "opening": "london",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "lon-7b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "lon-7b-sf6",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2703,135 +2703,6 @@ export const D4_TREE = {
                       ]
                     }
                   ]
-                },
-                {
-                  "id": "lon-3-sf1",
-                  "move": "c4",
-                  "color": "white",
-                  "opening": "london",
-                  "engineGenerated": true,
-                  "children": [
-                    {
-                      "id": "lon-3-sf1-sf1",
-                      "move": "c6",
-                      "color": "black",
-                      "opening": "london",
-                      "engineGenerated": true,
-                      "children": [
-                        {
-                          "id": "lon-3-sf1-sf1-sf1",
-                          "move": "Nc3",
-                          "color": "white",
-                          "opening": "london",
-                          "engineGenerated": true,
-                          "children": [
-                            {
-                              "id": "lon-3-sf1-sf1-sf1-sf1",
-                              "move": "dxc4",
-                              "color": "black",
-                              "opening": "london",
-                              "engineGenerated": true,
-                              "children": [
-                                {
-                                  "id": "lon-3-sf1-sf1-sf1-sf1-sf1",
-                                  "move": "a4",
-                                  "color": "white",
-                                  "opening": "london",
-                                  "engineGenerated": true,
-                                  "children": [
-                                    {
-                                      "id": "lon-3-sf1-sf1-sf1-sf1-sf1-sf1",
-                                      "move": "Bf5",
-                                      "color": "black",
-                                      "opening": "london",
-                                      "engineGenerated": true,
-                                      "children": [
-                                        {
-                                          "id": "lon-3-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
-                                          "move": "e3",
-                                          "color": "white",
-                                          "opening": "london",
-                                          "engineGenerated": true,
-                                          "children": [
-                                            {
-                                              "id": "lon-3-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
-                                              "move": "Nbd7",
-                                              "color": "black",
-                                              "opening": "london",
-                                              "engineGenerated": true,
-                                              "children": [
-                                                {
-                                                  "id": "lon-3-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
-                                                  "move": "Bxc4",
-                                                  "color": "white",
-                                                  "opening": "london",
-                                                  "engineGenerated": true,
-                                                  "children": [
-                                                    {
-                                                      "id": "lon-3-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
-                                                      "move": "e6",
-                                                      "color": "black",
-                                                      "opening": "london",
-                                                      "engineGenerated": true,
-                                                      "children": [],
-                                                      "stockfish": {
-                                                        "depth": 14,
-                                                        "score": 0.39
-                                                      }
-                                                    }
-                                                  ],
-                                                  "stockfish": {
-                                                    "depth": 14,
-                                                    "score": 0.38
-                                                  }
-                                                }
-                                              ],
-                                              "stockfish": {
-                                                "depth": 14,
-                                                "score": 0.4
-                                              }
-                                            }
-                                          ],
-                                          "stockfish": {
-                                            "depth": 14,
-                                            "score": 0.42
-                                          }
-                                        }
-                                      ],
-                                      "stockfish": {
-                                        "depth": 14,
-                                        "score": 0.42
-                                      }
-                                    }
-                                  ],
-                                  "stockfish": {
-                                    "depth": 14,
-                                    "score": 0.39
-                                  }
-                                }
-                              ],
-                              "stockfish": {
-                                "depth": 14,
-                                "score": 0.39
-                              }
-                            }
-                          ],
-                          "stockfish": {
-                            "depth": 14,
-                            "score": 0.32
-                          }
-                        }
-                      ],
-                      "stockfish": {
-                        "depth": 14,
-                        "score": 0.33
-                      }
-                    }
-                  ],
-                  "stockfish": {
-                    "depth": 14,
-                    "score": 0.27
-                  }
                 },
                 {
                   "id": "colle-5",
@@ -2880,7 +2751,7 @@ export const D4_TREE = {
                                   "opening": "colle",
                                   "stockfish": {
                                     "depth": 14,
-                                    "score": 0.0
+                                    "score": 0
                                   },
                                   "children": [
                                     {
@@ -3082,6 +2953,135 @@ export const D4_TREE = {
                       ]
                     }
                   ]
+                },
+                {
+                  "id": "lon-3-sf1",
+                  "move": "c4",
+                  "color": "white",
+                  "opening": "engine",
+                  "engineGenerated": true,
+                  "children": [
+                    {
+                      "id": "lon-3-sf2",
+                      "move": "c6",
+                      "color": "black",
+                      "opening": "engine",
+                      "engineGenerated": true,
+                      "children": [
+                        {
+                          "id": "lon-3-sf3",
+                          "move": "Nc3",
+                          "color": "white",
+                          "opening": "engine",
+                          "engineGenerated": true,
+                          "children": [
+                            {
+                              "id": "lon-3-sf4",
+                              "move": "dxc4",
+                              "color": "black",
+                              "opening": "engine",
+                              "engineGenerated": true,
+                              "children": [
+                                {
+                                  "id": "lon-3-sf5",
+                                  "move": "a4",
+                                  "color": "white",
+                                  "opening": "engine",
+                                  "engineGenerated": true,
+                                  "children": [
+                                    {
+                                      "id": "lon-3-sf6",
+                                      "move": "Bf5",
+                                      "color": "black",
+                                      "opening": "engine",
+                                      "engineGenerated": true,
+                                      "children": [
+                                        {
+                                          "id": "lon-3-sf7",
+                                          "move": "e3",
+                                          "color": "white",
+                                          "opening": "engine",
+                                          "engineGenerated": true,
+                                          "children": [
+                                            {
+                                              "id": "lon-3-sf8",
+                                              "move": "Nbd7",
+                                              "color": "black",
+                                              "opening": "engine",
+                                              "engineGenerated": true,
+                                              "children": [
+                                                {
+                                                  "id": "lon-3-sf9",
+                                                  "move": "Bxc4",
+                                                  "color": "white",
+                                                  "opening": "engine",
+                                                  "engineGenerated": true,
+                                                  "children": [
+                                                    {
+                                                      "id": "lon-3-sf10",
+                                                      "move": "e6",
+                                                      "color": "black",
+                                                      "opening": "engine",
+                                                      "engineGenerated": true,
+                                                      "children": [],
+                                                      "stockfish": {
+                                                        "depth": 14,
+                                                        "score": 0.39
+                                                      }
+                                                    }
+                                                  ],
+                                                  "stockfish": {
+                                                    "depth": 14,
+                                                    "score": 0.38
+                                                  }
+                                                }
+                                              ],
+                                              "stockfish": {
+                                                "depth": 14,
+                                                "score": 0.4
+                                              }
+                                            }
+                                          ],
+                                          "stockfish": {
+                                            "depth": 14,
+                                            "score": 0.42
+                                          }
+                                        }
+                                      ],
+                                      "stockfish": {
+                                        "depth": 14,
+                                        "score": 0.42
+                                      }
+                                    }
+                                  ],
+                                  "stockfish": {
+                                    "depth": 14,
+                                    "score": 0.39
+                                  }
+                                }
+                              ],
+                              "stockfish": {
+                                "depth": 14,
+                                "score": 0.39
+                              }
+                            }
+                          ],
+                          "stockfish": {
+                            "depth": 14,
+                            "score": 0.32
+                          }
+                        }
+                      ],
+                      "stockfish": {
+                        "depth": 14,
+                        "score": 0.33
+                      }
+                    }
+                  ],
+                  "stockfish": {
+                    "depth": 14,
+                    "score": 0.27
+                  }
                 }
               ]
             },
@@ -3089,77 +3089,77 @@ export const D4_TREE = {
               "id": "lon-2-sf1",
               "move": "e6",
               "color": "black",
-              "opening": "london",
+              "opening": "engine",
               "engineGenerated": true,
               "children": [
                 {
-                  "id": "lon-2-sf1-sf1",
+                  "id": "lon-2-sf2",
                   "move": "c4",
                   "color": "white",
-                  "opening": "london",
+                  "opening": "engine",
                   "engineGenerated": true,
                   "children": [
                     {
-                      "id": "lon-2-sf1-sf1-sf1",
+                      "id": "lon-2-sf3",
                       "move": "Nf6",
                       "color": "black",
-                      "opening": "london",
+                      "opening": "engine",
                       "engineGenerated": true,
                       "children": [
                         {
-                          "id": "lon-2-sf1-sf1-sf1-sf1",
+                          "id": "lon-2-sf4",
                           "move": "g3",
                           "color": "white",
-                          "opening": "london",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "lon-2-sf1-sf1-sf1-sf1-sf1",
+                              "id": "lon-2-sf5",
                               "move": "c5",
                               "color": "black",
-                              "opening": "london",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1",
+                                  "id": "lon-2-sf6",
                                   "move": "cxd5",
                                   "color": "white",
-                                  "opening": "london",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                      "id": "lon-2-sf7",
                                       "move": "cxd4",
                                       "color": "black",
-                                      "opening": "london",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "lon-2-sf8",
                                           "move": "dxe6",
                                           "color": "white",
-                                          "opening": "london",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "lon-2-sf9",
                                               "move": "Bxe6",
                                               "color": "black",
-                                              "opening": "london",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "lon-2-sf10",
                                                   "move": "Qxd4",
                                                   "color": "white",
-                                                  "opening": "london",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "lon-2-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "lon-2-sf11",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "london",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3342,17 +3342,17 @@ export const D4_TREE = {
                                               },
                                               "children": [
                                                 {
-                                                  "id": "dutch-11a-sf1",
+                                                  "id": "dutch-11a-sfa1",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-11a-sf1-sf1",
+                                                      "id": "dutch-11a-sfa2",
                                                       "move": "a5",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3367,17 +3367,17 @@ export const D4_TREE = {
                                                   }
                                                 },
                                                 {
-                                                  "id": "dutch-11a-sf2",
+                                                  "id": "dutch-11a-sfb1",
                                                   "move": "b3",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-11a-sf2-sf1",
+                                                      "id": "dutch-11a-sfb2",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3407,56 +3407,56 @@ export const D4_TREE = {
                           "id": "dutch-5a-sf1",
                           "move": "h4",
                           "color": "white",
-                          "opening": "dutch",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "dutch-5a-sf1-sf1",
+                              "id": "dutch-5a-sf2",
                               "move": "d5",
                               "color": "black",
-                              "opening": "dutch",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "dutch-5a-sf1-sf1-sf1",
+                                  "id": "dutch-5a-sf3",
                                   "move": "c4",
                                   "color": "white",
-                                  "opening": "dutch",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "dutch-5a-sf1-sf1-sf1-sf1",
+                                      "id": "dutch-5a-sf4",
                                       "move": "c6",
                                       "color": "black",
-                                      "opening": "dutch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "dutch-5a-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "dutch-5a-sf5",
                                           "move": "h5",
                                           "color": "white",
-                                          "opening": "dutch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "dutch-5a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "dutch-5a-sf6",
                                               "move": "Nxh5",
                                               "color": "black",
-                                              "opening": "dutch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "dutch-5a-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "dutch-5a-sf7",
                                                   "move": "e4",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-5a-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "dutch-5a-sf8",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3582,14 +3582,14 @@ export const D4_TREE = {
                                                   "id": "dutch-11b1-sf1",
                                                   "move": "Qc2",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-11b1-sf1-sf1",
+                                                      "id": "dutch-11b1-sf2",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3610,38 +3610,38 @@ export const D4_TREE = {
                                       ]
                                     },
                                     {
-                                      "id": "dutch-8b1-sf1",
+                                      "id": "dutch-8b1-sfa1",
                                       "move": "Bd6",
                                       "color": "black",
-                                      "opening": "dutch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "dutch-8b1-sf1-sf1",
+                                          "id": "dutch-8b1-sfa2",
                                           "move": "c4",
                                           "color": "white",
-                                          "opening": "dutch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "dutch-8b1-sf1-sf1-sf1",
+                                              "id": "dutch-8b1-sfa3",
                                               "move": "c6",
                                               "color": "black",
-                                              "opening": "dutch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "dutch-8b1-sf1-sf1-sf1-sf1",
+                                                  "id": "dutch-8b1-sfa4",
                                                   "move": "Qc2",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-8b1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "dutch-8b1-sfa5",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3674,38 +3674,38 @@ export const D4_TREE = {
                                       }
                                     },
                                     {
-                                      "id": "dutch-8b1-sf2",
+                                      "id": "dutch-8b1-sfb1",
                                       "move": "c6",
                                       "color": "black",
-                                      "opening": "dutch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "dutch-8b1-sf2-sf1",
+                                          "id": "dutch-8b1-sfb2",
                                           "move": "c4",
                                           "color": "white",
-                                          "opening": "dutch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "dutch-8b1-sf2-sf1-sf1",
+                                              "id": "dutch-8b1-sfb3",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "dutch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "dutch-8b1-sf2-sf1-sf1-sf1",
+                                                  "id": "dutch-8b1-sfb4",
                                                   "move": "Qc2",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-8b1-sf2-sf1-sf1-sf1-sf1",
+                                                      "id": "dutch-8b1-sfb5",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3785,21 +3785,21 @@ export const D4_TREE = {
                                               "id": "dutch-10b2-sf1",
                                               "move": "Ne4",
                                               "color": "black",
-                                              "opening": "dutch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "dutch-10b2-sf1-sf1",
+                                                  "id": "dutch-10b2-sf2",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-10b2-sf1-sf1-sf1",
+                                                      "id": "dutch-10b2-sf3",
                                                       "move": "d5",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3827,35 +3827,35 @@ export const D4_TREE = {
                                       "id": "dutch-8b2-sf1",
                                       "move": "c6",
                                       "color": "black",
-                                      "opening": "dutch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "dutch-8b2-sf1-sf1",
+                                          "id": "dutch-8b2-sf2",
                                           "move": "c4",
                                           "color": "white",
-                                          "opening": "dutch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "dutch-8b2-sf1-sf1-sf1",
+                                              "id": "dutch-8b2-sf3",
                                               "move": "d5",
                                               "color": "black",
-                                              "opening": "dutch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "dutch-8b2-sf1-sf1-sf1-sf1",
+                                                  "id": "dutch-8b2-sf4",
                                                   "move": "Qc2",
                                                   "color": "white",
-                                                  "opening": "dutch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "dutch-8b2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "dutch-8b2-sf5",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "dutch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4086,7 +4086,7 @@ export const D4_TREE = {
                                                       "id": "ki-12a1-sf1",
                                                       "move": "a5",
                                                       "color": "black",
-                                                      "opening": "kings_indian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4221,21 +4221,21 @@ export const D4_TREE = {
                                               "id": "ki-10a2-sf1",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "kings_indian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ki-10a2-sf1-sf1",
+                                                  "id": "ki-10a2-sf2",
                                                   "move": "Nge2",
                                                   "color": "white",
-                                                  "opening": "kings_indian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ki-10a2-sf1-sf1-sf1",
+                                                      "id": "ki-10a2-sf3",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "kings_indian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4386,7 +4386,7 @@ export const D4_TREE = {
                                                       "id": "nim-12b1-sf1",
                                                       "move": "Ne4",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4397,17 +4397,17 @@ export const D4_TREE = {
                                                   ]
                                                 },
                                                 {
-                                                  "id": "nim-11b1-sf1",
+                                                  "id": "nim-11b1-sfa1",
                                                   "move": "Bg5",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-11b1-sf1-sf1",
+                                                      "id": "nim-11b1-sfa2",
                                                       "move": "dxc4",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4422,17 +4422,17 @@ export const D4_TREE = {
                                                   }
                                                 },
                                                 {
-                                                  "id": "nim-11b1-sf2",
+                                                  "id": "nim-11b1-sfb1",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-11b1-sf2-sf1",
+                                                      "id": "nim-11b1-sfb2",
                                                       "move": "b6",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4458,42 +4458,42 @@ export const D4_TREE = {
                                   "id": "nim-7b1-sf1",
                                   "move": "e4",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-7b1-sf1-sf1",
+                                      "id": "nim-7b1-sf2",
                                       "move": "d5",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-7b1-sf1-sf1-sf1",
+                                          "id": "nim-7b1-sf3",
                                           "move": "e5",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-7b1-sf1-sf1-sf1-sf1",
+                                              "id": "nim-7b1-sf4",
                                               "move": "Ne4",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-7b1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-7b1-sf5",
                                                   "move": "a3",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-7b1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-7b1-sf6",
                                                       "move": "Bxc3+",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4537,49 +4537,49 @@ export const D4_TREE = {
                               "id": "nim-6b1-sf1",
                               "move": "d5",
                               "color": "black",
-                              "opening": "nimzo",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "nim-6b1-sf1-sf1",
+                                  "id": "nim-6b1-sf2",
                                   "move": "a3",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-6b1-sf1-sf1-sf1",
+                                      "id": "nim-6b1-sf3",
                                       "move": "Bxc3+",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-6b1-sf1-sf1-sf1-sf1",
+                                          "id": "nim-6b1-sf4",
                                           "move": "Qxc3",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-6b1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "nim-6b1-sf5",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-6b1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-6b1-sf6",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-6b1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-6b1-sf7",
                                                       "move": "b6",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4722,7 +4722,7 @@ export const D4_TREE = {
                                                       "id": "nim-12b2-sf1",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4740,28 +4740,28 @@ export const D4_TREE = {
                                           "id": "nim-9b2-sf1",
                                           "move": "Ne2",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-9b2-sf1-sf1",
+                                              "id": "nim-9b2-sf2",
                                               "move": "d5",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-9b2-sf1-sf1-sf1",
+                                                  "id": "nim-9b2-sf3",
                                                   "move": "cxd5",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-9b2-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-9b2-sf4",
                                                       "move": "exd5",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4792,45 +4792,45 @@ export const D4_TREE = {
                                   ]
                                 },
                                 {
-                                  "id": "nim-7b2-sf1",
+                                  "id": "nim-7b2-sfa1",
                                   "move": "Bd2",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-7b2-sf1-sf1",
+                                      "id": "nim-7b2-sfa2",
                                       "move": "d5",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-7b2-sf1-sf1-sf1",
+                                          "id": "nim-7b2-sfa3",
                                           "move": "Nf3",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-7b2-sf1-sf1-sf1-sf1",
+                                              "id": "nim-7b2-sfa4",
                                               "move": "b6",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-7b2-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-7b2-sfa5",
                                                   "move": "cxd5",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-7b2-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-7b2-sfa6",
                                                       "move": "exd5",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4869,45 +4869,45 @@ export const D4_TREE = {
                                   }
                                 },
                                 {
-                                  "id": "nim-7b2-sf2",
+                                  "id": "nim-7b2-sfb1",
                                   "move": "a3",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-7b2-sf2-sf1",
+                                      "id": "nim-7b2-sfb2",
                                       "move": "Bxc3+",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-7b2-sf2-sf1-sf1",
+                                          "id": "nim-7b2-sfb3",
                                           "move": "bxc3",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-7b2-sf2-sf1-sf1-sf1",
+                                              "id": "nim-7b2-sfb4",
                                               "move": "d5",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-7b2-sf2-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-7b2-sfb5",
                                                   "move": "cxd5",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-7b2-sf2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-7b2-sfb6",
                                                       "move": "exd5",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4953,56 +4953,56 @@ export const D4_TREE = {
                           "id": "nim-5b-sf1",
                           "move": "Nf3",
                           "color": "white",
-                          "opening": "nimzo",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "nim-5b-sf1-sf1",
+                              "id": "nim-5b-sf2",
                               "move": "O-O",
                               "color": "black",
-                              "opening": "nimzo",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "nim-5b-sf1-sf1-sf1",
+                                  "id": "nim-5b-sf3",
                                   "move": "Bg5",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-5b-sf1-sf1-sf1-sf1",
+                                      "id": "nim-5b-sf4",
                                       "move": "d5",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-5b-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "nim-5b-sf5",
                                           "move": "Rc1",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-5b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "nim-5b-sf6",
                                               "move": "h6",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-5b-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-5b-sf7",
                                                   "move": "Bh4",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-5b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-5b-sf8",
                                                       "move": "c5",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5060,70 +5060,70 @@ export const D4_TREE = {
                   "id": "nim-3b-sf1",
                   "move": "g3",
                   "color": "white",
-                  "opening": "nimzo",
+                  "opening": "engine",
                   "engineGenerated": true,
                   "children": [
                     {
-                      "id": "nim-3b-sf1-sf1",
+                      "id": "nim-3b-sf2",
                       "move": "Bb4+",
                       "color": "black",
-                      "opening": "nimzo",
+                      "opening": "engine",
                       "engineGenerated": true,
                       "children": [
                         {
-                          "id": "nim-3b-sf1-sf1-sf1",
+                          "id": "nim-3b-sf3",
                           "move": "Bd2",
                           "color": "white",
-                          "opening": "nimzo",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "nim-3b-sf1-sf1-sf1-sf1",
+                              "id": "nim-3b-sf4",
                               "move": "a5",
                               "color": "black",
-                              "opening": "nimzo",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "nim-3b-sf1-sf1-sf1-sf1-sf1",
+                                  "id": "nim-3b-sf5",
                                   "move": "Nf3",
                                   "color": "white",
-                                  "opening": "nimzo",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nim-3b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                      "id": "nim-3b-sf6",
                                       "move": "d5",
                                       "color": "black",
-                                      "opening": "nimzo",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nim-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "nim-3b-sf7",
                                           "move": "Bg2",
                                           "color": "white",
-                                          "opening": "nimzo",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nim-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "nim-3b-sf8",
                                               "move": "dxc4",
                                               "color": "black",
-                                              "opening": "nimzo",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nim-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nim-3b-sf9",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "nimzo",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nim-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nim-3b-sf10",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "nimzo",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {

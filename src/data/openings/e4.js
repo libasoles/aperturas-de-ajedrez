@@ -142,17 +142,17 @@ export const E4_TREE = {
                                                   ]
                                                 },
                                                 {
-                                                  "id": "scan-11a1a-sf1",
+                                                  "id": "scan-11a1a-sfa1",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-11a1a-sf1-sf1",
+                                                      "id": "scan-11a1a-sfa2",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -167,17 +167,17 @@ export const E4_TREE = {
                                                   }
                                                 },
                                                 {
-                                                  "id": "scan-11a1a-sf2",
+                                                  "id": "scan-11a1a-sfb1",
                                                   "move": "Nb5",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-11a1a-sf2-sf1",
+                                                      "id": "scan-11a1a-sfb2",
                                                       "move": "Qb6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -199,28 +199,28 @@ export const E4_TREE = {
                                           "id": "scan-9a1a-sf1",
                                           "move": "Bc4",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9a1a-sf1-sf1",
+                                              "id": "scan-9a1a-sf2",
                                               "move": "Bg7",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9a1a-sf1-sf1-sf1",
+                                                  "id": "scan-9a1a-sf3",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9a1a-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9a1a-sf4",
                                                       "move": "a6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -303,7 +303,7 @@ export const E4_TREE = {
                                                       "id": "scan-12a1b-sf1",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -319,21 +319,21 @@ export const E4_TREE = {
                                               "id": "scan-10a1b-sf1",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-10a1b-sf1-sf1",
+                                                  "id": "scan-10a1b-sf2",
                                                   "move": "h3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-10a1b-sf1-sf1-sf1",
+                                                      "id": "scan-10a1b-sf3",
                                                       "move": "Bxf3",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -359,28 +359,28 @@ export const E4_TREE = {
                                           "id": "scan-9a1b-sf1",
                                           "move": "h3",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9a1b-sf1-sf1",
+                                              "id": "scan-9a1b-sf2",
                                               "move": "Bxf3",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9a1b-sf1-sf1-sf1",
+                                                  "id": "scan-9a1b-sf3",
                                                   "move": "Qxf3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9a1b-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9a1b-sf4",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -511,7 +511,7 @@ export const E4_TREE = {
                                                       "id": "scan-12a2a-sf1",
                                                       "move": "c6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -586,21 +586,21 @@ export const E4_TREE = {
                                               "id": "scan-10a2b-sf1",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-10a2b-sf1-sf1",
+                                                  "id": "scan-10a2b-sf2",
                                                   "move": "d5",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-10a2b-sf1-sf1-sf1",
+                                                      "id": "scan-10a2b-sf3",
                                                       "move": "exd5",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -626,28 +626,28 @@ export const E4_TREE = {
                                           "id": "scan-9a2b-sf1",
                                           "move": "Bd2",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9a2b-sf1-sf1",
+                                              "id": "scan-9a2b-sf2",
                                               "move": "Bd7",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9a2b-sf1-sf1-sf1",
+                                                  "id": "scan-9a2b-sf3",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9a2b-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9a2b-sf4",
                                                       "move": "Qh5",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -679,35 +679,35 @@ export const E4_TREE = {
                                       "id": "scan-8a2-sf1",
                                       "move": "c6",
                                       "color": "black",
-                                      "opening": "scandinavian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "scan-8a2-sf1-sf1",
+                                          "id": "scan-8a2-sf2",
                                           "move": "Bd2",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-8a2-sf1-sf1-sf1",
+                                              "id": "scan-8a2-sf3",
                                               "move": "Qd8",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-8a2-sf1-sf1-sf1-sf1",
+                                                  "id": "scan-8a2-sf4",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-8a2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-8a2-sf5",
                                                       "move": "Bg4",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -855,7 +855,7 @@ export const E4_TREE = {
                                                       "id": "scan-12b1a-sf1",
                                                       "move": "Nxc4",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -869,14 +869,14 @@ export const E4_TREE = {
                                                   "id": "scan-11b1a-sf1",
                                                   "move": "Bb3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-11b1a-sf1-sf1",
+                                                      "id": "scan-11b1a-sf2",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -896,21 +896,21 @@ export const E4_TREE = {
                                               "id": "scan-10b1a-sf1",
                                               "move": "Nxc4",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-10b1a-sf1-sf1",
+                                                  "id": "scan-10b1a-sf2",
                                                   "move": "Bf4",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-10b1a-sf1-sf1-sf1",
+                                                      "id": "scan-10b1a-sf3",
                                                       "move": "Nd6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -936,28 +936,28 @@ export const E4_TREE = {
                                           "id": "scan-9b1a-sf1",
                                           "move": "Bb3",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9b1a-sf1-sf1",
+                                              "id": "scan-9b1a-sf2",
                                               "move": "Bg7",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9b1a-sf1-sf1-sf1",
+                                                  "id": "scan-9b1a-sf3",
                                                   "move": "a4",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9b1a-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9b1a-sf4",
                                                       "move": "Qxd4",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -989,35 +989,35 @@ export const E4_TREE = {
                                       "id": "scan-8b1a-sf1",
                                       "move": "Nxc3",
                                       "color": "black",
-                                      "opening": "scandinavian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "scan-8b1a-sf1-sf1",
+                                          "id": "scan-8b1a-sf2",
                                           "move": "Qf3",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-8b1a-sf1-sf1-sf1",
+                                              "id": "scan-8b1a-sf3",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-8b1a-sf1-sf1-sf1-sf1",
+                                                  "id": "scan-8b1a-sf4",
                                                   "move": "bxc3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-8b1a-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-8b1a-sf5",
                                                       "move": "Bg7",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1055,42 +1055,42 @@ export const E4_TREE = {
                                   "id": "scan-7b1a-sf1",
                                   "move": "Ne4",
                                   "color": "white",
-                                  "opening": "scandinavian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "scan-7b1a-sf1-sf1",
+                                      "id": "scan-7b1a-sf2",
                                       "move": "Bg7",
                                       "color": "black",
-                                      "opening": "scandinavian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "scan-7b1a-sf1-sf1-sf1",
+                                          "id": "scan-7b1a-sf3",
                                           "move": "c3",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-7b1a-sf1-sf1-sf1-sf1",
+                                              "id": "scan-7b1a-sf4",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-7b1a-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "scan-7b1a-sf5",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-7b1a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-7b1a-sf6",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1211,28 +1211,28 @@ export const E4_TREE = {
                                           "id": "scan-9b1b-sf1",
                                           "move": "Bc4",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9b1b-sf1-sf1",
+                                              "id": "scan-9b1b-sf2",
                                               "move": "Bg7",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9b1b-sf1-sf1-sf1",
+                                                  "id": "scan-9b1b-sf3",
                                                   "move": "Nf3",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9b1b-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9b1b-sf4",
                                                       "move": "c5",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1270,56 +1270,56 @@ export const E4_TREE = {
                           "id": "scan-5b1-sf1",
                           "move": "Nf3",
                           "color": "white",
-                          "opening": "scandinavian",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "scan-5b1-sf1-sf1",
+                              "id": "scan-5b1-sf2",
                               "move": "Bf5",
                               "color": "black",
-                              "opening": "scandinavian",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "scan-5b1-sf1-sf1-sf1",
+                                  "id": "scan-5b1-sf3",
                                   "move": "Bd3",
                                   "color": "white",
-                                  "opening": "scandinavian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "scan-5b1-sf1-sf1-sf1-sf1",
+                                      "id": "scan-5b1-sf4",
                                       "move": "Bxd3",
                                       "color": "black",
-                                      "opening": "scandinavian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "scan-5b1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "scan-5b1-sf5",
                                           "move": "Qxd3",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-5b1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "scan-5b1-sf6",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-5b1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "scan-5b1-sf7",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-5b1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-5b1-sf8",
                                                       "move": "Bd6",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1468,14 +1468,14 @@ export const E4_TREE = {
                                                   "id": "scan-11b2-sf1",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-11b2-sf1-sf1",
+                                                      "id": "scan-11b2-sf2",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1495,21 +1495,21 @@ export const E4_TREE = {
                                               "id": "scan-10b2-sf1",
                                               "move": "Qd5",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-10b2-sf1-sf1",
+                                                  "id": "scan-10b2-sf2",
                                                   "move": "Be2",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-10b2-sf1-sf1-sf1",
+                                                      "id": "scan-10b2-sf3",
                                                       "move": "O-O-O",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1535,28 +1535,28 @@ export const E4_TREE = {
                                           "id": "scan-9b2-sf1",
                                           "move": "Be2",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-9b2-sf1-sf1",
+                                              "id": "scan-9b2-sf2",
                                               "move": "Qd7",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-9b2-sf1-sf1-sf1",
+                                                  "id": "scan-9b2-sf3",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-9b2-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-9b2-sf4",
                                                       "move": "O-O-O",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1588,35 +1588,35 @@ export const E4_TREE = {
                                       "id": "scan-8b2-sf1",
                                       "move": "c5",
                                       "color": "black",
-                                      "opening": "scandinavian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "scan-8b2-sf1-sf1",
+                                          "id": "scan-8b2-sf2",
                                           "move": "Bb5+",
                                           "color": "white",
-                                          "opening": "scandinavian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scan-8b2-sf1-sf1-sf1",
+                                              "id": "scan-8b2-sf3",
                                               "move": "Nc6",
                                               "color": "black",
-                                              "opening": "scandinavian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scan-8b2-sf1-sf1-sf1-sf1",
+                                                  "id": "scan-8b2-sf4",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "scandinavian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scan-8b2-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "scan-8b2-sf5",
                                                       "move": "Qc7",
                                                       "color": "black",
-                                                      "opening": "scandinavian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1839,21 +1839,21 @@ export const E4_TREE = {
                                               "id": "span-10a1a-sf1",
                                               "move": "exd4",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-10a1a-sf1-sf1",
+                                                  "id": "span-10a1a-sf2",
                                                   "move": "e5",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-10a1a-sf1-sf1-sf1",
+                                                      "id": "span-10a1a-sf3",
                                                       "move": "Ne4",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1876,31 +1876,31 @@ export const E4_TREE = {
                                           ]
                                         },
                                         {
-                                          "id": "span-9a1a-sf1",
+                                          "id": "span-9a1a-sfa1",
                                           "move": "d3",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-9a1a-sf1-sf1",
+                                              "id": "span-9a1a-sfa2",
                                               "move": "b5",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-9a1a-sf1-sf1-sf1",
+                                                  "id": "span-9a1a-sfa3",
                                                   "move": "Bb3",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-9a1a-sf1-sf1-sf1-sf1",
+                                                      "id": "span-9a1a-sfa4",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -1927,31 +1927,31 @@ export const E4_TREE = {
                                           }
                                         },
                                         {
-                                          "id": "span-9a1a-sf2",
+                                          "id": "span-9a1a-sfb1",
                                           "move": "Re1",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-9a1a-sf2-sf1",
+                                              "id": "span-9a1a-sfb2",
                                               "move": "b5",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-9a1a-sf2-sf1-sf1",
+                                                  "id": "span-9a1a-sfb3",
                                                   "move": "Bb3",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-9a1a-sf2-sf1-sf1-sf1",
+                                                      "id": "span-9a1a-sfb4",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2070,7 +2070,7 @@ export const E4_TREE = {
                                                       "id": "span-12a1b-sf1",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2199,42 +2199,42 @@ export const E4_TREE = {
                                   "id": "span-7ae-sf1",
                                   "move": "d3",
                                   "color": "white",
-                                  "opening": "spanish",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "span-7ae-sf1-sf1",
+                                      "id": "span-7ae-sf2",
                                       "move": "f6",
                                       "color": "black",
-                                      "opening": "spanish",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "span-7ae-sf1-sf1-sf1",
+                                          "id": "span-7ae-sf3",
                                           "move": "Be3",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-7ae-sf1-sf1-sf1-sf1",
+                                              "id": "span-7ae-sf4",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-7ae-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "span-7ae-sf5",
                                                   "move": "d4",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-7ae-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "span-7ae-sf6",
                                                       "move": "Bg4",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2413,21 +2413,21 @@ export const E4_TREE = {
                                               "id": "span-10b1-sf1",
                                               "move": "Nxb5",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-10b1-sf1-sf1",
+                                                  "id": "span-10b1-sf2",
                                                   "move": "Re1",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-10b1-sf1-sf1-sf1",
+                                                      "id": "span-10b1-sf3",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2453,28 +2453,28 @@ export const E4_TREE = {
                                           "id": "span-9b1-sf1",
                                           "move": "dxe5",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-9b1-sf1-sf1",
+                                              "id": "span-9b1-sf2",
                                               "move": "Nxb5",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-9b1-sf1-sf1-sf1",
+                                                  "id": "span-9b1-sf3",
                                                   "move": "a4",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-9b1-sf1-sf1-sf1-sf1",
+                                                      "id": "span-9b1-sf4",
                                                       "move": "Nbd4",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2700,7 +2700,7 @@ export const E4_TREE = {
                                                       "id": "span-12c-sf1",
                                                       "move": "cxd6",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2714,14 +2714,14 @@ export const E4_TREE = {
                                                   "id": "span-11c-sf1",
                                                   "move": "Bc4",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-11c-sf1-sf1",
+                                                      "id": "span-11c-sf2",
                                                       "move": "Nh6",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2741,21 +2741,21 @@ export const E4_TREE = {
                                               "id": "span-10c-sf1",
                                               "move": "dxe4",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-10c-sf1-sf1",
+                                                  "id": "span-10c-sf2",
                                                   "move": "d4",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-10c-sf1-sf1-sf1",
+                                                      "id": "span-10c-sf3",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2781,28 +2781,28 @@ export const E4_TREE = {
                                           "id": "span-9c-sf1",
                                           "move": "Nxe5",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-9c-sf1-sf1",
+                                              "id": "span-9c-sf2",
                                               "move": "dxe4",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-9c-sf1-sf1-sf1",
+                                                  "id": "span-9c-sf3",
                                                   "move": "Nxc6",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-9c-sf1-sf1-sf1-sf1",
+                                                      "id": "span-9c-sf4",
                                                       "move": "Qg5",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -2840,56 +2840,56 @@ export const E4_TREE = {
                           "id": "span-5c-sf1",
                           "move": "d4",
                           "color": "white",
-                          "opening": "spanish",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "span-5c-sf1-sf1",
+                              "id": "span-5c-sf2",
                               "move": "fxe4",
                               "color": "black",
-                              "opening": "spanish",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "span-5c-sf1-sf1-sf1",
+                                  "id": "span-5c-sf3",
                                   "move": "Nxe5",
                                   "color": "white",
-                                  "opening": "spanish",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "span-5c-sf1-sf1-sf1-sf1",
+                                      "id": "span-5c-sf4",
                                       "move": "Nxe5",
                                       "color": "black",
-                                      "opening": "spanish",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "span-5c-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "span-5c-sf5",
                                           "move": "dxe5",
                                           "color": "white",
-                                          "opening": "spanish",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "span-5c-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "span-5c-sf6",
                                               "move": "c6",
                                               "color": "black",
-                                              "opening": "spanish",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "span-5c-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "span-5c-sf7",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "spanish",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "span-5c-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "span-5c-sf8",
                                                       "move": "d5",
                                                       "color": "black",
-                                                      "opening": "spanish",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3086,14 +3086,14 @@ export const E4_TREE = {
                                                   "id": "ital-8a1-sf1",
                                                   "move": "Bd2",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-8a1-sf1-sf1",
+                                                      "id": "ital-8a1-sf2",
                                                       "move": "Bxd2+",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3194,14 +3194,14 @@ export const E4_TREE = {
                                                   "id": "ital-8a2-sf1",
                                                   "move": "Nxe5",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-8a2-sf1-sf1",
+                                                      "id": "ital-8a2-sf2",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3223,28 +3223,28 @@ export const E4_TREE = {
                                           "id": "ital-6a2-sf1",
                                           "move": "Nxe5",
                                           "color": "white",
-                                          "opening": "italian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ital-6a2-sf1-sf1",
+                                              "id": "ital-6a2-sf2",
                                               "move": "Nxe5",
                                               "color": "black",
-                                              "opening": "italian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ital-6a2-sf1-sf1-sf1",
+                                                  "id": "ital-6a2-sf3",
                                                   "move": "dxe5",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-6a2-sf1-sf1-sf1-sf1",
+                                                      "id": "ital-6a2-sf4",
                                                       "move": "d5",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3278,42 +3278,42 @@ export const E4_TREE = {
                                   "id": "ital-4a-sf1",
                                   "move": "d3",
                                   "color": "white",
-                                  "opening": "italian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ital-4a-sf1-sf1",
+                                      "id": "ital-4a-sf2",
                                       "move": "d6",
                                       "color": "black",
-                                      "opening": "italian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ital-4a-sf1-sf1-sf1",
+                                          "id": "ital-4a-sf3",
                                           "move": "O-O",
                                           "color": "white",
-                                          "opening": "italian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ital-4a-sf1-sf1-sf1-sf1",
+                                              "id": "ital-4a-sf4",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "italian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ital-4a-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ital-4a-sf5",
                                                   "move": "a4",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-4a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ital-4a-sf6",
                                                       "move": "a6",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3475,7 +3475,7 @@ export const E4_TREE = {
                                                       "id": "evans-7a-sf1",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "evans",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3511,7 +3511,7 @@ export const E4_TREE = {
                                                       "id": "evans-7b-sf1",
                                                       "move": "Qd7",
                                                       "color": "black",
-                                                      "opening": "evans",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3570,7 +3570,7 @@ export const E4_TREE = {
                                                       "id": "evans-7c-sf1",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "evans",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3693,21 +3693,21 @@ export const E4_TREE = {
                                               "id": "evans-5d-sf1",
                                               "move": "d6",
                                               "color": "black",
-                                              "opening": "evans",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "evans-5d-sf1-sf1",
+                                                  "id": "evans-5d-sf2",
                                                   "move": "a5",
                                                   "color": "white",
-                                                  "opening": "evans",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "evans-5d-sf1-sf1-sf1",
+                                                      "id": "evans-5d-sf3",
                                                       "move": "Ba7",
                                                       "color": "black",
-                                                      "opening": "evans",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -3733,28 +3733,28 @@ export const E4_TREE = {
                                           "id": "evans-4c-sf1",
                                           "move": "O-O",
                                           "color": "white",
-                                          "opening": "evans",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "evans-4c-sf1-sf1",
+                                              "id": "evans-4c-sf2",
                                               "move": "d6",
                                               "color": "black",
-                                              "opening": "evans",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "evans-4c-sf1-sf1-sf1",
+                                                  "id": "evans-4c-sf3",
                                                   "move": "c3",
                                                   "color": "white",
-                                                  "opening": "evans",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "evans-4c-sf1-sf1-sf1-sf1",
+                                                      "id": "evans-4c-sf4",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "evans",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4111,7 +4111,7 @@ export const E4_TREE = {
                                                       "id": "ital-9b3-sf1",
                                                       "move": "Nxc3",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4125,14 +4125,14 @@ export const E4_TREE = {
                                                   "id": "ital-8b3-sf1",
                                                   "move": "d3",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-8b3-sf1-sf1",
+                                                      "id": "ital-8b3-sf2",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4154,28 +4154,28 @@ export const E4_TREE = {
                                           "id": "ital-6b3-sf1",
                                           "move": "Bb5",
                                           "color": "white",
-                                          "opening": "italian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ital-6b3-sf1-sf1",
+                                              "id": "ital-6b3-sf2",
                                               "move": "Bc5",
                                               "color": "black",
-                                              "opening": "italian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ital-6b3-sf1-sf1-sf1",
+                                                  "id": "ital-6b3-sf3",
                                                   "move": "d4",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-6b3-sf1-sf1-sf1-sf1",
+                                                      "id": "ital-6b3-sf4",
                                                       "move": "exd4",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4209,42 +4209,42 @@ export const E4_TREE = {
                                   "id": "ital-4b2-sf1",
                                   "move": "Bd5",
                                   "color": "white",
-                                  "opening": "italian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ital-4b2-sf1-sf1",
+                                      "id": "ital-4b2-sf2",
                                       "move": "Nf6",
                                       "color": "black",
-                                      "opening": "italian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ital-4b2-sf1-sf1-sf1",
+                                          "id": "ital-4b2-sf3",
                                           "move": "Bxc6",
                                           "color": "white",
-                                          "opening": "italian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ital-4b2-sf1-sf1-sf1-sf1",
+                                              "id": "ital-4b2-sf4",
                                               "move": "dxc6",
                                               "color": "black",
-                                              "opening": "italian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ital-4b2-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ital-4b2-sf5",
                                                   "move": "Nxe5",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-4b2-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ital-4b2-sf6",
                                                       "move": "Bd6",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4290,56 +4290,56 @@ export const E4_TREE = {
                           "id": "ital-2b-sf1",
                           "move": "d3",
                           "color": "white",
-                          "opening": "italian",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "ital-2b-sf1-sf1",
+                              "id": "ital-2b-sf2",
                               "move": "Bc5",
                               "color": "black",
-                              "opening": "italian",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "ital-2b-sf1-sf1-sf1",
+                                  "id": "ital-2b-sf3",
                                   "move": "c3",
                                   "color": "white",
-                                  "opening": "italian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ital-2b-sf1-sf1-sf1-sf1",
+                                      "id": "ital-2b-sf4",
                                       "move": "d5",
                                       "color": "black",
-                                      "opening": "italian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ital-2b-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "ital-2b-sf5",
                                           "move": "exd5",
                                           "color": "white",
-                                          "opening": "italian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ital-2b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "ital-2b-sf6",
                                               "move": "Nxd5",
                                               "color": "black",
-                                              "opening": "italian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ital-2b-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ital-2b-sf7",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "italian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ital-2b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ital-2b-sf8",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "italian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4477,14 +4477,14 @@ export const E4_TREE = {
                                                   "id": "scot-8a-sf1",
                                                   "move": "Qe2",
                                                   "color": "white",
-                                                  "opening": "scotch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scot-8a-sf1-sf1",
+                                                      "id": "scot-8a-sf2",
                                                       "move": "Nd5",
                                                       "color": "black",
-                                                      "opening": "scotch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4506,28 +4506,28 @@ export const E4_TREE = {
                                           "id": "scot-6a-sf1",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "scotch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "scot-6a-sf1-sf1",
+                                              "id": "scot-6a-sf2",
                                               "move": "d5",
                                               "color": "black",
-                                              "opening": "scotch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scot-6a-sf1-sf1-sf1",
+                                                  "id": "scot-6a-sf3",
                                                   "move": "e5",
                                                   "color": "white",
-                                                  "opening": "scotch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scot-6a-sf1-sf1-sf1-sf1",
+                                                      "id": "scot-6a-sf4",
                                                       "move": "Nd7",
                                                       "color": "black",
-                                                      "opening": "scotch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4600,24 +4600,24 @@ export const E4_TREE = {
                                           },
                                           "children": [
                                             {
-                                              "id": "scot-7b-sf1",
+                                              "id": "scot-7b-sfa1",
                                               "move": "Nge7",
                                               "color": "black",
-                                              "opening": "scotch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scot-7b-sf1-sf1",
+                                                  "id": "scot-7b-sfa2",
                                                   "move": "Bc4",
                                                   "color": "white",
-                                                  "opening": "scotch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scot-7b-sf1-sf1-sf1",
+                                                      "id": "scot-7b-sfa3",
                                                       "move": "Ne5",
                                                       "color": "black",
-                                                      "opening": "scotch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -4638,24 +4638,24 @@ export const E4_TREE = {
                                               }
                                             },
                                             {
-                                              "id": "scot-7b-sf2",
+                                              "id": "scot-7b-sfb1",
                                               "move": "d6",
                                               "color": "black",
-                                              "opening": "scotch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "scot-7b-sf2-sf1",
+                                                  "id": "scot-7b-sfb2",
                                                   "move": "Bb5",
                                                   "color": "white",
-                                                  "opening": "scotch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "scot-7b-sf2-sf1-sf1",
+                                                      "id": "scot-7b-sfb3",
                                                       "move": "Ne7",
                                                       "color": "black",
-                                                      "opening": "scotch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5281,7 +5281,7 @@ export const E4_TREE = {
                                                       "id": "philidor-12b-sf1",
                                                       "move": "Bxg5",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5295,14 +5295,14 @@ export const E4_TREE = {
                                                   "id": "philidor-11b-sf1",
                                                   "move": "Qe2",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-11b-sf1-sf1",
+                                                      "id": "philidor-11b-sf2",
                                                       "move": "Ngf6",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5321,31 +5321,31 @@ export const E4_TREE = {
                                           ]
                                         },
                                         {
-                                          "id": "philidor-9b-sf1",
+                                          "id": "philidor-9b-sfa1",
                                           "move": "a4",
                                           "color": "white",
-                                          "opening": "philidor",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "philidor-9b-sf1-sf1",
+                                              "id": "philidor-9b-sfa2",
                                               "move": "Ngf6",
                                               "color": "black",
-                                              "opening": "philidor",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "philidor-9b-sf1-sf1-sf1",
+                                                  "id": "philidor-9b-sfa3",
                                                   "move": "Nc3",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-9b-sf1-sf1-sf1-sf1",
+                                                      "id": "philidor-9b-sfa4",
                                                       "move": "a5",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5372,31 +5372,31 @@ export const E4_TREE = {
                                           }
                                         },
                                         {
-                                          "id": "philidor-9b-sf2",
+                                          "id": "philidor-9b-sfb1",
                                           "move": "Re1",
                                           "color": "white",
-                                          "opening": "philidor",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "philidor-9b-sf2-sf1",
+                                              "id": "philidor-9b-sfb2",
                                               "move": "Ngf6",
                                               "color": "black",
-                                              "opening": "philidor",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "philidor-9b-sf2-sf1-sf1",
+                                                  "id": "philidor-9b-sfb3",
                                                   "move": "a4",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-9b-sf2-sf1-sf1-sf1",
+                                                      "id": "philidor-9b-sfb4",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5430,42 +5430,42 @@ export const E4_TREE = {
                                   "id": "philidor-7b-sf1",
                                   "move": "Ng5",
                                   "color": "white",
-                                  "opening": "philidor",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "philidor-7b-sf1-sf1",
+                                      "id": "philidor-7b-sf2",
                                       "move": "Nh6",
                                       "color": "black",
-                                      "opening": "philidor",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "philidor-7b-sf1-sf1-sf1",
+                                          "id": "philidor-7b-sf3",
                                           "move": "O-O",
                                           "color": "white",
-                                          "opening": "philidor",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "philidor-7b-sf1-sf1-sf1-sf1",
+                                              "id": "philidor-7b-sf4",
                                               "move": "exd4",
                                               "color": "black",
-                                              "opening": "philidor",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "philidor-7b-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "philidor-7b-sf5",
                                                   "move": "Qxd4",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-7b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "philidor-7b-sf6",
                                                       "move": "Qf6",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5583,14 +5583,14 @@ export const E4_TREE = {
                                                   "id": "philidor-11c1-sf1",
                                                   "move": "Re1",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-11c1-sf1-sf1",
+                                                      "id": "philidor-11c1-sf2",
                                                       "move": "a5",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5610,21 +5610,21 @@ export const E4_TREE = {
                                               "id": "philidor-10c1-sf1",
                                               "move": "h6",
                                               "color": "black",
-                                              "opening": "philidor",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "philidor-10c1-sf1-sf1",
+                                                  "id": "philidor-10c1-sf2",
                                                   "move": "a4",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-10c1-sf1-sf1-sf1",
+                                                      "id": "philidor-10c1-sf3",
                                                       "move": "a5",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -5686,28 +5686,28 @@ export const E4_TREE = {
                                           "id": "philidor-9c2-sf1",
                                           "move": "g3",
                                           "color": "white",
-                                          "opening": "philidor",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "philidor-9c2-sf1-sf1",
+                                              "id": "philidor-9c2-sf2",
                                               "move": "O-O",
                                               "color": "black",
-                                              "opening": "philidor",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "philidor-9c2-sf1-sf1-sf1",
+                                                  "id": "philidor-9c2-sf3",
                                                   "move": "Bg2",
                                                   "color": "white",
-                                                  "opening": "philidor",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "philidor-9c2-sf1-sf1-sf1-sf1",
+                                                      "id": "philidor-9c2-sf4",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "philidor",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6117,14 +6117,14 @@ export const E4_TREE = {
                                                   "id": "sic-11a1-sf1",
                                                   "move": "Bc4",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a1-sf1-sf1",
+                                                      "id": "sic-11a1-sf2",
                                                       "move": "Qc7",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6144,21 +6144,21 @@ export const E4_TREE = {
                                               "id": "sic-10a1-sf1",
                                               "move": "e6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-10a1-sf1-sf1",
+                                                  "id": "sic-10a1-sf2",
                                                   "move": "f4",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-10a1-sf1-sf1-sf1",
+                                                      "id": "sic-10a1-sf3",
                                                       "move": "h6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6261,7 +6261,7 @@ export const E4_TREE = {
                                                       "id": "sic-12a2-sf1",
                                                       "move": "h6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6277,21 +6277,21 @@ export const E4_TREE = {
                                               "id": "sic-10a2-sf1",
                                               "move": "Nc6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-10a2-sf1-sf1",
+                                                  "id": "sic-10a2-sf2",
                                                   "move": "Be2",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-10a2-sf1-sf1-sf1",
+                                                      "id": "sic-10a2-sf3",
                                                       "move": "e5",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6406,7 +6406,7 @@ export const E4_TREE = {
                                                       "id": "sic-12a3-sf1",
                                                       "move": "Ng4",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6420,14 +6420,14 @@ export const E4_TREE = {
                                                   "id": "sic-11a3-sf1",
                                                   "move": "f3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a3-sf1-sf1",
+                                                      "id": "sic-11a3-sf2",
                                                       "move": "h5",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6514,7 +6514,7 @@ export const E4_TREE = {
                                                       "id": "sic-12a4-sf1",
                                                       "move": "Qb6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6528,14 +6528,14 @@ export const E4_TREE = {
                                                   "id": "sic-11a4-sf1",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a4-sf1-sf1",
+                                                      "id": "sic-11a4-sf2",
                                                       "move": "h5",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6633,17 +6633,17 @@ export const E4_TREE = {
                                                   ]
                                                 },
                                                 {
-                                                  "id": "sic-11a5-sf1",
+                                                  "id": "sic-11a5-sfa1",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a5-sf1-sf1",
+                                                      "id": "sic-11a5-sfa2",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6658,17 +6658,17 @@ export const E4_TREE = {
                                                   }
                                                 },
                                                 {
-                                                  "id": "sic-11a5-sf2",
+                                                  "id": "sic-11a5-sfb1",
                                                   "move": "Rg1",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a5-sf2-sf1",
+                                                      "id": "sic-11a5-sfb2",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6757,14 +6757,14 @@ export const E4_TREE = {
                                                   "id": "sic-11a6-sf1",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11a6-sf1-sf1",
+                                                      "id": "sic-11a6-sf2",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -6929,28 +6929,28 @@ export const E4_TREE = {
                                           "id": "sic-9b1a-sf1",
                                           "move": "Nd5",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9b1a-sf1-sf1",
+                                              "id": "sic-9b1a-sf2",
                                               "move": "Nxd5",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9b1a-sf1-sf1-sf1",
+                                                  "id": "sic-9b1a-sf3",
                                                   "move": "exd5",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9b1a-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9b1a-sf4",
                                                       "move": "Qa5+",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7223,7 +7223,7 @@ export const E4_TREE = {
                                                       "id": "sic-12b2b-sf1",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7241,28 +7241,28 @@ export const E4_TREE = {
                                           "id": "sic-9b2b-sf1",
                                           "move": "Nxc6",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9b2b-sf1-sf1",
+                                              "id": "sic-9b2b-sf2",
                                               "move": "bxc6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9b2b-sf1-sf1-sf1",
+                                                  "id": "sic-9b2b-sf3",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9b2b-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9b2b-sf4",
                                                       "move": "Qc7",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7429,7 +7429,7 @@ export const E4_TREE = {
                                                       "id": "sic-12c1a-sf1",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7447,28 +7447,28 @@ export const E4_TREE = {
                                           "id": "sic-9c1a-sf1",
                                           "move": "a3",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9c1a-sf1-sf1",
+                                              "id": "sic-9c1a-sf2",
                                               "move": "Nc6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9c1a-sf1-sf1-sf1",
+                                                  "id": "sic-9c1a-sf3",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9c1a-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9c1a-sf4",
                                                       "move": "Nf6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7563,7 +7563,7 @@ export const E4_TREE = {
                                                       "id": "sic-12c1b-sf1",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7585,42 +7585,42 @@ export const E4_TREE = {
                                   "id": "sic-7c1-sf1",
                                   "move": "Bd3",
                                   "color": "white",
-                                  "opening": "sicilian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "sic-7c1-sf1-sf1",
+                                      "id": "sic-7c1-sf2",
                                       "move": "Bc5",
                                       "color": "black",
-                                      "opening": "sicilian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "sic-7c1-sf1-sf1-sf1",
+                                          "id": "sic-7c1-sf3",
                                           "move": "Nb3",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-7c1-sf1-sf1-sf1-sf1",
+                                              "id": "sic-7c1-sf4",
                                               "move": "Ba7",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-7c1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "sic-7c1-sf5",
                                                   "move": "Qe2",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-7c1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-7c1-sf6",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7761,14 +7761,14 @@ export const E4_TREE = {
                                                   "id": "sic-11c2a-sf1",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-11c2a-sf1-sf1",
+                                                      "id": "sic-11c2a-sf2",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7788,21 +7788,21 @@ export const E4_TREE = {
                                               "id": "sic-10c2a-sf1",
                                               "move": "Be7",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-10c2a-sf1-sf1",
+                                                  "id": "sic-10c2a-sf2",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-10c2a-sf1-sf1-sf1",
+                                                      "id": "sic-10c2a-sf3",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7828,28 +7828,28 @@ export const E4_TREE = {
                                           "id": "sic-9c2a-sf1",
                                           "move": "Be3",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9c2a-sf1-sf1",
+                                              "id": "sic-9c2a-sf2",
                                               "move": "a6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9c2a-sf1-sf1-sf1",
+                                                  "id": "sic-9c2a-sf3",
                                                   "move": "Qf3",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9c2a-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9c2a-sf4",
                                                       "move": "Bd7",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7956,7 +7956,7 @@ export const E4_TREE = {
                                                       "id": "sic-12c2b-sf1",
                                                       "move": "d6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -7972,21 +7972,21 @@ export const E4_TREE = {
                                               "id": "sic-10c2b-sf1",
                                               "move": "d6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-10c2b-sf1-sf1",
+                                                  "id": "sic-10c2b-sf2",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-10c2b-sf1-sf1-sf1",
+                                                      "id": "sic-10c2b-sf3",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8012,28 +8012,28 @@ export const E4_TREE = {
                                           "id": "sic-9c2b-sf1",
                                           "move": "e5",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9c2b-sf1-sf1",
+                                              "id": "sic-9c2b-sf2",
                                               "move": "Nd5",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9c2b-sf1-sf1-sf1",
+                                                  "id": "sic-9c2b-sf3",
                                                   "move": "Qg4",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9c2b-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9c2b-sf4",
                                                       "move": "g6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8251,21 +8251,21 @@ export const E4_TREE = {
                                               "id": "sic-10d-sf1",
                                               "move": "Nf6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-10d-sf1-sf1",
+                                                  "id": "sic-10d-sf2",
                                                   "move": "Nge2",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-10d-sf1-sf1-sf1",
+                                                      "id": "sic-10d-sf3",
                                                       "move": "Rb8",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8291,28 +8291,28 @@ export const E4_TREE = {
                                           "id": "sic-9d-sf1",
                                           "move": "Nge2",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-9d-sf1-sf1",
+                                              "id": "sic-9d-sf2",
                                               "move": "Nf6",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-9d-sf1-sf1-sf1",
+                                                  "id": "sic-9d-sf3",
                                                   "move": "Nd5",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-9d-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-9d-sf4",
                                                       "move": "Nxd5",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8354,70 +8354,70 @@ export const E4_TREE = {
                   "id": "sic-3d-sf1",
                   "move": "Nf3",
                   "color": "white",
-                  "opening": "sicilian",
+                  "opening": "engine",
                   "engineGenerated": true,
                   "children": [
                     {
-                      "id": "sic-3d-sf1-sf1",
+                      "id": "sic-3d-sf2",
                       "move": "e5",
                       "color": "black",
-                      "opening": "sicilian",
+                      "opening": "engine",
                       "engineGenerated": true,
                       "children": [
                         {
-                          "id": "sic-3d-sf1-sf1-sf1",
+                          "id": "sic-3d-sf3",
                           "move": "Bc4",
                           "color": "white",
-                          "opening": "sicilian",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "sic-3d-sf1-sf1-sf1-sf1",
+                              "id": "sic-3d-sf4",
                               "move": "d6",
                               "color": "black",
-                              "opening": "sicilian",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "sic-3d-sf1-sf1-sf1-sf1-sf1",
+                                  "id": "sic-3d-sf5",
                                   "move": "d3",
                                   "color": "white",
-                                  "opening": "sicilian",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "sic-3d-sf1-sf1-sf1-sf1-sf1-sf1",
+                                      "id": "sic-3d-sf6",
                                       "move": "Be7",
                                       "color": "black",
-                                      "opening": "sicilian",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "sic-3d-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "sic-3d-sf7",
                                           "move": "a4",
                                           "color": "white",
-                                          "opening": "sicilian",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "sic-3d-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "sic-3d-sf8",
                                               "move": "Bd7",
                                               "color": "black",
-                                              "opening": "sicilian",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "sic-3d-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "sic-3d-sf9",
                                                   "move": "O-O",
                                                   "color": "white",
-                                                  "opening": "sicilian",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "sic-3d-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "sic-3d-sf10",
                                                       "move": "h6",
                                                       "color": "black",
-                                                      "opening": "sicilian",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8620,7 +8620,7 @@ export const E4_TREE = {
                                                       "id": "fr-12a-sf1",
                                                       "move": "Nxd4",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8638,28 +8638,28 @@ export const E4_TREE = {
                                           "id": "fr-9a-sf1",
                                           "move": "Be2",
                                           "color": "white",
-                                          "opening": "french",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "fr-9a-sf1-sf1",
+                                              "id": "fr-9a-sf2",
                                               "move": "cxd4",
                                               "color": "black",
-                                              "opening": "french",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "fr-9a-sf1-sf1-sf1",
+                                                  "id": "fr-9a-sf3",
                                                   "move": "cxd4",
                                                   "color": "white",
-                                                  "opening": "french",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "fr-9a-sf1-sf1-sf1-sf1",
+                                                      "id": "fr-9a-sf4",
                                                       "move": "Nh6",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8918,10 +8918,10 @@ export const E4_TREE = {
                                                       "children": []
                                                     },
                                                     {
-                                                      "id": "fr-12c1-sf1",
+                                                      "id": "fr-12c1-sfa1",
                                                       "move": "Qc7",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -8930,10 +8930,10 @@ export const E4_TREE = {
                                                       }
                                                     },
                                                     {
-                                                      "id": "fr-12c1-sf2",
+                                                      "id": "fr-12c1-sfb1",
                                                       "move": "cxd4",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9052,7 +9052,7 @@ export const E4_TREE = {
                                                       "id": "fr-12c2-sf1",
                                                       "move": "a6",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9183,7 +9183,7 @@ export const E4_TREE = {
                                                       "id": "fr-12d1-sf1",
                                                       "move": "cxd4",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9199,21 +9199,21 @@ export const E4_TREE = {
                                               "id": "fr-10d1-sf1",
                                               "move": "cxd4",
                                               "color": "black",
-                                              "opening": "french",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "fr-10d1-sf1-sf1",
+                                                  "id": "fr-10d1-sf2",
                                                   "move": "Nxd4",
                                                   "color": "white",
-                                                  "opening": "french",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "fr-10d1-sf1-sf1-sf1",
+                                                      "id": "fr-10d1-sf3",
                                                       "move": "Qe7+",
                                                       "color": "black",
-                                                      "opening": "french",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9543,49 +9543,49 @@ export const E4_TREE = {
                               "id": "ck-6a-sf1",
                               "move": "Nf6",
                               "color": "black",
-                              "opening": "caro_kann",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "ck-6a-sf1-sf1",
+                                  "id": "ck-6a-sf2",
                                   "move": "Nxf6+",
                                   "color": "white",
-                                  "opening": "caro_kann",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ck-6a-sf1-sf1-sf1",
+                                      "id": "ck-6a-sf3",
                                       "move": "exf6",
                                       "color": "black",
-                                      "opening": "caro_kann",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ck-6a-sf1-sf1-sf1-sf1",
+                                          "id": "ck-6a-sf4",
                                           "move": "Nf3",
                                           "color": "white",
-                                          "opening": "caro_kann",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ck-6a-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "ck-6a-sf5",
                                               "move": "Bd6",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-6a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ck-6a-sf6",
                                                   "move": "Bd3",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-6a-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ck-6a-sf7",
                                                       "move": "O-O",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9740,7 +9740,7 @@ export const E4_TREE = {
                                                       "id": "ck-12b-sf1",
                                                       "move": "Nd7",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9756,21 +9756,21 @@ export const E4_TREE = {
                                               "id": "ck-10b-sf1",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-10b-sf1-sf1",
+                                                  "id": "ck-10b-sf2",
                                                   "move": "dxc5",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-10b-sf1-sf1-sf1",
+                                                      "id": "ck-10b-sf3",
                                                       "move": "Nec6",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9898,7 +9898,7 @@ export const E4_TREE = {
                                                       "id": "ck-12c-sf1",
                                                       "move": "e6",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -9924,56 +9924,56 @@ export const E4_TREE = {
                           "id": "ck-5c-sf1",
                           "move": "c4",
                           "color": "white",
-                          "opening": "caro_kann",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "ck-5c-sf1-sf1",
+                              "id": "ck-5c-sf2",
                               "move": "Nc6",
                               "color": "black",
-                              "opening": "caro_kann",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "ck-5c-sf1-sf1-sf1",
+                                  "id": "ck-5c-sf3",
                                   "move": "Nc3",
                                   "color": "white",
-                                  "opening": "caro_kann",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ck-5c-sf1-sf1-sf1-sf1",
+                                      "id": "ck-5c-sf4",
                                       "move": "Nf6",
                                       "color": "black",
-                                      "opening": "caro_kann",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ck-5c-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "ck-5c-sf5",
                                           "move": "Nf3",
                                           "color": "white",
-                                          "opening": "caro_kann",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ck-5c-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "ck-5c-sf6",
                                               "move": "Bg4",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-5c-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ck-5c-sf7",
                                                   "move": "cxd5",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-5c-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ck-5c-sf8",
                                                       "move": "Nxd5",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10121,7 +10121,7 @@ export const E4_TREE = {
                                                       "id": "ck-12d-sf1",
                                                       "move": "dxe4",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10137,21 +10137,21 @@ export const E4_TREE = {
                                               "id": "ck-10d-sf1",
                                               "move": "b5",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-10d-sf1-sf1",
+                                                  "id": "ck-10d-sf2",
                                                   "move": "a3",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-10d-sf1-sf1-sf1",
+                                                      "id": "ck-10d-sf3",
                                                       "move": "Ba5",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10179,35 +10179,35 @@ export const E4_TREE = {
                                       "id": "ck-8d-sf1",
                                       "move": "dxe4",
                                       "color": "black",
-                                      "opening": "caro_kann",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ck-8d-sf1-sf1",
+                                          "id": "ck-8d-sf2",
                                           "move": "fxe4",
                                           "color": "white",
-                                          "opening": "caro_kann",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ck-8d-sf1-sf1-sf1",
+                                              "id": "ck-8d-sf3",
                                               "move": "Qh4+",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-8d-sf1-sf1-sf1-sf1",
+                                                  "id": "ck-8d-sf4",
                                                   "move": "Kd2",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-8d-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ck-8d-sf5",
                                                       "move": "Bxc3+",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10245,42 +10245,42 @@ export const E4_TREE = {
                                   "id": "ck-7d-sf1",
                                   "move": "Bd2",
                                   "color": "white",
-                                  "opening": "caro_kann",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ck-7d-sf1-sf1",
+                                      "id": "ck-7d-sf2",
                                       "move": "Ne7",
                                       "color": "black",
-                                      "opening": "caro_kann",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ck-7d-sf1-sf1-sf1",
+                                          "id": "ck-7d-sf3",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "caro_kann",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ck-7d-sf1-sf1-sf1-sf1",
+                                              "id": "ck-7d-sf4",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-7d-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ck-7d-sf5",
                                                   "move": "dxc5",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-7d-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ck-7d-sf6",
                                                       "move": "Bxc5",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10324,49 +10324,49 @@ export const E4_TREE = {
                               "id": "ck-6d-sf1",
                               "move": "Qb6",
                               "color": "black",
-                              "opening": "caro_kann",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "ck-6d-sf1-sf1",
+                                  "id": "ck-6d-sf2",
                                   "move": "Na4",
                                   "color": "white",
-                                  "opening": "caro_kann",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "ck-6d-sf1-sf1-sf1",
+                                      "id": "ck-6d-sf3",
                                       "move": "Qa5+",
                                       "color": "black",
-                                      "opening": "caro_kann",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "ck-6d-sf1-sf1-sf1-sf1",
+                                          "id": "ck-6d-sf4",
                                           "move": "c3",
                                           "color": "white",
-                                          "opening": "caro_kann",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "ck-6d-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "ck-6d-sf5",
                                               "move": "Qc7",
                                               "color": "black",
-                                              "opening": "caro_kann",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "ck-6d-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "ck-6d-sf6",
                                                   "move": "Nh3",
                                                   "color": "white",
-                                                  "opening": "caro_kann",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "ck-6d-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "ck-6d-sf7",
                                                       "move": "b5",
                                                       "color": "black",
-                                                      "opening": "caro_kann",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10575,28 +10575,28 @@ export const E4_TREE = {
                                           "id": "pirc-9a-sf1",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "pirc",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "pirc-9a-sf1-sf1",
+                                              "id": "pirc-9a-sf2",
                                               "move": "Nc6",
                                               "color": "black",
-                                              "opening": "pirc",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "pirc-9a-sf1-sf1-sf1",
+                                                  "id": "pirc-9a-sf3",
                                                   "move": "e5",
                                                   "color": "white",
-                                                  "opening": "pirc",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "pirc-9a-sf1-sf1-sf1-sf1",
+                                                      "id": "pirc-9a-sf4",
                                                       "move": "dxe5",
                                                       "color": "black",
-                                                      "opening": "pirc",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10737,42 +10737,42 @@ export const E4_TREE = {
                                   "id": "pirc-7b-sf1",
                                   "move": "Be3",
                                   "color": "white",
-                                  "opening": "pirc",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "pirc-7b-sf1-sf1",
+                                      "id": "pirc-7b-sf2",
                                       "move": "O-O",
                                       "color": "black",
-                                      "opening": "pirc",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "pirc-7b-sf1-sf1-sf1",
+                                          "id": "pirc-7b-sf3",
                                           "move": "Qd2",
                                           "color": "white",
-                                          "opening": "pirc",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "pirc-7b-sf1-sf1-sf1-sf1",
+                                              "id": "pirc-7b-sf4",
                                               "move": "c6",
                                               "color": "black",
-                                              "opening": "pirc",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "pirc-7b-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "pirc-7b-sf5",
                                                   "move": "h3",
                                                   "color": "white",
-                                                  "opening": "pirc",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "pirc-7b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "pirc-7b-sf6",
                                                       "move": "b5",
                                                       "color": "black",
-                                                      "opening": "pirc",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10905,28 +10905,28 @@ export const E4_TREE = {
                                           "id": "pirc-9c-sf1",
                                           "move": "Bh6",
                                           "color": "white",
-                                          "opening": "pirc",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "pirc-9c-sf1-sf1",
+                                              "id": "pirc-9c-sf2",
                                               "move": "e5",
                                               "color": "black",
-                                              "opening": "pirc",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "pirc-9c-sf1-sf1-sf1",
+                                                  "id": "pirc-9c-sf3",
                                                   "move": "Bxg7",
                                                   "color": "white",
-                                                  "opening": "pirc",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "pirc-9c-sf1-sf1-sf1-sf1",
+                                                      "id": "pirc-9c-sf4",
                                                       "move": "Kxg7",
                                                       "color": "black",
-                                                      "opening": "pirc",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -10958,35 +10958,35 @@ export const E4_TREE = {
                                       "id": "pirc-8c-sf1",
                                       "move": "c6",
                                       "color": "black",
-                                      "opening": "pirc",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "pirc-8c-sf1-sf1",
+                                          "id": "pirc-8c-sf2",
                                           "move": "Bh6",
                                           "color": "white",
-                                          "opening": "pirc",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "pirc-8c-sf1-sf1-sf1",
+                                              "id": "pirc-8c-sf3",
                                               "move": "Bxh6",
                                               "color": "black",
-                                              "opening": "pirc",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "pirc-8c-sf1-sf1-sf1-sf1",
+                                                  "id": "pirc-8c-sf4",
                                                   "move": "Qxh6",
                                                   "color": "white",
-                                                  "opening": "pirc",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "pirc-8c-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "pirc-8c-sf5",
                                                       "move": "Nbd7",
                                                       "color": "black",
-                                                      "opening": "pirc",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11169,7 +11169,7 @@ export const E4_TREE = {
                                                       "id": "al-12a-sf1",
                                                       "move": "Bd6",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11183,14 +11183,14 @@ export const E4_TREE = {
                                                   "id": "al-11a-sf1",
                                                   "move": "c4",
                                                   "color": "white",
-                                                  "opening": "alekhine",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "al-11a-sf1-sf1",
+                                                      "id": "al-11a-sf2",
                                                       "move": "Bb4+",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11212,28 +11212,28 @@ export const E4_TREE = {
                                           "id": "al-9a-sf1",
                                           "move": "Nxf7",
                                           "color": "white",
-                                          "opening": "alekhine",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "al-9a-sf1-sf1",
+                                              "id": "al-9a-sf2",
                                               "move": "Kxf7",
                                               "color": "black",
-                                              "opening": "alekhine",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "al-9a-sf1-sf1-sf1",
+                                                  "id": "al-9a-sf3",
                                                   "move": "Qh5+",
                                                   "color": "white",
-                                                  "opening": "alekhine",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "al-9a-sf1-sf1-sf1-sf1",
+                                                      "id": "al-9a-sf4",
                                                       "move": "Ke6",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11265,35 +11265,35 @@ export const E4_TREE = {
                                       "id": "al-8a-sf1",
                                       "move": "g6",
                                       "color": "black",
-                                      "opening": "alekhine",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "al-8a-sf1-sf1",
+                                          "id": "al-8a-sf2",
                                           "move": "c4",
                                           "color": "white",
-                                          "opening": "alekhine",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "al-8a-sf1-sf1-sf1",
+                                              "id": "al-8a-sf3",
                                               "move": "Nb6",
                                               "color": "black",
-                                              "opening": "alekhine",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "al-8a-sf1-sf1-sf1-sf1",
+                                                  "id": "al-8a-sf4",
                                                   "move": "c5",
                                                   "color": "white",
-                                                  "opening": "alekhine",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "al-8a-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "al-8a-sf5",
                                                       "move": "N6d7",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11416,7 +11416,7 @@ export const E4_TREE = {
                                                       "id": "al-12b-sf1",
                                                       "move": "Nc6",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11531,35 +11531,35 @@ export const E4_TREE = {
                                       "id": "al-8c-sf1",
                                       "move": "c5",
                                       "color": "black",
-                                      "opening": "alekhine",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "al-8c-sf1-sf1",
+                                          "id": "al-8c-sf2",
                                           "move": "c4",
                                           "color": "white",
-                                          "opening": "alekhine",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "al-8c-sf1-sf1-sf1",
+                                              "id": "al-8c-sf3",
                                               "move": "Nb4",
                                               "color": "black",
-                                              "opening": "alekhine",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "al-8c-sf1-sf1-sf1-sf1",
+                                                  "id": "al-8c-sf4",
                                                   "move": "a3",
                                                   "color": "white",
-                                                  "opening": "alekhine",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "al-8c-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "al-8c-sf5",
                                                       "move": "N4c6",
                                                       "color": "black",
-                                                      "opening": "alekhine",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11721,14 +11721,14 @@ export const E4_TREE = {
                                                   "id": "mod-11a-sf1",
                                                   "move": "dxe5",
                                                   "color": "white",
-                                                  "opening": "modern",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "mod-11a-sf1-sf1",
+                                                      "id": "mod-11a-sf2",
                                                       "move": "dxe5",
                                                       "color": "black",
-                                                      "opening": "modern",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11748,21 +11748,21 @@ export const E4_TREE = {
                                               "id": "mod-10a-sf1",
                                               "move": "c5",
                                               "color": "black",
-                                              "opening": "modern",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "mod-10a-sf1-sf1",
+                                                  "id": "mod-10a-sf2",
                                                   "move": "d5",
                                                   "color": "white",
-                                                  "opening": "modern",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "mod-10a-sf1-sf1-sf1",
+                                                      "id": "mod-10a-sf3",
                                                       "move": "e6",
                                                       "color": "black",
-                                                      "opening": "modern",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11788,28 +11788,28 @@ export const E4_TREE = {
                                           "id": "mod-9a-sf1",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "modern",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "mod-9a-sf1-sf1",
+                                              "id": "mod-9a-sf2",
                                               "move": "Nc6",
                                               "color": "black",
-                                              "opening": "modern",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "mod-9a-sf1-sf1-sf1",
+                                                  "id": "mod-9a-sf3",
                                                   "move": "Be2",
                                                   "color": "white",
-                                                  "opening": "modern",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "mod-9a-sf1-sf1-sf1-sf1",
+                                                      "id": "mod-9a-sf4",
                                                       "move": "d5",
                                                       "color": "black",
-                                                      "opening": "modern",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11907,14 +11907,14 @@ export const E4_TREE = {
                                                   "id": "mod-11b-sf1",
                                                   "move": "dxe5",
                                                   "color": "white",
-                                                  "opening": "modern",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "mod-11b-sf1-sf1",
+                                                      "id": "mod-11b-sf2",
                                                       "move": "dxe5",
                                                       "color": "black",
-                                                      "opening": "modern",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -11940,42 +11940,42 @@ export const E4_TREE = {
                                   "id": "mod-7b-sf1",
                                   "move": "Be3",
                                   "color": "white",
-                                  "opening": "modern",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "mod-7b-sf1-sf1",
+                                      "id": "mod-7b-sf2",
                                       "move": "O-O",
                                       "color": "black",
-                                      "opening": "modern",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "mod-7b-sf1-sf1-sf1",
+                                          "id": "mod-7b-sf3",
                                           "move": "Qd2",
                                           "color": "white",
-                                          "opening": "modern",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "mod-7b-sf1-sf1-sf1-sf1",
+                                              "id": "mod-7b-sf4",
                                               "move": "Ng4",
                                               "color": "black",
-                                              "opening": "modern",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "mod-7b-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "mod-7b-sf5",
                                                   "move": "Bg5",
                                                   "color": "white",
-                                                  "opening": "modern",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "mod-7b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "mod-7b-sf6",
                                                       "move": "h6",
                                                       "color": "black",
-                                                      "opening": "modern",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -12101,42 +12101,42 @@ export const E4_TREE = {
                                   "id": "nw-7a-sf1",
                                   "move": "c3",
                                   "color": "white",
-                                  "opening": "nimzowitsch",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nw-7a-sf1-sf1",
+                                      "id": "nw-7a-sf2",
                                       "move": "f6",
                                       "color": "black",
-                                      "opening": "nimzowitsch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nw-7a-sf1-sf1-sf1",
+                                          "id": "nw-7a-sf3",
                                           "move": "Nbd2",
                                           "color": "white",
-                                          "opening": "nimzowitsch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nw-7a-sf1-sf1-sf1-sf1",
+                                              "id": "nw-7a-sf4",
                                               "move": "fxe5",
                                               "color": "black",
-                                              "opening": "nimzowitsch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nw-7a-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nw-7a-sf5",
                                                   "move": "dxe5",
                                                   "color": "white",
-                                                  "opening": "nimzowitsch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nw-7a-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nw-7a-sf6",
                                                       "move": "a6",
                                                       "color": "black",
-                                                      "opening": "nimzowitsch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -12226,42 +12226,42 @@ export const E4_TREE = {
                                   "id": "nw-7b-sf1",
                                   "move": "Be2",
                                   "color": "white",
-                                  "opening": "nimzowitsch",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nw-7b-sf1-sf1",
+                                      "id": "nw-7b-sf2",
                                       "move": "O-O-O",
                                       "color": "black",
-                                      "opening": "nimzowitsch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nw-7b-sf1-sf1-sf1",
+                                          "id": "nw-7b-sf3",
                                           "move": "Be3",
                                           "color": "white",
-                                          "opening": "nimzowitsch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nw-7b-sf1-sf1-sf1-sf1",
+                                              "id": "nw-7b-sf4",
                                               "move": "Nf6",
                                               "color": "black",
-                                              "opening": "nimzowitsch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nw-7b-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nw-7b-sf5",
                                                   "move": "Nbd2",
                                                   "color": "white",
-                                                  "opening": "nimzowitsch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nw-7b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nw-7b-sf6",
                                                       "move": "Qf5",
                                                       "color": "black",
-                                                      "opening": "nimzowitsch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -12363,42 +12363,42 @@ export const E4_TREE = {
                                   "id": "nw-7c-sf1",
                                   "move": "Nxc6",
                                   "color": "white",
-                                  "opening": "nimzowitsch",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nw-7c-sf1-sf1",
+                                      "id": "nw-7c-sf2",
                                       "move": "bxc6",
                                       "color": "black",
-                                      "opening": "nimzowitsch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nw-7c-sf1-sf1-sf1",
+                                          "id": "nw-7c-sf3",
                                           "move": "Bd3",
                                           "color": "white",
-                                          "opening": "nimzowitsch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nw-7c-sf1-sf1-sf1-sf1",
+                                              "id": "nw-7c-sf4",
                                               "move": "d5",
                                               "color": "black",
-                                              "opening": "nimzowitsch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nw-7c-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nw-7c-sf5",
                                                   "move": "e5",
                                                   "color": "white",
-                                                  "opening": "nimzowitsch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nw-7c-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nw-7c-sf6",
                                                       "move": "Nd7",
                                                       "color": "black",
-                                                      "opening": "nimzowitsch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
@@ -12448,70 +12448,70 @@ export const E4_TREE = {
                   "id": "nw-3b-sf1",
                   "move": "d5",
                   "color": "white",
-                  "opening": "nimzowitsch",
+                  "opening": "engine",
                   "engineGenerated": true,
                   "children": [
                     {
-                      "id": "nw-3b-sf1-sf1",
+                      "id": "nw-3b-sf2",
                       "move": "Nb8",
                       "color": "black",
-                      "opening": "nimzowitsch",
+                      "opening": "engine",
                       "engineGenerated": true,
                       "children": [
                         {
-                          "id": "nw-3b-sf1-sf1-sf1",
+                          "id": "nw-3b-sf3",
                           "move": "Nf3",
                           "color": "white",
-                          "opening": "nimzowitsch",
+                          "opening": "engine",
                           "engineGenerated": true,
                           "children": [
                             {
-                              "id": "nw-3b-sf1-sf1-sf1-sf1",
+                              "id": "nw-3b-sf4",
                               "move": "d6",
                               "color": "black",
-                              "opening": "nimzowitsch",
+                              "opening": "engine",
                               "engineGenerated": true,
                               "children": [
                                 {
-                                  "id": "nw-3b-sf1-sf1-sf1-sf1-sf1",
+                                  "id": "nw-3b-sf5",
                                   "move": "Bd3",
                                   "color": "white",
-                                  "opening": "nimzowitsch",
+                                  "opening": "engine",
                                   "engineGenerated": true,
                                   "children": [
                                     {
-                                      "id": "nw-3b-sf1-sf1-sf1-sf1-sf1-sf1",
+                                      "id": "nw-3b-sf6",
                                       "move": "Nf6",
                                       "color": "black",
-                                      "opening": "nimzowitsch",
+                                      "opening": "engine",
                                       "engineGenerated": true,
                                       "children": [
                                         {
-                                          "id": "nw-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                          "id": "nw-3b-sf7",
                                           "move": "h3",
                                           "color": "white",
-                                          "opening": "nimzowitsch",
+                                          "opening": "engine",
                                           "engineGenerated": true,
                                           "children": [
                                             {
-                                              "id": "nw-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                              "id": "nw-3b-sf8",
                                               "move": "Nbd7",
                                               "color": "black",
-                                              "opening": "nimzowitsch",
+                                              "opening": "engine",
                                               "engineGenerated": true,
                                               "children": [
                                                 {
-                                                  "id": "nw-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                  "id": "nw-3b-sf9",
                                                   "move": "Be3",
                                                   "color": "white",
-                                                  "opening": "nimzowitsch",
+                                                  "opening": "engine",
                                                   "engineGenerated": true,
                                                   "children": [
                                                     {
-                                                      "id": "nw-3b-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1-sf1",
+                                                      "id": "nw-3b-sf10",
                                                       "move": "Be7",
                                                       "color": "black",
-                                                      "opening": "nimzowitsch",
+                                                      "opening": "engine",
                                                       "engineGenerated": true,
                                                       "children": [],
                                                       "stockfish": {
