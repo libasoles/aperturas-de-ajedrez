@@ -10,7 +10,9 @@ argument-hint: "Describe what was added to openings.js (opening name, node IDs, 
 
 # Sync Opening Routes
 
-Automatically creates route entries in `src/data/routes.js` (and optionally `PANEL_OPENINGS` in `src/hooks/useOpeningTreeState.js`) whenever new openings or variants are added to `src/data/openings.js`.
+> **This project uses Next.js 16 App Router SSG.** Pages are generated via `generateStaticParams` in `app/(es)/[...slug]/page.tsx`, `app/en/[...slug]/page.tsx`, and `app/fr/[...slug]/page.tsx`. There is no `scripts/prerender.js`, no `dist/` output folder, and no Vite.
+
+Automatically creates route entries in `src/data/routes.js` (and catalog/i18n entries) whenever new openings or variants are added to `src/data/openings.js`.
 
 ## When to use
 
@@ -24,8 +26,11 @@ Automatically creates route entries in `src/data/routes.js` (and optionally `PAN
 |------|------|
 | `src/data/openings.js` | Source of truth — the full opening tree |
 | `src/data/routes.js` | Route definitions for SSG pages (opening + variant routes) |
-| `src/hooks/useOpeningTreeState.js` | `PANEL_OPENINGS` — opening buttons in the side panel |
-| `scripts/prerender.js` | SSG script that reads routes to generate static HTML + sitemap |
+| `src/data/openingCatalog.js` | `OPENING_CATALOG` + `VARIANT_CATALOG` — opening buttons and variant registry |
+| `src/locales/{es,en,fr}/ui.json` | `panel_openings` key — labels shown in the opening filter panel |
+| `app/(es)/[...slug]/page.tsx` | SSG: reads `OPENING_ROUTES` + `VARIANT_ROUTES` via `generateStaticParams` |
+| `app/en/[...slug]/page.tsx` | Same for `/en/` locale |
+| `app/fr/[...slug]/page.tsx` | Same for `/fr/` locale |
 
 ## Procedure
 
@@ -86,39 +91,39 @@ Example — if adding "Holandesa":
 **After:**  …Gambito de Dama, Londres, India de Rey, Nimzo-India, Holandesa…
 ```
 
-### Step 5 — Add to PANEL_OPENINGS (only for new top-level openings)
+### Step 5 — Register in catalog + i18n (only for new top-level openings)
 
-If this is a brand-new opening (not a variant), also add it to the `PANEL_OPENINGS` array in `src/hooks/useOpeningTreeState.js`. The array has two objects with `group` + `openings` fields — insert the new entry **inside the `openings` array** of the matching group:
+If this is a brand-new opening (not a variant), add entries to two files:
+
+**`src/data/openingCatalog.js`** — append to `OPENING_CATALOG` in the correct group (`e4` or `d4`):
 
 ```js
-// PANEL_OPENINGS structure — add inside the correct group's openings: []
-export const PANEL_OPENINGS = [
-  {
-    group: "e4",
-    openings: [
-      // ... existing entries ...
-      {
-        label: "<Short Spanish Name>",
-        nodeId: "<node-id>",
-        pathIds: [<node IDs of every ancestor from root up to, but NOT including, the new node>],
-        color: "<unique hex color>",
-        glow: "<lighter variant of color>",
-        text: "<even lighter variant for text>",
-      },
-    ],
-  },
-  { group: "d4", openings: [ /* ... */ ] },
-];
+{ label: "<Short Spanish Name>", nodeId: "<node-id>",
+  pathIds: [<every ancestor ID from root up to, but NOT including, the new node>],
+  color: "<unique hex color>", glow: "<lighter variant>", text: "<lighter variant for text>",
+  access: "free" | "premium", discoverable: true }
 ```
 
-**pathIds** must list every ancestor ID from `root` down to the node just before the new opening. Example: for `ital-1` (path: root → e4 → span-1 → span-2 → span-3 → ital-1) the value is `["e4", "span-1", "span-2", "span-3"]`. Use `src/data/openings.js` to trace the exact path.
+Also append to `VARIANT_CATALOG` one entry per leaf variant:
 
-Place it in the correct group (`e4` or `d4`) based on the opening's first move.
+```js
+{ variantNodeId: "<variant-node-id>", parentNodeId: "<node-id>", access: "free" | "premium", discoverable: true }
+```
+
+**`src/locales/{es,en,fr}/ui.json`** — add the opening label under `panel_openings` in all three locale files:
+
+```json
+"panel_openings": {
+  "<node-id>": "<Opening Name in that language>"
+}
+```
+
+**pathIds** must list every ancestor ID from the tree root down to the node just before the new opening. Example: for `ital-1` (path: root → e4 → span-1 → span-2 → span-3 → ital-1) the value is `["e4", "span-1", "span-2", "span-3"]`. Use `src/data/openings.js` to trace the exact path.
 
 ### Step 6 — Verify
 
-1. Run `npm run build` to ensure no syntax errors and that prerender generates pages for the new routes.
-2. The sitemap is **automatically regenerated** at build time by `scripts/prerender.js` from `OPENING_ROUTES` (priority 0.8) and `VARIANT_ROUTES` (priority 0.6). No manual edit to any sitemap file is needed — `dist/sitemap.xml` will contain the new URLs after the build.
+1. Run `npm run build` — Next.js must generate all pages without errors (326+ static pages expected).
+2. The sitemaps are regenerated automatically at build time by `app/(es)/sitemap.ts` and `app/en/sitemap.ts` — no manual edit needed.
 3. Check that visiting the new URL in the browser correctly selects the opening/variant.
 
 ## Current opening → nodeId mapping

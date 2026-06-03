@@ -414,7 +414,7 @@ export default function OpeningsPanel({
 
           {filteredGroups.map((group, groupIndex) => (
             <div key={group.group} className="flex flex-col gap-1.5">
-              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-cyan/50">
+              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-cyan/70">
                 {t(`panel_groups.${group.group}`, group.group)}
               </span>
               <div className="flex flex-col gap-1">

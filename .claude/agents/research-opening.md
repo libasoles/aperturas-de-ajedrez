@@ -146,7 +146,7 @@ Output each artifact as a clearly labeled code block.
 ### 5b — Color entry
 
 ```js
-// src/hooks/useOpeningTreeState.js → OPENING_COLORS
+// src/data/openingColors.js → OPENING_COLORS
 <key>: { node: "#...", text: "#...", border: "#...", edge: "#..." },
 ```
 

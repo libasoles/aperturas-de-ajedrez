@@ -333,7 +333,7 @@ export default function MobileChessBoard({
 
                 {/* Move sequence */}
                 <div
-                  className="font-mono text-[14px] leading-relaxed wrap-break-word text-neon-cyan/50 flex-1"
+                  className="font-mono text-[14px] leading-relaxed wrap-break-word text-neon-cyan/70 flex-1"
                   style={{
                     width: BOARD_SIZE,
                     minHeight: 48,

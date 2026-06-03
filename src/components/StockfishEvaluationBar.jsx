@@ -43,6 +43,7 @@ export default function StockfishEvaluationBar({
     return (
       <div className={className}>
         <div
+          role="img"
           className="relative h-1.5 w-full overflow-hidden bg-[#101010]"
           aria-label={`${t("evaluation.label")}: ${leader} ${formatStockfishScore(stockfish)}`}
           title={`${leader} ${formatStockfishScore(stockfish)}`}
@@ -64,6 +65,7 @@ export default function StockfishEvaluationBar({
   return (
     <div className={className}>
       <div
+        role="img"
         className="relative h-full w-1.5 overflow-hidden bg-[#111]"
         aria-label={`${t("evaluation.label")}: ${leader} ${formatStockfishScore(stockfish)}`}
         title={`${leader} ${formatStockfishScore(stockfish)}`}

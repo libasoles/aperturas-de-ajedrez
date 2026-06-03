@@ -396,7 +396,7 @@ export default function ChessPanel({
 
       {/* Move sequence — fixed height so the panel never resizes */}
       <div
-        className="relative font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/50"
+        className="relative font-mono text-[14px] leading-relaxed wrap-break-word overflow-hidden text-neon-cyan/70"
         style={{ width: BOARD_SIZE, height: MOVES_HEIGHT }}
         dangerouslySetInnerHTML={{ __html: formattedMoves }}
       />

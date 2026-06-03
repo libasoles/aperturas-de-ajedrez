@@ -154,7 +154,7 @@ export default function PlayerAnalysisPanel({
               ))}
             </div>
             {loadedGames.length ? (
-              <div className="mt-3 text-xs text-neon-cyan/50">
+              <div className="mt-3 text-xs text-neon-cyan/70">
                 {loadedGames[0].event} · {loadedGames[0].date} ·{" "}
                 {loadedGames[0].result}
               </div>

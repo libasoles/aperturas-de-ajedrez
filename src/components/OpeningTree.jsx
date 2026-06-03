@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic'
 import {
   Background,
   ControlButton,
@@ -10,7 +11,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import ChessNode from "./ChessNode";
-import ChessPanel from "./ChessPanel";
+const ChessPanel = dynamic(() => import('./ChessPanel'), { ssr: false, loading: () => null })
 import ResetViewIcon from "./icons/ResetViewIcon";
 import ZoomInIcon from "./icons/ZoomInIcon";
 import ZoomOutIcon from "./icons/ZoomOutIcon";

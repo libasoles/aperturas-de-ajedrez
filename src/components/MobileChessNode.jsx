@@ -67,7 +67,7 @@ function MobileChessNode({ id, data }) {
         ...ringStyle,
       }}
       className={[
-        "flex flex-col items-center gap-2 px-2 py-3 rounded-full border-2 font-mono font-bold cursor-pointer leading-none min-h-[94px]",
+        "flex flex-col items-center gap-2 px-2 py-3 rounded-full border-2 font-mono font-bold cursor-pointer leading-none min-h-[94px] min-w-11",
         "transition-all duration-150",
         isRoot ? "text-base ring-2 ring-white/20" : "text-sm",
         "hover:brightness-125 active:scale-95",

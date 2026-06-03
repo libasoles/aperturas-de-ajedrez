@@ -30,10 +30,14 @@ Agents are in `.claude/agents/`. They are **not** invoked automatically — spaw
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`research-opening`](.claude/agents/research-opening.md) | Before adding any new opening — fetches theory, validates moves, produces all data artifacts (node tree, colors, catalog, translations, routes). Output only; does not touch source files. |
 | [`lookup-player-source`](.claude/agents/lookup-player-source.md) | Spawned by `ingest-player` when PGNMentor returns 404 — finds correct name or Lichess fallback URL. Output only; does not touch source files. |
-
-**Known issue in research-opening output**: §5b says `src/hooks/useOpeningTreeState.js → OPENING_COLORS` — that file path is **wrong**. The correct file is `src/data/openingColors.js`.
+| [`a11y-specialist`](.claude/agents/a11y-specialist.md) | When you need an accessibility audit/review (WCAG 2.2 AA), including keyboard navigation, focus management, contrast, semantics/ARIA, and screen reader usability. Output only by default. |
 
 ## Architecture
+
+> **Tech stack: Next.js 16 App Router SSG — NOT Vite.**
+> There is no `vite.config.js`, `index.html`, `src/entry-client.jsx`, `src/entry-server.jsx`, or `scripts/prerender.js`.
+> Never create or restore those files. Never revert `package.json` to Vite dependencies.
+> The build tool is `next build` (Turbopack in dev); pages are generated via `generateStaticParams`.
 
 Next.js 16 App Router SSG app that renders an interactive chess opening tree using ReactFlow.
 

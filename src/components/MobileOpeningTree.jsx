@@ -1,7 +1,8 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import MobileChessBoard from "./MobileChessBoard";
+const MobileChessBoard = dynamic(() => import('./MobileChessBoard'), { ssr: false, loading: () => null })
 import MobileChessNode from "./MobileChessNode";
 import MobileHamburgerMenu from "./MobileHamburgerMenu";
 import StockfishEvaluationBar from "./StockfishEvaluationBar";
