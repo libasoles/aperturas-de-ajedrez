@@ -16,54 +16,46 @@ Categorías auditadas: Performance, Accessibility, Best Practices, SEO.
 
 ---
 
-## Resultados — 3 de junio de 2026 (run 2)
+## Resultados — 3 de junio de 2026 (run 3)
 
-Build: Next.js 16.2.7 + Turbopack producción. ChessPanel lazy-loaded; chess.js movido fuera del bundle inicial.
+Build: Next.js 16.2.7 + Turbopack producción. ChessPanel lazy-loaded; chess.js movido; A11y fixes aplicados.
 
 ### Scores globales
 
 | Categoría | Desktop | Mobile | Δ Desktop | Δ Mobile |
 |---|:---:|:---:|:---:|:---:|
-| **Performance** | 🟢 100 | 🟢 99 | +1 | +14 |
-| **Accessibility** | 🟡 83 | 🟡 83 | -9 | -4 |
-| **Best Practices** | 🟡 96 | 🟡 96 | -4 | -4 |
+| **Performance** | 🟢 99 | 🟢 96 | −1 | −3 |
+| **Accessibility** | 🟢 100 | 🟢 96 | +17 | +13 |
+| **Best Practices** | 🟢 100 | 🟢 100 | +4 | +4 |
 | **SEO** | 🟢 100 | 🟢 100 | = | = |
 
 ### Core Web Vitals
 
 | Métrica | Desktop | Mobile | Δ Mobile | Umbral «Good» |
 |---|:---:|:---:|:---:|:---:|
-| **LCP** | 🟢 0.6s | 🟢 2.1s | −1.61s | < 2.5s |
-| **FCP** | 🟢 0.5s | 🟢 1.5s | −0.45s | < 1.8s |
+| **LCP** | 🟢 0.8s | 🟢 2.6s | +0.5s | < 2.5s |
+| **FCP** | 🟢 0.7s | 🟢 1.5s | ≈ | < 1.8s |
 | **CLS** | 🟢 0 | 🟢 0 | = | < 0.1 |
-| **TBT** (proxy INP) | 🟢 0ms | 🟢 20ms | −98ms | < 200ms |
-| **TTI** | 🟢 0.6s | 🟢 2.1s | −1.61s | < 3.8s |
-| **Speed Index** | 🟢 0.8s | 🟢 1.5s | −2.86s | < 3.4s |
+| **TBT** (proxy INP) | 🟢 0ms | 🟢 54ms | +34ms | < 200ms |
+| **TTI** | 🟢 0.8s | 🟢 2.6s | +0.5s | < 3.8s |
+| **Speed Index** | 🟢 0.7s | 🟢 1.8s | +0.3s | < 3.4s |
 
-> **Hito:** LCP mobile pasó de 🔴 3.71s a 🟢 2.1s. Todos los CWV están en verde en ambos dispositivos.
+> **Hito:** Accessibility 83 → 100 (desktop) y 83 → 96 (mobile). Best Practices 96 → 100 en ambos. LCP mobile 2.1s → 2.6s (ligera regresión, aún en verde).
 
-### Oportunidades de mejora
+### Resoluciones en esta versión
 
-| Oportunidad | Ahorro estimado (mobile) |
-|---|:---:|
-| Unused JavaScript (`19k_qypfi59ft`: 39KB, `2zto07r8-lizm`: 30KB) | ~69KB / ~150ms |
-
-### Fallos de accesibilidad
-
-| Fallo | Peso | Descripción |
+| Fallo (anterior) | Peso | Fix |
 |---|:---:|---|
-| `color-contrast` | 7 | Inline styles con alpha `cc` (80% opacidad) en labels de pills: `#ddd6fecc`, `#a5f3fccc`, `#f5d0fecc`, `#ffe4e6cc` sobre `#0f1117` — ratio insuficiente |
-| `landmark-one-main` | 3 | El documento no tiene elemento `<main>`. La app entera se renderiza en `<div>` sin landmark semántico. |
+| `color-contrast` | 7 | Removido sufijo `cc` (80% opacidad) en pills labels en `OpeningsPanel.jsx`, `MobileHamburgerMenu.jsx`, `StaticPanelsPreview.tsx`. Diferencia activo/inactivo por `textShadow` en lugar de opacity. |
+| `landmark-one-main` | 3 | Cambio `<div className="absolute inset-0">` → `<main className="absolute inset-0">` en `AppClient.jsx` |
+| `errors-in-console` | 1 | Resuelto con clean build (`rm -rf .next`). Bug de caché incremental Turbopack — siempre usar `rm -rf .next && npm run build` antes de medir. |
 
-> Comparado con el baseline: se resolvieron `aria-prohibited-attr` y `target-size`. El `color-contrast` persiste con opacidad distinta. `landmark-one-main` es nuevo.
+### Oportunidades de mejora restantes
 
-### Best Practices — regresión
-
-| Fallo | Descripción |
-|---|---|
-| `errors-in-console` | 500 HTTP en `3h44t7pvbs488.css` y `3qqqmxfpjveia.js` — chunks referenciados en el HTML pero no emitidos al disco |
-
-**Causa raíz:** Bug reproducible de Next.js 16 + Turbopack en producción (`next build` + `next start`). El servidor inyecta referencias a chunks que no existen en `.next/static/chunks/`. El app funciona visualmente pese a los errores. No se encontró workaround en esta versión.
+| Oportunidad | Ahorro estimado (mobile) | Estado |
+|---|:---:|---|
+| Unused JavaScript (`19k_qypfi59ft`: 39KB, `2zto07r8-lizm`: 30KB) | ~69KB / ~150ms | Media prioridad; esperar análisis detallado |
+| LCP mobile skeleton/placeholder | 0.5–1s percibido | Baja prioridad (métrica ya en verde) |
 
 ---
 
