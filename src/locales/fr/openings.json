@@ -1332,12 +1332,13 @@
   "pon-3c":  { "annotation": "4.d4 lutte pour le centre plutôt que d'accepter le gambit." },
   "pon-4c":  { "annotation": "4...fxe4 accepte le gambit, créant une tension tactique immédiate." },
   "pon-5c":  { "name": "Contre-gambit Ponziani", "annotation": "5.Cxe5 mène au jeu le plus aiguisé. La position est tactiquement complexe et déséquilibrée." },
-  "falk-1": {
-    "name": "Contregambit de Falkbeer",
-    "annotation": "Réponse agressive des Noirs au Gambit du Roi. Avec 2...d5, les Noirs créent une tension centrale immédiate et une compensation tactique."
+  "falk-2": {
+    "name": "Gambit du Roi",
+    "annotation": "Gambit du Roi : les Blancs offrent le pion f4 pour prendre le contrôle du centre."
   },
   "falk-3": {
-    "annotation": "Le sacrifice classique du Gambit du Roi."
+    "name": "Contregambit de Falkbeer",
+    "annotation": "Réponse agressive des Noirs au Gambit du Roi. Avec 2...d5, les Noirs créent une tension centrale immédiate et une compensation tactique."
   },
   "falk-4": {
     "annotation": "Le Contregambit de Falkbeer : les Noirs sacrifient d5 pour saisir l'initiative."

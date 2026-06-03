@@ -5748,19 +5748,7 @@ export const E4_TREE = {
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "falk-1",
-      "move": "e5",
-      "color": "black",
-      "opening": "falkbeer",
-      "stockfish": {
-        "depth": 14,
-        "score": 0.36
-      },
-      "children": [
+        },
         {
           "id": "falk-2",
           "move": "f4",

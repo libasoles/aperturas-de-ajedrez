@@ -1332,12 +1332,13 @@
   "pon-3c":  { "annotation": "4.d4 lucha por el centro en lugar de aceptar el gambito." },
   "pon-4c":  { "annotation": "4...fxe4 acepta el gambito creando tensión táctica." },
   "pon-5c":  { "name": "Contragambito Ponziani", "annotation": "5.Cxe5 conduce al juego más agudo. Posición tácticamente compleja y desequilibrada." },
-  "falk-1": {
-    "name": "Contragambito de Falkbeer",
-    "annotation": "Defensa agresiva de las Negras contra el Gambito de Rey. Con 2...d5, las Negras crean tensión central inmediata y compensación táctica."
+  "falk-2": {
+    "name": "Gambito de Rey",
+    "annotation": "Gambito de Rey: las Blancas ofrecen el peón f4 para ganar el control del centro."
   },
   "falk-3": {
-    "annotation": "Oferecimiento clásico del Gambito de Rey."
+    "name": "Contragambito de Falkbeer",
+    "annotation": "Defensa agresiva de las Negras contra el Gambito de Rey. Con 2...d5, las Negras crean tensión central inmediata y compensación táctica."
   },
   "falk-4": {
     "annotation": "Contragambito de Falkbeer: las Negras sacrifican d5 para ganar la iniciativa."

@@ -1332,12 +1332,13 @@
   "pon-3c":  { "annotation": "4.d4 fights for the center rather than accepting the gambit." },
   "pon-4c":  { "annotation": "4...fxe4 accepts the gambit, creating immediate tactical tension." },
   "pon-5c":  { "name": "Ponziani Countergambit", "annotation": "5.Nxe5 leads to the sharpest play. The position is tactically complex and double-edged." },
-  "falk-1": {
-    "name": "Falkbeer Countergambit",
-    "annotation": "Black's aggressive response to the King's Gambit. With 2...d5, Black creates immediate central tension and tactical compensation."
+  "falk-2": {
+    "name": "King's Gambit",
+    "annotation": "King's Gambit: White offers the f4 pawn to seize central control."
   },
   "falk-3": {
-    "annotation": "The classic King's Gambit pawn sacrifice."
+    "name": "Falkbeer Countergambit",
+    "annotation": "Black's aggressive response to the King's Gambit. With 2...d5, Black creates immediate central tension and tactical compensation."
   },
   "falk-4": {
     "annotation": "The Falkbeer Countergambit: Black sacrifices d5 to seize the initiative."
