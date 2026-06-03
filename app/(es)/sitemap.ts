@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     { url: 'https://aperturasdeajedrez.com.ar/sitemaps/es.xml' },
+    { url: 'https://aperturasdeajedrez.com.ar/sitemaps/en.xml' },
     { url: 'https://aperturasdeajedrez.com.ar/sitemaps/fr.xml' },
   ]
 }
