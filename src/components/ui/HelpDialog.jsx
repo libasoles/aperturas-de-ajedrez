@@ -117,6 +117,9 @@ export default function HelpDialog() {
               </button>
             </Dialog.Close>
           </div>
+          <Dialog.Description className="sr-only">
+            {t("help.description")}
+          </Dialog.Description>
 
           {/* Table */}
           <div className="flex flex-col">

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { OPENING_TREE } from '../data/openings';
-import { fenAfterMoves } from '../utils/chessPath';
+import { fenAfterMoves } from '../utils/fenAfterMoves';
 import ChessPanel from './ChessPanel';
 
 let mockLanguage = 'es';

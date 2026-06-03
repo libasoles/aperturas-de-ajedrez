@@ -26,10 +26,12 @@ Ver [cwv-analysis.md](cwv-analysis.md) para el análisis completo.
   - Condición: `ChessPanel` solo es visible cuando `selectedNodeId !== null`, por lo que nunca se necesita en la carga inicial
   - Estado: **en progreso** (subagente ejecutándose)
 
-- [ ] **Analizar los 3 chunks anónimos con mayor desperdicio**
-  - Chunks: `2zto07r8` (28KB waste), `2jx1kb770b2zt` (26KB waste), `19k_qypfi59ft` (21KB waste)
-  - Herramienta: `npx @next/bundle-analyzer` — añadir `ANALYZE=true npm run build` para visualizar qué módulos componen cada chunk
-  - Acción posible: si alguno es `chess.js` o partes de `@xyflow/react` que no se usan en la primera pantalla, encapsularlos en imports dinámicos
+- [x] **Analizar los 3 chunks anónimos con mayor desperdicio**
+  - Los IDs `2zto07r8`, `2jx1kb770b2zt`, `19k_qypfi59ft` son nombres de **Turbopack** — no existen en webpack.
+  - Se corrió `ANALYZE=true npx next build --webpack` con `@next/bundle-analyzer`; ver análisis completo en [bundle-analysis.md](bundle-analysis.md)
+  - **Causa raíz encontrada:** `chess.js` (33KB) cargado eagerly porque `chessPath.js` lo importaba a nivel de módulo para `fenAfterMoves`, y `useOpeningTreeState.js` (cargado en AppClient) importa de `chessPath.js`
+  - **Fix aplicado:** `fenAfterMoves` movido a `src/utils/fenAfterMoves.js`; `chessPath.js` ya no importa `chess.js`. Ahora chess.js solo se carga cuando se abre el ChessPanel.
+  - **Pendiente:** locales (118KB / 31KB gzip) cargadas todas en el bundle inicial — ver bundle-analysis.md para detalles
 
 ---
 

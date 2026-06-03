@@ -25,7 +25,10 @@
       "Bash(PLAYWRIGHT_BROWSERS_PATH=/Users/guillermoperez/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/.local-browsers node -e ' *)",
       "Bash(npx playwright *)",
       "Bash(pkill -f \"vite --port\")",
-      "Bash(curl -s http://localhost:5176/)"
+      "Bash(curl -s http://localhost:5176/)",
+      "Bash(npx lighthouse *)",
+      "Bash(npm start *)",
+      "Bash(npm audit *)"
     ],
     "additionalDirectories": [
       "/tmp",

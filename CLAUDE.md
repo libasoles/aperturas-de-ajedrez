@@ -11,7 +11,28 @@ npm run start    # Serve production build locally
 npm run lint     # ESLint
 ```
 
-No test suite exists in this project.
+```bash
+npm run test       # Vitest en modo watch
+npm run test:run   # Vitest single-run (382 tests)
+```
+
+## Performance & CWV docs
+
+Documentación de análisis y objetivos de rendimiento en `docs/`:
+
+| Archivo | Propósito |
+| --- | --- |
+| [`docs/cwv-analysis.md`](docs/cwv-analysis.md) | Métricas Lighthouse originales (3 jun 2026). Fuente de verdad del baseline. No editar salvo que se repita el análisis completo. |
+| [`docs/cwv-objectives.md`](docs/cwv-objectives.md) | Lista de tareas priorizadas por impacto. **Actualizar aquí** cuando se complete o descarte una acción. |
+| [`docs/bundle-analysis.md`](docs/bundle-analysis.md) | Análisis webpack detallado (chunk map, causa raíz de chess.js, pendientes). Actualizar si se ejecuta un nuevo `ANALYZE=true npx next build --webpack`. |
+
+**Cómo abordar tareas de CWV:**
+
+1. Consultar `cwv-objectives.md` para elegir la siguiente tarea por prioridad.
+2. Leer la sección correspondiente en `bundle-analysis.md` antes de tocar código de bundle/splitting.
+3. Para medir impacto real: `npm run build && npm start` → Lighthouse CLI contra `localhost:3000`.
+4. Marcar `[x]` en `cwv-objectives.md` y añadir notas de resultado cuando se complete.
+5. Si se corre `@next/bundle-analyzer` de nuevo: `ANALYZE=true npx next build --webpack` (Turbopack no es compatible con el analyzer).
 
 ## Skills
 

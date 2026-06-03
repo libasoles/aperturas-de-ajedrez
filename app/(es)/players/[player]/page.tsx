@@ -6,24 +6,26 @@ export const dynamic = 'force-dynamic'
 export async function generateMetadata({
   params,
 }: {
-  params: { player: string }
+  params: Promise<{ player: string }>
 }): Promise<Metadata> {
-  const name = decodeURIComponent(params.player)
+  const { player } = await params
+  const name = decodeURIComponent(player)
   return {
     title: `${name} | Explorador de Jugador | Aperturas de Ajedrez`,
     robots: 'noindex,nofollow',
   }
 }
 
-export default function PlayerPage({
+export default async function PlayerPage({
   params,
 }: {
-  params: { player: string }
+  params: Promise<{ player: string }>
 }) {
+  const { player } = await params
   return (
     <div className="h-screen" style={{ background: '#0f1117' }}>
       <PlayerShell
-        player={decodeURIComponent(params.player)}
+        player={decodeURIComponent(player)}
         locale="es"
       />
     </div>

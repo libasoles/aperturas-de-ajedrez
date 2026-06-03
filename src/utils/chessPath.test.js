@@ -1,7 +1,8 @@
 import { Chess } from 'chess.js';
 import { describe, expect, it } from 'vitest';
 import { OPENING_TREE } from '../data/openings';
-import { fenAfterMoves, findPathToNode, getPathToNextFork, getVerticalNavigationTarget, toFrenchSAN, toSpanishSAN } from './chessPath';
+import { fenAfterMoves } from './fenAfterMoves';
+import { findPathToNode, getPathToNextFork, getVerticalNavigationTarget, toFrenchSAN, toSpanishSAN } from './chessPath';
 
 // ─── toSpanishSAN ──────────────────────────────────────────────────────────────
 
