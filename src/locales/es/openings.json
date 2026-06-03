@@ -1419,5 +1419,37 @@
   "falk-11c": {
     "name": "Ataque de Anderssen (Principal)",
     "annotation": "Las Negras toman el peón. Posición complicada con ambos bandos con recursos."
+  },
+  "colle-5": {
+    "name": "Sistema Colle",
+    "annotation": "El Sistema Colle es una apertura sólida para las blancas basada en d4, Cf3, e3, Ad3. El plan principal es preparar el avance e4 con Cbd2, enrocar corto y colocar la torre en e1."
+  },
+  "colle-7": {
+    "annotation": "Ad3 es la jugada clave del Sistema Colle: el alfil apunta al flanco de rey negro y puede participar en un sacrificio de tipo 'regalo griego' (Axh7+) si las condiciones son favorables."
+  },
+  "colle-9a": {
+    "name": "Colle-Koltanowski",
+    "annotation": "Con c3 las blancas consolidan el centro y preparan Cbd2. El plan clásico: Cbd2, enrocar, Te1 y finalmente e4. Popularizado por George Koltanowski, ofrece juego sólido con posibilidades de ataque al flanco de rey."
+  },
+  "colle-11a": {
+    "annotation": "Cbd2 es el movimiento definitorio del Colle-Koltanowski: el caballo apoya el avance e4 (que estará defendido por Ad3, Cbd2 y Te1) y no bloquea el alfil de c1."
+  },
+  "colle-15a": {
+    "annotation": "Te1 completa la preparación del avance e4. Las blancas tienen todo en orden: Ad3 apunta a h7, Cbd2 apoya e4, Te1 sostiene el peón de e3."
+  },
+  "colle-17a": {
+    "name": "Ruptura e4 (Koltanowski)",
+    "annotation": "El avance e4 es el golpe central del Colle-Koltanowski. Si las negras toman con dxe4, las blancas responden Cxe4 con excelente juego activo. Si no toman, e4-e5 gana espacio en el flanco de rey."
+  },
+  "colle-9b": {
+    "name": "Colle-Zukertort",
+    "annotation": "Con b3 las blancas optan por la variante Zukertort: el alfil se desarrollará a b2 desde donde ejerce presión sobre la diagonal larga. Esta variante busca un ataque de flanco de rey más ambicioso."
+  },
+  "colle-13b": {
+    "annotation": "Ab2 es la jugada característica del Colle-Zukertort: el alfil en b2 apunta directamente al rey negro enrocado a través de la diagonal larga. Las blancas amenazan combinaciones con Cg5 o Axh7+."
+  },
+  "colle-16b": {
+    "name": "Colle-Zukertort: Sistema de Fianchetto",
+    "annotation": "Con b6 las negras preparan su propio fianchetto con Ab7, buscando contrajuego en la diagonal larga."
   }
 }

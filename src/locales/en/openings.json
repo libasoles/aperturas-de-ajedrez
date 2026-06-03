@@ -1419,5 +1419,37 @@
   "falk-11c": {
     "name": "Anderssen Attack Main Line",
     "annotation": "Black captures the pawn. Complex position with resources for both sides."
+  },
+  "colle-5": {
+    "name": "Colle System",
+    "annotation": "The Colle System is a solid opening for White based on d4, Nf3, e3, Bd3. The main plan is to prepare the e4 advance with Nbd2, castle kingside, and place the rook on e1. A safe choice that avoids long theoretical lines."
+  },
+  "colle-7": {
+    "annotation": "Bd3 is the key move of the Colle System: the bishop eyes the kingside and can participate in a 'Greek gift' sacrifice (Bxh7+) if the conditions become favorable after Nbd2 and 0-0."
+  },
+  "colle-9a": {
+    "name": "Colle-Koltanowski",
+    "annotation": "With c3 White consolidates the center and prepares Nbd2. The classical plan: Nbd2, castle, Re1, and finally e4. Popularized by George Koltanowski, this offers solid development with kingside attacking chances."
+  },
+  "colle-11a": {
+    "annotation": "Nbd2 is the defining move of the Colle-Koltanowski: the knight supports the e4 advance (backed by Bd3, Nbd2, and Re1) without blocking the c1-bishop, which can activate later."
+  },
+  "colle-15a": {
+    "annotation": "Re1 completes the preparation for the e4 advance. White has everything in order: Bd3 eyes h7, Nbd2 supports e4, Re1 backs the e3 pawn."
+  },
+  "colle-17a": {
+    "name": "Koltanowski — e4 Break",
+    "annotation": "The e4 advance is the thematic central strike. If Black takes with dxe4, White responds Nxe4 with excellent active play. If Black does not take, e4-e5 gains kingside space with a dangerous attack."
+  },
+  "colle-9b": {
+    "name": "Colle-Zukertort",
+    "annotation": "With b3 White chooses the Zukertort variation: the bishop will develop to b2 where it exerts pressure along the long diagonal. This variation aims for a more ambitious kingside attack."
+  },
+  "colle-13b": {
+    "annotation": "Bb2 is the signature move of the Colle-Zukertort: the bishop on b2 points directly at the castled black king through the long diagonal. White threatens combinations involving Ng5 or Bxh7+."
+  },
+  "colle-16b": {
+    "name": "Colle-Zukertort: Fianchetto System",
+    "annotation": "After b6 Black prepares their own fianchetto with Bb7, seeking counterplay on the long diagonal."
   }
 }

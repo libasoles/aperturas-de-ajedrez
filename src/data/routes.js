@@ -355,6 +355,21 @@ const OPENING_ROUTE_DEFS = [
     descriptionFr:
       "Apprenez le Contregambit de Falkbeer (1.e4 e5 2.f4 d5) : une réponse agressive au Gambit du Roi avec un jeu tactique dynamique.",
   },
+  {
+    slug: "sistema-colle",
+    slugEn: "colle-system",
+    slugFr: "systeme-colle",
+    nodeId: "colle-5",
+    title: "Sistema Colle | Aperturas de Ajedrez",
+    titleEn: "Colle System | Chess Openings",
+    titleFr: "Système Colle | Ouvertures d'Échecs",
+    description:
+      "Aprende el Sistema Colle (1.d4 d5 2.Cf3 Cf6 3.e3 e6 4.Ad3 c5): una apertura sólida para las blancas con el plan de Ad3, Cbd2 y el avance central e4.",
+    descriptionEn:
+      "Learn the Colle System (1.d4 d5 2.Nf3 Nf6 3.e3 e6 4.Bd3 c5): a solid White opening based on Bd3, Nbd2 and the thematic e4 central break.",
+    descriptionFr:
+      "Apprenez le Système Colle (1.d4 d5 2.Cf3 Cf6 3.e3 e6 4.Fd3 c5) : une ouverture solide pour les Blancs basée sur Fd3, Cbd2 et la poussée centrale thématique e4.",
+  },
 ];
 
 /**
@@ -1725,6 +1740,39 @@ const VARIANT_ROUTE_DEFS = [
       "Aggressive alternative line with 4.Bb5+. Both sides have tactical resources in this complex position.",
     descriptionFr:
       "Ligne alternative agressive avec 4.Fb5+. Les deux camps ont des ressources tactiques dans cette position complexe.",
+  },
+  // ── Sistema Colle ─────────────────────────────────────────
+  {
+    slug: "sistema-colle/koltanowski",
+    slugEn: "colle-system/koltanowski",
+    slugFr: "systeme-colle/koltanowski",
+    variantNodeId: "colle-17a",
+    parentNodeId: "colle-5",
+    title: "Colle-Koltanowski | Sistema Colle | Aperturas de Ajedrez",
+    titleEn: "Colle-Koltanowski | Colle System | Chess Openings",
+    titleFr: "Colle-Koltanowski | Système Colle | Ouvertures d'Échecs",
+    description:
+      "La variante Colle-Koltanowski (5.c3 Cc6 6.Cbd2 Ad6 7.0-0 0-0 8.Te1): el plan clásico con ruptura e4 y ataque al flanco de rey.",
+    descriptionEn:
+      "The Colle-Koltanowski variation (5.c3 Nc6 6.Nbd2 Bd6 7.0-0 0-0 8.Re1): the classical plan with the e4 break and kingside attack.",
+    descriptionFr:
+      "La variante Colle-Koltanowski (5.c3 Cc6 6.Cbd2 Fd6 7.0-0 0-0 8.Te1) : le plan classique avec la rupture e4 et l'attaque sur l'aile roi.",
+  },
+  {
+    slug: "sistema-colle/zukertort",
+    slugEn: "colle-system/zukertort",
+    slugFr: "systeme-colle/zukertort",
+    variantNodeId: "colle-16b",
+    parentNodeId: "colle-5",
+    title: "Colle-Zukertort | Sistema Colle | Aperturas de Ajedrez",
+    titleEn: "Colle-Zukertort | Colle System | Chess Openings",
+    titleFr: "Colle-Zukertort | Système Colle | Ouvertures d'Échecs",
+    description:
+      "La variante Colle-Zukertort (5.b3 Cc6 6.0-0 Ad6 7.Ab2 0-0 8.Cbd2 b6): fianchetto del alfil oscuro con presión sobre la diagonal larga y ataque al flanco de rey.",
+    descriptionEn:
+      "The Colle-Zukertort variation (5.b3 Nc6 6.0-0 Bd6 7.Bb2 0-0 8.Nbd2 b6): dark-squared bishop fianchetto with pressure on the long diagonal and kingside attack.",
+    descriptionFr:
+      "La variante Colle-Zukertort (5.b3 Cc6 6.0-0 Fd6 7.Fb2 0-0 8.Cbd2 b6) : fianchetto du fou sombre avec pression sur la grande diagonale et attaque sur l'aile roi.",
   },
 ];
 

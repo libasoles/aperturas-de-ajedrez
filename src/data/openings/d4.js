@@ -2832,6 +2832,256 @@ export const D4_TREE = {
                     "depth": 14,
                     "score": 0.27
                   }
+                },
+                {
+                  "id": "colle-5",
+                  "move": "e3",
+                  "color": "white",
+                  "opening": "colle",
+                  "stockfish": {
+                    "depth": 14,
+                    "score": 0.19
+                  },
+                  "children": [
+                    {
+                      "id": "colle-6",
+                      "move": "e6",
+                      "color": "black",
+                      "opening": "colle",
+                      "stockfish": {
+                        "depth": 14,
+                        "score": 0.15
+                      },
+                      "children": [
+                        {
+                          "id": "colle-7",
+                          "move": "Bd3",
+                          "color": "white",
+                          "opening": "colle",
+                          "stockfish": {
+                            "depth": 14,
+                            "score": 0.15
+                          },
+                          "children": [
+                            {
+                              "id": "colle-8",
+                              "move": "c5",
+                              "color": "black",
+                              "opening": "colle",
+                              "stockfish": {
+                                "depth": 14,
+                                "score": 0.12
+                              },
+                              "children": [
+                                {
+                                  "id": "colle-9a",
+                                  "move": "c3",
+                                  "color": "white",
+                                  "opening": "colle",
+                                  "stockfish": {
+                                    "depth": 14,
+                                    "score": 0.0
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "colle-10a",
+                                      "move": "Nc6",
+                                      "color": "black",
+                                      "opening": "colle",
+                                      "stockfish": {
+                                        "depth": 14,
+                                        "score": 0.09
+                                      },
+                                      "children": [
+                                        {
+                                          "id": "colle-11a",
+                                          "move": "Nbd2",
+                                          "color": "white",
+                                          "opening": "colle",
+                                          "stockfish": {
+                                            "depth": 14,
+                                            "score": 0.13
+                                          },
+                                          "children": [
+                                            {
+                                              "id": "colle-12a",
+                                              "move": "Bd6",
+                                              "color": "black",
+                                              "opening": "colle",
+                                              "stockfish": {
+                                                "depth": 14,
+                                                "score": 0.14
+                                              },
+                                              "children": [
+                                                {
+                                                  "id": "colle-13a",
+                                                  "move": "O-O",
+                                                  "color": "white",
+                                                  "opening": "colle",
+                                                  "stockfish": {
+                                                    "depth": 14,
+                                                    "score": 0.16
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "id": "colle-14a",
+                                                      "move": "O-O",
+                                                      "color": "black",
+                                                      "opening": "colle",
+                                                      "stockfish": {
+                                                        "depth": 14,
+                                                        "score": 0.11
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "id": "colle-15a",
+                                                          "move": "Re1",
+                                                          "color": "white",
+                                                          "opening": "colle",
+                                                          "stockfish": {
+                                                            "depth": 14,
+                                                            "score": -0.04
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "id": "colle-16a",
+                                                              "move": "Qc7",
+                                                              "color": "black",
+                                                              "opening": "colle",
+                                                              "stockfish": {
+                                                                "depth": 14,
+                                                                "score": 0.18
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "id": "colle-17a",
+                                                                  "move": "e4",
+                                                                  "color": "white",
+                                                                  "opening": "colle",
+                                                                  "stockfish": {
+                                                                    "depth": 14,
+                                                                    "score": 0.01
+                                                                  },
+                                                                  "children": []
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "colle-9b",
+                                  "move": "b3",
+                                  "color": "white",
+                                  "opening": "colle",
+                                  "stockfish": {
+                                    "depth": 14,
+                                    "score": 0.15
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "colle-10b",
+                                      "move": "Nc6",
+                                      "color": "black",
+                                      "opening": "colle",
+                                      "stockfish": {
+                                        "depth": 14,
+                                        "score": 0.11
+                                      },
+                                      "children": [
+                                        {
+                                          "id": "colle-11b",
+                                          "move": "O-O",
+                                          "color": "white",
+                                          "opening": "colle",
+                                          "stockfish": {
+                                            "depth": 14,
+                                            "score": 0.12
+                                          },
+                                          "children": [
+                                            {
+                                              "id": "colle-12b",
+                                              "move": "Bd6",
+                                              "color": "black",
+                                              "opening": "colle",
+                                              "stockfish": {
+                                                "depth": 14,
+                                                "score": 0.13
+                                              },
+                                              "children": [
+                                                {
+                                                  "id": "colle-13b",
+                                                  "move": "Bb2",
+                                                  "color": "white",
+                                                  "opening": "colle",
+                                                  "stockfish": {
+                                                    "depth": 14,
+                                                    "score": 0.03
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "id": "colle-14b",
+                                                      "move": "O-O",
+                                                      "color": "black",
+                                                      "opening": "colle",
+                                                      "stockfish": {
+                                                        "depth": 14,
+                                                        "score": 0.21
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "id": "colle-15b",
+                                                          "move": "Nbd2",
+                                                          "color": "white",
+                                                          "opening": "colle",
+                                                          "stockfish": {
+                                                            "depth": 14,
+                                                            "score": 0.17
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "id": "colle-16b",
+                                                              "move": "b6",
+                                                              "color": "black",
+                                                              "opening": "colle",
+                                                              "stockfish": {
+                                                                "depth": 14,
+                                                                "score": 0.23
+                                                              },
+                                                              "children": []
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },

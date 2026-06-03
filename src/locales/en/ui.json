@@ -35,7 +35,8 @@
     "marshall-1": "Marshall Defense",
     "philidor-3": "Philidor Defense",
     "pon-1": "Ponziani Opening",
-    "falk-1": "Falkbeer Countergambit"
+    "falk-1": "Falkbeer Countergambit",
+    "colle-5": "Colle System"
   },
   "chess_panel": {
     "position": "Position",

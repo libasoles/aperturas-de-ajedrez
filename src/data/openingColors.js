@@ -144,6 +144,12 @@ const PALETTE = {
     border: "#38bdf8",
     edge: "#0ea5e9",
   },
+  SAGE: {
+    node: "#131a13",
+    text: "#d4e8d4",
+    border: "#6b9b6b",
+    edge: "#7aab7a",
+  },
 };
 
 export const OPENING_COLORS = {
@@ -171,4 +177,5 @@ export const OPENING_COLORS = {
   falkbeer: PALETTE.ORANGE_DARK,
   philidor: PALETTE.BROWN_DARK,
   ponziani: PALETTE.SKY_DARK,
+  colle: PALETTE.SAGE,
 };

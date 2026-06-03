@@ -35,7 +35,8 @@
     "marshall-1": "Defensa Marshall",
     "philidor-3": "Philidor",
     "pon-1": "Apertura Ponziani",
-    "falk-1": "Contragambito de Falkbeer"
+    "falk-1": "Contragambito de Falkbeer",
+    "colle-5": "Sistema Colle"
   },
   "chess_panel": {
     "position": "Posición",

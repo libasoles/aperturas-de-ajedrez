@@ -1,3 +1,4 @@
+// TODO: use the same color constants than openingColors.js
 export const OPENING_CATALOG = [
   {
     group: "e4",
@@ -214,6 +215,16 @@ export const OPENING_CATALOG = [
         color: "#7a8c00",
         glow: "#98b000",
         text: "#e2e87c",
+        access: "premium",
+        discoverable: true,
+      },
+      {
+        label: "Sistema Colle",
+        nodeId: "colle-5",
+        pathIds: ["d4", "qg-1", "lon-2", "lon-3"],
+        color: "#131a13",
+        glow: "#6b9b6b",
+        text: "#d4e8d4",
         access: "premium",
         discoverable: true,
       },
@@ -693,13 +704,60 @@ export const VARIANT_CATALOG = [
     access: "premium",
     discoverable: true,
   },
-  { variantNodeId: "pon-7a",  parentNodeId: "pon-1", access: "premium", discoverable: true },
-  { variantNodeId: "pon-8ba", parentNodeId: "pon-1", access: "premium", discoverable: true },
-  { variantNodeId: "pon-8bb", parentNodeId: "pon-1", access: "premium", discoverable: true },
-  { variantNodeId: "pon-5c",  parentNodeId: "pon-1", access: "premium", discoverable: true },
-  { variantNodeId: "falk-13a", parentNodeId: "falk-3", access: "premium", discoverable: true },
-  { variantNodeId: "falk-11b", parentNodeId: "falk-3", access: "premium", discoverable: true },
-  { variantNodeId: "falk-11c", parentNodeId: "falk-3", access: "premium", discoverable: true },
+  {
+    variantNodeId: "pon-7a",
+    parentNodeId: "pon-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "pon-8ba",
+    parentNodeId: "pon-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "pon-8bb",
+    parentNodeId: "pon-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "pon-5c",
+    parentNodeId: "pon-1",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "falk-13a",
+    parentNodeId: "falk-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "falk-11b",
+    parentNodeId: "falk-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "falk-11c",
+    parentNodeId: "falk-3",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "colle-17a",
+    parentNodeId: "colle-5",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "colle-16b",
+    parentNodeId: "colle-5",
+    access: "premium",
+    discoverable: true,
+  },
 ];
 
 export const OPENING_ENTRY_BY_NODE_ID = Object.fromEntries(

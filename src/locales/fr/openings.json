@@ -1419,5 +1419,37 @@
   "falk-11c": {
     "name": "Attaque d'Anderssen (Principale)",
     "annotation": "Les Noirs prennent le pion. Position compliquée avec des ressources pour les deux camps."
+  },
+  "colle-5": {
+    "name": "Système Colle",
+    "annotation": "Le Système Colle est une ouverture solide pour les Blancs basée sur d4, Cf3, e3, Fd3. Le plan principal est de préparer l'avance e4 avec Cbd2, de roquer côté roi et de placer la tour en e1."
+  },
+  "colle-7": {
+    "annotation": "Fd3 est le coup clé du Système Colle : le fou vise l'aile roi adverse et peut participer à un sacrifice de type 'cadeau grec' (Fxh7+) si les conditions deviennent favorables après Cbd2 et 0-0."
+  },
+  "colle-9a": {
+    "name": "Colle-Koltanowski",
+    "annotation": "Avec c3, les Blancs consolident le centre et préparent Cbd2. Le plan classique : Cbd2, roquer, Te1 et enfin e4. Popularisé par George Koltanowski, il offre un développement solide avec des chances d'attaque sur l'aile roi."
+  },
+  "colle-11a": {
+    "annotation": "Cbd2 est le coup définissant le Colle-Koltanowski : le cavalier soutient l'avance e4 (appuyée par Fd3, Cbd2 et Te1) sans bloquer le fou de c1, qui peut s'activer plus tard."
+  },
+  "colle-15a": {
+    "annotation": "Te1 complète la préparation de l'avance e4. Les Blancs ont tout en ordre : Fd3 vise h7, Cbd2 soutient e4, Te1 appuie le pion e3."
+  },
+  "colle-17a": {
+    "name": "Koltanowski — Rupture e4",
+    "annotation": "L'avance e4 est le coup central thématique. Si les Noirs prennent avec dxe4, les Blancs répondent Cxe4 avec un excellent jeu actif. Sinon, e4-e5 gagne de l'espace sur l'aile roi avec une attaque dangereuse."
+  },
+  "colle-9b": {
+    "name": "Colle-Zukertort",
+    "annotation": "Avec b3, les Blancs choisissent la variante Zukertort : le fou se développera en b2 où il exerce une pression sur la grande diagonale. Cette variante vise une attaque sur l'aile roi plus ambitieuse."
+  },
+  "colle-13b": {
+    "annotation": "Fb2 est le coup signature du Colle-Zukertort : le fou en b2 pointe directement vers le roi noir roqué à travers la grande diagonale. Les Blancs menacent des combinaisons impliquant Cg5 ou Fxh7+."
+  },
+  "colle-16b": {
+    "name": "Colle-Zukertort : Système Fianchetto",
+    "annotation": "Après b6, les Noirs préparent leur propre fianchetto avec Fb7, cherchant un contre-jeu sur la grande diagonale."
   }
 }
