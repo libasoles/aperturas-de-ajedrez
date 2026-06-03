@@ -848,14 +848,14 @@
     "name": "Complete Exchange Variation"
   },
   "lon-2": {
-    "name": "London System",
-    "annotation": "Solid setup without committing to c4"
+    "annotation": "Flexible development; still allows the Queen's Gambit, Colle, or other options"
   },
   "lon-3": {
     "annotation": "Natural knight development"
   },
   "lon-4": {
-    "annotation": "Active bishop before closing the chain"
+    "name": "London System",
+    "annotation": "London System's signature: active bishop before closing the chain with e3"
   },
   "lon-6": {
     "annotation": "Consolidates the center without sharp exchanges"

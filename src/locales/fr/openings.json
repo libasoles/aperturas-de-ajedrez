@@ -848,14 +848,14 @@
     "name": "Variante d'Échange complète"
   },
   "lon-2": {
-    "name": "Système Londres",
-    "annotation": "Setup solide sans s'engager avec c4"
+    "annotation": "Développement flexible ; permet encore le Gambit Dame, le Système Colle ou d'autres options"
   },
   "lon-3": {
     "annotation": "Développement naturel du cavalier"
   },
   "lon-4": {
-    "annotation": "Fou actif avant de fermer la chaîne"
+    "name": "Système Londres",
+    "annotation": "Signature du Système Londres : fou actif avant de fermer la chaîne avec e3"
   },
   "lon-6": {
     "annotation": "Consolide le centre sans échanges brusques"

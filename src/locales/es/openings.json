@@ -848,14 +848,14 @@
     "name": "Variante de Cambio completa"
   },
   "lon-2": {
-    "name": "Sistema Londres",
-    "annotation": "Setup sólido sin comprometerse con c4"
+    "annotation": "Desarrollo flexible; aún permite el Gambito de Dama, el Sistema Colle u otras opciones"
   },
   "lon-3": {
     "annotation": "Desarrollo natural del caballo"
   },
   "lon-4": {
-    "annotation": "Alfil activo antes de cerrar la cadena"
+    "name": "Sistema Londres",
+    "annotation": "Sello del Sistema Londres: alfil activo antes de cerrar la cadena con e3"
   },
   "lon-6": {
     "annotation": "Consolida el centro sin cambios bruscos"
