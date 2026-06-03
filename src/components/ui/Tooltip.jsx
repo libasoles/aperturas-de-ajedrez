@@ -11,7 +11,7 @@ export function TooltipProvider({ children }) {
   );
 }
 
-export function Tooltip({ children, content }) {
+export function Tooltip({ children, content, side = "top" }) {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef(null);
 
@@ -66,7 +66,7 @@ export function Tooltip({ children, content }) {
       </RadixTooltip.Trigger>
       <RadixTooltip.Portal>
         <RadixTooltip.Content
-          side="top"
+          side={side}
           sideOffset={6}
           style={{
             background: '#0f0f1a',

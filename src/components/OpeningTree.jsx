@@ -1,6 +1,7 @@
 import {
   Background,
-  Controls,
+  ControlButton,
+  Panel,
   ReactFlow,
   ReactFlowProvider,
   useReactFlow,
@@ -12,10 +13,79 @@ import ChessPanel from "./ChessPanel";
 import OpeningsPanel from "./OpeningsPanel";
 import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import HelpDialog from "./ui/HelpDialog";
+import { Tooltip } from "./ui/Tooltip";
 import { findPathToNode } from "../utils/chessPath";
 import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
+
+function ZoomInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z" />
+    </svg>
+  );
+}
+
+function ZoomOutIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M5 11h14v2H5v-2z" />
+    </svg>
+  );
+}
+
+function ResetViewIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3 3h7v2H5.41l4.3 4.29-1.42 1.42L4 6.41V9H2V3h1zm11 0h7v6h-2V5.41l-4.29 4.3-1.42-1.42L17.59 4H16V2zm-3 14.59-4.29 4.3A1 1 0 0 1 5 21H3v-6h2v2.59l4.29-4.3 1.42 1.42zM19 15h2v6h-6v-2h2.59l-4.3-4.29 1.42-1.42L19 17.59V15z" />
+    </svg>
+  );
+}
+
+function FlowControls({ initialX }) {
+  const { zoomIn, zoomOut, setViewport, getNodes } = useReactFlow();
+  const { t } = useTranslation();
+
+  const handleFitView = useCallback(() => {
+    const nodes = getNodes();
+    if (nodes.length === 0) return;
+
+    const minY = Math.min(...nodes.map((n) => n.position.y));
+    const maxY = Math.max(
+      ...nodes.map((n) => n.position.y + (n.measured?.height ?? n.height ?? 40)),
+    );
+    const nodesHeight = maxY - minY;
+    const centerY = (minY + maxY) / 2;
+
+    const viewH = window.innerHeight;
+    const zoom = Math.min(2, Math.max(0.2, (viewH * 0.8) / nodesHeight));
+
+    setViewport({ x: initialX, y: viewH / 2 - centerY * zoom, zoom }, { duration: 300 });
+  }, [getNodes, setViewport, initialX]);
+
+  return (
+    <Panel position="bottom-left">
+      <div className="react-flow__controls">
+        <Tooltip content={t("controls.zoom_in")} side="right">
+          <ControlButton onClick={() => zoomIn({ duration: 300 })} aria-label={t("controls.zoom_in")}>
+            <ZoomInIcon />
+          </ControlButton>
+        </Tooltip>
+        <Tooltip content={t("controls.zoom_out")} side="right">
+          <ControlButton onClick={() => zoomOut({ duration: 300 })} aria-label={t("controls.zoom_out")}>
+            <ZoomOutIcon />
+          </ControlButton>
+        </Tooltip>
+        <Tooltip content={t("controls.reset_view")} side="right">
+          <ControlButton onClick={handleFitView} aria-label={t("controls.reset_view")}>
+            <ResetViewIcon />
+          </ControlButton>
+        </Tooltip>
+      </div>
+    </Panel>
+  );
+}
 
 function OpeningTreeContent({
   nodes,
@@ -205,7 +275,7 @@ function OpeningTreeContent({
           nodesFocusable={false}
         >
           <Background color="var(--color-grid)" gap={24} size={1} />
-          <Controls showInteractive={false} />
+          <FlowControls initialX={initialViewport.x} />
         </ReactFlow>
       </div>
 

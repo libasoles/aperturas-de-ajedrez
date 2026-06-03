@@ -113,5 +113,10 @@
   "hamburger_menu": {
     "open": "Abrir menú",
     "close": "Cerrar menú"
+  },
+  "controls": {
+    "zoom_in": "Acercar",
+    "zoom_out": "Alejar",
+    "reset_view": "Vista inicial"
   }
 }
