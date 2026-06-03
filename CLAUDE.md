@@ -12,6 +12,12 @@ npm run lint     # ESLint
 ```
 
 ```bash
+npm run json-to-database  # Bootstrap only: seed Neo4j openings DB from the existing JSON tree.
+                          # One-time migration. Going forward, Neo4j is source of truth.
+                          # Requires: docker/neo4j-openings running + NEO4J_OPENINGS_* in .env
+```
+
+```bash
 npm run test       # Vitest en modo watch
 npm run test:run   # Vitest single-run (382 tests)
 ```
@@ -38,17 +44,17 @@ Documentación de análisis y objetivos de rendimiento en `docs/`:
 
 Skills are in `.claude/skills/`. They are invoked **automatically** — read the skill instructions whenever the trigger conditions apply, without waiting to be asked.
 
-| Skill                                                                | Trigger                                                                         |
-| -------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Skill | Trigger |
+| --- | --- |
 | [`sync-opening-routes`](.claude/skills/sync-opening-routes/SKILL.md) | Any edit to `src/data/openings.js` that adds a new opening node or variant node |
-| [`ingest-player`](.claude/skills/ingest-player/SKILL.md)             | Ingesting a player's games into Neo4j, downloading PGN, cargar partidas, ingestar jugador |
+| [`ingest-player`](.claude/skills/ingest-player/SKILL.md) | Ingesting a player's games into Neo4j, downloading PGN, cargar partidas, ingestar jugador |
 
 ## Agents (on demand)
 
 Agents are in `.claude/agents/`. They are **not** invoked automatically — spawn them explicitly when needed.
 
-| Agent                                                    | When to use                                                                                                                                                                              |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Agent | When to use |
+| --- | --- |
 | [`research-opening`](.claude/agents/research-opening.md) | Before adding any new opening — fetches theory, validates moves, produces all data artifacts (node tree, colors, catalog, translations, routes). Output only; does not touch source files. |
 | [`stockfish-eval`](.claude/agents/stockfish-eval.md) | After `research-opening` provides the node tree — computes Stockfish 18 depth-14 evaluations for every node, then outputs the tree ready for implementation. Output only; does not touch source files. |
 | [`lookup-player-source`](.claude/agents/lookup-player-source.md) | Spawned by `ingest-player` when PGNMentor returns 404 — finds correct name or Lichess fallback URL. Output only; does not touch source files. |
@@ -284,6 +290,10 @@ Premium gating is controlled by `NEXT_PUBLIC_HAS_PREMIUM_ACCESS`. Default (unset
 
 7. **Update README.md** — Add opening name to the feature list (line ~14)
    - Just append to the comma-separated list of openings
+
+8. **Sync to Neo4j** — `npm run json-to-database`
+   - Bootstrap/transición: re-sincroniza Neo4j desde el JSON mientras el circuito Neo4j-first no está implementado
+   - Requiere container Docker corriendo (`docker compose -f docker/neo4j-openings/docker-compose.yml up -d`) y `NEO4J_OPENINGS_*` en `.env`
 
 ### Validation
 

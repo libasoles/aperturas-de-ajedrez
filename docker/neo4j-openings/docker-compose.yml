@@ -1,0 +1,14 @@
+services:
+  neo4j-openings:
+    image: neo4j:community
+    container_name: neo4j-openings
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/openings-password
+    volumes:
+      - neo4j-openings-data:/data
+
+volumes:
+  neo4j-openings-data:

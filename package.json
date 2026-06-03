@@ -13,7 +13,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "download:player": "node scripts/download-player-pgn.js"
+    "download:player": "node scripts/download-player-pgn.js",
+    "json-to-database": "node --env-file=.env scripts/json-to-database.js"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.11",
