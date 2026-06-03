@@ -21,7 +21,11 @@
       "WebFetch(domain:es.wikipedia.org)",
       "Bash(curl -s http://localhost:5173)",
       "Bash(grep -E \"\\\\.\\(js|ts\\)$\")",
-      "WebFetch(domain:en.wikibooks.org)"
+      "WebFetch(domain:en.wikibooks.org)",
+      "Bash(PLAYWRIGHT_BROWSERS_PATH=/Users/guillermoperez/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/.local-browsers node -e ' *)",
+      "Bash(npx playwright *)",
+      "Bash(pkill -f \"vite --port\")",
+      "Bash(curl -s http://localhost:5176/)"
     ],
     "additionalDirectories": [
       "/tmp",

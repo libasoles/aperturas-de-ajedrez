@@ -23,9 +23,11 @@ function OpeningTreeContent({
   selectedNodeId,
   activeOpening,
   activeVariant,
+  pinnedIds,
   toggleNode,
   toggleOpening,
   toggleVariant,
+  togglePin,
   firstOpeningBtnRef,
   lockedContentId,
   premiumOverlayVersion,
@@ -182,8 +184,10 @@ function OpeningTreeContent({
           variantRoutes={variantRoutes}
           activeOpening={activeOpening}
           activeVariant={activeVariant}
+          pinnedIds={pinnedIds}
           onToggleOpening={handleToggleOpening}
           onToggleVariant={handleToggleVariant}
+          onTogglePin={togglePin}
           firstButtonRef={firstOpeningBtnRef}
         />
       )}

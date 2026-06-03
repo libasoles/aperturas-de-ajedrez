@@ -41,14 +41,31 @@ const createVariantNode = (variant, variantRouteById, childrenByParent) => ({
   ),
 });
 
-const filterVariantNodes = (nodes, query, locale) =>
+const filterVariantNodes = (
+  nodes,
+  query,
+  locale,
+  pinnedIds = new Set(),
+  filterPinned = false,
+) =>
   nodes
     .map((node) => {
-      const children = filterVariantNodes(node.children, query, locale);
-      const matches = normalizeSearchText(
-        getVariantNodeLabel(node, locale),
+      const children = filterVariantNodes(
+        node.children,
+        query,
         locale,
-      ).includes(query);
+        pinnedIds,
+        filterPinned,
+      );
+      const isPinned = pinnedIds.has(node.variantNodeId);
+      const textMatch =
+        !query ||
+        normalizeSearchText(getVariantNodeLabel(node, locale), locale).includes(
+          query,
+        );
+      const matches = filterPinned
+        ? isPinned && textMatch
+        : isPinned || textMatch;
 
       if (!matches && children.length === 0) {
         return null;
@@ -66,46 +83,80 @@ function VariantMenuNode({
   locale,
   onVariantClick,
   premiumAccess,
+  pinnedIds,
+  onTogglePin,
 }) {
   const isVariantActive = activeVariant === node.variantNodeId;
+  const isPinned = pinnedIds.has(node.variantNodeId);
 
   return (
     <div className="flex flex-col gap-0.5">
-      <button
-        onClick={() => onVariantClick(node)}
-        className="flex min-h-8 items-center gap-2 border-l px-3 py-1.5 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
-        style={{
-          marginLeft: `${depth * 20}px`,
-          borderColor: isVariantActive ? opening.glow : "transparent",
-          background: isVariantActive ? `${opening.color}18` : "transparent",
-          outlineColor: opening.glow,
-        }}
+      <div
+        className="group flex items-stretch"
+        style={{ marginLeft: `${depth * 20}px` }}
       >
-        <span
-          className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+        <button
+          onClick={() => onVariantClick(node)}
+          className="flex flex-1 min-h-8 items-center gap-2 border-l px-3 py-1.5 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
           style={{
-            backgroundColor: isVariantActive
-              ? opening.glow
-              : `${opening.color}70`,
-            boxShadow: isVariantActive ? `0 0 6px ${opening.glow}` : "none",
-          }}
-        />
-        <span
-          className="min-w-0 flex-1 font-mono text-[12px] leading-snug"
-          style={{
-            color: isVariantActive ? opening.text : `${opening.text}90`,
-            textShadow: isVariantActive ? `0 0 6px ${opening.glow}60` : "none",
+            borderColor: isVariantActive ? opening.glow : "transparent",
+            background: isVariantActive ? `${opening.color}18` : "transparent",
+            outlineColor: opening.glow,
           }}
         >
-          {getVariantNodeLabel(node, locale)}
-        </span>
-        {node.access === "premium" && !premiumAccess && (
-          <PremiumLockIcon
-            className="w-3.5 h-3.5 shrink-0"
-            title="Contenido premium"
+          <span
+            className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+            style={{
+              backgroundColor: isVariantActive
+                ? opening.glow
+                : `${opening.color}70`,
+              boxShadow: isVariantActive ? `0 0 6px ${opening.glow}` : "none",
+            }}
           />
-        )}
-      </button>
+          <span
+            className="min-w-0 flex-1 font-mono text-[12px] leading-snug"
+            style={{
+              color: isVariantActive ? opening.text : `${opening.text}90`,
+              textShadow: isVariantActive
+                ? `0 0 6px ${opening.glow}60`
+                : "none",
+            }}
+          >
+            {getVariantNodeLabel(node, locale)}
+          </span>
+          {node.access === "premium" && !premiumAccess && (
+            <PremiumLockIcon
+              className="w-3.5 h-3.5 shrink-0"
+              title="Contenido premium"
+            />
+          )}
+        </button>
+        <button
+          tabIndex={-1}
+          onClick={(e) => {
+            e.stopPropagation();
+            onTogglePin(node.variantNodeId);
+          }}
+          title={isPinned ? "Quitar pin" : "Pinear variante"}
+          className="flex items-center justify-center px-2 transition-opacity duration-150 cursor-pointer focus-visible:outline-none"
+          style={{
+            opacity: isPinned ? 1 : undefined,
+            color: isPinned ? opening.glow : "#6b7280",
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className={`w-3.5 h-3.5 shrink-0 ${isPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
+            fill={isPinned ? "currentColor" : "none"}
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
+          </svg>
+        </button>
+      </div>
 
       {node.children.map((child) => (
         <VariantMenuNode
@@ -117,6 +168,8 @@ function VariantMenuNode({
           locale={locale}
           onVariantClick={onVariantClick}
           premiumAccess={premiumAccess}
+          pinnedIds={pinnedIds}
+          onTogglePin={onTogglePin}
         />
       ))}
     </div>
@@ -129,13 +182,16 @@ export default function OpeningsPanel({
   variantRoutes = [],
   activeOpening,
   activeVariant = null,
+  pinnedIds = new Set(),
   onToggleOpening,
   onToggleVariant = () => {},
+  onTogglePin = () => {},
   firstButtonRef,
 }) {
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [filterPinned, setFilterPinned] = useState(false);
   const locale = detectLocale();
   const premiumAccess = hasPremiumAccess();
   const variantRouteById = useMemo(
@@ -172,7 +228,7 @@ export default function OpeningsPanel({
       ),
     });
 
-    if (!query) {
+    if (!query && !filterPinned) {
       return openings.map((group) => ({
         ...group,
         openings: group.openings.map(withVariantTree),
@@ -184,13 +240,25 @@ export default function OpeningsPanel({
         const matchingOpenings = group.openings
           .map((opening) => {
             const openingWithVariants = withVariantTree(opening);
-            const openingMatches = normalizeSearchText(
-              t(`panel_openings.${opening.nodeId}`, opening.label),
-              locale,
-            ).includes(query);
+            const isOpeningPinned = pinnedIds.has(opening.nodeId);
+            const openingMatchesText =
+              !query ||
+              normalizeSearchText(
+                t(`panel_openings.${opening.nodeId}`, opening.label),
+                locale,
+              ).includes(query);
+            const openingMatches = filterPinned
+              ? isOpeningPinned && openingMatchesText
+              : isOpeningPinned || openingMatchesText;
             const matchingVariants = openingMatches
               ? openingWithVariants.variants
-              : filterVariantNodes(openingWithVariants.variants, query, locale);
+              : filterVariantNodes(
+                  openingWithVariants.variants,
+                  query,
+                  locale,
+                  pinnedIds,
+                  filterPinned,
+                );
 
             if (!openingMatches && matchingVariants.length === 0) {
               return null;
@@ -209,8 +277,10 @@ export default function OpeningsPanel({
       })
       .filter(Boolean);
   }, [
+    filterPinned,
     locale,
     openings,
+    pinnedIds,
     searchText,
     t,
     variantChildrenByParent,
@@ -286,28 +356,55 @@ export default function OpeningsPanel({
 
       {!collapsed && (
         <div className="min-h-0 flex-1 flex flex-col gap-3 px-4 pb-4 overflow-y-auto">
-          <div className="relative">
-            <input
-              type="search"
-              value={searchText}
-              onChange={(event) => setSearchText(event.target.value)}
-              placeholder={t("openings_panel.search_placeholder")}
-              aria-label={t("openings_panel.search_label")}
-              className="min-h-9 w-full border border-neon-purple/30 bg-black/30 py-2 pr-9 pl-3 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
-            />
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex">
+            <div className="relative flex-1">
+              <input
+                type="search"
+                value={searchText}
+                onChange={(event) => setSearchText(event.target.value)}
+                placeholder={t("openings_panel.search_placeholder")}
+                aria-label={t("openings_panel.search_label")}
+                className="min-h-9 w-full border border-neon-purple/30 bg-black/30 py-2 pr-9 pl-3 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
+              />
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m16 16 4 4" />
+              </svg>
+            </div>
+            <button
+              onClick={() => setFilterPinned((v) => !v)}
+              title={
+                filterPinned
+                  ? "Mostrar todas las aperturas"
+                  : "Mostrar solo pineadas"
+              }
+              className={`flex shrink-0 items-center justify-center px-2 min-h-9 transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                filterPinned
+                  ? "text-neon-purple"
+                  : "text-neon-purple/60 hover:text-neon-purple/90"
+              }`}
             >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m16 16 4 4" />
-            </svg>
+              <svg
+                viewBox="0 0 24 24"
+                className="w-4 h-4 shrink-0"
+                fill={filterPinned ? "currentColor" : "none"}
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
+              </svg>
+            </button>
           </div>
 
           {filteredGroups.length === 0 ? (
@@ -326,62 +423,90 @@ export default function OpeningsPanel({
                   const isActive = activeOpening === opening.nodeId;
                   const variants = opening.variants;
 
+                  const isOpeningPinned = pinnedIds.has(opening.nodeId);
                   return (
                     <div key={opening.nodeId} className="flex flex-col gap-0.5">
-                      <button
-                        ref={
-                          groupIndex === 0 && openingIndex === 0
-                            ? firstButtonRef
-                            : undefined
-                        }
-                        onClick={() => handleOpeningClick(opening)}
-                        className="flex min-h-9 w-full items-center gap-2 border-l px-3 py-2 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
-                        style={{
-                          borderColor: isActive
-                            ? opening.glow
-                            : `${opening.color}40`,
-                          background: isActive
-                            ? `${opening.color}20`
-                            : `${opening.color}08`,
-                          boxShadow: isActive
-                            ? `0 0 12px ${opening.glow}30`
-                            : "none",
-                          outlineColor: opening.glow,
-                        }}
-                      >
-                        <span
-                          className="inline-block w-2 h-2 shrink-0 transition-all duration-150"
+                      <div className="group flex items-stretch">
+                        <button
+                          ref={
+                            groupIndex === 0 && openingIndex === 0
+                              ? firstButtonRef
+                              : undefined
+                          }
+                          onClick={() => handleOpeningClick(opening)}
+                          className="flex flex-1 min-h-9 items-center gap-2 border-l px-3 py-2 text-left transition-all duration-150 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer hover:brightness-125"
                           style={{
-                            backgroundColor: isActive
-                              ? opening.color
-                              : "transparent",
-                            border: `1px solid ${opening.color}`,
+                            borderColor: isActive
+                              ? opening.glow
+                              : `${opening.color}40`,
+                            background: isActive
+                              ? `${opening.color}20`
+                              : `${opening.color}08`,
                             boxShadow: isActive
-                              ? `0 0 6px ${opening.glow}`
+                              ? `0 0 12px ${opening.glow}30`
                               : "none",
-                          }}
-                        />
-                        <span
-                          className="min-w-0 flex-1 font-mono text-[13px] tracking-wide"
-                          style={{
-                            color: isActive
-                              ? opening.text
-                              : `${opening.text}cc`,
-                            textShadow: isActive
-                              ? `0 0 6px ${opening.glow}80`
-                              : "none",
+                            outlineColor: opening.glow,
                           }}
                         >
-                          {getOpeningLabel(opening)}
-                        </span>
-                        {opening.access === "premium" &&
-                          !premiumAccess && (
+                          <span
+                            className="inline-block w-2 h-2 shrink-0 transition-all duration-150"
+                            style={{
+                              backgroundColor: isActive
+                                ? opening.color
+                                : "transparent",
+                              border: `1px solid ${opening.color}`,
+                              boxShadow: isActive
+                                ? `0 0 6px ${opening.glow}`
+                                : "none",
+                            }}
+                          />
+                          <span
+                            className="min-w-0 flex-1 font-mono text-[13px] tracking-wide"
+                            style={{
+                              color: isActive
+                                ? opening.text
+                                : `${opening.text}cc`,
+                              textShadow: isActive
+                                ? `0 0 6px ${opening.glow}80`
+                                : "none",
+                            }}
+                          >
+                            {getOpeningLabel(opening)}
+                          </span>
+                          {opening.access === "premium" && !premiumAccess && (
                             <PremiumLockIcon
                               className="w-3.5 h-3.5 shrink-0"
                               title="Contenido premium"
                             />
                           )}
-                      </button>
+                        </button>
+                        <button
+                          tabIndex={-1}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onTogglePin(opening.nodeId);
+                          }}
+                          title={
+                            isOpeningPinned ? "Quitar pin" : "Pinear apertura"
+                          }
+                          className="flex items-center justify-center px-2 cursor-pointer focus-visible:outline-none"
+                          style={{
+                            color: isOpeningPinned ? opening.glow : "#6b7280",
+                          }}
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            className={`w-3.5 h-3.5 shrink-0 ${isOpeningPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
+                            fill={isOpeningPinned ? "currentColor" : "none"}
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
+                          </svg>
+                        </button>
+                      </div>
 
                       {variants.map((variant) => (
                         <VariantMenuNode
@@ -393,6 +518,8 @@ export default function OpeningsPanel({
                           locale={locale}
                           onVariantClick={handleVariantClick}
                           premiumAccess={premiumAccess}
+                          pinnedIds={pinnedIds}
+                          onTogglePin={onTogglePin}
                         />
                       ))}
                     </div>

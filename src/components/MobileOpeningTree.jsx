@@ -9,7 +9,7 @@ import { findPathToNode } from "../utils/chessPath";
 
 const nodeTypes = { chess: MobileChessNode };
 
-function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, toggleNode, toggleOpening, toggleVariant, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
+function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening, activeVariant, pinnedIds, toggleNode, toggleOpening, toggleVariant, togglePin, expandToNextFork, lockedContentId, premiumOverlayVersion, catalog, initialMobileViewport, tree, variantRoutes }) {
   const { getViewport, setViewport } = useReactFlow();
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
   const flowWrapperRef = useRef(null);
@@ -150,8 +150,10 @@ function MobileOpeningTreeContent({ nodes, edges, selectedNodeId, activeOpening,
           variantRoutes={variantRoutes}
           activeOpening={activeOpening}
           activeVariant={activeVariant}
+          pinnedIds={pinnedIds}
           onToggleOpening={handleToggleOpening}
           onToggleVariant={handleToggleVariant}
+          onTogglePin={togglePin}
         />
       )}
       <StockfishEvaluationBar

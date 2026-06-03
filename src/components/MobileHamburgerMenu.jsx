@@ -21,8 +21,10 @@ export default function MobileHamburgerMenu({
   variantRoutes,
   activeOpening,
   activeVariant,
+  pinnedIds = new Set(),
   onToggleOpening,
   onToggleVariant,
+  onTogglePin = () => {},
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
@@ -251,139 +253,205 @@ export default function MobileHamburgerMenu({
                         {group.openings.map((opening) => {
                           const isOpeningActive =
                             activeOpening === opening.nodeId;
+                          const isOpeningPinned = pinnedIds.has(opening.nodeId);
                           const variants =
                             variantsByParent.get(opening.nodeId) ?? [];
 
                           return (
                             <div key={opening.nodeId}>
                               {/* Opening row */}
-                              <button
-                                onClick={() => handleOpeningClick(opening)}
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: 8,
-                                  width: "100%",
-                                  minHeight: 40,
-                                  padding: "0 12px",
-                                  background: isOpeningActive
-                                    ? `${opening.color}20`
-                                    : "transparent",
-                                  border: "none",
-                                  borderLeft: `3px solid ${
-                                    isOpeningActive
-                                      ? opening.glow
-                                      : `${opening.color}40`
-                                  }`,
-                                  cursor: "pointer",
-                                  textAlign: "left",
-                                }}
-                              >
-                                <span
+                              <div style={{ display: "flex", alignItems: "stretch" }}>
+                                <button
+                                  onClick={() => handleOpeningClick(opening)}
                                   style={{
-                                    width: 8,
-                                    height: 8,
-                                    flexShrink: 0,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 8,
+                                    flex: 1,
+                                    minHeight: 40,
+                                    padding: "0 12px",
                                     background: isOpeningActive
-                                      ? opening.color
+                                      ? `${opening.color}20`
                                       : "transparent",
-                                    border: `1px solid ${opening.color}`,
-                                    boxShadow: isOpeningActive
-                                      ? `0 0 6px ${opening.glow}`
-                                      : "none",
-                                  }}
-                                />
-                                <span
-                                  className="font-mono"
-                                  style={{
-                                    fontSize: 14,
-                                    color: isOpeningActive
-                                      ? opening.text
-                                      : `${opening.text}cc`,
-                                    textShadow: isOpeningActive
-                                      ? `0 0 6px ${opening.glow}80`
-                                      : "none",
+                                    border: "none",
+                                    borderLeft: `3px solid ${
+                                      isOpeningActive
+                                        ? opening.glow
+                                        : `${opening.color}40`
+                                    }`,
+                                    cursor: "pointer",
+                                    textAlign: "left",
                                   }}
                                 >
-                                  {t(
-                                    `panel_openings.${opening.nodeId}`,
-                                    opening.label,
-                                  )}
-                                </span>
-                                {opening.access === "premium" &&
-                                  !hasPremiumAccess() && (
-                                    <PremiumLockIcon
-                                      className="w-3.5 h-3.5 shrink-0"
-                                      title="Contenido premium"
-                                    />
-                                  )}
-                              </button>
+                                  <span
+                                    style={{
+                                      width: 8,
+                                      height: 8,
+                                      flexShrink: 0,
+                                      background: isOpeningActive
+                                        ? opening.color
+                                        : "transparent",
+                                      border: `1px solid ${opening.color}`,
+                                      boxShadow: isOpeningActive
+                                        ? `0 0 6px ${opening.glow}`
+                                        : "none",
+                                    }}
+                                  />
+                                  <span
+                                    className="font-mono"
+                                    style={{
+                                      fontSize: 14,
+                                      flex: 1,
+                                      color: isOpeningActive
+                                        ? opening.text
+                                        : `${opening.text}cc`,
+                                      textShadow: isOpeningActive
+                                        ? `0 0 6px ${opening.glow}80`
+                                        : "none",
+                                    }}
+                                  >
+                                    {t(
+                                      `panel_openings.${opening.nodeId}`,
+                                      opening.label,
+                                    )}
+                                  </span>
+                                  {opening.access === "premium" &&
+                                    !hasPremiumAccess() && (
+                                      <PremiumLockIcon
+                                        className="w-3.5 h-3.5 shrink-0"
+                                        title="Contenido premium"
+                                      />
+                                    )}
+                                </button>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    onTogglePin(opening.nodeId);
+                                  }}
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: "0 10px",
+                                    background: "transparent",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    color: isOpeningPinned ? opening.glow : "#6b7280",
+                                  }}
+                                >
+                                  <svg
+                                    viewBox="0 0 24 24"
+                                    style={{ width: 14, height: 14, flexShrink: 0 }}
+                                    fill={isOpeningPinned ? "currentColor" : "none"}
+                                    stroke="currentColor"
+                                    strokeWidth="1.8"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
+                                  </svg>
+                                </button>
+                              </div>
 
                               {/* Variant rows — indented under parent opening */}
                               {variants.map((variant) => {
                                 const isVariantActive =
                                   activeVariant === variant.variantNodeId;
+                                const isVariantPinned = pinnedIds.has(variant.variantNodeId);
                                 const label = getVariantLabel(variant, locale);
 
                                 return (
-                                  <button
+                                  <div
                                     key={variant.variantNodeId}
-                                    onClick={() => handleVariantClick(variant)}
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                      gap: 6,
-                                      width: "100%",
-                                      minHeight: 36,
-                                      paddingLeft: 28,
-                                      paddingRight: 12,
-                                      background: isVariantActive
-                                        ? `${opening.color}18`
-                                        : "transparent",
-                                      border: "none",
-                                      borderLeft: `3px solid ${
-                                        isVariantActive
-                                          ? opening.glow
-                                          : "transparent"
-                                      }`,
-                                      cursor: "pointer",
-                                      textAlign: "left",
-                                    }}
+                                    style={{ display: "flex", alignItems: "stretch" }}
                                   >
-                                    <span
+                                    <button
+                                      onClick={() => handleVariantClick(variant)}
                                       style={{
-                                        width: 4,
-                                        height: 4,
-                                        flexShrink: 0,
-                                        borderRadius: "50%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 6,
+                                        flex: 1,
+                                        minHeight: 36,
+                                        paddingLeft: 28,
+                                        paddingRight: 12,
                                         background: isVariantActive
-                                          ? opening.glow
-                                          : `${opening.color}60`,
-                                      }}
-                                    />
-                                    <span
-                                      className="font-mono"
-                                      style={{
-                                        fontSize: 13,
-                                        color: isVariantActive
-                                          ? opening.text
-                                          : `${opening.text}80`,
-                                        textShadow: isVariantActive
-                                          ? `0 0 6px ${opening.glow}60`
-                                          : "none",
-                                        lineHeight: 1.3,
+                                          ? `${opening.color}18`
+                                          : "transparent",
+                                        border: "none",
+                                        borderLeft: `3px solid ${
+                                          isVariantActive
+                                            ? opening.glow
+                                            : "transparent"
+                                        }`,
+                                        cursor: "pointer",
+                                        textAlign: "left",
                                       }}
                                     >
-                                      {label}
-                                    </span>
-                                    {variant.access === "premium" &&
-                                      !hasPremiumAccess() && (
-                                        <PremiumLockIcon
-                                          className="w-3.5 h-3.5 shrink-0"
-                                          title="Contenido premium"
-                                        />
-                                      )}
-                                  </button>
+                                      <span
+                                        style={{
+                                          width: 4,
+                                          height: 4,
+                                          flexShrink: 0,
+                                          borderRadius: "50%",
+                                          background: isVariantActive
+                                            ? opening.glow
+                                            : `${opening.color}60`,
+                                        }}
+                                      />
+                                      <span
+                                        className="font-mono"
+                                        style={{
+                                          fontSize: 13,
+                                          flex: 1,
+                                          color: isVariantActive
+                                            ? opening.text
+                                            : `${opening.text}80`,
+                                          textShadow: isVariantActive
+                                            ? `0 0 6px ${opening.glow}60`
+                                            : "none",
+                                          lineHeight: 1.3,
+                                        }}
+                                      >
+                                        {label}
+                                      </span>
+                                      {variant.access === "premium" &&
+                                        !hasPremiumAccess() && (
+                                          <PremiumLockIcon
+                                            className="w-3.5 h-3.5 shrink-0"
+                                            title="Contenido premium"
+                                          />
+                                        )}
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        onTogglePin(variant.variantNodeId);
+                                      }}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        padding: "0 10px",
+                                        background: "transparent",
+                                        border: "none",
+                                        cursor: "pointer",
+                                        color: isVariantPinned ? opening.glow : "#6b7280",
+                                      }}
+                                    >
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        style={{ width: 12, height: 12, flexShrink: 0 }}
+                                        fill={isVariantPinned ? "currentColor" : "none"}
+                                        stroke="currentColor"
+                                        strokeWidth="1.8"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      >
+                                        <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
+                                      </svg>
+                                    </button>
+                                  </div>
                                 );
                               })}
                             </div>

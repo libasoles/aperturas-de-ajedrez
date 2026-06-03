@@ -299,13 +299,13 @@ describe('OpeningsPanel', () => {
       variantRoutes: MOCK_VARIANT_ROUTES,
     });
 
-    expect(screen.getByText('Giuoco Piano').closest('button')).toHaveStyle({
+    expect(screen.getByText('Giuoco Piano').closest('button').parentElement).toHaveStyle({
       marginLeft: '20px',
     });
-    expect(screen.getByText('Gambito Evans').closest('button')).toHaveStyle({
+    expect(screen.getByText('Gambito Evans').closest('button').parentElement).toHaveStyle({
       marginLeft: '40px',
     });
-    expect(screen.getByText('Defensa Mieses').closest('button')).toHaveStyle({
+    expect(screen.getByText('Defensa Mieses').closest('button').parentElement).toHaveStyle({
       marginLeft: '60px',
     });
   });

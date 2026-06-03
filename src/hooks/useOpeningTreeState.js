@@ -100,6 +100,7 @@ function buildGraph(
   const colors =
     colorMap[treeNode.opening] || colorMap.root || fallbackColors;
   const isExpanded = expandedIds.has(treeNode.id);
+  const strictFilter = options.strictFilter ?? false;
   const hasChildren = treeNode.children && treeNode.children.length > 0;
   const isPremium = options.isPremiumNode?.(treeNode.id) ?? false;
   const showStockfishLabel = isSignificantEngineGeneratedStockfishNode(
@@ -133,6 +134,7 @@ function buildGraph(
     let childY = yOffset;
 
     for (const child of treeNode.children) {
+      if (strictFilter && options.pinnedAllIds && !options.pinnedAllIds.has(child.id)) continue;
       const {
         nodes: cn,
         edges: ce,
@@ -375,9 +377,20 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
       variantFullIds,
     ],
   );
+  const [pinnedIds, setPinnedIds] = useState(() => new Set());
+  const [pinnedCollapsedIds, setPinnedCollapsedIds] = useState(() => new Set());
+  const pinnedAllIds = useMemo(() => {
+    if (pinnedIds.size === 0) return null;
+    const result = new Set();
+    for (const id of pinnedIds) {
+      const ids = openingFullIds[id] ?? variantFullIds[id];
+      if (ids) for (const nid of ids) result.add(nid);
+    }
+    return result;
+  }, [openingFullIds, pinnedIds, variantFullIds]);
   const graphOptions = useMemo(
-    () => ({ colors, isPremiumNode, stockfishLabelThreshold }),
-    [colors, isPremiumNode, stockfishLabelThreshold],
+    () => ({ colors, isPremiumNode, pinnedAllIds, stockfishLabelThreshold, strictFilter: pinnedIds.size > 0 }),
+    [colors, isPremiumNode, pinnedAllIds, pinnedIds, stockfishLabelThreshold],
   );
   const initGraph = useMemo(
     () => buildGraph(tree, initialDisplayIds, graphOptions),
@@ -453,6 +466,16 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
         ...getPathIdsToNodeInTree(tree, activeOpening).slice(0, -1),
       ]);
     }
+    if (pinnedIds.size > 0) {
+      const result = new Set();
+      for (const id of pinnedIds) {
+        const ids = openingFullIds[id] ?? variantFullIds[id];
+        if (ids) for (const nid of ids) {
+          if (!pinnedCollapsedIds.has(nid)) result.add(nid);
+        }
+      }
+      return result;
+    }
     if (activeVariant) {
       return new Set([
         ...(variantFullIds[activeVariant] ?? []),
@@ -473,6 +496,8 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     openingFullIds,
     isActiveOpeningLocked,
     isActiveVariantLocked,
+    pinnedCollapsedIds,
+    pinnedIds,
     tree,
     variantFullIds,
   ]);
@@ -516,11 +541,20 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
   const toggleNode = useCallback(
     (id) => {
       if (isPremiumNode(id) && !premiumAccess) return;
-      // Preserve visible nodes before deactivating opening/variant
+      if (pinnedIds.size > 0) {
+        // Within a pinned view: toggle collapse without affecting pins
+        setPinnedCollapsedIds((prev) => {
+          const next = new Set(prev);
+          if (next.has(id)) next.delete(id);
+          else next.add(id);
+          return next;
+        });
+        return;
+      }
+      // Normal behavior: preserve visible nodes, then toggle in expandedIds
       absorbActiveIntoExpanded();
       setExpandedIds((prev) => {
         const next = new Set(prev);
-        // Toggle the specific node
         if (next.has(id)) next.delete(id);
         else next.add(id);
         return next;
@@ -528,7 +562,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
       setActiveOpening(null);
       setActiveVariant(null);
     },
-    [absorbActiveIntoExpanded, isPremiumNode, premiumAccess],
+    [absorbActiveIntoExpanded, isPremiumNode, pinnedIds, premiumAccess],
   );
 
   const selectNode = useCallback(
@@ -591,6 +625,16 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     },
     [absorbActiveIntoExpanded, isPremiumNode, premiumAccess, tree],
   );
+
+  const togglePin = useCallback((nodeId) => {
+    setPinnedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(nodeId)) next.delete(nodeId);
+      else next.add(nodeId);
+      return next;
+    });
+    setPinnedCollapsedIds(new Set());
+  }, []);
 
   const toggleOpening = useCallback((nodeId) => {
     setActiveVariant(null);
@@ -819,6 +863,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     selectedNodeId,
     activeOpening,
     activeVariant,
+    pinnedIds,
     catalog,
     config,
     initialMobileViewport,
@@ -833,6 +878,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     expandToNextFork,
     toggleOpening,
     toggleVariant,
+    togglePin,
     firstOpeningBtnRef,
     subtitle: config.subtitle,
   };
