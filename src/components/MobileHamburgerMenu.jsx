@@ -314,9 +314,7 @@ export default function MobileHamburgerMenu({
                                     style={{
                                       fontSize: 14,
                                       flex: 1,
-                                      color: isOpeningActive
-                                        ? opening.text
-                                        : `${opening.text}cc`,
+                                      color: opening.text,
                                       textShadow: isOpeningActive
                                         ? `0 0 6px ${opening.glow}80`
                                         : "none",

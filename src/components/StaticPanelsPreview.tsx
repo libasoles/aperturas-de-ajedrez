@@ -330,7 +330,7 @@ function StaticOpeningsPanel({ locale, activeNodeId }: { locale: Locale; activeN
                       <span
                         className="min-w-0 flex-1 truncate font-mono text-[13px] tracking-wide"
                         style={{
-                          color: isActive ? opening.text : `${opening.text}cc`,
+                          color: opening.text,
                           textShadow: isActive ? `0 0 6px ${opening.glow}80` : 'none',
                         }}
                       >

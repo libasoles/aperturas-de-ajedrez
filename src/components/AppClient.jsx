@@ -55,7 +55,7 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
   return (
     <I18nextProvider i18n={i18n}>
       <TooltipProvider>
-        <div className="absolute inset-0">
+        <main className="absolute inset-0">
           {!isMobile && (
             <TopBar
               locale={locale}
@@ -69,7 +69,7 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
           ) : (
             <OpeningTreeDynamic state={state} />
           )}
-        </div>
+        </main>
       </TooltipProvider>
     </I18nextProvider>
   )

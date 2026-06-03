@@ -22,18 +22,16 @@ Ver [cwv-analysis.md](cwv-analysis.md) para el análisis completo.
 
 ---
 
-## 🔴 Alta prioridad — Accesibilidad (score 83 → objetivo 95+)
+## ✅ Resuelto — Accesibilidad (score 83 → objetivo 95+)
 
-- [ ] **`color-contrast`: labels de pills con alpha `cc` (80% opacidad)**
+- [x] **`color-contrast`: labels de pills con alpha `cc` (80% opacidad)**
   - Elementos: `<span style="color:#ddd6fecc">`, `#a5f3fccc`, `#f5d0fecc`, `#ffe4e6cc` sobre `#0f1117`
-  - Los colores son los de las aperturas (violet, cyan, fuchsia, rose) con opacidad 80% inline
-  - Solución: eliminar el canal alpha de los colores inline — usar variantes opacas con suficiente contraste (ratio ≥ 4.5:1). Por ejemplo `#ddd6fe` → verificar ratio; si no alcanza, aclarar o usar blanco `#f5f3ff`
+  - Fix: eliminado el sufijo `cc` en `OpeningsPanel.jsx`, `MobileHamburgerMenu.jsx` y `StaticPanelsPreview.tsx`
+  - El color activo/inactivo se diferencia por `textShadow` (glow en activo, ninguno en inactivo)
   - Peso en score: 7 (alto)
 
-- [ ] **`landmark-one-main`: el documento no tiene `<main>`**
-  - Toda la app se renderiza dentro de `<div>` sin `<main>` semántico
-  - Solución: en `RootLayout.tsx` o `AppClient.jsx` envolver el contenido en `<main>` (puede ser `<main className="...">`)
-  - Alternativa: añadir `role="main"` al div raíz de la app como fix mínimo
+- [x] **`landmark-one-main`: el documento no tiene `<main>`**
+  - Fix: `<div className="absolute inset-0">` → `<main className="absolute inset-0">` en `AppClient.jsx`
   - Peso en score: 3
 
 ---
