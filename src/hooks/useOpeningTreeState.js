@@ -151,7 +151,7 @@ function buildGraph(
         id: `${treeNode.id}->${child.id}`,
         source: treeNode.id,
         target: child.id,
-        type: "straight",
+        type: "default",
         style: { stroke: colors.edge, strokeWidth: 2, opacity: 0.7 },
         markerEnd: {
           type: MarkerType.ArrowClosed,
@@ -173,11 +173,9 @@ function buildGraph(
   return { nodes, edges, height: Y_STEP };
 }
 
-function getRouteFromPathname(routeData) {
-  if (typeof window === "undefined") return { opening: null, variant: null };
+function getRouteFromPathname(routeData, pathname) {
   if (!routeData) return { opening: null, variant: null };
-  // Strip /en/ or /fr/ prefix if present, then extract the slug
-  let path = window.location.pathname;
+  let path = pathname ?? (typeof window !== "undefined" ? window.location.pathname : "/");
   if (path === "/en" || path.startsWith("/en/")) {
     path = path.slice(3) || "/"; // remove "/en"
   } else if (path === "/fr" || path.startsWith("/fr/")) {
@@ -199,11 +197,12 @@ function getRouteFromPathname(routeData) {
   return { opening: null, variant: null };
 }
 
-function getInitialStateFromUrl(tree) {
-  if (typeof window === "undefined") {
-    return { selectedNodeId: "root", extraExpanded: new Set() };
-  }
-  const nodeId = new URLSearchParams(window.location.search).get("node");
+function getInitialStateFromUrl(tree, initialNodeId) {
+  const nodeId =
+    initialNodeId ??
+    (typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("node")
+      : null);
   if (!nodeId) return { selectedNodeId: "root", extraExpanded: new Set() };
   const path = findPathToNode(tree, nodeId);
   if (!path.length) return { selectedNodeId: "root", extraExpanded: new Set() };
@@ -302,7 +301,10 @@ function resolvePremiumCanAccess(premium, premiumAccess) {
   return (accessLevel = "free") => accessLevel !== "premium" || premiumAccess;
 }
 
-export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
+export function useOpeningTreeState(
+  config = defaultOpeningTreeConfig,
+  { pathname: propPathname, initialNodeId: propInitialNodeId } = {},
+) {
   const tree = config.tree;
   const catalog = config.catalog ?? EMPTY_ARRAY;
   const variantCatalog = config.variantCatalog ?? EMPTY_ARRAY;
@@ -349,12 +351,12 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     [routeData.variantRoutes, tree],
   );
   const initialRoute = useMemo(
-    () => getRouteFromPathname(routeData),
-    [routeData],
+    () => getRouteFromPathname(routeData, propPathname),
+    [routeData, propPathname],
   );
   const initialUrlState = useMemo(
-    () => getInitialStateFromUrl(tree),
-    [tree],
+    () => getInitialStateFromUrl(tree, propInitialNodeId),
+    [tree, propInitialNodeId],
   );
   const initialDisplayIds = useMemo(
     () =>
@@ -411,8 +413,8 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
   const [expandedIds, setExpandedIds] = useState(
     () => new Set([...initialExpandedIds, ...initialUrlState.extraExpanded]),
   );
-  const [activeOpening, setActiveOpening] = useState(initialRoute.opening);
-  const [activeVariant, setActiveVariant] = useState(initialRoute.variant);
+  const [activeOpening, setActiveOpening] = useState(() => initialRoute.opening);
+  const [activeVariant, setActiveVariant] = useState(() => initialRoute.variant);
   const [selectedNodeId, setSelectedNodeId] = useState(
     initialUrlState.selectedNodeId,
   );

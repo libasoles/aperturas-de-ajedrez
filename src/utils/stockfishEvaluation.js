@@ -2,7 +2,7 @@ export const MAX_VISIBLE_STOCKFISH_SCORE = 5;
 export const DEFAULT_STOCKFISH_LABEL_THRESHOLD = 0.5;
 
 export function resolveStockfishLabelThreshold(
-  value = import.meta.env.VITE_STOCKFISH_LABEL_THRESHOLD,
+  value = process.env.NEXT_PUBLIC_STOCKFISH_LABEL_THRESHOLD,
 ) {
   const threshold = Number(value);
   return Number.isFinite(threshold) && threshold >= 0

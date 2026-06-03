@@ -1,7 +1,7 @@
 export function hasPremiumAccess() {
-  const premiumAccessFlag = import.meta.env.VITE_HAS_PREMIUM_ACCESS;
+  const premiumAccessFlag = process.env.NEXT_PUBLIC_HAS_PREMIUM_ACCESS;
 
-  return premiumAccessFlag === "1";
+  return premiumAccessFlag !== "0";
 }
 
 export function canAccessContent(accessLevel = "free") {

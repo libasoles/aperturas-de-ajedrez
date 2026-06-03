@@ -1,3 +1,4 @@
+'use client'
 import { Background, ReactFlow, ReactFlowProvider, useReactFlow } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import MobileChessBoard from "./MobileChessBoard";

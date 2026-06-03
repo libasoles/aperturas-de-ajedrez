@@ -229,7 +229,7 @@ describe("togglePin", () => {
 
 describe("premium gating", () => {
   it("does not open the premium overlay when access is enabled", () => {
-    vi.stubEnv("VITE_HAS_PREMIUM_ACCESS", "1");
+    vi.stubEnv("NEXT_PUBLIC_HAS_PREMIUM_ACCESS", "1");
 
     const { result } = renderHook(() => useOpeningTreeState());
     const premiumNode = result.current.nodes.find(
@@ -247,7 +247,7 @@ describe("premium gating", () => {
   });
 
   it("opens the premium overlay when access is disabled", () => {
-    vi.stubEnv("VITE_HAS_PREMIUM_ACCESS", "0");
+    vi.stubEnv("NEXT_PUBLIC_HAS_PREMIUM_ACCESS", "0");
 
     const { result } = renderHook(() => useOpeningTreeState());
     const premiumNode = result.current.nodes.find(

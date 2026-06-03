@@ -1,4 +1,4 @@
-import londonSource from "./london.txt?raw";
+import londonSource from "./london-source.js";
 import { parseIndentedTree } from "./parseIndentedTree";
 
 export const LONDON_OPENING = "london-study";

@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+'use client'
 import { Background, Controls, MarkerType, ReactFlow, ReactFlowProvider } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ChessNode from "./ChessNode";

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import PremiumContentGate from "./PremiumContentGate";
+import BoardVisibilityIcon from "./icons/BoardVisibilityIcon";
 import FlipBoardIcon from "./icons/FlipBoardIcon";
 import Toast from "./ui/Toast";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
@@ -55,6 +56,7 @@ export default function MobileChessBoard({
   );
 
   const [orientation, setOrientation] = useState("white");
+  const [boardHidden, setBoardHidden] = useState(false);
   const [dismissedGateId, setDismissedGateId] = useState(null);
   const [dismissedToastId, setDismissedToastId] = useState(null);
 
@@ -139,6 +141,10 @@ export default function MobileChessBoard({
     ? `${lockedContentId}:${premiumOverlayVersion}`
     : null;
   const isGateVisible = gateKey && dismissedGateId !== gateKey;
+  const boardVisibilityLabel = boardHidden
+    ? t("chess_panel.show_board")
+    : t("chess_panel.hide_board");
+  const flipBoardLabel = t("chess_panel.flip_board");
 
   const formattedMoves = useMemo(() => {
     const parts = [];
@@ -196,7 +202,7 @@ export default function MobileChessBoard({
           {/* Header */}
           <div className="flex flex-col gap-2 shrink-0">
             <div className="flex items-center justify-end gap-2">
-              {moves.length > 0 && (
+              {!boardHidden && moves.length > 0 && (
                 <button
                   onClick={isPlaying ? pause : play}
                   aria-label={isPlaying ? t("chess_panel.pause") : t("chess_panel.play")}
@@ -226,14 +232,42 @@ export default function MobileChessBoard({
                 </button>
               )}
               <button
-                onClick={() =>
-                  setOrientation((o) => (o === "white" ? "black" : "white"))
-                }
-                title={t("chess_panel.flip_board")}
-                className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+                type="button"
+                onClick={() => setBoardHidden((current) => !current)}
+                aria-pressed={boardHidden}
+                aria-label={boardVisibilityLabel}
+                title={boardVisibilityLabel}
+                className={[
+                  "flex h-8 w-8 items-center justify-center border",
+                  "transition-all duration-150 active:scale-95 cursor-pointer",
+                  boardHidden
+                    ? "text-neon-purple border-neon-purple/60 bg-neon-purple/18"
+                    : "text-neon-purple/70 border-neon-purple/30 hover:text-neon-purple hover:border-neon-purple/55",
+                ].join(" ")}
               >
-                <FlipBoardIcon />
+                <BoardVisibilityIcon hidden={boardHidden} className="h-6 w-6" />
               </button>
+              {!boardHidden && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOrientation((o) => (o === "white" ? "black" : "white"))
+                  }
+                  aria-label={flipBoardLabel}
+                  title={flipBoardLabel}
+                  className="flex h-8 w-8 items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer text-neon-cyan/60 border-neon-cyan/25 hover:text-neon-cyan hover:border-neon-cyan/50"
+                >
+                  <FlipBoardIcon
+                    className="h-6 w-6 transition-transform duration-300"
+                    style={{
+                      transform:
+                        orientation === "black"
+                          ? "rotate(180deg)"
+                          : "rotate(0deg)",
+                    }}
+                  />
+                </button>
+              )}
             </div>
 
             <span
@@ -256,37 +290,39 @@ export default function MobileChessBoard({
             style={{ touchAction: "pan-x pan-y" }}
           >
             <div className="relative flex flex-col gap-1 min-h-full">
-              <div className="relative" style={{ width: BOARD_SIZE }}>
-                {/* Board */}
-                <div
-                  inert
-                  style={{
-                    width: BOARD_SIZE,
-                    height: BOARD_SIZE,
-                  }}
-                >
-                  <Chessboard
-                    options={{
-                      position: fen,
-                      boardOrientation: orientation,
-                      allowDragging: false,
-                      showAnimations: false,
-                      darkSquareStyle: CUSTOM_DARK,
-                      lightSquareStyle: CUSTOM_LIGHT,
-                      boardStyle: {
-                        borderRadius: 0,
-                        boxShadow: "0 0 16px rgba(0,0,0,0.38)",
-                      },
+              {!boardHidden && (
+                <div className="relative" style={{ width: BOARD_SIZE }}>
+                  {/* Board */}
+                  <div
+                    inert
+                    style={{
+                      width: BOARD_SIZE,
+                      height: BOARD_SIZE,
                     }}
-                  />
+                  >
+                    <Chessboard
+                      options={{
+                        position: fen,
+                        boardOrientation: orientation,
+                        allowDragging: false,
+                        showAnimations: false,
+                        darkSquareStyle: CUSTOM_DARK,
+                        lightSquareStyle: CUSTOM_LIGHT,
+                        boardStyle: {
+                          borderRadius: 0,
+                          boxShadow: "0 0 16px rgba(0,0,0,0.38)",
+                        },
+                      }}
+                    />
+                  </div>
+                  {isGateVisible ? (
+                    <PremiumContentGate
+                      contentId={lockedContentId}
+                      onClose={() => setDismissedGateId(gateKey)}
+                    />
+                  ) : null}
                 </div>
-                {isGateVisible ? (
-                  <PremiumContentGate
-                    contentId={lockedContentId}
-                    onClose={() => setDismissedGateId(gateKey)}
-                  />
-                ) : null}
-              </div>
+              )}
 
               {/* Move sequence */}
               <div

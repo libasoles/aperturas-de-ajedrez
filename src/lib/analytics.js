@@ -6,8 +6,8 @@ export function initAnalytics() {
   if (initialized || typeof window === "undefined") return;
 
   const trackingIds = [
-    import.meta.env.VITE_GA_MEASUREMENT_ID,
-    import.meta.env.VITE_GOOGLE_ADS_ID,
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+    process.env.NEXT_PUBLIC_GOOGLE_ADS_ID,
   ].filter(Boolean);
   if (trackingIds.length === 0) return;
 

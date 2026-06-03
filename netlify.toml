@@ -1,12 +1,15 @@
 [build]
-  publish = "dist"
+  publish = ".next"
   command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [dev]
   command = "npm run dev"
   publish = "public"
   port = 8888
-  targetPort = 5173
+  targetPort = 3000
   framework = "#custom"
 
 [build.environment]

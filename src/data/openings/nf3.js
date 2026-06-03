@@ -2,7 +2,7 @@ export const NF3_TREE = {
   "id": "nf3",
   "move": "Nf3",
   "color": "white",
-  "opening": "zukertort",
+  "opening": "root",
   "stockfish": {
     "depth": 14,
     "score": 0.27

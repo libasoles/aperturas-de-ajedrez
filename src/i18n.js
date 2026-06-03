@@ -53,6 +53,31 @@ export async function initI18n(lng, resources) {
   }
 }
 
-initI18n(detectLng());
+// Synchronous init for Next.js App Router client components.
+// Called inside useState(() => ...) so it runs once on mount before any re-renders.
+export function initI18nSync(lng, resources) {
+  const { ui, openings } = resources;
+
+  if (i18n.isInitialized) {
+    i18n.addResourceBundle(lng, "ui", ui, true, true);
+    i18n.addResourceBundle(lng, "openings", openings, true, true);
+    // changeLanguage is async, but when resources are pre-loaded the switch is
+    // effectively synchronous; the returned promise can be ignored here.
+    i18n.changeLanguage(lng);
+    return true;
+  }
+
+  i18n.use(initReactI18next).init({
+    lng,
+    fallbackLng: "es",
+    ns: ["ui", "openings"],
+    defaultNS: "ui",
+    resources: { [lng]: { ui, openings } },
+    interpolation: { escapeValue: false },
+    initImmediate: false,
+  });
+
+  return i18n.isInitialized;
+}
 
 export default i18n;

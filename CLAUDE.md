@@ -5,8 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # Start dev server (Vite, port 5173)
-npm run build    # Production build
+npm run dev      # Start dev server (Next.js, port 3000)
+npm run build    # Production build (next build)
+npm run start    # Serve production build locally
 npm run lint     # ESLint
 ```
 
@@ -34,26 +35,76 @@ Agents are in `.claude/agents/`. They are **not** invoked automatically — spaw
 
 ## Architecture
 
-Single-page React app that renders an interactive chess opening tree using ReactFlow.
+Next.js 16 App Router SSG app that renders an interactive chess opening tree using ReactFlow.
 
 ### Data flow
 
-```bash
-src/data/openings.js          → Static tree of opening nodes
-src/utils/chessPath.js        → findPathToNode / getActivePathIds (tree traversal)
-src/components/OpeningTree.jsx → buildGraph() converts the tree to RF nodes/edges; owns all state
-src/components/ChessNode.jsx   → Custom ReactFlow node renderer (pills)
-src/components/ChessPanel.jsx  → Floating board panel (react-chessboard + chess.js)
-src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
+```text
+src/data/openings.js              → Static tree of opening nodes
+src/utils/chessPath.js            → findPathToNode / getActivePathIds (tree traversal)
+src/hooks/useOpeningTreeState.js  → All tree state (expanded, selected, active opening/variant)
+src/components/AppClient.jsx      → "use client" — initializes i18n, builds config, owns state
+src/components/OpeningTree.jsx    → Desktop ReactFlow tree ("use client", dynamic ssr:false)
+src/components/MobileOpeningTree.jsx → Mobile ReactFlow tree ("use client", dynamic ssr:false)
+src/components/ChessNode.jsx      → Custom ReactFlow node renderer (pills)
+src/components/ChessPanel.jsx     → Floating board panel (react-chessboard + chess.js)
+src/components/ui/Tooltip.jsx     → Radix UI tooltip wrapper
 ```
 
-### State ownership (OpeningTree.jsx)
+### App Router structure
+
+```text
+app/
+├── (es)/                        # ES route group (transparent in URL)
+│   ├── layout.tsx               # <html lang="es">
+│   ├── page.tsx                 # / (static)
+│   ├── [...slug]/page.tsx       # /defensa-siciliana, /defensa-siciliana/najdorf, etc. (SSG)
+│   ├── players/[player]/        # /players/:name (SSR dynamic)
+│   └── sitemap.ts               # /sitemap.xml
+├── fr/
+│   ├── layout.tsx               # <html lang="fr">
+│   ├── page.tsx                 # /fr/ (static)
+│   └── [...slug]/page.tsx       # /fr/defense-sicilienne, etc. (SSG)
+├── en/
+│   ├── layout.tsx               # <html lang="en">
+│   ├── page.tsx                 # /en/ (static)
+│   ├── [...slug]/page.tsx       # /en/sicilian-defense, etc. (SSG)
+│   └── sitemap.ts               # /en/sitemap.xml
+src/
+├── components/
+│   ├── RootLayout.tsx           # Shared <html>/<body> wrapper imported by all layouts
+│   ├── AppShell.jsx             # "use client" thin wrapper — dynamic(AppClient, ssr:false)
+│   ├── AppClient.jsx            # "use client" — i18n init, tree state, responsive render
+│   └── PlayerShell.jsx          # "use client" thin wrapper — dynamic(PlayerExplorerPage, ssr:false)
+├── lib/
+│   └── routes.ts                # findRouteBySlug(slug, locale) — used by generateMetadata
+```
+
+### Client boundary design
+
+Pages are Server Components. They render `<AppShell>` which is a thin `"use client"` wrapper that uses `next/dynamic({ ssr: false })` to load `AppClient`. This two-level wrapper is necessary because:
+
+- `ssr: false` in `next/dynamic` is only allowed inside Client Components
+- `react-i18next` calls `React.createContext` at module evaluation time, which fails in the SSR worker when page configuration is being collected
+
+`AppClient` (always client-side) imports all locale JSON resources itself and initializes i18n synchronously via `initI18nSync` inside `useState(() => ...)`.
+
+### State ownership (useOpeningTreeState.js)
 
 - `expandedIds` — which node IDs are expanded in the tree
 - `activeOpening` — which opening filter is active (from the top bar buttons); overrides `expandedIds`
 - `selectedNodeId` — which pill the user clicked; drives ChessPanel
 
 `buildGraph()` is a pure function that converts the opening tree + `expandedIds` into ReactFlow `nodes` and `edges` arrays. It is recomputed via `useMemo` on every expand/collapse.
+
+The hook accepts an optional second argument `{ pathname, initialNodeId }` — server-provided values used for initial route detection and `?node=` hydration. Falls back to `window.location` reads if not provided (backwards-compatible).
+
+### SEO
+
+- `generateMetadata()` in each `[...slug]/page.tsx` replaces the old `scripts/prerender.js` regex injection.
+- Metadata includes `title`, `description`, `robots`, `alternates.canonical`, `alternates.languages` (es/en/fr/x-default), `openGraph`, and `twitter`.
+- `src/lib/routes.ts` exports `findRouteBySlug(slug, locale)` — looks up routes from `OPENING_ROUTES`, `VARIANT_ROUTES`, `HELP_ROUTE`, and the London study route.
+- Home pages have metadata defined inline in `page.tsx`.
 
 ### Critical library details
 
@@ -62,7 +113,9 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 - **Localized SAN in human text**: `move` values in opening nodes must stay English SAN for chess.js, but any user-facing Spanish/French text (`src/locales/{es,fr}/openings.json`, `ui.json`, routes/descriptions, docs) must use localized piece letters. Spanish: `R` rey, `D` dama, `T` torre, `A` alfil, `C` caballo. French: `R` roi, `D` dame, `T` tour, `F` fou, `C` cavalier. Never leave English `K/Q/R/B/N` piece initials in Spanish or French annotations/names such as `Nf6`, `Bb4`, `Qxd4`, `Re8`; write `Cf6`/`Ab4`/`Dxd4`/`Te8` in Spanish and `Cf6`/`Fb4`/`Dxd4`/`Te8` in French.
 - **Stockfish 18**: opening tree nodes include precomputed local evaluations at depth 14 in their `stockfish` field.
 - **@xyflow/react v12**: Do NOT add a `key` prop to `<ReactFlow>` — it forces a full remount (and fitView) on every state change.
-- **Tailwind v4**: configured via `@tailwindcss/vite` plugin, no `tailwind.config.js`.
+- **Tailwind v4**: configured via `@tailwindcss/postcss` in `postcss.config.mjs`, no `tailwind.config.js`.
+- **Environment variables**: Use `NEXT_PUBLIC_*` prefix (not `VITE_*`). Key vars: `NEXT_PUBLIC_HAS_PREMIUM_ACCESS`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_GOOGLE_ADS_ID`, `NEXT_PUBLIC_STOCKFISH_LABEL_THRESHOLD`.
+- **london.txt**: The London study source is embedded in `src/data/studies/london-source.js` (a plain JS string export). The original `london.txt?raw` Vite import syntax is incompatible with Turbopack.
 
 ### Opening node schema
 
@@ -88,9 +141,9 @@ src/components/ui/Tooltip.jsx  → Radix UI tooltip wrapper
 **Free vs premium**: The checklist below applies to both. The only difference is the `access` field:
 
 - `access: "free"` — visible to all users, no lock icon
-- `access: "premium"` — entry node visible, children locked unless `VITE_HAS_PREMIUM_ACCESS=1`
+- `access: "premium"` — entry node visible, children locked unless `NEXT_PUBLIC_HAS_PREMIUM_ACCESS=1`
 
-Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access. Set to `0` to simulate the locked experience.
+Premium gating is controlled by `NEXT_PUBLIC_HAS_PREMIUM_ACCESS`. Default (unset or `1`) grants full access. Set to `0` to simulate the locked experience.
 
 **Before writing any code**, run the [`research-opening`](.claude/agents/research-opening.md) agent to fetch theory, validate moves, and produce all data artifacts. Implement only after the research output is reviewed.
 
@@ -169,10 +222,11 @@ Premium gating is controlled by `VITE_HAS_PREMIUM_ACCESS`. Default (unset or `1`
 ### Validation
 
 - ✅ `npm run lint` — must pass
+- ✅ `npm run build` — must pass (all 326+ pages generated without error)
 - ✅ Routing: Visit `/en/dutch-defense`, `/dutch-defense/leningrad` (if bilingual)
 - ✅ Premium gating:
   - Without premium env enabled: Entry node visible, children hidden, lock icon on button
-  - With `VITE_HAS_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
+  - With `NEXT_PUBLIC_HAS_PREMIUM_ACCESS=1`: Full tree expanded, all variants accessible
 - ✅ Translations: Reload browser; menu labels and pill names appear in the active locale (e.g., "Dutch Defense" in `/en/...`)
 - ✅ Colors: Verify contrast and no collision with existing openings
 

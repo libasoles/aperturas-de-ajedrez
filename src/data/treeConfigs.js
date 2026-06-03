@@ -1,4 +1,3 @@
-import i18n from "../i18n";
 import { trackPremiumMenuClick, trackPremiumNodeClick } from "../lib/analytics";
 import { canAccessContent, hasPremiumAccess } from "../lib/access";
 import { getDomainLocale, stripLocalePrefix } from "../utils/locale";
@@ -32,18 +31,7 @@ const LONDON_STUDY_COLORS = {
   },
 };
 
-export const DEFAULT_INITIAL_EXPANDED_IDS = [
-  "root",
-  "e4",
-  "scan-1",
-  "span-1",
-  "span-2",
-  "span-3",
-  "sic-1",
-  "d4",
-  "qg-1",
-  "ki-1",
-];
+export const DEFAULT_INITIAL_EXPANDED_IDS = ["root", "e4", "d4", "nf3"];
 
 const REPERTOIRE_TREE = {
   id: "root",
@@ -219,9 +207,4 @@ export function applyLocaleRedirectForTreeConfigs() {
     ? `/${locale}/${localizedSlug}/`
     : `/${locale}/`;
   history.replaceState(null, "", nextPath);
-  try {
-    i18n.changeLanguage(locale);
-  } catch {
-    // i18n may not be fully initialized yet.
-  }
 }
