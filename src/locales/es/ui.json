@@ -73,6 +73,10 @@
         "label": "Espacio",
         "desc": "Si hay un nodo seleccionado, despliega los hijos hasta la próxima bifurcación, igual que el icono →"
       },
+      "shift-click": {
+        "label": "Shift+click en nodo",
+        "desc": "Contrae un nodo desplegado"
+      },
       "arrows-lr": {
         "label": "← / →",
         "desc": "Igual que Shift+Tab / Tab, si hay un nodo seleccionado"

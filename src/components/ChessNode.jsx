@@ -53,6 +53,18 @@ function ChessNode({ id, data }) {
 
   const isRoot = id === "root";
   const isWhite = color === "white";
+  const canCollapseFromPill = hasChildren && isExpanded && !isLocked;
+
+  const handlePillClick = (e) => {
+    if (e.shiftKey && canCollapseFromPill) {
+      e.preventDefault();
+      e.stopPropagation();
+      onToggle?.(id);
+      return;
+    }
+
+    onSelect?.(id);
+  };
 
   const ringStyle = isSelected
     ? {
@@ -69,7 +81,7 @@ function ChessNode({ id, data }) {
       role="button"
       tabIndex={0}
       data-node-pill-id={id}
-      onClick={() => onSelect?.(id)}
+      onClick={handlePillClick}
       onKeyDown={(e) => {
         if (e.key === " ") {
           e.preventDefault();

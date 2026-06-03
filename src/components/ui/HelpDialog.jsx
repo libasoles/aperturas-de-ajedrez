@@ -10,6 +10,7 @@ const ROW_KEYS = [
   "flecha",
   "tab",
   "space",
+  "shift-click",
   "arrows-lr",
   "arrows-ud",
   "flip",

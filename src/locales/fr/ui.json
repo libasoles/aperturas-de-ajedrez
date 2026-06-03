@@ -73,6 +73,10 @@
         "label": "Espace",
         "desc": "Si un nœud est sélectionné, développe les enfants jusqu'à la prochaine bifurcation, comme l'icône →"
       },
+      "shift-click": {
+        "label": "Maj+clic sur un nœud",
+        "desc": "Replie un nœud développé"
+      },
       "arrows-lr": {
         "label": "← / →",
         "desc": "Identique à Maj+Tab / Tab, si un nœud est sélectionné"

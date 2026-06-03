@@ -216,6 +216,57 @@ describe('ChessNode — expand/collapse', () => {
     expect(screen.getByText('−')).toBeInTheDocument();
   });
 
+  it('collapses an expanded node with Shift+click on the pill', async () => {
+    const user = userEvent.setup();
+    const onSelect = vi.fn();
+    const onToggle = vi.fn();
+    render(
+      <ChessNode
+        id="span-2"
+        data={makeData({
+          move: 'Nf3',
+          hasChildren: true,
+          isExpanded: true,
+          onSelect,
+          onToggle,
+        })}
+      />,
+    );
+
+    await user.keyboard('{Shift>}');
+    await user.click(screen.getByRole('button', { name: /Cf3/i }));
+    await user.keyboard('{/Shift}');
+
+    expect(onToggle).toHaveBeenCalledWith('span-2');
+    expect(onSelect).not.toHaveBeenCalled();
+  });
+
+  it('selects locked expanded nodes on Shift+click instead of collapsing them', async () => {
+    const user = userEvent.setup();
+    const onSelect = vi.fn();
+    const onToggle = vi.fn();
+    render(
+      <ChessNode
+        id="span-2"
+        data={makeData({
+          move: 'Nf3',
+          hasChildren: true,
+          isExpanded: true,
+          isLocked: true,
+          onSelect,
+          onToggle,
+        })}
+      />,
+    );
+
+    await user.keyboard('{Shift>}');
+    await user.click(screen.getByRole('button', { name: /Cf3/i }));
+    await user.keyboard('{/Shift}');
+
+    expect(onSelect).toHaveBeenCalledWith('span-2');
+    expect(onToggle).not.toHaveBeenCalled();
+  });
+
   it('shows expand-to-fork for premium nodes when they are accessible', () => {
     render(
       <ChessNode

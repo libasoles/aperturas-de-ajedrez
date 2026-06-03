@@ -73,6 +73,10 @@
         "label": "Space",
         "desc": "If a node is selected, expand children to the next branch point, same as the → icon"
       },
+      "shift-click": {
+        "label": "Shift+click on node",
+        "desc": "Collapse an expanded node"
+      },
       "arrows-lr": {
         "label": "← / →",
         "desc": "Same as Shift+Tab / Tab when a node is selected"
