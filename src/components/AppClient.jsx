@@ -35,16 +35,19 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
   const state = useOpeningTreeState(config, { locale, pathname, initialNodeId })
   const isMobile = useIsMobile()
 
-  // Fade out the server-rendered previews once React has hydrated and ReactFlow is ready
+  // Fade out the server-rendered previews once i18n is ready and ReactFlow is about to render.
+  // Depends on i18nReady so the fade waits for the async locale chunk on cold loads —
+  // otherwise the static shell disappears before the client tree is visible.
   useEffect(() => {
-    const previews = document.querySelectorAll('[data-tree-preview], [data-ssg-preview]')
+    if (!i18nReady) return
+    const previews = document.querySelectorAll('[data-tree-preview], [data-ssg-preview], [data-topbar-static]')
     if (!previews.length) return
     previews.forEach(el => {
       el.style.transition = 'opacity 0.2s'
       el.style.opacity = '0'
       setTimeout(() => el.setAttribute('hidden', ''), 200)
     })
-  }, [])
+  }, [i18nReady])
 
   if (!i18nReady) return null
 

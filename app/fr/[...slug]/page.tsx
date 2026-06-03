@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import AppShell from '@/components/AppShell'
 import { OpeningTreePreview } from '@/components/OpeningTreePreview'
 import { StaticPanelsPreview } from '@/components/StaticPanelsPreview'
+import { TopBar } from '@/components/TopBar'
 import { OPENING_ROUTES, VARIANT_ROUTES, HELP_ROUTE } from '@/data/routes'
 import { buildAlternates, defaultOgImage, DEFAULT_OG_IMAGE, urlForLocale } from '@/lib/metadata'
 import { findRouteBySlug } from '@/lib/routes'
@@ -61,6 +62,7 @@ export default async function FrSlugPage({
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
       <OpeningTreePreview slug={slug} locale="fr" />
       <StaticPanelsPreview slug={slug} locale="fr" />
+      <TopBar locale="fr" />
       <AppShell locale="fr" pathname={`/fr/${slug}/`} initialNodeId={sp?.node} />
     </div>
   )
