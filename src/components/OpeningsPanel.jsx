@@ -250,15 +250,16 @@ export default function OpeningsPanel({
             const openingMatches = filterPinned
               ? isOpeningPinned && openingMatchesText
               : isOpeningPinned || openingMatchesText;
-            const matchingVariants = openingMatches
-              ? openingWithVariants.variants
-              : filterVariantNodes(
-                  openingWithVariants.variants,
-                  query,
-                  locale,
-                  pinnedIds,
-                  filterPinned,
-                );
+            const matchingVariants =
+              openingMatches && !filterPinned
+                ? openingWithVariants.variants
+                : filterVariantNodes(
+                    openingWithVariants.variants,
+                    query,
+                    locale,
+                    pinnedIds,
+                    filterPinned,
+                  );
 
             if (!openingMatches && matchingVariants.length === 0) {
               return null;
@@ -347,7 +348,7 @@ export default function OpeningsPanel({
           <button
             tabIndex={-1}
             onClick={() => setCollapsed((current) => !current)}
-            className="font-mono text-[14px] leading-none transition-all duration-150 hover:brightness-150 text-neon-purple/50"
+            className="font-mono text-[20px] leading-none transition-all duration-150 hover:brightness-150 text-neon-purple/50"
           >
             {collapsed ? "▸" : "▾"}
           </button>
@@ -359,26 +360,48 @@ export default function OpeningsPanel({
           <div className="flex">
             <div className="relative flex-1">
               <input
-                type="search"
+                type="text"
+                role="searchbox"
                 value={searchText}
                 onChange={(event) => setSearchText(event.target.value)}
                 placeholder={t("openings_panel.search_placeholder")}
                 aria-label={t("openings_panel.search_label")}
-                className="min-h-9 w-full border border-neon-purple/30 bg-black/30 py-2 pr-9 pl-3 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/40 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
+                className="min-h-9 w-full border border-neon-purple/30 bg-black/30 py-2 pr-9 pl-3 font-mono text-[12px] tracking-wide text-neon-cyan outline-none transition-all duration-150 placeholder:text-neon-purple/55 focus:border-neon-cyan/70 focus:shadow-[0_0_12px_rgba(34,211,238,0.2)]"
               />
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m16 16 4 4" />
-              </svg>
+              {searchText ? (
+                <button
+                  onClick={() => setSearchText("")}
+                  aria-label="Limpiar búsqueda"
+                  className="absolute top-1/2 right-3 -translate-y-1/2 flex items-center justify-center text-neon-cyan/70 hover:text-neon-cyan transition-colors duration-150 cursor-pointer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="size-4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m16 16 4 4" />
+                </svg>
+              )}
             </div>
             <button
               onClick={() => setFilterPinned((v) => !v)}
@@ -387,7 +410,7 @@ export default function OpeningsPanel({
                   ? "Mostrar todas las aperturas"
                   : "Mostrar solo pineadas"
               }
-              className={`flex shrink-0 items-center justify-center px-2 min-h-9 transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
+              className={`flex shrink-0 items-center justify-center px-2 ml-1.5 min-h-9 transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
                 filterPinned
                   ? "text-neon-purple"
                   : "text-neon-purple/60 hover:text-neon-purple/90"
@@ -408,7 +431,7 @@ export default function OpeningsPanel({
           </div>
 
           {filteredGroups.length === 0 ? (
-            <p className="px-1 py-4 text-center font-mono text-[11px] tracking-wide text-neon-purple/50">
+            <p className="px-1 py-4 text-center font-mono text-[11px] tracking-wide text-neon-purple/80">
               {t("openings_panel.no_results")}
             </p>
           ) : null}
