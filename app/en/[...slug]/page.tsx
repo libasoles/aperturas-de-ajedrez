@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import AppShell from '@/components/AppShell'
 import { OpeningTreePreview } from '@/components/OpeningTreePreview'
+import { StaticPanelsPreview } from '@/components/StaticPanelsPreview'
 import { OPENING_ROUTES, VARIANT_ROUTES, HELP_ROUTE } from '@/data/routes'
+import { buildAlternates, defaultOgImage, DEFAULT_OG_IMAGE, urlForLocale } from '@/lib/metadata'
 import { findRouteBySlug } from '@/lib/routes'
 
 export const dynamic = 'force-static'
@@ -27,30 +29,20 @@ export async function generateMetadata({
     title: route.title,
     description: route.description,
     robots: route.discoverable ? 'index,follow,max-image-preview:large' : 'noindex,nofollow',
-    alternates: {
-      canonical: `https://chessopenings.com.ar/${slug}/`,
-      languages: {
-        ...(route.slug && { es: `https://aperturasdeajedrez.com.ar/${route.slug}/` }),
-        en: `https://chessopenings.com.ar/${slug}/`,
-        ...(route.slugFr && { fr: `https://aperturasdeajedrez.com.ar/fr/${route.slugFr}/` }),
-        'x-default': route.slug
-          ? `https://aperturasdeajedrez.com.ar/${route.slug}/`
-          : `https://chessopenings.com.ar/${slug}/`,
-      },
-    },
+    alternates: buildAlternates('en', { es: route.slug || undefined, en: slug, fr: route.slugFr || undefined }),
     openGraph: {
       title: route.title,
       description: route.description,
-      url: `https://chessopenings.com.ar/${slug}/`,
+      url: urlForLocale('en', slug),
       locale: 'en_US',
       siteName: 'Chess Openings',
-      images: [{ url: 'https://aperturasdeajedrez.com.ar/demo.png', width: 1200, height: 630 }],
+      images: defaultOgImage(),
     },
     twitter: {
       card: 'summary_large_image',
       title: route.title,
       description: route.description,
-      images: ['https://aperturasdeajedrez.com.ar/demo.png'],
+      images: [DEFAULT_OG_IMAGE],
     },
   }
 }
@@ -68,6 +60,7 @@ export default async function EnSlugPage({
   return (
     <div className="relative h-screen" style={{ background: '#0f1117' }}>
       <OpeningTreePreview slug={slug} locale="en" />
+      <StaticPanelsPreview slug={slug} locale="en" />
       <AppShell locale="en" pathname={`/en/${slug}/`} initialNodeId={sp?.node} />
     </div>
   )

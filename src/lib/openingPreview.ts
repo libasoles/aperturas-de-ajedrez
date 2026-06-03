@@ -21,6 +21,18 @@ export type PreviewNode = {
   colors: { node: string; text: string; border: string; edge: string }
 }
 
+export type PreviewEdge = {
+  id: string
+  source: string
+  target: string
+  color: string
+}
+
+export type PreviewGraph = {
+  nodes: PreviewNode[]
+  edges: PreviewEdge[]
+}
+
 function collectAllIds(node: any, acc = new Set<string>()): Set<string> {
   acc.add(node.id)
   node.children?.forEach((c: any) => collectAllIds(c, acc))
@@ -55,7 +67,7 @@ function computeNodes(
   colorMap: Record<string, any>,
   depth = 0,
   yOffset = 0,
-): { nodes: PreviewNode[]; height: number } {
+): { nodes: PreviewNode[]; edges: PreviewEdge[]; height: number } {
   const c = colorMap[node.opening] ?? colorMap.root ?? { node: '#1a1a2e', text: '#fff', border: '#555' }
   const isExpanded = expandedIds.has(node.id)
   const hasChildren = node.children?.length > 0
@@ -69,20 +81,28 @@ function computeNodes(
     colors: { node: c.node, text: c.text, border: c.border, edge: c.edge },
   }
   const all: PreviewNode[] = [n]
+  const edges: PreviewEdge[] = []
 
   if (isExpanded && hasChildren) {
     let childY = yOffset
     for (const child of node.children) {
-      const { nodes: cn, height } = computeNodes(child, expandedIds, colorMap, depth + 1, childY)
+      const { nodes: cn, edges: ce, height } = computeNodes(child, expandedIds, colorMap, depth + 1, childY)
       all.push(...cn)
+      edges.push(...ce)
+      edges.push({
+        id: `${node.id}->${child.id}`,
+        source: node.id,
+        target: child.id,
+        color: c.edge,
+      })
       childY += height
     }
     const totalH = childY - yOffset
     n.position.y = yOffset + totalH / 2 - Y_STEP / 2
-    return { nodes: all, height: Math.max(totalH, Y_STEP) }
+    return { nodes: all, edges, height: Math.max(totalH, Y_STEP) }
   }
 
-  return { nodes: all, height: Y_STEP }
+  return { nodes: all, edges, height: Y_STEP }
 }
 
 export function getPreviewMoveLabel(
@@ -99,11 +119,12 @@ export function getPreviewMoveLabel(
   return toSpanishSAN(node.move)
 }
 
-export function getPreviewNodesForSlug(slug: string): PreviewNode[] {
+export function getPreviewGraphForSlug(slug: string): PreviewGraph {
   const variantRoute = (VARIANT_ROUTE_BY_SLUG as any)[slug]
   if (variantRoute) {
     const expandedIds = buildVariantExpandedIds(OPENING_TREE, variantRoute.variantNodeId)
-    return computeNodes(OPENING_TREE, expandedIds, OPENING_COLORS).nodes
+    const { nodes, edges } = computeNodes(OPENING_TREE, expandedIds, OPENING_COLORS)
+    return { nodes, edges }
   }
 
   const openingRoute = (ROUTE_BY_SLUG as any)[slug]
@@ -111,10 +132,15 @@ export function getPreviewNodesForSlug(slug: string): PreviewNode[] {
     const catalogEntry = (OPENING_ENTRY_BY_NODE_ID as any)[openingRoute.nodeId]
     const pathIds = catalogEntry?.pathIds ?? []
     const expandedIds = buildOpeningExpandedIds(OPENING_TREE, openingRoute.nodeId, pathIds)
-    return computeNodes(OPENING_TREE, expandedIds, OPENING_COLORS).nodes
+    const { nodes, edges } = computeNodes(OPENING_TREE, expandedIds, OPENING_COLORS)
+    return { nodes, edges }
   }
 
-  return []
+  return { nodes: [], edges: [] }
+}
+
+export function getPreviewNodesForSlug(slug: string): PreviewNode[] {
+  return getPreviewGraphForSlug(slug).nodes
 }
 
 // Viewport approximation for SSR (same formula as computeInitialViewport, assumed 768px height).

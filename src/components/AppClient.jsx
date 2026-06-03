@@ -35,9 +35,9 @@ export default function AppClient({ locale, pathname, initialNodeId }) {
   const state = useOpeningTreeState(config, { locale, pathname, initialNodeId })
   const isMobile = useIsMobile()
 
-  // Fade out the server-rendered preview once React has hydrated and ReactFlow is ready
+  // Fade out the server-rendered previews once React has hydrated and ReactFlow is ready
   useEffect(() => {
-    const previews = document.querySelectorAll('[data-tree-preview]')
+    const previews = document.querySelectorAll('[data-tree-preview], [data-ssg-preview]')
     if (!previews.length) return
     previews.forEach(el => {
       el.style.transition = 'opacity 0.2s'
