@@ -78,6 +78,7 @@ function OpeningTreeContent({
   toggleOpening,
   toggleVariant,
   togglePin,
+  clearPins,
   firstOpeningBtnRef,
   lockedContentId,
   premiumOverlayVersion,
@@ -208,6 +209,11 @@ function OpeningTreeContent({
     [togglePin],
   );
 
+  const handleClearPins = useCallback(() => {
+    pendingFitViewRef.current = true;
+    clearPins();
+  }, [clearPins]);
+
   const nodesWithAnchor = useMemo(
     () =>
       nodes.map((n) => ({ ...n, data: { ...n.data, onToggle: handleToggle } })),
@@ -234,6 +240,7 @@ function OpeningTreeContent({
           onToggleOpening={handleToggleOpening}
           onToggleVariant={handleToggleVariant}
           onTogglePin={handleTogglePin}
+          onClearPins={handleClearPins}
           firstButtonRef={firstOpeningBtnRef}
         />
       )}

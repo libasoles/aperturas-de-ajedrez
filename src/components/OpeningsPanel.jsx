@@ -5,14 +5,14 @@ import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
 import FloatingPanel from "./FloatingPanel";
 import ClearSearchIcon from "./icons/ClearSearchIcon";
-import FavoriteStarIcon from "./icons/FavoriteStarIcon";
-import PinStarIcon from "./icons/PinStarIcon";
 import PremiumLockIcon from "./icons/PremiumLockIcon";
 import SearchIcon from "./icons/SearchIcon";
+import ToggleSwitchIcon from "./icons/ToggleSwitchIcon";
 import {
   DESKTOP_OPENINGS_PANEL_BOTTOM,
   DESKTOP_PANEL_RIGHT,
 } from "./panelLayout";
+import { Tooltip } from "./ui/Tooltip";
 
 const OPENINGS_PANEL_DEFAULT_HEIGHT = 300;
 
@@ -92,6 +92,7 @@ function VariantMenuNode({
 }) {
   const isVariantActive = activeVariant === node.variantNodeId;
   const isPinned = pinnedIds.has(node.variantNodeId);
+  const pinLabel = isPinned ? "Quitar pin" : "Pinear variante";
 
   return (
     <div className="flex flex-col gap-0.5">
@@ -135,24 +136,26 @@ function VariantMenuNode({
             />
           )}
         </button>
-        <button
-          tabIndex={-1}
-          onClick={(e) => {
-            e.stopPropagation();
-            onTogglePin(node.variantNodeId);
-          }}
-          title={isPinned ? "Quitar pin" : "Pinear variante"}
-          className="flex items-center justify-center px-2 transition-opacity duration-150 cursor-pointer focus-visible:outline-none"
-          style={{
-            opacity: isPinned ? 1 : undefined,
-            color: isPinned ? opening.glow : "#6b7280",
-          }}
-        >
-          <PinStarIcon
-            className={`w-3.5 h-3.5 shrink-0 ${isPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
-            filled={isPinned}
-          />
-        </button>
+        <Tooltip content={pinLabel} side="left">
+          <button
+            tabIndex={-1}
+            onClick={(e) => {
+              e.stopPropagation();
+              onTogglePin(node.variantNodeId);
+            }}
+            aria-label={pinLabel}
+            className="flex items-center justify-center px-2 transition-opacity duration-150 cursor-pointer focus-visible:outline-none"
+            style={{
+              opacity: isPinned ? 1 : undefined,
+              color: isPinned ? opening.glow : "#6b7280",
+            }}
+          >
+            <ToggleSwitchIcon
+              className={`w-5 h-5 shrink-0 ${isPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
+              checked={isPinned}
+            />
+          </button>
+        </Tooltip>
       </div>
 
       {node.children.map((child) => (
@@ -183,6 +186,7 @@ export default function OpeningsPanel({
   onToggleOpening,
   onToggleVariant = () => {},
   onTogglePin = () => {},
+  onClearPins = () => {},
   firstButtonRef,
 }) {
   const { t } = useTranslation();
@@ -286,6 +290,9 @@ export default function OpeningsPanel({
   ]);
 
   const handleOpeningClick = (opening) => {
+    onClearPins();
+    setFilterPinned(false);
+
     if (opening.access === "premium") {
       trackPremiumMenuClick("premium_menu_opening_click", {
         node_id: opening.nodeId,
@@ -304,6 +311,9 @@ export default function OpeningsPanel({
   };
 
   const handleVariantClick = (variant) => {
+    onClearPins();
+    setFilterPinned(false);
+
     const variantRoute =
       variant.route ?? variantRouteById.get(variant.variantNodeId);
 
@@ -319,6 +329,10 @@ export default function OpeningsPanel({
 
     onToggleVariant(variant.variantNodeId);
   };
+
+  const pinnedFilterLabel = filterPinned
+    ? "Mostrar todas las aperturas"
+    : "Mostrar solo pineadas";
 
   return (
     <FloatingPanel
@@ -377,21 +391,19 @@ export default function OpeningsPanel({
                 <SearchIcon />
               )}
             </div>
-            <button
-              onClick={() => setFilterPinned((v) => !v)}
-              title={
-                filterPinned
-                  ? "Mostrar todas las aperturas"
-                  : "Mostrar solo pineadas"
-              }
-              className={`flex shrink-0 items-center justify-center px-2 ml-1.5 min-h-9 transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                filterPinned
-                  ? "text-neon-purple"
-                  : "text-neon-purple/60 hover:text-neon-purple/90"
-              }`}
-            >
-              <FavoriteStarIcon filled={filterPinned} />
-            </button>
+            <Tooltip content={pinnedFilterLabel} side="top">
+              <button
+                onClick={() => setFilterPinned((v) => !v)}
+                aria-label={pinnedFilterLabel}
+                className={`flex shrink-0 items-center justify-center px-2 ml-1.5 min-h-9 transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                  filterPinned
+                    ? "text-neon-purple"
+                    : "text-neon-purple/60 hover:text-neon-purple/90"
+                }`}
+              >
+                <ToggleSwitchIcon checked={filterPinned} />
+              </button>
+            </Tooltip>
           </div>
 
           {filteredGroups.length === 0 ? (
@@ -411,6 +423,9 @@ export default function OpeningsPanel({
                   const variants = opening.variants;
 
                   const isOpeningPinned = pinnedIds.has(opening.nodeId);
+                  const openingPinLabel = isOpeningPinned
+                    ? "Quitar pin"
+                    : "Pinear apertura";
                   return (
                     <div key={opening.nodeId} className="flex flex-col gap-0.5">
                       <div className="group flex items-stretch">
@@ -467,25 +482,25 @@ export default function OpeningsPanel({
                             />
                           )}
                         </button>
-                        <button
-                          tabIndex={-1}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onTogglePin(opening.nodeId);
-                          }}
-                          title={
-                            isOpeningPinned ? "Quitar pin" : "Pinear apertura"
-                          }
-                          className="flex items-center justify-center px-2 cursor-pointer focus-visible:outline-none"
-                          style={{
-                            color: isOpeningPinned ? opening.glow : "#6b7280",
-                          }}
-                        >
-                          <PinStarIcon
-                            className={`w-3.5 h-3.5 shrink-0 ${isOpeningPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
-                            filled={isOpeningPinned}
-                          />
-                        </button>
+                        <Tooltip content={openingPinLabel} side="left">
+                          <button
+                            tabIndex={-1}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onTogglePin(opening.nodeId);
+                            }}
+                            aria-label={openingPinLabel}
+                            className="flex items-center justify-center px-2 cursor-pointer focus-visible:outline-none"
+                            style={{
+                              color: isOpeningPinned ? opening.glow : "#6b7280",
+                            }}
+                          >
+                            <ToggleSwitchIcon
+                              className={`w-5 h-5 shrink-0 ${isOpeningPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
+                              checked={isOpeningPinned}
+                            />
+                          </button>
+                        </Tooltip>
                       </div>
 
                       {variants.map((variant) => (

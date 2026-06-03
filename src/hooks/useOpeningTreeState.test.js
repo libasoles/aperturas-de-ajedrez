@@ -180,6 +180,53 @@ describe("toggleVariant", () => {
   });
 });
 
+// ── togglePin ─────────────────────────────────────────────────────────────────
+
+describe("togglePin", () => {
+  it("selects and activates an opening when pinning it", () => {
+    const { result } = renderHook(() => useOpeningTreeState());
+
+    act(() => {
+      result.current.togglePin("scan-1");
+    });
+
+    expect(result.current.pinnedIds.has("scan-1")).toBe(true);
+    expect(result.current.selectedNodeId).toBe("scan-1");
+    expect(result.current.activeOpening).toBe("scan-1");
+    expect(result.current.activeVariant).toBeNull();
+  });
+
+  it("selects a variant and activates its parent opening when pinning it", () => {
+    const { result } = renderHook(() => useOpeningTreeState());
+
+    act(() => {
+      result.current.togglePin("scan-5a1");
+    });
+
+    expect(result.current.pinnedIds.has("scan-5a1")).toBe(true);
+    expect(result.current.selectedNodeId).toBe("scan-5a1");
+    expect(result.current.activeOpening).toBe("scan-1");
+    expect(result.current.activeVariant).toBe("scan-5a1");
+  });
+
+  it("does not change the selected node when unpinning", () => {
+    const { result } = renderHook(() => useOpeningTreeState());
+
+    act(() => {
+      result.current.togglePin("scan-1");
+    });
+    expect(result.current.selectedNodeId).toBe("scan-1");
+
+    act(() => {
+      result.current.togglePin("scan-1");
+    });
+
+    expect(result.current.pinnedIds.has("scan-1")).toBe(false);
+    expect(result.current.selectedNodeId).toBe("scan-1");
+    expect(result.current.activeOpening).toBe("scan-1");
+  });
+});
+
 describe("premium gating", () => {
   it("does not open the premium overlay when access is enabled", () => {
     vi.stubEnv("VITE_HAS_PREMIUM_ACCESS", "1");

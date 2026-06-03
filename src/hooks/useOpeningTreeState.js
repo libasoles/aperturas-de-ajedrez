@@ -626,7 +626,45 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     [absorbActiveIntoExpanded, isPremiumNode, premiumAccess, tree],
   );
 
+  const activateOpening = useCallback((nodeId) => {
+    const route = routeData.routeByNodeId?.[nodeId];
+    if (route && !premiumCanAccess(route.access)) {
+      setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
+    }
+    setActiveVariant(null);
+    setActiveOpening(nodeId);
+    setSelectedNodeId(nodeId);
+    if (typeof window !== "undefined") {
+      const locale = detectLocale();
+      const url = route
+        ? buildOpeningUrl(route, locale)
+        : locale === "en"
+          ? "/en/"
+          : locale === "fr"
+            ? "/fr/"
+            : "/";
+      history.pushState(null, "", url);
+    }
+  }, [premiumCanAccess, routeData.routeByNodeId]);
+
+  const activateVariant = useCallback((variantNodeId) => {
+    const variantRoute = routeData.variantRouteByNodeId?.[variantNodeId];
+    if (!variantRoute) return false;
+    if (!premiumCanAccess(variantRoute.access)) {
+      setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
+    }
+    setActiveVariant(variantNodeId);
+    setSelectedNodeId(variantNodeId);
+    setActiveOpening(variantRoute.parentNodeId);
+    if (typeof window !== "undefined") {
+      const locale = detectLocale();
+      history.pushState(null, "", buildVariantUrl(variantRoute, locale));
+    }
+    return true;
+  }, [premiumCanAccess, routeData.variantRouteByNodeId]);
+
   const togglePin = useCallback((nodeId) => {
+    const shouldSelectPinnedNode = !pinnedIds.has(nodeId);
     setPinnedIds((prev) => {
       const next = new Set(prev);
       if (next.has(nodeId)) next.delete(nodeId);
@@ -634,56 +672,70 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
       return next;
     });
     setPinnedCollapsedIds(new Set());
+
+    if (!shouldSelectPinnedNode) return;
+    if (routeData.variantRouteByNodeId?.[nodeId]) {
+      activateVariant(nodeId);
+      return;
+    }
+    if (routeData.routeByNodeId?.[nodeId] || openingFullIds[nodeId]) {
+      activateOpening(nodeId);
+    }
+  }, [
+    activateOpening,
+    activateVariant,
+    openingFullIds,
+    pinnedIds,
+    routeData.routeByNodeId,
+    routeData.variantRouteByNodeId,
+  ]);
+
+  const clearPins = useCallback(() => {
+    setPinnedIds(new Set());
+    setPinnedCollapsedIds(new Set());
   }, []);
 
   const toggleOpening = useCallback((nodeId) => {
     setActiveVariant(null);
-    setActiveOpening((prev) => {
-      const next = prev === nodeId ? null : nodeId;
-      const route = next ? routeData.routeByNodeId?.[next] : null;
-      if (next && !premiumCanAccess(route?.access)) {
-        setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
-      }
-      if (next) setSelectedNodeId(next);
-      if (typeof window !== "undefined") {
-        const locale = detectLocale();
-        const url = route
-          ? buildOpeningUrl(route, locale)
-          : locale === "en"
-            ? "/en/"
-            : locale === "fr"
-              ? "/fr/"
-              : "/";
-        history.pushState(null, "", url);
-      }
-      return next;
-    });
-  }, [premiumCanAccess, routeData.routeByNodeId]);
+    if (activeOpening !== nodeId) {
+      activateOpening(nodeId);
+      return;
+    }
+    setActiveOpening(null);
+    if (typeof window !== "undefined") {
+      const locale = detectLocale();
+      history.pushState(
+        null,
+        "",
+        locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/",
+      );
+    }
+  }, [activateOpening, activeOpening]);
 
   const toggleVariant = useCallback((variantNodeId) => {
     const variantRoute = routeData.variantRouteByNodeId?.[variantNodeId];
     if (!variantRoute) return;
-    setActiveVariant((prev) => {
-      const next = prev === variantNodeId ? null : variantNodeId;
-      if (next && !premiumCanAccess(variantRoute.access)) {
-        setPremiumOverlayVersion((prevVersion) => prevVersion + 1);
-      }
-      if (next) setSelectedNodeId(next);
-      setActiveOpening(variantRoute.parentNodeId);
-      if (typeof window !== "undefined") {
-        const locale = detectLocale();
-        const url = next
-          ? buildVariantUrl(variantRoute, locale)
-          : (buildOpeningUrl(
-              routeData.routeByNodeId?.[variantRoute.parentNodeId],
-              locale,
-            ) ?? (locale === "en" ? "/en/" : locale === "fr" ? "/fr/" : "/"));
-        history.pushState(null, "", url);
-      }
-      return next;
-    });
+    if (activeVariant !== variantNodeId) {
+      activateVariant(variantNodeId);
+      return;
+    }
+    setActiveVariant(null);
+    setActiveOpening(variantRoute.parentNodeId);
+    if (typeof window !== "undefined") {
+      const locale = detectLocale();
+      const openingRoute = routeData.routeByNodeId?.[variantRoute.parentNodeId];
+      const url = openingRoute
+        ? buildOpeningUrl(openingRoute, locale)
+        : locale === "en"
+          ? "/en/"
+          : locale === "fr"
+            ? "/fr/"
+            : "/";
+      history.pushState(null, "", url);
+    }
   }, [
-    premiumCanAccess,
+    activateVariant,
+    activeVariant,
     routeData.routeByNodeId,
     routeData.variantRouteByNodeId,
   ]);
@@ -879,6 +931,7 @@ export function useOpeningTreeState(config = defaultOpeningTreeConfig) {
     toggleOpening,
     toggleVariant,
     togglePin,
+    clearPins,
     firstOpeningBtnRef,
     subtitle: config.subtitle,
   };

@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { buildHelpUrl, detectLocale } from "../../hooks/useOpeningTreeState";
+import { Tooltip } from "./Tooltip";
 
 const ROW_KEYS = [
   "click",
@@ -72,22 +73,24 @@ export default function HelpDialog() {
 
   return (
     <Dialog.Root open={isHelpOpen} onOpenChange={onHelpOpenChange}>
-      <Dialog.Trigger asChild>
-        <button
-          tabIndex={-1}
-          title={t("help.title")}
-          className="flex items-center justify-center w-7 h-7 rounded-full border font-mono font-bold text-[15px] leading-none transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer"
-          style={{
-            color: "var(--color-neon-purple)",
-            borderColor:
-              "color-mix(in srgb, var(--color-neon-purple) 40%, transparent)",
-            background:
-              "color-mix(in srgb, var(--color-neon-purple) 10%, transparent)",
-          }}
-        >
-          ?
-        </button>
-      </Dialog.Trigger>
+      <Tooltip content={t("help.title")} side="right">
+        <Dialog.Trigger asChild>
+          <button
+            tabIndex={-1}
+            aria-label={t("help.title")}
+            className="flex items-center justify-center w-7 h-7 rounded-full border font-mono font-bold text-[15px] leading-none transition-all duration-150 hover:brightness-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 cursor-pointer"
+            style={{
+              color: "var(--color-neon-purple)",
+              borderColor:
+                "color-mix(in srgb, var(--color-neon-purple) 40%, transparent)",
+              background:
+                "color-mix(in srgb, var(--color-neon-purple) 10%, transparent)",
+            }}
+          >
+            ?
+          </button>
+        </Dialog.Trigger>
+      </Tooltip>
 
       <Dialog.Portal>
         <Dialog.Overlay

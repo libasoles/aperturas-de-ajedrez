@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import OpeningsPanel from './OpeningsPanel';
+import { TooltipProvider } from './ui/Tooltip';
 
 vi.mock('react-i18next', () => ({
   initReactI18next: {
@@ -130,18 +131,26 @@ function renderPanel({
   openings = MOCK_OPENINGS,
   variantCatalog = [],
   variantRoutes = [],
+  pinnedIds = new Set(),
+  onTogglePin = vi.fn(),
+  onClearPins = vi.fn(),
 } = {}) {
   return render(
-    <OpeningsPanel
-      openings={openings}
-      variantCatalog={variantCatalog}
-      variantRoutes={variantRoutes}
-      activeOpening={activeOpening}
-      activeVariant={activeVariant}
-      onToggleOpening={onToggleOpening}
-      onToggleVariant={onToggleVariant}
-      firstButtonRef={{ current: null }}
-    />,
+    <TooltipProvider>
+      <OpeningsPanel
+        openings={openings}
+        variantCatalog={variantCatalog}
+        variantRoutes={variantRoutes}
+        activeOpening={activeOpening}
+        activeVariant={activeVariant}
+        pinnedIds={pinnedIds}
+        onToggleOpening={onToggleOpening}
+        onToggleVariant={onToggleVariant}
+        onTogglePin={onTogglePin}
+        onClearPins={onClearPins}
+        firstButtonRef={{ current: null }}
+      />
+    </TooltipProvider>,
   );
 }
 
@@ -162,10 +171,26 @@ describe('OpeningsPanel', () => {
   it('calls onToggleOpening with the correct nodeId when a button is clicked', async () => {
     const user = userEvent.setup();
     const onToggle = vi.fn();
-    renderPanel({ onToggleOpening: onToggle });
+    const onClearPins = vi.fn();
+    renderPanel({ onToggleOpening: onToggle, onClearPins });
 
     await user.click(screen.getByText('Escandinava'));
+    expect(onClearPins).toHaveBeenCalledTimes(1);
     expect(onToggle).toHaveBeenCalledWith('scan-1');
+  });
+
+  it('toggles a pinned opening without clearing the current pins', async () => {
+    const user = userEvent.setup();
+    const onTogglePin = vi.fn();
+    const onClearPins = vi.fn();
+    renderPanel({ onTogglePin, onClearPins });
+
+    await user.click(
+      screen.getAllByRole('button', { name: 'Pinear apertura' })[0],
+    );
+
+    expect(onTogglePin).toHaveBeenCalledWith('scan-1');
+    expect(onClearPins).not.toHaveBeenCalled();
   });
 
   it('calls onToggleOpening with a different nodeId for a second opening', async () => {
