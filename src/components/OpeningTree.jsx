@@ -10,6 +10,9 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import ChessNode from "./ChessNode";
 import ChessPanel from "./ChessPanel";
+import ResetViewIcon from "./icons/ResetViewIcon";
+import ZoomInIcon from "./icons/ZoomInIcon";
+import ZoomOutIcon from "./icons/ZoomOutIcon";
 import OpeningsPanel from "./OpeningsPanel";
 import StockfishEvaluationBar from "./StockfishEvaluationBar";
 import HelpDialog from "./ui/HelpDialog";
@@ -18,30 +21,7 @@ import { findPathToNode } from "../utils/chessPath";
 import { formatStockfishScore } from "../utils/stockfishEvaluation";
 
 const nodeTypes = { chess: ChessNode };
-
-function ZoomInIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5z" />
-    </svg>
-  );
-}
-
-function ZoomOutIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M5 11h14v2H5v-2z" />
-    </svg>
-  );
-}
-
-function ResetViewIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M3 3h7v2H5.41l4.3 4.29-1.42 1.42L4 6.41V9H2V3h1zm11 0h7v6h-2V5.41l-4.29 4.3-1.42-1.42L17.59 4H16V2zm-3 14.59-4.29 4.3A1 1 0 0 1 5 21H3v-6h2v2.59l4.29-4.3 1.42 1.42zM19 15h2v6h-6v-2h2.59l-4.3-4.29 1.42-1.42L19 17.59V15z" />
-    </svg>
-  );
-}
+const FIT_VIEW_MAX_ZOOM = 1;
 
 function FlowControls({ initialX }) {
   const { zoomIn, zoomOut, setViewport, getNodes } = useReactFlow();
@@ -59,7 +39,7 @@ function FlowControls({ initialX }) {
     const centerY = (minY + maxY) / 2;
 
     const viewH = window.innerHeight;
-    const zoom = Math.min(2, Math.max(0.2, (viewH * 0.8) / nodesHeight));
+    const zoom = Math.min(FIT_VIEW_MAX_ZOOM, Math.max(0.2, (viewH * 0.8) / nodesHeight));
 
     setViewport({ x: initialX, y: viewH / 2 - centerY * zoom, zoom }, { duration: 300 });
   }, [getNodes, setViewport, initialX]);
@@ -112,8 +92,7 @@ function OpeningTreeContent({
   const { getViewport, setViewport } = useReactFlow();
   const didFocusRootRef = useRef(false);
   const anchorRef = useRef(null); // { nodeId, screenX, screenY }
-  const flowWrapperRef = useRef(null);
-  const pendingPanelCenterNodeIdRef = useRef(null);
+  const pendingFitViewRef = useRef(false);
 
   useEffect(() => {
     if (didFocusRootRef.current) return;
@@ -167,35 +146,26 @@ function OpeningTreeContent({
     });
   }, [nodes, getViewport, setViewport]);
 
-  // Opening-panel selections should land in the useful reading area of the
-  // canvas: vertically centered and shifted left from horizontal center.
+  // After an opening/variant toggle from the panel, fit all visible nodes
+  // keeping x anchored to the initial page-load position.
   useEffect(() => {
-    const nodeId = pendingPanelCenterNodeIdRef.current;
-    if (!nodeId || selectedNodeId !== nodeId) return;
-
-    const node = nodes.find((n) => n.id === nodeId);
-    const wrapper = flowWrapperRef.current;
-    if (!node || !wrapper) return;
-
-    pendingPanelCenterNodeIdRef.current = null;
+    if (!pendingFitViewRef.current) return;
+    pendingFitViewRef.current = false;
+    if (nodes.length === 0) return;
 
     const frameId = window.requestAnimationFrame(() => {
-      const bounds = wrapper.getBoundingClientRect();
-      const vp = getViewport();
-      const nodeWidth = node.measured?.width ?? node.width ?? 0;
-      const nodeHeight = node.measured?.height ?? node.height ?? 0;
-      const nodeCenterX = node.position.x + nodeWidth / 2;
-      const nodeCenterY = node.position.y + nodeHeight / 2;
-
-      setViewport({
-        x: bounds.width * 0.25 - nodeCenterX * vp.zoom,
-        y: bounds.height * 0.5 - nodeCenterY * vp.zoom,
-        zoom: vp.zoom,
-      });
+      const minY = Math.min(...nodes.map((n) => n.position.y));
+      const maxY = Math.max(
+        ...nodes.map((n) => n.position.y + (n.measured?.height ?? n.height ?? 40)),
+      );
+      const centerY = (minY + maxY) / 2;
+      const viewH = window.innerHeight;
+      const zoom = Math.min(FIT_VIEW_MAX_ZOOM, Math.max(0.2, (viewH * 0.8) / (maxY - minY)));
+      setViewport({ x: initialViewport.x, y: viewH / 2 - centerY * zoom, zoom }, { duration: 300 });
     });
 
     return () => window.cancelAnimationFrame(frameId);
-  }, [nodes, selectedNodeId, getViewport, setViewport]);
+  }, [nodes, setViewport, initialViewport]);
 
   // Wrap toggleNode to capture the node's screen position before layout changes
   const handleToggle = useCallback(
@@ -216,20 +186,26 @@ function OpeningTreeContent({
 
   const handleToggleOpening = useCallback(
     (nodeId) => {
-      pendingPanelCenterNodeIdRef.current =
-        activeOpening === nodeId && activeVariant == null ? null : nodeId;
+      pendingFitViewRef.current = true;
       toggleOpening(nodeId);
     },
-    [activeOpening, activeVariant, toggleOpening],
+    [toggleOpening],
   );
 
   const handleToggleVariant = useCallback(
     (nodeId) => {
-      pendingPanelCenterNodeIdRef.current =
-        activeVariant === nodeId ? null : nodeId;
+      pendingFitViewRef.current = true;
       toggleVariant(nodeId);
     },
-    [activeVariant, toggleVariant],
+    [toggleVariant],
+  );
+
+  const handleTogglePin = useCallback(
+    (nodeId) => {
+      pendingFitViewRef.current = true;
+      togglePin(nodeId);
+    },
+    [togglePin],
   );
 
   const nodesWithAnchor = useMemo(
@@ -257,12 +233,12 @@ function OpeningTreeContent({
           pinnedIds={pinnedIds}
           onToggleOpening={handleToggleOpening}
           onToggleVariant={handleToggleVariant}
-          onTogglePin={togglePin}
+          onTogglePin={handleTogglePin}
           firstButtonRef={firstOpeningBtnRef}
         />
       )}
 
-      <div ref={flowWrapperRef} className="absolute inset-0">
+      <div className="absolute inset-0">
         <ReactFlow
           nodes={nodesWithAnchor}
           edges={edges}

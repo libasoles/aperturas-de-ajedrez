@@ -5,7 +5,7 @@ import {
   clampPanelToViewport,
   getPanelViewportBoundsStyle,
 } from "./floatingPanelBounds";
-import FlipBoardIcon from "./FlipBoardIcon";
+import FlipBoardIcon from "./icons/FlipBoardIcon";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 
 const BOARD_SIZE = 380;

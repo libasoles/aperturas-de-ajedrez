@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import PremiumContentGate from "./PremiumContentGate";
-import FlipBoardIcon from "./FlipBoardIcon";
+import FlipBoardIcon from "./icons/FlipBoardIcon";
 import Toast from "./ui/Toast";
 import { findPathToNode, toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 

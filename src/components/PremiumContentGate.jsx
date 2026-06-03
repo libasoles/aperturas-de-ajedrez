@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import PremiumLockIcon from "./PremiumLockIcon";
+import PremiumLockIcon from "./icons/PremiumLockIcon";
 
 export default function PremiumContentGate({ contentId, onClose }) {
   const { t } = useTranslation();

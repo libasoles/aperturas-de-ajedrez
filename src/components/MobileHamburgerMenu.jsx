@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { detectLocale } from "../hooks/useOpeningTreeState";
 import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
-import PremiumLockIcon from "./PremiumLockIcon";
+import PinStarIcon from "./icons/PinStarIcon";
+import PremiumLockIcon from "./icons/PremiumLockIcon";
 
 // Locale-aware variant label: "Variante Mieses-Kotroc | Escandinava | ..." → "Variante Mieses-Kotroc"
 function getVariantLabel(variantRoute, locale) {
@@ -339,17 +340,10 @@ export default function MobileHamburgerMenu({
                                     color: isOpeningPinned ? opening.glow : "#6b7280",
                                   }}
                                 >
-                                  <svg
-                                    viewBox="0 0 24 24"
+                                  <PinStarIcon
                                     style={{ width: 14, height: 14, flexShrink: 0 }}
-                                    fill={isOpeningPinned ? "currentColor" : "none"}
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  >
-                                    <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
-                                  </svg>
+                                    filled={isOpeningPinned}
+                                  />
                                 </button>
                               </div>
 
@@ -439,17 +433,10 @@ export default function MobileHamburgerMenu({
                                         color: isVariantPinned ? opening.glow : "#6b7280",
                                       }}
                                     >
-                                      <svg
-                                        viewBox="0 0 24 24"
+                                      <PinStarIcon
                                         style={{ width: 12, height: 12, flexShrink: 0 }}
-                                        fill={isVariantPinned ? "currentColor" : "none"}
-                                        stroke="currentColor"
-                                        strokeWidth="1.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      >
-                                        <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
-                                      </svg>
+                                        filled={isVariantPinned}
+                                      />
                                     </button>
                                   </div>
                                 );

@@ -4,7 +4,7 @@ import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
 import { formatStockfishScore } from "../utils/stockfishEvaluation";
-import PremiumLockIcon from "./PremiumLockIcon";
+import PremiumLockIcon from "./icons/PremiumLockIcon";
 import { Tooltip } from "./ui/Tooltip";
 
 function getPieceCode(move, isWhite) {

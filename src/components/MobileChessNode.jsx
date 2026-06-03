@@ -3,7 +3,7 @@ import { memo } from "react";
 import { defaultPieces } from "react-chessboard";
 import { useTranslation } from "react-i18next";
 import { toFrenchSAN, toSpanishSAN } from "../utils/chessPath";
-import PremiumLockIcon from "./PremiumLockIcon";
+import PremiumLockIcon from "./icons/PremiumLockIcon";
 
 function getPieceCode(move, isWhite) {
   if (!move) return null;

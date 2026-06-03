@@ -4,7 +4,11 @@ import { detectLocale } from "../hooks/useOpeningTreeState";
 import { hasPremiumAccess } from "../lib/access";
 import { trackPremiumMenuClick } from "../lib/analytics";
 import FloatingPanel from "./FloatingPanel";
-import PremiumLockIcon from "./PremiumLockIcon";
+import ClearSearchIcon from "./icons/ClearSearchIcon";
+import FavoriteStarIcon from "./icons/FavoriteStarIcon";
+import PinStarIcon from "./icons/PinStarIcon";
+import PremiumLockIcon from "./icons/PremiumLockIcon";
+import SearchIcon from "./icons/SearchIcon";
 import {
   DESKTOP_OPENINGS_PANEL_BOTTOM,
   DESKTOP_PANEL_RIGHT,
@@ -144,17 +148,10 @@ function VariantMenuNode({
             color: isPinned ? opening.glow : "#6b7280",
           }}
         >
-          <svg
-            viewBox="0 0 24 24"
+          <PinStarIcon
             className={`w-3.5 h-3.5 shrink-0 ${isPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
-            fill={isPinned ? "currentColor" : "none"}
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
-          </svg>
+            filled={isPinned}
+          />
         </button>
       </div>
 
@@ -374,33 +371,10 @@ export default function OpeningsPanel({
                   aria-label="Limpiar búsqueda"
                   className="absolute top-1/2 right-3 -translate-y-1/2 flex items-center justify-center text-neon-cyan/70 hover:text-neon-cyan transition-colors duration-150 cursor-pointer"
                 >
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="size-4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M18 6 6 18M6 6l12 12" />
-                  </svg>
+                  <ClearSearchIcon />
                 </button>
               ) : (
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-neon-purple/50"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="m16 16 4 4" />
-                </svg>
+                <SearchIcon />
               )}
             </div>
             <button
@@ -416,17 +390,7 @@ export default function OpeningsPanel({
                   : "text-neon-purple/60 hover:text-neon-purple/90"
               }`}
             >
-              <svg
-                viewBox="0 0 24 24"
-                className="w-4 h-4 shrink-0"
-                fill={filterPinned ? "currentColor" : "none"}
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
-              </svg>
+              <FavoriteStarIcon filled={filterPinned} />
             </button>
           </div>
 
@@ -517,17 +481,10 @@ export default function OpeningsPanel({
                             color: isOpeningPinned ? opening.glow : "#6b7280",
                           }}
                         >
-                          <svg
-                            viewBox="0 0 24 24"
+                          <PinStarIcon
                             className={`w-3.5 h-3.5 shrink-0 ${isOpeningPinned ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-150"}`}
-                            fill={isOpeningPinned ? "currentColor" : "none"}
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M12 2L8 8H3l5 5-2 9 6-4 6 4-2-9 5-5h-5z" />
-                          </svg>
+                            filled={isOpeningPinned}
+                          />
                         </button>
                       </div>
 

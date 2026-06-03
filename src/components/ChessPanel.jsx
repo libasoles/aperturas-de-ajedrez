@@ -8,8 +8,10 @@ import {
   clampPanelToViewport,
   getPanelViewportBoundsStyle,
 } from "./floatingPanelBounds";
-import BoardVisibilityIcon from "./BoardVisibilityIcon";
-import FlipBoardIcon from "./FlipBoardIcon";
+import BoardVisibilityIcon from "./icons/BoardVisibilityIcon";
+import FlipBoardIcon from "./icons/FlipBoardIcon";
+import PauseIcon from "./icons/PauseIcon";
+import PlayIcon from "./icons/PlayIcon";
 import { DESKTOP_CHESS_PANEL_BOTTOM, DESKTOP_PANEL_RIGHT } from "./panelLayout";
 import { Tooltip } from "./ui/Tooltip";
 
@@ -322,16 +324,7 @@ export default function ChessPanel({
                     : "0 0 8px color-mix(in srgb, var(--color-neon-purple) 12%, transparent)",
                 }}
               >
-                {isPlaying ? (
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                    <rect x="5" y="4" width="4" height="16" rx="1" />
-                    <rect x="15" y="4" width="4" height="16" rx="1" />
-                  </svg>
-                ) : (
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 4.5v15l13-7.5z" />
-                  </svg>
-                )}
+                {isPlaying ? <PauseIcon /> : <PlayIcon />}
               </button>
             </Tooltip>
           )}
