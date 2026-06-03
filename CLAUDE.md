@@ -85,7 +85,7 @@ app/
 │   ├── page.tsx                 # / (static)
 │   ├── [...slug]/page.tsx       # /defensa-siciliana, /defensa-siciliana/najdorf, etc. (SSG)
 │   ├── players/[player]/        # /players/:name (SSR dynamic)
-│   └── sitemap.ts               # /sitemap.xml
+│   └── sitemap.ts               # /sitemap.xml — hostname-aware index (dynamic)
 ├── fr/
 │   ├── layout.tsx               # <html lang="fr">
 │   ├── page.tsx                 # /fr/ (static)
@@ -93,8 +93,11 @@ app/
 ├── en/
 │   ├── layout.tsx               # <html lang="en">
 │   ├── page.tsx                 # /en/ (static)
-│   ├── [...slug]/page.tsx       # /en/sicilian-defense, etc. (SSG)
-│   └── sitemap.ts               # /en/sitemap.xml
+│   └── [...slug]/page.tsx       # /en/sicilian-defense, etc. (SSG)
+├── sitemaps/
+│   ├── [lang]/route.ts          # /sitemaps/[lang].xml — static route (generates es.xml, en.xml, fr.xml)
+│   └── sitemap-generator.ts     # Generator utility (exports generateSitemapXml)
+├── robots.ts                    # /robots.txt — hostname-aware (dynamic)
 src/
 ├── components/
 │   ├── RootLayout.tsx           # Shared <html>/<body> wrapper imported by all layouts
@@ -130,6 +133,37 @@ The hook accepts an optional second argument `{ pathname, initialNodeId }` — s
 - Metadata includes `title`, `description`, `robots`, `alternates.canonical`, `alternates.languages` (es/en/fr/x-default), `openGraph`, and `twitter`.
 - `src/lib/routes.ts` exports `findRouteBySlug(slug, locale)` — looks up routes from `OPENING_ROUTES`, `VARIANT_ROUTES`, `HELP_ROUTE`, and the London study route.
 - Home pages have metadata defined inline in `page.tsx`.
+
+### Sitemaps & robots.txt (multi-domain)
+
+The app serves two domains with different locales. Sitemaps and robots.txt are **hostname-aware**:
+
+**Sitemap architecture (built at `npm run build`):**
+
+| Endpoint | Hostname | Type | Content |
+| --- | --- | --- | --- |
+| `/sitemap.xml` | `aperturasdeajedrez.com.ar` | Index (dynamic) | Points to `/sitemaps/es.xml`, `/sitemaps/en.xml`, `/sitemaps/fr.xml` |
+| `/sitemap.xml` | `chessopenings.com.ar` | Index (dynamic) | Points to `/sitemaps/en.xml` |
+| `/sitemaps/es.xml` | Any | Static (SSG) | Spanish URLs (`aperturasdeajedrez.com.ar/*`) + `/studies/london/` |
+| `/sitemaps/en.xml` | Any | Static (SSG) | English URLs (`chessopenings.com.ar/*` or `aperturasdeajedrez.com.ar/en/*`) |
+| `/sitemaps/fr.xml` | Any | Static (SSG) | French URLs (`aperturasdeajedrez.com.ar/fr/*`) |
+
+**Generation details:**
+
+1. **Index (`app/(es)/sitemap.ts`)** — Reads `headers()` at request time to detect hostname. Returns a small XML index (~100 bytes) pointing to appropriate sitemaps. Marked dynamic because it uses `headers()`.
+
+2. **Sitemaps (`app/sitemaps/[lang]/route.ts`)** — Static route handler with `generateStaticParams()` that pre-renders 3 sitemaps at build time. Uses `app/sitemaps/sitemap-generator.ts` utility to generate XML. All URLs are filtered by `discoverable` field from `openingCatalog.js`.
+
+3. **robots.txt (`app/robots.ts`)** — Also hostname-aware, points to the appropriate `/sitemap.xml` index (not individual sitemaps).
+
+**Adding new routes to sitemaps:**
+
+When `src/data/routes.js` is updated with new `OPENING_ROUTES` or `VARIANT_ROUTES`:
+
+- If `discoverable: true` (default), the route is **automatically** included in the next `npm run build`
+- If `discoverable: false`, the route is excluded from sitemaps (useful for premium/unreleased content)
+
+No additional configuration needed — sitemaps rebuild on every `npm run build`.
 
 ### Critical library details
 
