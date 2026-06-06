@@ -36,7 +36,8 @@
     "philidor-3": "Défense Philidor",
     "pon-1": "Partie Ponziani",
     "falk-1": "Contregambit de Falkbeer",
-    "colle-5": "Système Colle"
+    "colle-5": "Système Colle",
+    "traxler-8": "Attaque Traxler"
   },
   "chess_panel": {
     "position": "Position",

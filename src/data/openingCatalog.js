@@ -35,6 +35,16 @@ export const OPENING_CATALOG = [
         discoverable: true,
       },
       {
+        label: "Ataque Traxler",
+        nodeId: "traxler-8",
+        pathIds: ["e4", "span-1", "span-2", "span-3", "ital-1", "ital-2b", "ital-3b"],
+        color: OPENING_COLORS.traxler.border,
+        glow: OPENING_COLORS.traxler.edge,
+        text: OPENING_COLORS.traxler.text,
+        access: "premium",
+        discoverable: true,
+      },
+      {
         label: "Escocesa",
         nodeId: "scot-1",
         pathIds: ["e4", "span-1", "span-2", "span-3"],
@@ -325,6 +335,18 @@ export const VARIANT_CATALOG = [
     variantNodeId: "ital-6b2",
     parentNodeId: "ital-1",
     access: "free",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "traxler-9a",
+    parentNodeId: "traxler-8",
+    access: "premium",
+    discoverable: true,
+  },
+  {
+    variantNodeId: "traxler-9b",
+    parentNodeId: "traxler-8",
+    access: "premium",
     discoverable: true,
   },
   {

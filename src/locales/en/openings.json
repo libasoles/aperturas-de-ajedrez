@@ -1451,5 +1451,39 @@
   "colle-16b": {
     "name": "Colle-Zukertort: Fianchetto System",
     "annotation": "After b6 Black prepares their own fianchetto with Bb7, seeking counterplay on the long diagonal."
+  },
+  "traxler-8": {
+    "name": "Traxler Attack",
+    "annotation": "Black's aggressive counterattack against Ng5 in the Two Knights Defense. Also known as the Wilkes-Barre Variation, it arises from the Italian Game after 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 Bc5."
+  },
+  "traxler-9a": {
+    "name": "Nxf7 Line (Sharp Variation)",
+    "annotation": "White captures on f7 with the queen forked, but Black obtains tactical compensation with Bxf2+, a wildly attacking counter-resource."
+  },
+  "traxler-10a": {
+    "name": "Bishop Sacrifice",
+    "annotation": "Black sacrifices the c5 bishop on f2 to open up White's king and generate a counterattack with check."
+  },
+  "traxler-11a": {
+    "annotation": "White is forced to move the king to f1 after the check."
+  },
+  "traxler-12a": {
+    "annotation": "Black plays Qe7 to attack the knight on g5."
+  },
+  "traxler-9b": {
+    "name": "Bxf7+ Line (Modern Main Line)",
+    "annotation": "The modern theoretical main line. White captures simply on f7 with the bishop, cleanly winning a pawn without allowing wild tactics like Bxf2+."
+  },
+  "traxler-10b": {
+    "annotation": "Black moves the king away from immediate danger to e7."
+  },
+  "traxler-11b": {
+    "annotation": "White centralizes the bishop on d5, controlling key squares and threatening Bxc6."
+  },
+  "traxler-12b": {
+    "annotation": "Black plays Rf8 to defend the f7 pawn."
+  },
+  "traxler-13b": {
+    "annotation": "White places the queen actively on f3, with material and positional advantage."
   }
 }

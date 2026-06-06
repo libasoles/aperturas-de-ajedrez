@@ -184,5 +184,6 @@ export const OPENING_COLORS = {
   philidor: PALETTE.BROWN_DARK,
   ponziani: PALETTE.SKY_DARK,
   colle: PALETTE.SAGE,
+  traxler: PALETTE.RED,
   engine: PALETTE.GRAY,
 };

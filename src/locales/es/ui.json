@@ -36,7 +36,8 @@
     "philidor-3": "Philidor",
     "pon-1": "Apertura Ponziani",
     "falk-1": "Contragambito de Falkbeer",
-    "colle-5": "Sistema Colle"
+    "colle-5": "Sistema Colle",
+    "traxler-8": "Ataque Traxler"
   },
   "chess_panel": {
     "position": "Posición",

@@ -3999,6 +3999,124 @@ export const E4_TREE = {
                                   ]
                                 }
                               ]
+                            },
+                            {
+                              "id": "traxler-8",
+                              "move": "Bc5",
+                              "color": "black",
+                              "opening": "traxler",
+                              "stockfish": {
+                                "depth": 14,
+                                "score": 1.31
+                              },
+                              "children": [
+                                {
+                                  "id": "traxler-9a",
+                                  "move": "Nxf7",
+                                  "color": "white",
+                                  "opening": "traxler",
+                                  "stockfish": {
+                                    "depth": 14,
+                                    "score": -0.95
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "traxler-10a",
+                                      "move": "Bxf2+",
+                                      "color": "black",
+                                      "opening": "traxler",
+                                      "stockfish": {
+                                        "depth": 14,
+                                        "score": 0.97
+                                      },
+                                      "children": [
+                                        {
+                                          "id": "traxler-11a",
+                                          "move": "Kf1",
+                                          "color": "white",
+                                          "opening": "traxler",
+                                          "stockfish": {
+                                            "depth": 14,
+                                            "score": -1.00
+                                          },
+                                          "children": [
+                                            {
+                                              "id": "traxler-12a",
+                                              "move": "Qe7",
+                                              "color": "black",
+                                              "opening": "traxler",
+                                              "stockfish": {
+                                                "depth": 14,
+                                                "score": 0.83
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "traxler-9b",
+                                  "move": "Bxf7+",
+                                  "color": "white",
+                                  "opening": "traxler",
+                                  "stockfish": {
+                                    "depth": 14,
+                                    "score": -1.01
+                                  },
+                                  "children": [
+                                    {
+                                      "id": "traxler-10b",
+                                      "move": "Ke7",
+                                      "color": "black",
+                                      "opening": "traxler",
+                                      "stockfish": {
+                                        "depth": 14,
+                                        "score": 0.88
+                                      },
+                                      "children": [
+                                        {
+                                          "id": "traxler-11b",
+                                          "move": "Bd5",
+                                          "color": "white",
+                                          "opening": "traxler",
+                                          "stockfish": {
+                                            "depth": 14,
+                                            "score": -0.79
+                                          },
+                                          "children": [
+                                            {
+                                              "id": "traxler-12b",
+                                              "move": "Rf8",
+                                              "color": "black",
+                                              "opening": "traxler",
+                                              "stockfish": {
+                                                "depth": 14,
+                                                "score": 0.99
+                                              },
+                                              "children": [
+                                                {
+                                                  "id": "traxler-13b",
+                                                  "move": "Qf3",
+                                                  "color": "white",
+                                                  "opening": "traxler",
+                                                  "stockfish": {
+                                                    "depth": 14,
+                                                    "score": 3.97
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         },

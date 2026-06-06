@@ -36,7 +36,8 @@
     "philidor-3": "Philidor Defense",
     "pon-1": "Ponziani Opening",
     "falk-1": "Falkbeer Countergambit",
-    "colle-5": "Colle System"
+    "colle-5": "Colle System",
+    "traxler-8": "Traxler Attack"
   },
   "chess_panel": {
     "position": "Position",

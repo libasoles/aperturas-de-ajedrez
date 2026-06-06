@@ -30,7 +30,11 @@
       "Bash(npm run json-to-database)",
       "Bash(stockfish --version)",
       "Bash(find /usr/local /opt/homebrew /usr /Applications -name \"stockfish\" -type f 2>/dev/null | head -10)",
-      "Read(//usr/local/**)"
+      "Read(//usr/local/**)",
+      "Bash(npm list *)",
+      "Bash(node /tmp/stockfish_eval.js)",
+      "Bash(node scripts/stockfish_eval.js)",
+      "Bash(npm info *)"
     ],
     "additionalDirectories": [
       "/tmp",

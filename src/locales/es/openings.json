@@ -1451,5 +1451,39 @@
   "colle-16b": {
     "name": "Colle-Zukertort: Sistema de Fianchetto",
     "annotation": "Con b6 las negras preparan su propio fianchetto con Ab7, buscando contrajuego en la diagonal larga."
+  },
+  "traxler-8": {
+    "name": "Ataque Traxler",
+    "annotation": "Contraataque agresivo de Negras contra el Cg5. Conocido también como la Variante de Wilkes-Barre, surge del Juego Italiano Defensa de los Dos Caballos con 1.e4 e5 2.Cf3 Cc6 3.Ac4 Cf6 4.Cg5 Ac5."
+  },
+  "traxler-9a": {
+    "name": "Línea Cxf7 (Variante Afilada)",
+    "annotation": "Las Blancas capturan en f7 con la dama forqueada, pero Negras obtiene compensación táctica con Axf2+, jugada de contraataque salvaje."
+  },
+  "traxler-10a": {
+    "name": "Sacrificio de Alfil",
+    "annotation": "Negras sacrifica el alfil de c5 en f2 para abrir el rey de Blancas y obtener contraataque con jaque."
+  },
+  "traxler-11a": {
+    "annotation": "Blancas fuerza el rey a f1 después del jaque."
+  },
+  "traxler-12a": {
+    "annotation": "Negras juega Dama a e7 para atacar el caballo de g5."
+  },
+  "traxler-9b": {
+    "name": "Línea Axf7+ (Principal Moderna)",
+    "annotation": "La línea preferida en la teoría moderna. Las Blancas capturan simplemente en f7 con el alfil, ganando un peón sin permitir tácticas salvajes como Axf2+."
+  },
+  "traxler-10b": {
+    "annotation": "Negras mueve el rey fuera del peligro inmediato a e7."
+  },
+  "traxler-11b": {
+    "annotation": "Blancas centraliza el alfil en d5, controlando casillas clave y amenazando Axc6."
+  },
+  "traxler-12b": {
+    "annotation": "Negras mueve la torre a f8 para defender la f7."
+  },
+  "traxler-13b": {
+    "annotation": "Blancas coloca la dama activamente en f3, con ventaja material y posicional."
   }
 }

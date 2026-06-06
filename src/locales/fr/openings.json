@@ -1451,5 +1451,39 @@
   "colle-16b": {
     "name": "Colle-Zukertort : Système Fianchetto",
     "annotation": "Après b6, les Noirs préparent leur propre fianchetto avec Fb7, cherchant un contre-jeu sur la grande diagonale."
+  },
+  "traxler-8": {
+    "name": "Attaque Traxler",
+    "annotation": "Contre-attaque agressive des Noirs contre le Cg5 dans la Défense des Deux Cavaliers. Aussi connu sous le nom de Variante de Wilkes-Barre, il surgit du Jeu Italien après 1.e4 e5 2.Cf3 Cc6 3.Fc4 Cf6 4.Cg5 Fc5."
+  },
+  "traxler-9a": {
+    "name": "Ligne Cxf7 (Variante Aiguë)",
+    "annotation": "Les Blancs capturent en f7 avec la dame fourchue, mais les Noirs obtiennent une compensation tactique avec Fxf2+, une contre-ressource sauvage d'attaque."
+  },
+  "traxler-10a": {
+    "name": "Sacrifice de Fou",
+    "annotation": "Les Noirs sacrifient le fou de c5 en f2 pour ouvrir le roi des Blancs et générer une contre-attaque avec échec."
+  },
+  "traxler-11a": {
+    "annotation": "Les Blancs sont forcés de déplacer le roi en f1 après l'échec."
+  },
+  "traxler-12a": {
+    "annotation": "Les Noirs jouent Dc7 pour attaquer le cavalier en g5."
+  },
+  "traxler-9b": {
+    "name": "Ligne Fxf7+ (Principale Moderne)",
+    "annotation": "La ligne principale théorique moderne. Les Blancs capturent simplement en f7 avec le fou, gagnant proprement un pion sans permettre des tactiques sauvages comme Fxf2+."
+  },
+  "traxler-10b": {
+    "annotation": "Les Noirs éloignent le roi du danger immédiat en e7."
+  },
+  "traxler-11b": {
+    "annotation": "Les Blancs centralisent le fou en d5, contrôlant les cases clés et menaçant Fxc6."
+  },
+  "traxler-12b": {
+    "annotation": "Les Noirs jouent Tf8 pour défendre le pion f7."
+  },
+  "traxler-13b": {
+    "annotation": "Les Blancs placent la dame activement en f3, avec avantage matériel et positionnel."
   }
 }

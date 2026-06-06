@@ -70,6 +70,21 @@ const OPENING_ROUTE_DEFS = [
       "Découvrez la Partie Italienne (1.e4 e5 2.Cf3 Cc6 3.Fc4) : variantes comme le Giuoco Piano, Fried Liver, Deux Cavaliers et plus dans un arbre interactif.",
   },
   {
+    slug: "ataque-traxler",
+    slugEn: "traxler-attack",
+    slugFr: "attaque-traxler",
+    nodeId: "traxler-8",
+    title: "Ataque Traxler | Aperturas de Ajedrez",
+    titleEn: "Traxler Attack | Chess Openings",
+    titleFr: "Attaque Traxler | Ouvertures d'Échecs",
+    description:
+      "Aprende el Ataque Traxler (1.e4 e5 2.Cf3 Cc6 3.Ac4 Cf6 4.Cg5 Ac5): contraataque agresivo de Negras en la Defensa de los Dos Caballos con tácticas salvajes.",
+    descriptionEn:
+      "Learn the Traxler Attack (1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 Bc5): Black's aggressive counterattack in the Two Knights Defense with wild tactics.",
+    descriptionFr:
+      "Apprenez l'Attaque Traxler (1.e4 e5 2.Cf3 Cc6 3.Fc4 Cf6 4.Cg5 Fc5) : le contre-attaque agressif des Noirs dans la Défense des Deux Cavaliers.",
+  },
+  {
     slug: "apertura-escocesa",
     slugEn: "scotch-game",
     slugFr: "partie-ecossaise",
@@ -622,6 +637,38 @@ const VARIANT_ROUTE_DEFS = [
       "Master the Fried Liver Attack (Nxf7): the famous knight sacrifice in the Italian Game, one of the most well-known traps in chess.",
     descriptionFr:
       "Maîtrisez l'Attaque Fried Liver (Cxf7) : le célèbre sacrifice de cavalier dans la Partie Italienne.",
+  },
+  {
+    slug: "ataque-traxler/nxf7-afilada",
+    slugEn: "traxler-attack/nxf7-sharp",
+    slugFr: "attaque-traxler/nxf7-aigue",
+    variantNodeId: "traxler-9a",
+    parentNodeId: "traxler-8",
+    title: "Línea Cxf7 (Variante Afilada) | Ataque Traxler | Aperturas de Ajedrez",
+    titleEn: "Nxf7 Line (Sharp Variation) | Traxler Attack | Chess Openings",
+    titleFr: "Ligne Cxf7 (Variante Aiguë) | Attaque Traxler | Ouvertures d'Échecs",
+    description:
+      "La línea más complicada del Ataque Traxler: White sacrifica el caballo en f7, pero Black contraataca con Axf2+.",
+    descriptionEn:
+      "The sharpest line in the Traxler Attack: White sacrifices the knight on f7, but Black counterattacks with Bxf2+.",
+    descriptionFr:
+      "La ligne la plus aiguë de l'Attaque Traxler : les Blancs sacrifient le cavalier en f7, mais les Noirs contre-attaquent avec Fxf2+.",
+  },
+  {
+    slug: "ataque-traxler/bxf7-principal",
+    slugEn: "traxler-attack/bxf7-main",
+    slugFr: "attaque-traxler/fxf7-principale",
+    variantNodeId: "traxler-9b",
+    parentNodeId: "traxler-8",
+    title: "Línea Axf7+ (Principal Moderna) | Ataque Traxler | Aperturas de Ajedrez",
+    titleEn: "Bxf7+ Line (Modern Main Line) | Traxler Attack | Chess Openings",
+    titleFr: "Ligne Fxf7+ (Principale Moderne) | Attaque Traxler | Ouvertures d'Échecs",
+    description:
+      "La línea principal teórica moderna: White captura en f7 con el alfil, ganando un peón limpiamente sin tácticas salvajes.",
+    descriptionEn:
+      "The modern theoretical main line: White captures on f7 with the bishop, cleanly winning a pawn without allowing wild complications.",
+    descriptionFr:
+      "La ligne principale théorique moderne : les Blancs capturent en f7 avec le fou, gagnant un pion proprement sans complications.",
   },
 
   // ── Siciliana ────────────────────────────────────────────
