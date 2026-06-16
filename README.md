@@ -4,7 +4,9 @@
 
 Explorador interactivo de aperturas de ajedrez. Visualiza las principales líneas de apertura como un árbol navegable.
 
-**Demo:** [aperturas-de-ajedrez.netlify.app](https://aperturas-de-ajedrez.netlify.app/)
+**Demo:** [aperturasdeajedrez.com.ar](https://aperturasdeajedrez.com.ar/)
+
+No es un repo para juzgar la calidad del código 🙏. Es un ejercicio de coding con agentes, un PoC personal.
 
 ![Vista general del árbol](docs/screenshot-opening-filter.png)
 
